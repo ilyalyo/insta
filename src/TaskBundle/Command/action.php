@@ -5,7 +5,7 @@ debug("started: " . $TASK_ID);
 connect();
 $task=get_task($TASK_ID);
 
-for ($i = 0; $i <= $task['count']; $i++) {
+for ($i = 0; $i <= $task['count'] - 1 ; $i++) {
 
     $token = $task["token"];
 
@@ -44,10 +44,8 @@ function is_stopped($id){
    $row = mysql_fetch_array($qr_result);
 
   if(!empty($row['id'])){
-
     	return true;
   }
-
   	return false;
 }
 

@@ -70,7 +70,7 @@ class DefaultController extends Controller
 
             $command = new WriteCommand();
             $command->setContainer($this->container);
-            $input = new ArrayInput(array('id' => $account->getId()));
+            $input = new ArrayInput(array('id' => $task->getId()));
             $output = new NullOutput();
             $command->run($input, $output);
 

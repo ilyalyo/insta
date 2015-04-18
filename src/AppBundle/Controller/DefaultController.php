@@ -61,7 +61,7 @@ class DefaultController extends Controller
         $params=array(
             'client_id'=>self::CLIENT_ID,
             'client_secret'=>self::CLIENT_SECRET,
-            'grant_type'=>'authorization_code ',
+            'grant_type'=>'authorization_code',
             'redirect_uri'=>self::REDIRECT_URL,
             'code'=>$code);
 
@@ -73,7 +73,6 @@ class DefaultController extends Controller
         curl_close($ch);
 
         (var_dump(($response)));
-
 
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();

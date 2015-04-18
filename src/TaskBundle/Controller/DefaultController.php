@@ -68,14 +68,12 @@ class DefaultController extends Controller
             $em->persist($task);
             $em->flush();
 
-           /* $command = new WriteCommand();
+            $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $account->getId()));
             $output = new NullOutput();
-            $resultCode = $command->run($input, $output);
+            $command->run($input, $output);
 
-            echo $resultCode;
-            echo var_dump($output);*/
             return $this->redirectToRoute('accounts');
         }
 

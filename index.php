@@ -92,7 +92,7 @@ switch ($lang){
             autoStart: true,
             countdown: true
         });
-        clock.setTime(<?php echo 1429131600-time(); ?>);//   3600*24*14
+        clock.setTime(<?php echo 1430162464-time(); ?>);//   3600*24*14
         clock.start();
         </script>
         <?php

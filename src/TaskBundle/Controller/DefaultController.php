@@ -63,6 +63,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $task->onPrePersist();
             $em->persist($task);

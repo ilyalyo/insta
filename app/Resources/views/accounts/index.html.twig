@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{ path('add_account') }}">
+        <button class="btn btn-success">Добавить аккаунт</button>
+    </form>
+
+    {% for account in accounts %}
+        <div id="modal{{ account.id }}" class="modal fade">
+            {{ render(controller('TaskBundle:Default:add', {account_id: account.id})) }}
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button type="button" class="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse">+</button>
+                {% if account.username %}
+                    {{ account.username | trim(300) }}<br/>
+                {% endif %}
+
+                <a data-toggle="modal" data-target="#modal{{ account.id }}">Добавить задачу</a>
+            </div>
+            <div class="panel-collapse collapse out">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <th>Тэги</th>
+                            <th>Количество</th>
+                            <th>Тип</th>
+                            <th>Статус</th>
+                            <th></th>
+                        </tr>
+                    {% for task in account.tasks %}
+                        <tr>
+                            <td>
+                                {% if task.tags %}
+                                    <textarea disabled>{{ task.tags }}</textarea>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if task.count %}
+                                    {{ task.count }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if task.type == 0 %}
+                                    <p>following</p>
+                                {% else %}
+                                    <p>liking</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if task.status == 2 %}
+                                    <p>Работает</p>
+                                {% elseif task.status == 3%}
+                                    <p>Прервана</p>
+                                {% elseif task.status == 0%}
+                                    <p>Начинается</p>
+                                {% else %}
+                                    <p>Выполнена</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if task.status in [0,2] %}
+                                    <a href="{{ path('stop_tasks' , {task_id: task.id}) }}">СТОП</a>
+                                {% elseif task.type == 1%}
+                                    <a href="{{ path('unfollow_tasks' , {task_id: task.id}) }}">Отписаться</a>
+                                {% endif %}
+                                <a href="{{ path('actions' , {id: task.id}) }}"> Детали</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

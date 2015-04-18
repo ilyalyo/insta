@@ -1,0 +1,37 @@
+{% block head_style %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="base.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!--slider-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+{% endblock head_style %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active" id="accounts"><a href="{{ path('accounts') }}"><i class="fa fa-home fa-fw"></i>Аккаунты</a></li>
+                    <li disabled id="accounts"><a><i class="fa fa-home fa-fw"></i><font style="color: darkgray;">Аналитика</font></a></li>
+                    <li id="purchase"><a><i class="fa fa-home fa-fw"></i><font style="color: darkgray;">Покупка</font></a></li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked menu-bottom">
+                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-home fa-fw"></i>Выход</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9 well">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(".spoiler-trigger").click(function() {
+        $(this).parent().next().collapse('toggle');
+    });
+</script>
+{% block javascripts %}{% endblock %}

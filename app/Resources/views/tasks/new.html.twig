@@ -1,0 +1,19 @@
+
+{{ form_start(form, {'action': path('add_tasks', { 'account_id': account_id })}) }}}
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        {% block header %}
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        {% endblock %}
+    </div>
+    <div class="modal-body">
+        {{ form_widget(form) }}
+    </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Отмена</button>
+            <button class="btn btn-primary">Добавить</button>
+        </div>
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{ form_end(form) }}

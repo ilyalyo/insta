@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Пользователь</th>
+            <th>Страница</th>
+        </tr>
+
+    {% for action in actions %}
+        <tr>
+            <td>
+                {% if action.username %}
+                {{ action.username }}
+                {% endif %}
+            </td>
+            <td>
+                {% if action.username %}
+                    <a href="https://instagram.com/{{ action.username }}">+</a>
+                {% endif %}
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </table>
+
+{% endblock %}
+

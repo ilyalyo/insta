@@ -35,7 +35,7 @@ switch ($lang){
                     $username=isset($_POST['username']) ? $_POST['username'] : "";
                     if(isset($mail)){
                         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                            mail($mail,'instellar - coming soon', "Здравствуй $username!");
+                            include('checkinemail.php');
                             echo '<p class = "success" >'. $EMAIL_BEEN_SENT .'</p>';
                         }
                         else{

@@ -83,7 +83,7 @@ function  getUsernameAndIdsbyTag($tag,$token){
 function checkUser($user_id,$token){
     $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
     $response =json_decode( file_get_contents($url));
-    if ($response->data[0]->outgoing_status == 'none' && $response->data[0]->target_user_is_private==false)
+    if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private==false)
         return true;
     return false;
 }

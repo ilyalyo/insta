@@ -18,7 +18,8 @@
             <td>
                 {% if action.username %}
                     <a href="https://instagram.com/{{ action.username }}">+</a>
-                    <a href="https://instagram.com/{{ action.resource }}">res</a>
+                    <a href="{{ action.resource_id }}">res</a>
+                    {{ action.responce }}
                 {% endif %}
             </td>
         </tr>

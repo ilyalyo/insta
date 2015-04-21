@@ -152,7 +152,8 @@ function get_task($task_id){
     'count' => $row['count'],
     'tags' => $row['tags'],
     'type' => $row['type'],
-    'token' => $row['token'] );
+    'token' => $row['token'],
+    'byUsername' => $row['byUsername'] );
 
    mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id")
   	or die(mysql_error());  

@@ -54,6 +54,9 @@ class DefaultController extends Controller
         $task->setStatus(0);
 
         $form = $this->createFormBuilder($task)
+            ->add('byUsername', 'choice', array(
+                'choices'  => array('0' => 'tags','1' => 'name'),
+                'label'=>'Action by: '))
             ->add('type', 'choice', array(
                 'choices'  => array('0' => 'following','1' => 'liking'),))
             ->add('count', 'text')

@@ -1,5 +1,5 @@
 
-{{ form_start(form, {'action': path('add_tasks', { 'account_id': account_id })}) }}}
+{{ form_start(form, {'action': path('add_tasks', { 'account_id': account_id }), 'method': 'post'  }) }}}
 <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
@@ -14,6 +14,26 @@
             <button class="btn" data-dismiss="modal" aria-hidden="true">Отмена</button>
             <button class="btn btn-primary">Добавить</button>
         </div>
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+</div>
 {{ form_end(form) }}
+<script>
+    $(document).ready(function(){
+        $('#form_byUsername').val()
+        $( "#form_byUsername" ).change(function() {
+            if($('#form_byUsername').val()==1) {
+                $("label[for='form_tags']").text('Username');
+                $($('.form-group')[1]).hide()
+            }
+            else {
+                $("label[for='form_tags']").text('Tags');
+                $($('.form-group')[1]).show()
+
+            }
+        });
+
+    });
+
+
+
+</script>

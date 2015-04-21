@@ -5,32 +5,86 @@ debug("started: " . $TASK_ID);
 connect();
 $task=get_task($TASK_ID);
 
-for ($i = 0; $i <= $task['count'] - 1 ; $i++) {
+$token = $task["token"];
 
-    $token = $task["token"];
+if($task['byUsername']==1){
 
-    $tags = explode('#', $task['tags']);
+    $users=getUserFollowers($task);
+    foreach($users as $user){
+        follow($task, $user);
 
-    $rand_key = array_rand($tags);
+        sleep(rand(30,50));
 
-    $tag = $tags[$rand_key];
-
-    $media=getUsernameAndIdsbyTag($tag, $token);
-
-    if($task['type']==0)
-        follow($task, $media);
-    else
-        sendLike($task, $media);
-
-    sleep(rand(30,50));
-
-    if(is_stopped($TASK_ID))
-         break;
+        if(is_stopped($TASK_ID))
+            break;
+    }
 }
+else
+    for ($i = 0; $i <= $task['count'] - 1 ; $i++) {
+
+        $tags = explode('#', $task['tags']);
+
+        $rand_key = array_rand($tags);
+
+        $tag = $tags[$rand_key];
+
+        $media=getUsernameAndIdsbyTag($tag, $token);
+
+        if($task['type']==0)
+            follow($task, $media);
+        else
+            sendLike($task, $media);
+
+        sleep(rand(30,50));
+
+        if(is_stopped($TASK_ID))
+             break;
+    }
 if(!is_stopped($TASK_ID))
 	done_task($TASK_ID);
 
 debug("closed: " . $TASK_ID);
+
+
+
+function getUserFollowers($task)
+{
+    $user_name = $task['tags'];
+    $token = $task['token'];
+    $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
+    $response = json_decode(file_get_contents($url));
+    $user_id=$response->data[0]->id;
+
+    if(!isset($user_id))
+        return 1;
+
+    $next="";
+    $result=array();
+    do {
+        $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" . "access_token=$token" . "&cursor=$next";
+        $response = json_decode(file_get_contents($url));
+
+        $data = $response->data;
+        $next = $response->pagination->next_cursor;
+
+
+        foreach ($data as $d) {
+            if( $task['count']-1 <count( $result))
+                break;
+
+            if (checkUser($d->id, $token)) {
+                $user['username'] = $d->username;
+                $user['user_id'] = $d->id;
+                $user['link'] = '';
+                $result[] = $user;
+            }
+        }
+
+    }while($task['count']-1 > count($result) && isset($next));
+
+    return $result;
+}
+
 
 function debug($message){
     $file = __DIR__ . "/data";

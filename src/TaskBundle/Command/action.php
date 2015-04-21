@@ -65,16 +65,28 @@ function add_row($task_id,$user_id,$username,$resource_id,$responce){
 
 function  getUsernameAndIdsbyTag($tag,$token){
 
-    $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=1";
-  
+    $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=5";
   	$response =json_decode( file_get_contents($url));
-  	$result['id']=$response->data[0]->id;
-    $result['username']=$response->data[0]->user->username;
-    $result['user_id']=$response->data[0]->user->id;
-  	
-  return $result;
+
+    $data = $response->data;
+    foreach($data as $d){
+        if(checkUser($d->id,$token)){
+            $result['id'] = $d->id;
+            $result['username'] = $d->user->username;
+            $result['user_id'] = $d->user->id;
+            $result['link'] = $d->link;
+            return $result;
+        }
+    }
 }
 
+function checkUser($user_id,$token){
+    $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
+    $response =json_decode( file_get_contents($url));
+    if ($response->data[0]->outgoing_status == 'none' && $response->data[0]->target_user_is_private=='false')
+        return true;
+    return false;
+}
 
 function get_task($task_id){
     $qr_result = mysql_query("SELECT t.*,a.token FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0")
@@ -107,7 +119,7 @@ function  sendLike($task,$media){
   
   $result= json_decode(httpPost($url, $params));
 
-   add_row($task['id'],$media['user_id'],$media['username'],$media['id'],$result->meta->code);  
+   add_row($task['id'],$media['user_id'],$media['username'],$media['link'],$result->meta->code);
 }
 
 function  follow($task,$media){
@@ -123,7 +135,7 @@ function  follow($task,$media){
    );
   $result= json_decode(httpPost($url, $params));
 
-   add_row($task['id'],$media['user_id'],$media['username'],$media['id'],$result->meta->code);  
+   add_row($task['id'],$media['user_id'],$media['username'],$media['link'],$result->meta->code);
 }
 
 

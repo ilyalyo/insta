@@ -7,6 +7,7 @@
             <th>Страница</th>
         </tr>
 
+    <p>Всего {{ actions | length }}</p>
     {% for action in actions %}
         <tr>
             <td>
@@ -17,6 +18,7 @@
             <td>
                 {% if action.username %}
                     <a href="https://instagram.com/{{ action.username }}">+</a>
+                    <a href="https://instagram.com/{{ action.resource }}">res</a>
                 {% endif %}
             </td>
         </tr>

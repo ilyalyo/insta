@@ -17,6 +17,7 @@
             </td>
             <td>
                 {% if action.username %}
+                    {{ dump(action) }}
                     <a href="https://instagram.com/{{ action.username }}">+</a>
                     <a href="{{ action.resource_id }}">res</a>
                     {{ action.responce }}

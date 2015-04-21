@@ -18,9 +18,9 @@ for ($i = 0; $i <= $task['count'] - 1 ; $i++) {
     $media=getUsernameAndIdsbyTag($tag, $token);
 
     if($task['type']==0)
-        sendLike($task, $media);
+        follow($task, $media);
     else
-         follow($task, $media);
+        sendLike($task, $media);
 
     sleep(rand(30,50));
 
@@ -70,7 +70,7 @@ function  getUsernameAndIdsbyTag($tag,$token){
 
     $data = $response->data;
     foreach($data as $d){
-        if(checkUser($d->id,$token)){
+        if(checkUser($d->user->id,$token)){
             $result['id'] = $d->id;
             $result['username'] = $d->user->username;
             $result['user_id'] = $d->user->id;
@@ -83,7 +83,7 @@ function  getUsernameAndIdsbyTag($tag,$token){
 function checkUser($user_id,$token){
     $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
     $response =json_decode( file_get_contents($url));
-    if ($response->data[0]->outgoing_status == 'none' && $response->data[0]->target_user_is_private=='false')
+    if ($response->data[0]->outgoing_status == 'none' && $response->data[0]->target_user_is_private==false)
         return true;
     return false;
 }

@@ -87,6 +87,11 @@ class DefaultController extends Controller
             $em->persist($account);
             $em->flush();
         }
+        else{
+            $accounts->setToken($response->access_token);
+            $em->persist($accounts);
+            $em->flush();
+        }
         return $this->redirectToRoute('accounts');
     }
 }

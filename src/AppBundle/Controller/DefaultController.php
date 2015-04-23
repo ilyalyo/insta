@@ -75,9 +75,12 @@ class DefaultController extends Controller
         (var_dump(($response)));
 
         $user = $this->getUser();
+        (var_dump(($user)));
         $em = $this->getDoctrine()->getManager();
         $account_id=$response->user->id;
         $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array('user' => $user->getId(), 'account_id' => $account_id));
+        (var_dump(($accounts)));
+
         if(empty($accounts)){
             $account= new Accounts();
             $account->setUser($user);

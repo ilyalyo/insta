@@ -81,7 +81,7 @@ class DefaultController extends Controller
         $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array('user' => $user->getId(), 'account_id' => $account_id));
         (var_dump(($accounts)));
 
-        if(empty($accounts)){
+        if(!isset($accounts)){
             $account= new Accounts();
             $account->setUser($user);
             $account->setUsername($response->user->username);

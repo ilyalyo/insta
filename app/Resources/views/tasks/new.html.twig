@@ -8,6 +8,9 @@
         {% endblock %}
     </div>
     <div class="modal-body">
+        <div class="row">
+            <p class="col-sm-3"></p><p class="col-sm-9 modal-error" id="byUsername_errors"></p>
+        </div>
         {{ form_row(form.byUsername) }}
         {{ form_row(form.type) }}
         <div class="row">
@@ -63,7 +66,6 @@
     });
 
     function postForm( $form,callback ){
-        console.log('star');
         var values = {};
         $.each( $form.serializeArray(), function(i, field) {
             values[field.name] = field.value;
@@ -74,10 +76,7 @@
             url         : "{{  path('add_tasks')}}" ,
             data        : values,
             success     : function(data) {
-                callback( data );},
-            error       : function(data){
-                console.log(data);
-                    }
+                callback( data );}
         });
     }
 

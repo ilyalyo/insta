@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tasks
 {
+    const CREATED=0;
+    const RUNNING=2;
+    const DONE=1;
+    const INTERRUPTED=3;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

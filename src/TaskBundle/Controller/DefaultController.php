@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use TaskBundle\Command\WriteCommand;
 use TaskBundle\Entity\Tasks;
 use Symfony\Component\HttpFoundation\Request;
+use TaskBundle\Entity\TaskType;
+
 class DefaultController extends Controller
 {
     /**
@@ -69,8 +71,19 @@ class DefaultController extends Controller
             if (!isset($account))
                 throw new NotFoundHttpException("Page not found");
 
+            $running_task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array(
+                'account_id'=>$acc_id,
+                'status' => array(Tasks::RUNNING, Tasks::CREATED),
+                'type'=> $task->getType()));
+
+            if(isset($running_task))
+                if($task->getType()==TaskType::FOLLOWING)
+                    return new JsonResponse(array('byUsername' => 'У вас уже есть работающая задача на фоловинг'));
+                else
+                    return new JsonResponse(array('byUsername' => 'У вас уже есть работающая задача на лайкинг'));
+
             $task->setAccountId($account);
-            $task->setStatus(0);
+            $task->setStatus(Tasks::CREATED);
             $em = $this->getDoctrine()->getManager();
             $task->onPrePersist();
             $em->persist($task);

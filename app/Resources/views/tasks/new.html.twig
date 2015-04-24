@@ -47,6 +47,8 @@
             e.preventDefault();
             $('.modal-error').text('');
             $('.modal input').css('border-color','#ccc');
+            $('.modal textarea').css('border-color','#ccc');
+
             var result=null;
             postForm( $(this), function( response ){
                 result = (response);

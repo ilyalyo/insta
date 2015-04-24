@@ -30,7 +30,7 @@
                             <th>Статус</th>
                             <th></th>
                         </tr>
-                    {% for task in account.tasks %}
+                    {% for task in account.tasks|reverse %}
                         <tr>
                             <td>
                                 {% if task.tags %}

@@ -1,25 +1,23 @@
 <?php
-debug('start');
-//$TASK_ID=$_SERVER['argv'][1];
-$TASK_ID=1;
-connect();
-$follows=get_followed($TASK_ID);
-$token=get_token($TASK_ID);
-debug($token);
-foreach($follows as $follow){
-    unFollow($follow, $token);
+    $TASK_ID=$_SERVER['argv'][1];
+    connect();
+    $follows=get_followed($TASK_ID);
+    $token=get_token($TASK_ID);
+
+    foreach($follows as $follow){
+        unFollow($follow, $token);
 }
 
 function debug($message){
-file_put_contents('/home/c/cc25673/instellar_s/src/TaskBundle/data',"|". json_encode($message). "|",FILE_APPEND);
+    file_put_contents('/home/c/cc25673/instellar_s/src/TaskBundle/data',"|". json_encode($message). "|",FILE_APPEND);
 }
 
 
 function get_followed($task_id){
     $qr_result = mysql_query("SELECT distinct target_user_id FROM actions WHERE task_id=$task_id")
 		or die(mysql_error());
-  $result=array();
-  while ($row = mysql_fetch_array($qr_result))
+    $result=array();
+    while ($row = mysql_fetch_array($qr_result))
         $result[]=$row['target_user_id'];
     return $result;
 }
@@ -34,19 +32,14 @@ function get_token($task_id){
 
 
 function  unFollow($follow,$token){
-
+    $url="https://api.instagram.com/v1/users/$follow/relationship";
   
-  	$url="https://api.instagram.com/v1/users/$follow/relationship";
-  
-  $params = array(
-   "access_token" =>  $token,
-   "action" =>  'unfollow'
-   );
-  $result= json_decode(httpPost($url, $params));
-  debug($follow);
-	debug($result);
+    $params = array(
+        "access_token" =>  $token,
+        "action" =>  'unfollow'
+    );
+    $result= json_decode(httpPost($url, $params));
 }
-
 
 function httpPost($url,$params)
 {

@@ -30,7 +30,10 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array('user' => $user->getId()));
+        $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
+            'user' => $user->getId())
+        );
+
         return $this->render(
             'accounts/index.html.twig',
             [

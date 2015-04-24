@@ -45,6 +45,8 @@
 
         $('[ name="task_form"]').submit( function( e ){
             e.preventDefault();
+            $('.modal-error').text('');
+            $('.modal input').css('border-color','#ccc');
             var result=null;
             postForm( $(this), function( response ){
                 result = (response);

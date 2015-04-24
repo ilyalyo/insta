@@ -2,11 +2,11 @@
 
 namespace TaskBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use TaskBundle\Command\WriteCommand;
 use TaskBundle\Entity\Tasks;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,18 +40,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/tasks/add/{account_id}", name="add_tasks")
+     * @Route("/tasks/add", name="add_tasks")
      */
-    public function addAction(Request $request,$account_id)
+    public function addAction(Request $request)
     {
         $task = new Tasks();
-
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$account_id));
-
-        $task->setAccountId($account);
-        $task->setStatus(0);
 
         $form = $this->createFormBuilder($task)
             ->add('byUsername', 'choice', array(
@@ -66,7 +59,16 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            //проверка на иньекцию чуждого акк ид
+            $acc_id = $request->request->get('account_id');
+            $user = $this->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$acc_id));
+            if (!isset($account))
+                throw new NotFoundHttpException("Page not found");
 
+            $task->setAccountId($account);
+            $task->setStatus(0);
             $em = $this->getDoctrine()->getManager();
             $task->onPrePersist();
             $em->persist($task);
@@ -78,17 +80,18 @@ class DefaultController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
-            return $this->redirectToRoute('accounts');
+            return new JsonResponse('success');
         }
 
+        if($request->getMethod()=='POST'){
+            $formErrors = $this->get('form_errors')->getArray($form);
+            return new JsonResponse($formErrors);
+        }
 
         return $this->render('tasks/new.html.twig', array(
             'form' => $form->createView(),
-            'account_id' => $account_id,
         ));
     }
-
-
 
 
     /**

@@ -25,8 +25,12 @@ class Tasks
     protected $account_id;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 200,
+     *      minMessage = "Минимальная длинна {{ limit }} символов",
+     *      maxMessage = "Максимальная длинна {{ limit }} символов"
+     * )
      * @ORM\Column(type="string", length=250)
      */
     protected $tags;
@@ -47,6 +51,13 @@ class Tasks
     protected $byUsername;
 
     /**
+     *@Assert\Range(
+     *      min = 1,
+     *      max = 1000,
+     *      minMessage = "Минимальное значение - {{ limit }}",
+     *      maxMessage = "Максимальное значение - {{ limit }}"
+     * )
+     *
      * @ORM\Column(type="integer")
      */
     protected $count;

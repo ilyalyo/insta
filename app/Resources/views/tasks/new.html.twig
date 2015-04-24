@@ -1,5 +1,5 @@
 
-{{ form_start(form, {'action': path('add_tasks', { 'account_id': account_id }), 'method': 'post'  }) }}}
+{{ form_start(form, {'name': 'task_form', 'action': path('add_tasks'), 'method': 'post'  }) }}}
 <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
@@ -8,7 +8,17 @@
         {% endblock %}
     </div>
     <div class="modal-body">
-        {{ form_widget(form) }}
+        {{ form_row(form.byUsername) }}
+        {{ form_row(form.type) }}
+        <div class="row">
+        <p class="col-sm-3"></p><p class="col-sm-9 modal-error" id="count_errors"></p>
+        </div>
+        {{ form_row(form.count) }}
+        <div class="row">
+            <p class="col-sm-3"></p><p class="col-sm-9 modal-error" id="tags_errors"></p>
+        </div>
+        {{ form_row(form.tags) }}
+
     </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Отмена</button>
@@ -16,6 +26,7 @@
         </div>
     </div>
 </div>
+<input name="account_id" id="account_id" hidden="hidden"/>
 {{ form_end(form) }}
 <script>
     $(document).ready(function(){
@@ -28,12 +39,49 @@
             else {
                 $("label[for='form_tags']").text('Tags');
                 $($('.form-group')[1]).show()
-
             }
         });
 
+
+        $('[ name="task_form"]').submit( function( e ){
+            e.preventDefault();
+            var result=null;
+            postForm( $(this), function( response ){
+                result = (response);
+                if(result=='success')
+                    location.reload();
+                for (var k in result){
+                         $( "#" + k + '_errors').text(result[k]);
+                         $( "#" + 'form_' + k ).css('border-color','red');
+                    }
+            });
+        });
     });
 
+    function postForm( $form,callback ){
+        console.log('star');
+        var values = {};
+        $.each( $form.serializeArray(), function(i, field) {
+            values[field.name] = field.value;
+        });
+
+        $.ajax({
+            type        : 'post',
+            url         : "{{  path('add_tasks')}}" ,
+            data        : values,
+            success     : function(data) {
+                callback( data );},
+            error       : function(data){
+                console.log(data);
+                    }
+        });
+    }
 
 
 </script>
+<style>
+    .modal-error{
+        margin-bottom: 0px;
+        color: red;
+    }
+</style>

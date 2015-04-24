@@ -5,10 +5,12 @@
         <button class="btn btn-success">Добавить аккаунт</button>
     </form>
 
+    <div id="modal" class="modal fade">
+        {{ render(controller('TaskBundle:Default:add')) }}
+    </div>
+
     {% for account in accounts %}
-        <div id="modal{{ account.id }}" class="modal fade">
-            {{ render(controller('TaskBundle:Default:add', {account_id: account.id})) }}
-        </div>
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <button type="button" class="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse">+</button>
@@ -16,7 +18,7 @@
                     {{ account.username | trim(300) }}<br/>
                 {% endif %}
 
-                <a data-toggle="modal" data-target="#modal{{ account.id }}">Добавить задачу</a>
+                <a data-toggle="modal" data-target="#modal" onclick=" $('#account_id').val({{ account.id }});">Добавить задачу</a>
             </div>
             <div class="panel-collapse collapse out">
                 <div class="panel-body">

@@ -5,22 +5,28 @@
         <button class="btn btn-success">Добавить аккаунт</button>
     </form>
 
-    <div id="modal" class="modal fade">
-        {{ render(controller('TaskBundle:Default:add')) }}
-    </div>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
 
     {% for account in accounts %}
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <button type="button" class="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse">+</button>
-                {% if account.username %}
-                    {{ account.username | trim(300) }}<br/>
-                {% endif %}
+        <div class="panel-heading">
+            <h4 class="panel-title" style="display: inline-block">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ account.id }}">
+                    {% if account.username %}
+                        {{ account.username | trim(300) }}<br/>
+                    {% endif %}
+                </a>
+            </h4>
 
-                <a data-toggle="modal" data-target="#modal" onclick=" $('#account_id').val({{ account.id }});">Добавить задачу</a>
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" onclick=" $('#account_id').val({{ account.id }});"><span class="glyphicon glyphicon-plus"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
             </div>
-            <div class="panel-collapse collapse out">
+            </div>
+            <div  id="collapse{{ account.id }}" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <table class="table">
                         <tr>
@@ -73,6 +79,14 @@
                     </table>
                 </div>
             </div>
-        </div>
     {% endfor %}
+    </div>
+</div>
+
+    <div id="modal" class="modal fade">
+        {{ render(controller('TaskBundle:Default:add')) }}
+    </div>
+    <script>
+        $(#accounts  class="active"
+    </script>
 {% endblock %}

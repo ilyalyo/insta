@@ -1,0 +1,22 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <div class="container">
+        <div class="row" style="padding-top: 100px">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
+                <p style="font-size: 24px;padding-top: 32px;">Мы готовим наш сервис к встречи с Вами</p>
+
+                <p>В течении недели мы вышлим подробности на указанный email адрес</p>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        setTimeout( function(){
+            window.location.replace("{{ path('accounts')}}");
+        },3000);
+    </script>
+{% endblock fos_user_content %}

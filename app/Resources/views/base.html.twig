@@ -1,7 +1,6 @@
 {% block head_style %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../../../base.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <!--slider-->
@@ -10,28 +9,39 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 {% endblock head_style %}
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
+        <div class="col-xs-2 left">
+            <a href="{{ path('homepage') }}"><img  class="logo" src="img/instastellar_header.png"/></a>
+        </div>
 
-    <div class="container">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('info') }}"><p>Руководство пользователя</p></a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}"><p>Выход</p></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <div class="wrapper">
         <div class="row">
-            <div class="col-md-2">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active" id="accounts"><a href="{{ path('accounts') }}"><i class="fa fa-home fa-fw"></i>Аккаунты</a></li>
-                    <li disabled id="accounts"><a><i class="fa fa-home fa-fw"></i><font style="color: darkgray;">Аналитика</font></a></li>
-                    <li id="purchase"><a><i class="fa fa-home fa-fw"></i><font style="color: darkgray;">Покупка</font></a></li>
-                </ul>
-                <ul class="nav nav-pills nav-stacked menu-bottom">
-                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-home fa-fw"></i>Выход</a></li>
-                </ul>
+            <div class="col-xs-2 left">
+                <div class="navigation">
+                    <ul class="nav">
+                        <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span> Мои Аккаунты</a></li>
+                        <li disabled id="accounts"><a><font style="color: darkgray;"><span class="glyphicon glyphicon-signal"></span> Аналитика</font></a></li>
+                        <li id="info"><a href="{{ path('info') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+                        <li id="purchase"><a><font style="color: darkgray;"><span class="glyphicon glyphicon-star"></span> Покупка</font></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-9 well">
+            <div class="col-xs-8 col-md-10 content">
                 {% block body %}{% endblock %}
             </div>
         </div>
     </div>
+</body>
 
-<script>
-    $(".spoiler-trigger").click(function() {
-        $(this).parent().next().collapse('toggle');
-    });
-</script>
 {% block javascripts %}{% endblock %}

@@ -1,0 +1,124 @@
+/*head*/
+header .navbar-default{
+    background-color: #000000;
+}
+.navigation{
+    padding-top: 20px;
+    width: inherit;
+    margin-left: -15px;
+}
+.nav .glyphicon{
+    padding-left: 30px;
+}
+.logo{
+    padding-top: 5px;
+}
+body.modal-open{
+    overflow:inherit; padding-right:inherit !important;
+}
+#poss{
+    background-image: url(/img/passability.png);
+    background-size: cover;
+}
+footer{
+    background-color: #000;
+    MARGIN-TOP: 30px;
+    color: antiquewhite;1;
+}
+#why p{
+    padding-top: 15px;
+}
+body .wrapper{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.rocket{
+    padding-bottom: 20px;
+}
+nav p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1px;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+}
+p{
+    padding-top: 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+}
+.text-center h1,h2,h3{
+    letter-spacing: 1px;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif !important;
+}
+#promote .btn-start{
+    margin-top: 0px;
+}
+.btn-start p{
+    letter-spacing: 4px;
+}
+.btn-default.btn-start{
+    box-shadow:         -1px 4px 3px 0px rgba(50, 50, 50, 0.77);
+    border-radius: 10px;
+    color: #fff;
+    width: 360px;
+    height: 85px;
+    background-color: #e90a71;
+    border-color: #ccc;
+    font-size: 24px;
+    margin-top: 30px;
+    padding-top: 0px;
+}
+.btn-default.btn-start:hover{
+    color: #fff;
+    background-color: #f30975;
+}
+.btn-default.btn-start:focus{
+     outline: none;
+     border: 0px;
+     color: #fff;
+     background-color: #e90a71;
+ }
+.btn-default.btn-start{
+    outline: none;
+    border: 0px;
+    color: #fff;
+    background-color: #e90a71;
+}
+/*
+2
+*/
+#poss .text-center{
+    display: flex;
+    flex-direction: row;
+}
+#poss .text-center > [class^="col-"],
+#poss .text-center> [class*=" col-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#poss .row{
+color: #ffffff;
+}
+#poss .row,#promote .row, #why .row{
+    padding-top: 50px;
+}
+#poss h1{
+    text-align: center;
+    color: #ffffff;
+}
+/**/
+
+.wrapper {min-width:500px;padding: 0 15px;background-color:#dddddd;}
+.navigation {position:fixed;}
+.content {background-color:#fff;}
+
+/* slider*/
+
+.panel {
+    box-shadow: none !important;
+}
+/* slider*/

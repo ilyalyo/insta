@@ -24,6 +24,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/info", name="info")
+     */
+    public function infoxAction()
+    {
+        return $this->render('info.html.twig');
+    }
+
+    /**
      * @Route("/accounts", name="accounts")
      */
     public function accountsAction()

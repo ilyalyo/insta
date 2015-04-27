@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new TaskBundle\TaskBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

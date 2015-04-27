@@ -31,13 +31,13 @@
                 <div class="navigation">
                     <ul class="nav">
                         <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span> Мои Аккаунты</a></li>
-                        <li disabled id="accounts"><a><font style="color: darkgray;"><span class="glyphicon glyphicon-signal"></span> Аналитика</font></a></li>
+                        <li id="accounts"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span> Аналитика</a></li>
                         <li id="info"><a href="{{ path('info') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
                         <li id="purchase"><a><font style="color: darkgray;"><span class="glyphicon glyphicon-star"></span> Покупка</font></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-xs-8 col-md-10 content">
+            <div class="col-xs-8 col-md-10 content" style="min-height: 500px;">
                 {% block body %}{% endblock %}
             </div>
         </div>

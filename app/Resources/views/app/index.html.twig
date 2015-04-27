@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <script src="//code.highcharts.com/4.0.1/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.0.1/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+
+    <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    <h1>Данные появятся в течении часа</h1>
+{% endblock %}

@@ -1,44 +1,67 @@
 <?php
-    $TASK_ID=$_SERVER['argv'][1];
+    $TASK_ID =$_SERVER['argv'][1];
     connect();
-    $follows=get_followed($TASK_ID);
-    $token=get_token($TASK_ID);
+    $data=get_tokenUserIdCount($TASK_ID);
+    $token=$data[0];
+    $count=$data[1];
+    $account_id=$data[2];
 
-    foreach($follows as $follow){
-        unFollow($follow, $token);
-}
+    $users=getUserFollowers($account_id,$count,$token);
+    $counter=0;
 
-function debug($message){
-    file_put_contents('/home/c/cc25673/instellar_s/src/TaskBundle/data',"|". json_encode($message). "|",FILE_APPEND);
-}
+    foreach($users as $user){
+        unFollow($user, $token);
+        //die();
+        sleep(rand(10,15));
+        if($counter++>$count)
+            break;
+    }
 
-
-function get_followed($task_id){
-    $qr_result = mysql_query("SELECT distinct target_user_id FROM actions WHERE task_id=$task_id")
-		or die(mysql_error());
+function getUserFollowers($user_id,$count,$token )
+{
+    $next="";
     $result=array();
-    while ($row = mysql_fetch_array($qr_result))
-        $result[]=$row['target_user_id'];
+    $counter=0;
+    $about_count=$count/50;
+
+    $all=getFollowedBy($user_id,$token)/50;
+
+    do {
+        $counter++;
+        $url = "https://api.instagram.com/v1/users/$user_id/follows?" . "access_token=$token" . "&cursor=$next";
+        $response = json_decode(file_get_contents($url));
+
+        $data = $response->data;
+        $next = $response->pagination->next_cursor;
+        if($all-$counter<=$about_count)
+            foreach ($data as $d) {
+                $result[] = $d->id;
+            }
+
+    }while(isset($next));
     return $result;
 }
 
-function get_token($task_id){
-    $qr_result = mysql_query("SELECT distinct token FROM tasks t LEFT JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id")
+function  getFollowedBy($id,$token){
+    $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
+    $response =json_decode( file_get_contents($url));
+    return $response->data->counts->follows;
+}
+
+function get_tokenUserIdCount($task_id){
+    $qr_result = mysql_query("SELECT token,count,a.account_id as account_id FROM tasks t LEFT JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id")
 		or die(mysql_error());
 
     $row = mysql_fetch_array($qr_result);
-    return $row['token'];
+    return [$row['token'],$row['count'],$row['account_id']];
 }
-
 
 function  unFollow($follow,$token){
     $url="https://api.instagram.com/v1/users/$follow/relationship";
-  
     $params = array(
         "access_token" =>  $token,
         "action" =>  'unfollow'
     );
-    $result= json_decode(httpPost($url, $params));
 }
 
 function httpPost($url,$params)
@@ -57,7 +80,7 @@ function httpPost($url,$params)
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
     curl_setopt($ch,CURLOPT_HEADER, false); 
     curl_setopt($ch, CURLOPT_POST, count($postData));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);    
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
  
     $output=curl_exec($ch);
  
@@ -66,11 +89,11 @@ function httpPost($url,$params)
  }
 
 function connect(){
-    $connection = mysql_connect('localhost', 'cc25673_calc', '0000');
+    $connection = mysql_connect('localhost', 'root', '');
     if (!$connection){
         die("Database Connection Failed" . mysql_error());
     }
-    $select_db = mysql_select_db('cc25673_calc');
+    $select_db = mysql_select_db('symfony');
     if (!$select_db){
         die("Database Selection Failed" . mysql_error());
     }

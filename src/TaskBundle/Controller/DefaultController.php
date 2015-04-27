@@ -122,18 +122,4 @@ class DefaultController extends Controller
         $em->flush();
         return $this->redirectToRoute('accounts');
     }
-
-        /**
-     * @Route("/tasks/unfollow/{task_id}", name="unfollow_tasks")
-     */
-    public function unfollowAction($task_id)
-    {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $task = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$task_id));
-        shell_exec("php /home/c/cc25673/public_html/unfollow.php '".$task_id."' "); //> /dev/null &
-
-        //$result = null;
-        return $this->redirectToRoute('accounts');
-    }
 }

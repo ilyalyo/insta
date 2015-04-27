@@ -3,7 +3,7 @@
 
     <script src="//code.highcharts.com/4.0.1/highcharts.js"></script>
     <script src="//code.highcharts.com/4.0.1/modules/exporting.js"></script>
-    {% if chart %})
+    {% if chart %}
     <script type="text/javascript">
         {{ chart(chart) }}
     </script>
@@ -13,7 +13,7 @@
     <form action="{{ path('analytic') }}" method="get">
         <select name="id">
             {% for account in accounts %}
-            <option value="{{ account.id }}">{{ account.username }}</option>
+                <option value="{{ account.id }}">{{ account.username }}</option>
             {% endfor %}
         </select>
         <button type="submit">Посмотреть</button>

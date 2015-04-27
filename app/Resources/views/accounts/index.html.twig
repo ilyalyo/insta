@@ -21,7 +21,7 @@
 
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" onclick=" $('#account_id').val({{ account.id }});"><span class="glyphicon glyphicon-plus"></span></button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></a>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button>
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
             </div>
@@ -69,8 +69,6 @@
                             <td>
                                 {% if task.status in [0,2] %}
                                     <a href="{{ path('stop_tasks' , {task_id: task.id}) }}">СТОП</a>
-                                {% elseif task.type == 1%}
-                                    <a href="{{ path('unfollow_tasks' , {task_id: task.id}) }}">Отписаться</a>
                                 {% endif %}
                                 <a href="{{ path('actions' , {id: task.id}) }}"> Детали</a>
                             </td>

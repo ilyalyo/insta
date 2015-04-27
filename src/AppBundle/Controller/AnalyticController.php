@@ -13,21 +13,44 @@ class AnalyticController extends Controller
     /**
      * @Route("/analytic", name="analytic")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $series = array(
-            array("name" => "Data Serie Name",    "data" => array(1,2,4,5,6,3,8))
+        $chart='';
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
+                'user' => $user->getId())
         );
+        $id = $request->get('id');
 
-        $ob = new Highchart();
-        $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
-        $ob->title->text('Chart Title');
-        $ob->xAxis->title(array('text'  => "Horizontal axis title"));
-        $ob->yAxis->title(array('text'  => "Vertical axis title"));
-        $ob->series($series);
+        if(isset($id)){
+            $history = $em->getRepository('AppBundle:History')->findBy(array(
+                'account_id' => $id));
 
-        return $this->render('app/index.html.twig', array(
-            'chart' => $ob
-        ));
+            foreach($history as $h){
+                $followedBy[]=$h->getFollowedBy();
+                $followers[]=$h->getFollows();
+            }
+
+            $series = array(
+                array("name" => "Подписчики",    "data" => $followedBy),
+                array("name" => "Вы подписаны",    "data" => $followers)
+            );
+
+            $ob = new Highchart();
+            $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
+            $ob->title->text('Аналитика');
+            $ob->xAxis->title(array('text'  => "Время"));
+            $ob->yAxis->title(array('text'  => "Количество"));
+            $ob->series($series);
+        }
+
+        return $this->render(
+            'app/index.html.twig',
+            [
+                'accounts' => $accounts,
+                'chart' => isset($ob) ? $ob : null
+            ]
+        );
     }
 }

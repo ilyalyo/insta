@@ -11,11 +11,16 @@
 
     foreach($users as $user){
         unFollow($user, $token);
-        //die();
-        sleep(rand(10,15));
+        sleep(rand(30,50));
         if($counter++>$count)
             break;
     }
+done_task($TASK_ID);
+
+function done_task($id){
+    $qr_result = mysql_query("UPDATE tasks SET status=1 WHERE id=$id")
+    or die(mysql_error());
+}
 
 function getUserFollowers($user_id,$count,$token )
 {
@@ -62,6 +67,7 @@ function  unFollow($follow,$token){
         "access_token" =>  $token,
         "action" =>  'unfollow'
     );
+    $result= json_decode(httpPost($url, $params));
 }
 
 function httpPost($url,$params)

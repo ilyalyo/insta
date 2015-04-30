@@ -39,6 +39,7 @@ class AnalyticController extends Controller
 
             $ob = new Highchart();
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
+            $ob->chart->type('spline');
             $ob->title->text('Аналитика');
             $ob->xAxis->title(array('text'  => "Время"));
             $ob->yAxis->title(array('text'  => "Количество"));

@@ -26,7 +26,7 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li><a href="{{ path('accounts') }}"><p>Панель управления</p></a></li>
                 {% else %}
-                    <!--<li><a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a></li>-->
+                    <li><a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a></li>
                 {% endif %}
             </ul>
         </div>

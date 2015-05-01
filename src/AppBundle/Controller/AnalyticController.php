@@ -27,9 +27,12 @@ class AnalyticController extends Controller
             $history = $em->getRepository('AppBundle:History')->findBy(array(
                 'account_id' => $id));
 
+            $n = 0;
+            $count = count($history);
             foreach($history as $h){
-                $followedBy[]=$h->getFollowedBy();
-                $followers[]=$h->getFollows();
+                $date = gmdate("d/m/Y H:00 ", time() - (($count - $n++) * 3600));
+                $followedBy[]=  array($date, $h->getFollowedBy());
+                $followers[]=   array($date,$h->getFollows());
             }
 
             $series = array(
@@ -40,10 +43,15 @@ class AnalyticController extends Controller
             $ob = new Highchart();
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
             $ob->chart->type('spline');
+            $ob->chart->zoomType('x');
             $ob->title->text('Аналитика');
             $ob->xAxis->title(array('text'  => "Время"));
+
+            $ob->xAxis->type('datetime');
+            $ob->xAxis->dateTimeLabelFormats(array('month' => '%e. %b', ' year' => '%b' ));
             $ob->yAxis->title(array('text'  => "Количество"));
             $ob->series($series);
+
         }
 
         return $this->render(

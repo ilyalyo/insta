@@ -52,7 +52,9 @@ function getUserFollowers($task)
     $user_name = $task['tags'];
     $token = $task['token'];
     $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
-    $response = json_decode(file_get_contents($url));
+    $response =json_decode( httpGet($url));
+
+  //  $response = json_decode(file_get_contents($url));
     $user_id=$response->data[0]->id;
 
     if(!isset($user_id))
@@ -62,7 +64,9 @@ function getUserFollowers($task)
     $result=array();
     do {
         $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" . "access_token=$token" . "&cursor=$next";
-        $response = json_decode(file_get_contents($url));
+        $response =json_decode( httpGet($url));
+
+//        $response = json_decode(file_get_contents($url));
 
         $data = $response->data;
         $next = $response->pagination->next_cursor;
@@ -113,14 +117,17 @@ function done_task($id){
 function add_row($task_id,$user_id,$username,$resource_id,$responce){
         $qr_result = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')")
 		or die(mysql_error());
-
 }
 
 
 function  getUsernameAndIdsbyTag($tag,$token){
 
     $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=5";
-  	$response =json_decode( file_get_contents($url));
+  	//$response =json_decode( file_get_contents($url));
+    echo 'result';
+    var_dump(json_decode( httpGet($url)));
+    die();
+    $response =json_decode( httpGet($url));
 
     $data = $response->data;
     foreach($data as $d){
@@ -136,7 +143,9 @@ function  getUsernameAndIdsbyTag($tag,$token){
 
 function checkUser($user_id,$token){
     $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-    $response =json_decode( file_get_contents($url));
+    $response =json_decode( httpGet($url));
+
+  //  $response =json_decode( file_get_contents($url));
     if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private==false)
         return true;
     return false;
@@ -159,8 +168,6 @@ function get_task($task_id){
   	or die(mysql_error());  
     return $result;
 }
-
-
 
 function  sendLike($task,$media){
 
@@ -197,29 +204,49 @@ function  follow($task,$media){
 function httpPost($url,$params)
 {
   $postData = '';
-   //create name value pairs seperated by &
-   foreach($params as $k => $v) 
+   foreach($params as $k => $v)
    { 
       $postData .= $k . '='.$v.'&'; 
    }
    rtrim($postData, '&');
  
-    $ch = curl_init();  
- 
+    $ch = curl_init();
+    $proxy='212.164.20.7:1085:';
+
     curl_setopt($ch,CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_PROXY, $proxy);
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
     curl_setopt($ch,CURLOPT_HEADER, false); 
     curl_setopt($ch, CURLOPT_POST, count($postData));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);    
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
  
     $output=curl_exec($ch);
  
     curl_close($ch);
+    var_dump($output);
     return $output;
  }
 
+function httpGet($url)
+{
+     $ch = curl_init();
+
+    $proxy='212.164.20.7:1085:';
+    curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    curl_setopt($ch,CURLOPT_URL,$url);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+    $output=curl_exec($ch);
+    curl_close($ch);
+    var_dump($output);
+    return $output;
+ }
+
+
+
 function connect(){
-    $connection = mysql_connect('localhost', 'root', 'bycnfcntkkfh,fpf');
+    $connection = mysql_connect('localhost', 'root', '');//bycnfcntkkfh,fpf
     if (!$connection){
         die("Database Connection Failed" . mysql_error());
     }

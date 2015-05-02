@@ -205,7 +205,7 @@ class Inst
         );
         $this->PROXY_USED_ID[] = $id;
 
-        mysql_query("UPDATE proxy SET use=$use WHERE id=$id")
+        mysql_query("UPDATE proxy SET proxy.use=$use WHERE id=$id")
             or die(mysql_error());
         return $result;
     }

@@ -299,8 +299,10 @@ class Inst
 
         if(FALSE === $output){
             //throw new Exception(curl_error($ch), curl_errno($ch));
-            if($try++<5)
-                $this->httpGet($url,$try);
+            if($try++<5) {
+                curl_close($ch);
+                $result = $this->httpGet($url, $try);
+            }
             else{
                 curl_close($ch);
                 $this->close(curl_error($ch) . curl_errno($ch));
@@ -310,7 +312,8 @@ class Inst
             curl_close($ch);
             $this->close($result->meta->code);
         }
-        curl_close($ch);
+        else
+            curl_close($ch);
         $this->debug( "stop get|"  );
 
         return $result;

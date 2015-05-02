@@ -120,3 +120,6 @@ color: #ffffff;
     box-shadow: none !important;
 }
 /* slider*/
+.btn-group.pull-right{
+    bottom: 5px;
+}

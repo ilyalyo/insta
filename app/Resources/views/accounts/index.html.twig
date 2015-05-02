@@ -1,90 +1,168 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <script>
+        $('#mainTab').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
+
     <form action="{{ path('add_account') }}">
         <button class="btn btn-success">Добавить аккаунт</button>
     </form>
 
 <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
 
     {% for account in accounts %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
 
-        <div class="panel-heading">
-            <h4 class="panel-title" style="display: inline-block">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ account.id }}">
-                    {% if account.username %}
-                        {{ account.username | trim(300) }}<br/>
-                    {% endif %}
-                </a>
-            </h4>
+                <h4 class="panel-title" style="display: inline-block">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ account.id }}" class="collapsed">
+                        {% if account.username %}
+                            {{ account.username }}<br/>
+                        {% endif %}
 
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" onclick=" $('#account_id').val({{ account.id }});"><span class="glyphicon glyphicon-plus"></span></button>
-                <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></a>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-            </div>
-            </div>
-            <div  id="collapse{{ account.id }}" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <th>Тэги</th>
-                            <th>Количество</th>
-                            <th>Тип</th>
-                            <th>Статус</th>
-                            <th></th>
-                        </tr>
-                    {% for task in account.tasks|reverse %}
-                        <tr>
-                            <td>
-                                {% if task.tags %}
-                                    <textarea disabled>{{ task.tags }}</textarea>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if task.count %}
-                                    {{ task.count }}
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if task.type == 0 %}
-                                    <p>following</p>
-                                {% else %}
-                                    <p>liking</p>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if task.status == 2 %}
-                                    <p>Работает</p>
-                                {% elseif task.status == 3%}
-                                    <p>Прервана</p>
-                                {% elseif task.status == 0%}
-                                    <p>Начинается</p>
-                                {% else %}
-                                    <p>Выполнена</p>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if task.status in [0,2] %}
-                                    <a href="{{ path('stop_tasks' , {task_id: task.id}) }}">СТОП</a>
-                                {% endif %}
-                                <a href="{{ path('actions' , {id: task.id}) }}"> Детали</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </table>
+                    </a>
+                </h4>
+
+                <div class="btn-group pull-right">
+                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 1 })}}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-asterisk"></span></a>
+                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 0 })}}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a href="{{ path('add_tasks', {'id': account.id, 'type' : 1, 'isbyUsername': 0 }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart"></span></a>
+                    <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></a>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button>
+                    <button href="{{ path('stop_tasks',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></button>
+                    <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>-->
                 </div>
             </div>
+            <div  id="collapse{{ account.id }}" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <ul class="nav nav-tabs" id="mainTab">
+                        <li class="active"><a href="#last{{ account.id }}" data-toggle="tab">Последнее задание</a></li>
+                        <li><a href="#history{{ account.id }}" data-toggle="tab">История</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="last{{ account.id }}">
+                            <div class="row">
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-4">
+                                    <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
+                                    {% if (account.tasks | last).status == 1 %}
+                                        <p><span class="label label-success"></span>Завершено</p>
+                                    {% elseif (account.tasks | last).status == 2 %}
+                                        <p><span class="label label-primary"></span>Выполняется</p>
+                                    {% elseif (account.tasks | last).status == 3 %}
+                                        <p><span class="label label-warning"></span>Прервана</p>
+                                    {% elseif (account.tasks | last).status == 4 %}
+                                        <p><span class="label label-danger"></span>Ошибка</p>
+                                    {% elseif (account.tasks | last).status == 0 %}
+                                        <p><span class="label label-default"></span>Начинается</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-xs-4">
+                                    <h3><span class="glyphicon glyphicon-file"></span>  Тип задания:</h3>
+                                    {% if (account.tasks | last).byUsername == 1 %}
+                                        <p>Подписка по ID</p>
+                                    {% else %}
+                                        {% if (account.tasks | last).type == 0 %}
+                                            <p>Подписка по тэгам</p>
+                                        {% elseif (account.tasks | last).type == 1 %}
+                                            <p>Лайкинг по тэгам</p>
+                                        {% elseif (account.tasks | last).type == -1 %}
+                                            <p>Отписка</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-4">
+                                    <h3><span class="glyphicon glyphicon-time"></span> Задание началось в:</h3>
+                                    <p>{{ (account.tasks | last).createdAt |date("h:i d/m/Y") }}</p>
+                                </div>
+                                <div class="col-xs-4">
+                                    {% if (account.tasks | last).byUsername == 1 %}
+                                        <h3><span class="glyphicon glyphicon-link"></span> ID конкурента:</h3>
+                                        <p>{{ (account.tasks | last).tags  }}</p>
+                                    {% else %}
+                                        {% if (account.tasks | last).type != -1 %}
+                                            <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
+                                            <textarea>{{ (account.tasks | last).tags  }}</textarea>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-10">
+                                    <h3>Прогресс:</h3>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
+                                            {{ ((account.tasks | last).actions | length)}} / {{ ((account.tasks | last).count) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-4">
+                                    <p><a href="{{ path('actions' , {id: (account.tasks | last).id}  ) }}"><span class="glyphicon glyphicon-eye-open"/> Детали</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="history{{ account.id }}">
+                            {% for task in account.tasks|reverse %}
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        {% if task.byUsername == 1 %}
+                                            <p>Подписка по ID<p>
+                                        {% else %}
+                                            {% if task.type == 0 %}
+                                                <p>Подписка по тэгам</p>
+                                            {% elseif task.type == 1 %}
+                                                <p>Лайкинг по тэгам</p>
+                                            {% elseif task.type == -1 %}
+                                                <p>Отписка</p>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-xs-3">
+                                        {% if task.byUsername == 1 %}
+                                            <p>{{ task.tags  }}</p>
+                                        {% else %}
+                                            {% if task.type != -1 %}
+                                                <textarea>{{ task.tags }}</textarea>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <p>{{ task.count  }}</p>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <p>{{ task.createdAt |date("h:i d/m/Y") }}</p>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <p><a href="{{ path('actions' , {id: task.id}  ) }}"><span class="glyphicon glyphicon-eye-open"/></a></p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
     {% endfor %}
-    </div>
 </div>
 
-    <div id="modal" class="modal fade">
-        {{ render(controller('TaskBundle:Default:add')) }}
-    </div>
-    <script>
-        $(#accounts  class="active"
-    </script>
+
 {% endblock %}

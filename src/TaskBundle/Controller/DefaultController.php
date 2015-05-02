@@ -2,6 +2,7 @@
 
 namespace TaskBundle\Controller;
 
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -44,43 +45,52 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/tasks/add", name="add_tasks")
+     * @Route("/tasks/add/{isbyUsername}/{type}/{id}", name="add_tasks")
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request,$isbyUsername,$type,$id)
     {
         $task = new Tasks();
+        $task->setByUsername($isbyUsername);
+        $task->setType($type);
+        $label="Задача на лайкинг";
+        if($task->getType()==0)
+            $label = "Задача на фоловинг";
 
-        $form = $this->createFormBuilder($task)
-            ->add('byUsername', 'choice', array(
-                'choices'  => array('0' => 'tags','1' => 'name'),
-                'label'=>'Action by: '))
-            ->add('type', 'choice', array(
-                'choices'  => array('0' => 'following','1' => 'liking'),))
-            ->add('count', 'text')
-            ->add('tags', 'textarea')
-            ->getForm();
+        if($task->getByUsername()==0) {
+            $form = $this->createFormBuilder($task)
+                ->add('count', 'text', array('label' => 'Количество'))
+                ->add('tags', 'textarea', array('label' => 'Тэги'))
+                ->getForm();
+        }
+        else
+            $form = $this->createFormBuilder($task)
+                ->add('count', 'text',array('label' => 'Количество'))
+                ->add('tags', 'text',array('label' => 'ID'))
+                ->getForm();
+
+        $em = $this->getDoctrine()->getManager();
+        $running_task = $em->getRepository('TaskBundle:Tasks')->findBy(array(
+            'account_id'=>$id,
+            'status' => array(Tasks::RUNNING, Tasks::CREATED),
+        ));
+
+        if(isset($running_task)){
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+            return $this->render('tasks/new.html.twig', array(
+                'form' => $form->createView(),
+                'label' => $label
+            ));
+        }
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             //проверка на иньекцию чуждого акк ид
-            $acc_id = $request->request->get('account_id');
+
             $user = $this->getUser();
-            $em = $this->getDoctrine()->getManager();
-            $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$acc_id));
+            $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
             if (!isset($account))
                 throw new NotFoundHttpException("Page not found");
-
-            $running_task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array(
-                'account_id'=>$acc_id,
-                'status' => array(Tasks::RUNNING, Tasks::CREATED),
-                'type'=> $task->getType()));
-
-            if(isset($running_task))
-                if($task->getType()==TaskType::FOLLOWING)
-                    return new JsonResponse(array('byUsername' => 'У вас уже есть работающая задача на фоловинг'));
-                else
-                    return new JsonResponse(array('byUsername' => 'У вас уже есть работающая задача на лайкинг'));
 
             $task->setAccountId($account);
             $task->setStatus(Tasks::CREATED);
@@ -95,28 +105,29 @@ class DefaultController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
-            return new JsonResponse('success');
+            return  $this->redirectToRoute('accounts');
         }
-
+/*
         if($request->getMethod()=='POST'){
             $formErrors = $this->get('form_errors')->getArray($form);
             return new JsonResponse($formErrors);
-        }
+        }*/
 
         return $this->render('tasks/new.html.twig', array(
             'form' => $form->createView(),
+            'label' => $label
         ));
     }
 
 
     /**
-     * @Route("/tasks/stop/{task_id}", name="stop_tasks")
+     * @Route("/tasks/stop/{id}", name="stop_tasks")
      */
-    public function stopAction(Request $request, $task_id)
+    public function stopAction(Request $request, $id)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array('id' => $task_id));
+        $task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array('id' => $id));
         $task->setStatus(3);
         $em->persist($task);
         $em->flush();

@@ -68,6 +68,11 @@ class Tasks
     protected $count;
 
     /**
+     * @ORM\OneToMany(targetEntity="TaskBundle\Entity\Actions", mappedBy="task_id")
+     */
+        protected $actions;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $createdAt;
@@ -249,5 +254,45 @@ class Tasks
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->actions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add actions
+     *
+     * @param \TaskBundle\Entity\Actions $actions
+     * @return Tasks
+     */
+    public function addAction(\TaskBundle\Entity\Actions $actions)
+    {
+        $this->actions[] = $actions;
+
+        return $this;
+    }
+
+    /**
+     * Remove actions
+     *
+     * @param \TaskBundle\Entity\Actions $actions
+     */
+    public function removeAction(\TaskBundle\Entity\Actions $actions)
+    {
+        $this->actions->removeElement($actions);
+    }
+
+    /**
+     * Get actions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActions()
+    {
+        return $this->actions;
     }
 }

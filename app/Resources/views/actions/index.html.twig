@@ -1,34 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table>
-        <tr>
-            <th>Пользователь</th>
-            <th>Страница</th>
-        </tr>
 
-    <p>Всего {{ actions | length }}</p>
-    {% for action in actions %}
-        <tr>
-            <td>
-                {% if action.username %}
-                {{ action.username }}
-                {% endif %}
-            </td>
-            <td>
-                {% if action.username %}
-                    <a href="https://instagram.com/{{ action.username }}">+</a>
-                    {{ action.responce }}
-                {% endif %}
-                {% if action.resourceId %}
-                    <a href="{{action.resourceId}}">res</a>
-                {% endif %}
-            </td>
-        </tr>
+    {% if (actions | first).taskId.byUsername == 1 %}
+        <h1>Подписка по ID</h1>
+    {% else %}
+        {% if (actions | first).taskId.type == 0 %}
+            <h1>Подписка по тэгам</h1>
+        {% elseif (actions | first).taskId.type == 1 %}
+            <h1>Лайкинг по тэгам</h1>
+        {% elseif (actions | first).taskId.type == -1 %}
+            <h1>Отписка</h1>
+        {% endif %}
+    {% endif %}
 
-    {% endfor %}
+<div class="container">
 
-    </table>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <h3>Прогресс:</h3>
+            <div class="progress">
+                {% if actions is not empty %}
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ (actions | length) / ((actions | first).taskId.count) *100 }}%">
+                    {{ actions | length }} / {{ (actions|first).taskId.count }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+
+        </div>
+    </div>
+
+    {% if (actions | first).taskId.byUsername == 1 %}
+
+        <h3>Вы подписались на:</h3>
+        {% for action in actions | reverse %}
+
+            {% if action.username %}
+                <p>{{ action.username }}
+                    {% if action.username %}
+                        <a href="https://instagram.com/{{ action.username }}">+</a>
+                    {% endif %}
+                </p>
+            {% endif %}
+
+        {% endfor %}
+
+    {% elseif (actions | first).taskId.type == 1 %}
+        <h3>Вы лайкнули:</h3>
+        {% for action in actions | reverse %}
+
+            {% if action.username %}
+                <p>{{ action.username }}
+                    {% if action.resourceId %}
+                        <a href="{{action.resourceId}}">+</a>
+                    {% endif %}
+                </p>
+            {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+</div>
 
 {% endblock %}
 

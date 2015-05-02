@@ -74,7 +74,7 @@ class DefaultController extends Controller
             'status' => array(Tasks::RUNNING, Tasks::CREATED),
         ));
 
-        if(isset($running_task)){
+        if(count($running_task)>0){
             $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
             return $this->render('tasks/new.html.twig', array(
                 'form' => $form->createView(),

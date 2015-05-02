@@ -100,8 +100,9 @@ class Inst
 
     function debug($message)
     {
-        $file = __DIR__ . "/data";
-        file_put_contents("$file", "|" . json_encode($message) . "|", FILE_APPEND);
+        $filename=$this->TASK_ID;
+        $file = __DIR__ . "/$filename";
+        file_put_contents("$file", "|" . json_encode($message) . '\n', FILE_APPEND);
     }
 
     function is_stopped($id)

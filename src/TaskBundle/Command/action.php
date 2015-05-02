@@ -1,4 +1,6 @@
 <?php
+var_dump("SELECT * FROM proxy WHERE id NOT IN $this->PROXY_USED_ID OREDR BY proxy.use LIMIT 0,1");
+die();
 
 $TASK_ID = $_SERVER['argv'][1];
 
@@ -50,12 +52,14 @@ class Inst
 {
     private $TASK_ID;
     private $PROXY;
+    private $PROXY_USED_ID;
     private $PROXY_TIME=10;
 
     public function __construct ($task_id){
-        $this->$TASK_ID = $task_id;
+        $this->PROXY_USED_ID=array();
+        $this->TASK_ID = $task_id;
         $this->connect();
-        $this->$PROXY = $this->get_proxy();
+        $this->PROXY = $this->get_proxy();
     }
 
     function getUserFollowers($task)
@@ -63,7 +67,7 @@ class Inst
         $user_name = $task['tags'];
         $token = $task['token'];
         $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
-        $response = json_decode($this->httpGet($url));
+        $response = json_decode($this->httpGet($url,0));
         $user_id = $response->data[0]->id;
         var_dump($user_id);
         if (!isset($user_id))
@@ -73,7 +77,7 @@ class Inst
         $result = array();
         do {
             $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" . "access_token=$token" . "&cursor=$next";
-            $response = json_decode($this->httpGet($url));
+            $response = json_decode($this->httpGet($url,0));
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
@@ -133,7 +137,7 @@ class Inst
     function  getUsernameAndIdsbyTag($tag, $token)
     {
         $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=5";
-        $response = json_decode($this->httpGet($url));
+        $response = json_decode($this->httpGet($url,0));
 
         $data = $response->data;
         foreach ($data as $d) {
@@ -150,7 +154,7 @@ class Inst
     function checkUser($user_id, $token)
     {
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-        $response = json_decode($this->httpGet($url));
+        $response = json_decode($this->httpGet($url,0));
 
         if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private == false)
             return true;
@@ -179,16 +183,28 @@ class Inst
 
     function get_proxy()
     {
-        $qr_result = mysql_query("SELECT * FROM proxy OREDR BY use LIMIT 0,1")
+        $blocked_proxy="";
+        if(count($this->PROXY_USED_ID) > 0 ) {
+            $blocked_proxy = " WHERE id NOT IN (";
+            foreach ($this->PROXY_USED_ID as $id) {
+                $blocked_proxy .= $id . ',';
+            }
+            $blocked_proxy = rtrim($blocked_proxy, ',');
+            $blocked_proxy .= ')';
+        }
+
+        $qr_result = mysql_query("SELECT * FROM proxy $blocked_proxy OREDR BY proxy.use LIMIT 0,1")
         or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
         $id = $row['id'];
         $use = $row['use'] + 1;
         $result = array(
+            'id' => $row['id'],
             'ip' => $row['ip'],
             'port' => $row['port']
         );
+        $this->PROXY_USED_ID[] = $id;
 
         mysql_query("UPDATE tasks SET status=$use WHERE id=$id")
         or die(mysql_error());
@@ -205,7 +221,7 @@ class Inst
             "access_token" => $token
         );
 
-        $result = json_decode(httpPost($url, $params));
+        $result = json_decode(httpPost($url, $params,0));
 
         $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
     }
@@ -221,13 +237,13 @@ class Inst
             "access_token" => $token,
             "action" => 'follow'
         );
-        $result = json_decode(httpPost($url, $params));
+        $result = json_decode( $this->httpPost($url, $params,0));
 
         $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
     }
 
 
-    function httpPost($url, $params)
+    function httpPost($url, $params,$try)
     {
         $postData = '';
         foreach ($params as $k => $v) {
@@ -248,12 +264,21 @@ class Inst
 
         $output = curl_exec($ch);
 
+        if(FALSE === $output){
+            if($try++ < 5)
+                $this->httpPost($url,$params,$try);
+            else{
+                curl_close($ch);
+                $this->close(curl_error($ch) . curl_errno($ch));
+            }
+        }
+
         curl_close($ch);
         var_dump($output);
         return $output;
     }
 
-    function httpGet($url)
+    function httpGet($url,$try)
     {
         $ch = curl_init();
 
@@ -265,12 +290,20 @@ class Inst
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $output = curl_exec($ch);
+
+        if(FALSE === $output){
+            //throw new Exception(curl_error($ch), curl_errno($ch));
+            if($try++<5)
+                $this->httpGet($url,$try);
+            else{
+                curl_close($ch);
+                $this->close(curl_error($ch) . curl_errno($ch));
+            }
+        }
         curl_close($ch);
 
-        var_dump($output);
         return $output;
      }
-
 
     function connect()
     {
@@ -284,6 +317,12 @@ class Inst
         }
         mysql_query("SET NAMES 'utf8'");
         mysql_query("SET CHARACTER SET utf8 ");
+    }
+
+    public function close($message){
+        mysql_query("INSERT INTO errors (task_id,message) VALUES ($this->TASK_ID,$message)")
+            or die(mysql_error());
+        exit();
     }
 
 }

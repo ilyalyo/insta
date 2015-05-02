@@ -101,7 +101,7 @@ class Inst
     function debug($message)
     {
         $filename=$this->TASK_ID;
-        $file = __DIR__ . "/$filename";
+        $file = "var/www/$filename";
         file_put_contents("$file", "|" . json_encode($message) . '\n', FILE_APPEND);
     }
 

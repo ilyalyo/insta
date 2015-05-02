@@ -34,20 +34,21 @@ class UnfollowController extends Controller
             ->add('count', 'text')
             ->getForm();
 
+        $running_task = $em->getRepository('TaskBundle:Tasks')->findBy(array(
+            'account_id'=>$id,
+            'status' => array(Tasks::RUNNING, Tasks::CREATED),
+        ));
+
+        if(count($running_task)>0){
+            $form->get('count')->addError(new FormError('У вас уже есть работающая задача'));
+            return $this->render('tasks/new_unfollow.html.twig', array(
+                'form' => $form->createView(),
+            ));
+        }
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $running_task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array(
-                'account_id'=>$id,
-                'status' => array(Tasks::RUNNING, Tasks::CREATED),
-                'type'=> $task->getType()));
-
-            if(isset($running_task))
-                if($task->getType()==TaskType::FOLLOWING)
-                    return new JsonResponse(array('byUsername' => 'У вас уже есть работающая задача на фоловинг'));
-                else
-                    return new JsonResponse(array('byUsername' => 'У вас уже есть работающая задача на лайкинг'));
 
             $task->setAccountId($account);
             $task->setStatus(Tasks::CREATED);

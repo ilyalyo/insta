@@ -243,7 +243,6 @@ class Inst
 
     function httpPost($url, $params,$try)
     {
-        $this->debug($url . "|" . $try );
         $postData = '';
         foreach ($params as $k => $v) {
             $postData .= $k . '=' . $v . '&';
@@ -252,6 +251,8 @@ class Inst
 
         $ch = curl_init();
         $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
+
+        $this->debug($proxy . "|" . $try );
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -265,8 +266,10 @@ class Inst
         $result=json_decode($output);
 
         if(FALSE === $output){
-            if($try++ < 5)
-                $this->httpPost($url,$params,$try);
+            if($try++ < 5) {
+                curl_close($ch);
+                $result = $this->httpPost($url, $params, $try);
+            }
             else{
                 curl_close($ch);
                 $this->close(curl_error($ch) . curl_errno($ch));
@@ -276,18 +279,19 @@ class Inst
             curl_close($ch);
             $this->close($result->meta->code);
         }
-
-        curl_close($ch);
+        else
+            curl_close($ch);
         $this->debug( "stop post|"  );
         return $result;
     }
 
     function httpGet($url,$try)
     {
-        $this->debug("\n" . $url . "|" . $try );
         $ch = curl_init();
 
         $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
+
+        $this->debug("\n" . $proxy . "|" . $try );
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_PROXY, $proxy);

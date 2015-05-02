@@ -53,7 +53,6 @@
                                 <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
-                                    {{ dump((account.tasks | last)) }}
                                     <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
                                     {% if (account.tasks | last).status == 1 %}
                                         <p><span class="label label-success"></span>Завершено</p>

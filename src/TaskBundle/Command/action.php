@@ -268,6 +268,7 @@ class Inst
         if(FALSE === $output){
             if($try++ < 5) {
                 curl_close($ch);
+                $this->PROXY = $this->get_proxy();
                 $result = $this->httpPost($url, $params, $try);
             }
             else{
@@ -305,7 +306,8 @@ class Inst
             //throw new Exception(curl_error($ch), curl_errno($ch));
             if($try++<5) {
                 curl_close($ch);
-                $this->get_proxy();
+                $this->PROXY = $this->get_proxy();
+
                 $result = $this->httpGet($url, $try);
             }
             else{

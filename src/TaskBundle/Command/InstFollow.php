@@ -53,12 +53,13 @@ class InstFollow
 
     function debug($message)
     {
-        $filename=$this->TASK_ID;
+        /*$filename=$this->TASK_ID;
         $file = "var/www/Debug/$filename";
         $fp = fopen($file, 'w');
         fwrite($fp, json_encode($message));
         fclose($fp);
         chmod($file, 0777);  //changed to add the zero
+        */
         //$filename=$this->TASK_ID;
         //$file = "var/www/Debug/$filename";
         //file_put_contents("$file", "|" . json_encode($message) . '\n', FILE_APPEND);

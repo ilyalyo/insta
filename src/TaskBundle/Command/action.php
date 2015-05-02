@@ -3,7 +3,6 @@
 $TASK_ID = $_SERVER['argv'][1];
 
 $inst = new Inst($TASK_ID);
-$inst->connect();
 
 $task = $inst->get_task($TASK_ID);
 
@@ -44,7 +43,7 @@ for ($i = 0; $i <= $task['count'] - 1; $i++) {
         break;
 }
 if (!$inst->is_stopped($TASK_ID))
-    done_task($TASK_ID);
+    $inst->done_task($TASK_ID);
 
 
 class Inst
@@ -55,6 +54,7 @@ class Inst
 
     public function __construct ($task_id){
         $this->$TASK_ID = $task_id;
+        $this->connect();
         $this->$PROXY = $this->get_proxy();
     }
 
@@ -64,8 +64,6 @@ class Inst
         $token = $task['token'];
         $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
         $response = json_decode($this->httpGet($url));
-
-        //  $response = json_decode(file_get_contents($url));
         $user_id = $response->data[0]->id;
         var_dump($user_id);
         if (!isset($user_id))
@@ -76,8 +74,6 @@ class Inst
         do {
             $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" . "access_token=$token" . "&cursor=$next";
             $response = json_decode($this->httpGet($url));
-
-    //        $response = json_decode(file_get_contents($url));
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
@@ -109,7 +105,6 @@ class Inst
 
     function is_stopped($id)
     {
-
         $qr_result = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id")
         or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
@@ -137,12 +132,7 @@ class Inst
 
     function  getUsernameAndIdsbyTag($tag, $token)
     {
-
         $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=5";
-        //$response =json_decode( file_get_contents($url));
-        echo 'result';
-        var_dump(json_decode($this->httpGet($url)));
-        die();
         $response = json_decode($this->httpGet($url));
 
         $data = $response->data;
@@ -162,7 +152,6 @@ class Inst
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
         $response = json_decode($this->httpGet($url));
 
-        //  $response =json_decode( file_get_contents($url));
         if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private == false)
             return true;
         return false;
@@ -190,7 +179,7 @@ class Inst
 
     function get_proxy()
     {
-        $qr_result = mysql_query("SELECT id,ip,port,use FROM proxy OREDR BY busy LIMIT 0,1")
+        $qr_result = mysql_query("SELECT * FROM proxy OREDR BY use LIMIT 0,1")
         or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
@@ -208,7 +197,6 @@ class Inst
 
     function  sendLike($task, $media)
     {
-
         $media_id = $media['id'];
         $token = $task["token"];
         $url = "https://api.instagram.com/v1/media/$media_id/likes";
@@ -224,7 +212,6 @@ class Inst
 
     function  follow($task, $media)
     {
-
         $target_id = $media['user_id'];
         $token = $task["token"];
         $url = "https://api.instagram.com/v1/users/$target_id/relationship";
@@ -249,7 +236,7 @@ class Inst
         rtrim($postData, '&');
 
         $ch = curl_init();
-        $proxy = $this->PROXY['ip'] + ":" + $this->PROXY['port'];
+        $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -270,7 +257,7 @@ class Inst
     {
         $ch = curl_init();
 
-        $proxy = $this->PROXY['ip'] + ":" + $this->PROXY['port'];
+        $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_PROXY, $proxy);

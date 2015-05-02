@@ -205,8 +205,8 @@ class Inst
         );
         $this->PROXY_USED_ID[] = $id;
 
-        mysql_query("UPDATE tasks SET status=$use WHERE id=$id")
-        or die(mysql_error());
+        mysql_query("UPDATE proxy SET use=$use WHERE id=$id")
+            or die(mysql_error());
         return $result;
     }
 

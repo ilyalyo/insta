@@ -243,6 +243,7 @@ class Inst
 
     function httpPost($url, $params,$try)
     {
+        $this->debug($url . "|" . $try );
         $postData = '';
         foreach ($params as $k => $v) {
             $postData .= $k . '=' . $v . '&';
@@ -277,11 +278,13 @@ class Inst
         }
 
         curl_close($ch);
+        $this->debug( "stop post|"  );
         return $result;
     }
 
     function httpGet($url,$try)
     {
+        $this->debug("\n" . $url . "|" . $try );
         $ch = curl_init();
 
         $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
@@ -308,6 +311,7 @@ class Inst
             $this->close($result->meta->code);
         }
         curl_close($ch);
+        $this->debug( "stop get|"  );
 
         return $result;
      }

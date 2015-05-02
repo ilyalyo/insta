@@ -21,6 +21,18 @@ class InstUnfollow
             or die(mysql_error());
     }
 
+    function is_stopped($id)
+    {
+        $qr_result = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id")
+        or die(mysql_error());
+        $row = mysql_fetch_array($qr_result);
+
+        if (!empty($row['id'])) {
+            return true;
+        }
+        return false;
+    }
+
     function getUserFollowers($user_id,$count,$token )
     {
         $next="";

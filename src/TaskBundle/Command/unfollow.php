@@ -17,6 +17,8 @@ include_once("InstUnfollow.php");
         sleep(rand(20,40));
         if($counter++>$count)
             break;
+        if ($inst->is_stopped($TASK_ID))
+            break;
     }
 $inst->done_task($TASK_ID);
 

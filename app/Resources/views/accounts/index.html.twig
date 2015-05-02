@@ -48,9 +48,12 @@
                     <div class="tab-content">
 
                         <div class="tab-pane active" id="last{{ account.id }}">
-                            <div class="row">
+                            {% if account.tasks | length >0  %}
+
+                                <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
+                                    {{ dump((account.tasks | last)) }}
                                     <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
                                     {% if (account.tasks | last).status == 1 %}
                                         <p><span class="label label-success"></span>Завершено</p>
@@ -114,6 +117,10 @@
                                     <p><a href="{{ path('actions' , {id: (account.tasks | last).id}  ) }}"><span class="glyphicon glyphicon-eye-open"/> Детали</a></p>
                                 </div>
                             </div>
+                            {% else %}
+                                <h3>Ваша история заданий пуста =( </h3>
+                            {% endif %}
+
                         </div>
 
                         <div class="tab-pane" id="history{{ account.id }}">

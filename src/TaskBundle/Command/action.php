@@ -340,6 +340,8 @@ class Inst
     public function close($message){
         mysql_query("INSERT INTO errors (task_id,message) VALUES ($this->TASK_ID,$message)")
             or die(mysql_error());
+        $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$this->TASK_ID")
+         or die(mysql_error());
         exit();
     }
 

@@ -1,6 +1,4 @@
 <?php
-var_dump("SELECT * FROM proxy WHERE id NOT IN $this->PROXY_USED_ID OREDR BY proxy.use LIMIT 0,1");
-die();
 
 $TASK_ID = $_SERVER['argv'][1];
 

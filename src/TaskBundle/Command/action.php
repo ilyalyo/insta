@@ -65,7 +65,7 @@ class Inst
         $user_name = $task['tags'];
         $token = $task['token'];
         $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
-        $response = json_decode($this->httpGet($url,0));
+        $response = ($this->httpGet($url,0));
         $user_id = $response->data[0]->id;
         var_dump($user_id);
         if (!isset($user_id))
@@ -75,7 +75,7 @@ class Inst
         $result = array();
         do {
             $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" . "access_token=$token" . "&cursor=$next";
-            $response = json_decode($this->httpGet($url,0));
+            $response = ($this->httpGet($url,0));
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
@@ -135,7 +135,7 @@ class Inst
     function  getUsernameAndIdsbyTag($tag, $token)
     {
         $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=5";
-        $response = json_decode($this->httpGet($url,0));
+        $response = ($this->httpGet($url,0));
 
         $data = $response->data;
         foreach ($data as $d) {
@@ -152,7 +152,7 @@ class Inst
     function checkUser($user_id, $token)
     {
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-        $response = json_decode($this->httpGet($url,0));
+        $response = ($this->httpGet($url,0));
 
         if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private == false)
             return true;
@@ -190,9 +190,10 @@ class Inst
             $blocked_proxy = rtrim($blocked_proxy, ',');
             $blocked_proxy .= ')';
         }
-
-        $qr_result = mysql_query("SELECT * FROM proxy $blocked_proxy OREDR BY proxy.use LIMIT 0,1")
-        or die(mysql_error());
+        $sql="SELECT * FROM  proxy ". $blocked_proxy ."
+             ORDER BY  proxy.use ASC LIMIT 0 , 1";
+        $qr_result = mysql_query($sql)
+            or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
         $id = $row['id'];
@@ -219,7 +220,7 @@ class Inst
             "access_token" => $token
         );
 
-        $result = json_decode(httpPost($url, $params,0));
+        $result = (httpPost($url, $params,0));
 
         $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
     }
@@ -235,7 +236,7 @@ class Inst
             "access_token" => $token,
             "action" => 'follow'
         );
-        $result = json_decode( $this->httpPost($url, $params,0));
+        $result = ( $this->httpPost($url, $params,0));
 
         $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
     }
@@ -261,6 +262,7 @@ class Inst
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
         $output = curl_exec($ch);
+        $result=json_decode($output);
 
         if(FALSE === $output){
             if($try++ < 5)
@@ -270,10 +272,13 @@ class Inst
                 $this->close(curl_error($ch) . curl_errno($ch));
             }
         }
+        elseif($result->meta->code!=200){
+            curl_close($ch);
+            $this->close($result->meta->code);
+        }
 
         curl_close($ch);
-        var_dump($output);
-        return $output;
+        return $result;
     }
 
     function httpGet($url,$try)
@@ -288,6 +293,7 @@ class Inst
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $output = curl_exec($ch);
+        $result=json_decode($output);
 
         if(FALSE === $output){
             //throw new Exception(curl_error($ch), curl_errno($ch));
@@ -298,9 +304,13 @@ class Inst
                 $this->close(curl_error($ch) . curl_errno($ch));
             }
         }
+        elseif($result->meta->code!=200){
+            curl_close($ch);
+            $this->close($result->meta->code);
+        }
         curl_close($ch);
 
-        return $output;
+        return $result;
      }
 
     function connect()

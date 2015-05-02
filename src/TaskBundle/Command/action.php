@@ -305,9 +305,12 @@ class Inst
             //throw new Exception(curl_error($ch), curl_errno($ch));
             if($try++<5) {
                 curl_close($ch);
+                $this->get_proxy();
                 $result = $this->httpGet($url, $try);
             }
             else{
+                $this->debug( "!full stop!"  );
+
                 curl_close($ch);
                 $this->close(curl_error($ch) . curl_errno($ch));
             }

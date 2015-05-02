@@ -15,7 +15,7 @@ if ($task['byUsername']==1)
     {
         $inst->follow($task, $user);
 
-        sleep(rand(30, 50));
+        sleep(rand(20, 30));
 
         if ($inst->is_stopped($TASK_ID))
             break;
@@ -67,7 +67,6 @@ class Inst
         $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
         $response = ($this->httpGet($url,0));
         $user_id = $response->data[0]->id;
-        var_dump($user_id);
         if (!isset($user_id))
             return 1;
 
@@ -108,7 +107,7 @@ class Inst
     function is_stopped($id)
     {
         $qr_result = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id")
-        or die(mysql_error());
+            or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
         if (!empty($row['id'])) {
@@ -128,7 +127,7 @@ class Inst
     function add_row($task_id, $user_id, $username, $resource_id, $responce)
     {
         $qr_result = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')")
-        or die(mysql_error());
+            or die(mysql_error());
     }
 
 
@@ -162,7 +161,7 @@ class Inst
     function get_task($task_id)
     {
         $qr_result = mysql_query("SELECT t.*,a.token FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0")
-        or die(mysql_error());
+            or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
         $result = array(
@@ -174,7 +173,7 @@ class Inst
             'byUsername' => $row['byUsername']);
 
         mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id")
-        or die(mysql_error());
+            or die(mysql_error());
         return $result;
     }
 

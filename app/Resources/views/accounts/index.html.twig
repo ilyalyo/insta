@@ -38,13 +38,13 @@
                     <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default" title="Отписка"><span class="glyphicon glyphicon-minus"></span></a>
                     <a href="{{ path('add_account') }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat" title="Обновление токена"></span></a>
                     {% if account.tasks | length >0 %}
-                         {% if ((account.tasks | last).status == 2) %}
-                            <a href="{{ path('stop_tasks',{'id': account.id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
+                         {% if ((account.tasks | last).status in [2,0]) %}
+                            <a href="{{ path('stop_tasks',{'id': (account.tasks | last).id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
                          {% else %}
-                             <a disabled href="{{ path('stop_tasks',{'id': account.id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
+                             <a disabled type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
                          {% endif %}
                     {% else %}
-                        <a disabled href="{{ path('stop_tasks',{'id': account.id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
+                        <a disabled type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
                     {% endif %}
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>-->
 

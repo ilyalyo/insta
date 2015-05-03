@@ -87,6 +87,8 @@ class DefaultController extends Controller
         if ($form->isValid()) {
             //проверка на иньекцию чуждого акк ид
 
+            $task->setTags(trim($task->getTags(),"#"));
+
             $user = $this->getUser();
             $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
             if (!isset($account))

@@ -45,7 +45,7 @@ class InstUnfollow
         do {
             $counter++;
             $url = "https://api.instagram.com/v1/users/$user_id/follows?" . "access_token=$token" . "&cursor=$next";
-            $response = json_decode($this->httpGet($url,0));
+            $response = ($this->httpGet($url,0));
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
@@ -60,7 +60,7 @@ class InstUnfollow
 
     function  getFollowedBy($id,$token){
         $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
-        $response =json_decode( $this->httpGet($url,0));
+        $response =( $this->httpGet($url,0));
         return $response->data->counts->follows;
     }
 
@@ -79,7 +79,7 @@ class InstUnfollow
             "access_token" =>  $token,
             "action" =>  'unfollow'
         );
-        $result= json_decode($this->httpPost($url, $params,0));
+        $result= ($this->httpPost($url, $params,0));
     }
 
     function httpPost($url, $params,$try)

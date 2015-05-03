@@ -224,8 +224,6 @@ class InstFollow
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
 
 
@@ -268,7 +266,6 @@ class InstFollow
 
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
 
         $output = curl_exec($ch);
@@ -295,7 +292,6 @@ class InstFollow
         }
         else
             curl_close($ch);
-        $this->debug( "stop get|"  );
 
         return $result;
     }
@@ -315,10 +311,11 @@ class InstFollow
     }
 
     public function close($message){
-        mysql_query("INSERT INTO errors (task_id,message) VALUES ($this->TASK_ID,$message)")
-        or die(mysql_error());
-        $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$this->TASK_ID")
-        or die(mysql_error());
+        $task=$this->TASK_ID;
+        mysql_query("INSERT INTO errors (task_id,message) VALUES ($task,$message)")
+            or die(mysql_error());
+        $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$task")
+            or die(mysql_error());
         exit();
     }
 }

@@ -6,14 +6,18 @@
             e.preventDefault()
             $(this).tab('show')
         })
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
     </script>
 
     <form action="{{ path('add_account') }}">
+        <p>Для добавления нового аккаунта сначала необходимо нажать "Выйти из Instagram", а затем "Добавить аккаунт"</p>
+        <a type="button" type="button" class="btn btn-warning" href="http://instagram.com/accounts/logout" target="_blank">Выйти из Instagram</a>
         <button class="btn btn-success">Добавить аккаунт</button>
     </form>
 
 <div class="panel-group" id="accordion">
-
     {% for account in accounts %}
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -28,15 +32,41 @@
                 </h4>
 
                 <div class="btn-group pull-right">
-                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 1 })}}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-asterisk"></span></a>
-                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 0 })}}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a href="{{ path('add_tasks', {'id': account.id, 'type' : 1, 'isbyUsername': 0 }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart"></span></a>
-                    <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></a>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button>
-                    <button href="{{ path('stop_tasks',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></button>
+                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 1 })}}" type="button" class="btn btn-default" title="Добавление задачи по ID"><span class="glyphicon glyphicon-asterisk"></span></a>
+                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 0 })}}" type="button" class="btn btn-default" title="Добавление задачи по тэгам"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a href="{{ path('add_tasks', {'id': account.id, 'type' : 1, 'isbyUsername': 0 }) }}" type="button" class="btn btn-default" title="Лайкинг по тэгам"><span class="glyphicon glyphicon-heart"></span></a>
+                    <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default" title="Отписка"><span class="glyphicon glyphicon-minus"></span></a>
+                    <a href="{{ path('add_account') }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat" title="Обновление токена"></span></a>
+                    {% if account.tasks | length >0 %}
+                         {% if ((account.tasks | last).status == 2) %}
+                            <a href="{{ path('stop_tasks',{'id': account.id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
+                         {% else %}
+                             <a disabled href="{{ path('stop_tasks',{'id': account.id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
+                         {% endif %}
+                    {% else %}
+                        <a disabled href="{{ path('stop_tasks',{'id': account.id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
+                    {% endif %}
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>-->
+
                 </div>
 
+              {% if account.tasks | length >0 %}
+                  <div class="row">
+                      <div class="col-xs-12">
+                          <div class="progress" style="margin-bottom: 0px; height: 4px" title="{{ ((account.tasks | last).actions | length)}} / {{ ((account.tasks | last).count) }}">
+                              <div class="progress-bar progress-bar-success" id="prgrs{{ account.id }}" role="progressbar" style="width:{{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                      {% if ((account.tasks | last).status not in [0,1,2]) %}
+                          <style>
+                              #prgrs{{ account.id }}{
+                                  background-color: #F0AD4E;
+                              }
+                          </style>
+                      {% endif %}
+              {% endif %}
             </div>
 
             <div  id="collapse{{ account.id }}" class="panel-collapse collapse" style="width: 100%;">

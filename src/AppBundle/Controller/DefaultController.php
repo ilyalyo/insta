@@ -64,7 +64,6 @@ class DefaultController extends Controller
      */
     public function addAction()
     {
-
         return $this->redirect('https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78b125602b90989cc&response_type=code&redirect_uri=http://instastellar.su/get_token&scope=likes+comments+relationships');
     }
 

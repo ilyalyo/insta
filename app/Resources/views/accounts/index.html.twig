@@ -36,8 +36,10 @@
                     <button href="{{ path('stop_tasks',{'id': account.id }) }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></button>
                     <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>-->
                 </div>
+
             </div>
-            <div  id="collapse{{ account.id }}" class="panel-collapse collapse">
+
+            <div  id="collapse{{ account.id }}" class="panel-collapse collapse" style="width: 100%;">
                 <div class="panel-body">
 
                     <ul class="nav nav-tabs" id="mainTab">
@@ -51,37 +53,39 @@
                             {% if account.tasks | length >0  %}
 
                                 <div class="row">
-                                <div class="col-xs-1"></div>
-                                <div class="col-xs-4">
-                                    <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
-                                    {% if (account.tasks | last).status == 1 %}
-                                        <p><span class="label label-success"></span>Завершено</p>
-                                    {% elseif (account.tasks | last).status == 2 %}
-                                        <p><span class="label label-primary"></span>Выполняется</p>
-                                    {% elseif (account.tasks | last).status == 3 %}
-                                        <p><span class="label label-warning"></span>Прервана</p>
-                                    {% elseif (account.tasks | last).status == 4 %}
-                                        <p><span class="label label-danger"></span>Ошибка</p>
-                                    {% elseif (account.tasks | last).status == 0 %}
-                                        <p><span class="label label-default"></span>Начинается</p>
-                                    {% endif %}
-                                </div>
-                                <div class="col-xs-4">
-                                    <h3><span class="glyphicon glyphicon-file"></span>  Тип задания:</h3>
-                                    {% if (account.tasks | last).byUsername == 1 %}
-                                        <p>Подписка по ID</p>
-                                    {% else %}
-                                        {% if (account.tasks | last).type == 0 %}
-                                            <p>Подписка по тэгам</p>
-                                        {% elseif (account.tasks | last).type == 1 %}
-                                            <p>Лайкинг по тэгам</p>
-                                        {% elseif (account.tasks | last).type == -1 %}
-                                            <p>Отписка</p>
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-4">
+                                        <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
+                                        {% if (account.tasks | last).status == 1 %}
+                                            <p><span class="label label-success"></span>Завершено</p>
+                                        {% elseif (account.tasks | last).status == 2 %}
+                                            <p><span class="label label-primary"></span>Выполняется</p>
+                                        {% elseif (account.tasks | last).status == 3 %}
+                                            <p><span class="label label-warning"></span>Прервана</p>
+                                        {% elseif (account.tasks | last).status == 4 %}
+                                            <p><span class="label label-danger"></span>Ошибка</p>
+                                        {% elseif (account.tasks | last).status == 0 %}
+                                            <p><span class="label label-default"></span>Начинается</p>
                                         {% endif %}
-                                    {% endif %}
-                                </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h3><span class="glyphicon glyphicon-file"></span>  Тип задания:</h3>
+                                        {% if (account.tasks | last).byUsername == 1 %}
+                                            <p>Подписка по ID</p>
+                                        {% else %}
+                                            {% if (account.tasks | last).type == 0 %}
+                                                <p>Подписка по тэгам</p>
+                                            {% elseif (account.tasks | last).type == 1 %}
+                                                <p>Лайкинг по тэгам</p>
+                                            {% elseif (account.tasks | last).type == -1 %}
+                                                <p>Отписка</p>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+
                             </div>
-                            <div class="row">
+
+                                <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
                                     <h3><span class="glyphicon glyphicon-time"></span> Задание началось в:</h3>
@@ -99,7 +103,8 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="row">
+
+                                <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-10">
                                     <h3>Прогресс:</h3>
@@ -110,12 +115,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+
+                                <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
                                     <p><a href="{{ path('actions' , {id: (account.tasks | last).id}  ) }}"><span class="glyphicon glyphicon-eye-open"/> Детали</a></p>
                                 </div>
                             </div>
+
                             {% else %}
                                 <h3>Ваша история заданий пуста =( </h3>
                             {% endif %}
@@ -162,8 +169,9 @@
 
                     </div>
 
-
                 </div>
+                <!-- panel body end-->
+
             </div>
         </div>
 

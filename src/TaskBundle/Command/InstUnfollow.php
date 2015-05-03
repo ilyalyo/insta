@@ -70,6 +70,10 @@ class InstUnfollow
             or die(mysql_error());
 
         $row = mysql_fetch_array($qr_result);
+
+        mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id")
+            or die(mysql_error());
+
         return [$row['token'],$row['count'],$row['account_id']];
     }
 

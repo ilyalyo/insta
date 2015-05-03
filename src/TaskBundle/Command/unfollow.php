@@ -14,7 +14,7 @@ include_once("InstUnfollow.php");
 
     foreach($users as $user){
         $inst->unFollow($user, $token);
-        sleep(rand(20,40));
+        sleep(rand(30,50));
         if($counter++>$count)
             break;
         if ($inst->is_stopped($TASK_ID))

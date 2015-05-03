@@ -18,15 +18,12 @@ class ActionsController extends Controller
     public function indexAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $actions = $em->getRepository('TaskBundle:Actions')->findBy(array('task_id'=>$id));
         $task = $em->getRepository('TaskBundle:Tasks')->find($id);
-        $token=$task->getAccountId()->getToken();
 
         return $this->render(
             'actions/index.html.twig',
             [
-                'actions' => $actions,
-                'token' => $token
+                'task' => $task,
             ]
         );
     }

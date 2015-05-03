@@ -2,14 +2,14 @@
 
 {% block body %}
 
-    {% if (actions | first).taskId.byUsername == 1 %}
+    {% if task.byUsername == 1 %}
         <h1>Подписка по ID</h1>
     {% else %}
-        {% if (actions | first).taskId.type == 0 %}
+        {% if task.type == 0 %}
             <h1>Подписка по тэгам</h1>
-        {% elseif (actions | first).taskId.type == 1 %}
+        {% elseif task.type == 1 %}
             <h1>Лайкинг по тэгам</h1>
-        {% elseif (actions | first).taskId.type == -1 %}
+        {% elseif task.type == -1 %}
             <h1>Отписка</h1>
         {% endif %}
     {% endif %}
@@ -21,9 +21,9 @@
         <div class="col-xs-10">
             <h3>Прогресс:</h3>
             <div class="progress">
-                {% if actions is not empty %}
-                <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ (actions | length) / ((actions | first).taskId.count) *100 }}%">
-                    {{ actions | length }} / {{ (actions|first).taskId.count }}
+                {% if task.actions is not empty %}
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ (task.actions | length) / (task.count) *100 }}%">
+                    {{ task.actions | length }} / {{ task.count }}
                 </div>
                 {% endif %}
             </div>
@@ -37,10 +37,10 @@
         </div>
     </div>
 
-    {% if (actions | first).taskId.byUsername == 1 %}
+    {% if task.byUsername == 1 %}
 
         <h3>Вы подписались на:</h3>
-        {% for action in actions | reverse %}
+        {% for action in task.actions | reverse %}
 
             {% if action.username %}
                 <p>{{ action.username }}

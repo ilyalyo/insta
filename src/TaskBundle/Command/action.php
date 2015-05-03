@@ -16,7 +16,7 @@ if ($task['byUsername']==1)
     {
         $inst->follow($task, $user);
 
-        sleep(rand(10, 25));
+        sleep(rand(30, 50));
 
         if ($inst->is_stopped($TASK_ID))
             break;

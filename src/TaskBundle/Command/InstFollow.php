@@ -266,7 +266,7 @@ class InstFollow
 
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
 
         $output = curl_exec($ch);
         $result=json_decode($output);

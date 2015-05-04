@@ -33,12 +33,15 @@ class AnalyticController extends Controller
                 $date = gmdate("d/m/Y H:00 ", time() - (($count - $n++) * 3600));
                 $followedBy[]=  array($date, $h->getFollowedBy());
                 $followers[]=   array($date,$h->getFollows());
+                $d[]=   $date;
             }
 
             $series = array(
                 array("name" => "Подписчики",    "data" => $followedBy),
                 array("name" => "Вы подписаны",    "data" => $followers)
             );
+           // pointInterval: 24 * 3600 * 1000,
+         //   pointStart: Date.UTC(2006, 0, 1)
 
             $ob = new Highchart();
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
@@ -46,11 +49,13 @@ class AnalyticController extends Controller
             $ob->chart->zoomType('x');
             $ob->title->text('Аналитика');
             $ob->xAxis->title(array('text'  => "Время"));
+            $ob->yAxis->title(array('text'  => "Количество"));
 
             $ob->xAxis->type('datetime');
             $ob->xAxis->dateTimeLabelFormats(array('month' => '%e. %b', ' year' => '%b' ));
-            $ob->yAxis->title(array('text'  => "Количество"));
             $ob->series($series);
+            $ob->xAxis->categories($d);
+            $ob->xAxis->tickInterval(24);
 
         }
 

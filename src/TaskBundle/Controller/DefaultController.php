@@ -59,7 +59,9 @@ class DefaultController extends Controller
         if($task->getByUsername()==0) {
             $form = $this->createFormBuilder($task)
                 ->add('count', 'text', array('label' => 'Количество'))
-                ->add('tags', 'textarea', array('label' => 'Тэги'))
+                ->add('tags', 'textarea', array(
+                    'label' => 'Тэги',
+                    'attr' => array('placeholder'=>'#sun#love#peace')))
                 ->getForm();
         }
         else

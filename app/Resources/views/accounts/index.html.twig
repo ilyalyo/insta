@@ -2,20 +2,41 @@
 
 {% block body %}
     <script>
-        $('#mainTab').click(function (e) {
-            e.preventDefault()
-            $(this).tab('show')
-        })
-        $(function () {
-            $('[data-toggle="popover"]').popover()
+        $( document ).ready(function(){
+            $('#mainTab').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+            $(function () {
+                $('[data-toggle="popover"]').popover()
+            })
+            $('.wrapper').css('min-height',$(window).height())
         })
     </script>
 
-    <form action="{{ path('add_account') }}">
-        <p>Для добавления нового аккаунта сначала необходимо нажать "Выйти из Instagram", а затем "Добавить аккаунт"</p>
+    <div class="row">
+        <div class="col-xs-8">
+            <h3>Немного советов</h3>
+            <ul>
+                <li>Для добавления нового аккаунта сначала необходимо нажать "Выйти из Instagram", а затем "Добавить аккаунт"</li>
+                <li>Перед раскруткой аккаунта обязательно заполните его контентом</li>
+            </ul>
+            <h3>Ораничения</h3>
+            <ul>
+                <li>На данный момент можно добавить не более 2х аккаунтов инстаграм</li>
+                <li>Не более 1000 итераций для одного задания</li>
+                <li>Промежутки между лайкингом/фоловингом/отпиской сейчас фиксированные (20с - 40с)</li>
+            </ul>
+            <h3>Важно знать</h3>
+            <ul>
+                <li>Работа с инстаграммом ведеться чеерз анонимные прокси</li>
+                <li>Направление движения сервиса зависит от Вас <br/>О Ваших предложениях и замечаниях пишите в <a href="https://vk.com/instastellar">группу в контакте</a></li>
+
+            </ul>
         <a type="button" type="button" class="btn btn-warning" href="http://instagram.com/accounts/logout" target="_blank">Выйти из Instagram</a>
-        <button class="btn btn-success">Добавить аккаунт</button>
-    </form>
+        <a href ="{{ path('add_account') }}" type="button" class="btn btn-success">Добавить аккаунт</a>
+        </div>
+    </div>
 
 <div class="panel-group" id="accordion">
     {% for account in accounts %}

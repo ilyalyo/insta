@@ -8,9 +8,7 @@
         {{ chart(chart) }}
     </script>
     {% endif %}
-    <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-
-    <form action="{{ path('analytic') }}" method="get">
+    <form action="{{ path('analytic') }}" method="get" style="padding-top: 40px">
         <select name="id">
             {% for account in accounts %}
                 <option value="{{ account.id }}">{{ account.username }}</option>
@@ -18,4 +16,9 @@
         </select>
         <button type="submit">Посмотреть</button>
     </form>
+    <div class="row">
+        <div class="col-xs-10">
+            <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </div>
+    </div>
 {% endblock %}

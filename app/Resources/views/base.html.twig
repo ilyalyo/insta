@@ -7,6 +7,11 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 {% endblock head_style %}
+<script>
+    $( document ).ready(function(){
+        $('.wrapper').css('min-height',$(window).height())
+    })
+</script>
 <head>
     <title>Instastellar</title>
     <link rel="shortcut icon" type="image/x-icon" href="/img/title.ico" />
@@ -34,8 +39,10 @@
                     <ul class="nav">
                         <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span> Мои Аккаунты</a></li>
                         <li id="accounts"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span> Аналитика</a></li>
+                        <!--
                         <li id="info"><a href="{{ path('info') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
-                        <li id="purchase"><a><font style="color: darkgray;"><span class="glyphicon glyphicon-star"></span> Покупка</font></a></li>
+                        -->
+                        <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span> Покупка</a></li>
                     </ul>
                 </div>
             </div>

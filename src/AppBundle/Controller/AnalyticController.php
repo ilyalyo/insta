@@ -29,6 +29,9 @@ class AnalyticController extends Controller
 
             $n = 0;
             $count = count($history);
+            $followedBy=array();
+            $followers=array();
+            $d=array();
             foreach($history as $h){
                 $date = gmdate("d/m/Y H:00 ", time() - (($count - $n++) * 3600));
                 $followedBy[]=  array($date, $h->getFollowedBy());

@@ -31,7 +31,7 @@ class UnfollowController extends Controller
         $task->setAccountId($account);
 
         $form = $this->createFormBuilder($task)
-            ->add('count', 'text')
+            ->add('count', 'text', array('label' => 'Количество'))
             ->getForm();
 
         $running_task = $em->getRepository('TaskBundle:Tasks')->findBy(array(

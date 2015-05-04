@@ -51,7 +51,10 @@ class InstUnfollow
             $next = $response->pagination->next_cursor;
             if($all-$counter<=$about_count)
                 foreach ($data as $d) {
-                    $result[] = $d->id;
+                    //$result[] = $d->id;
+                    $user['username'] = $d->username;
+                    $user['id'] = $d->id;
+                    $result[]=$user;
                 }
 
         }while(isset($next));
@@ -76,7 +79,11 @@ class InstUnfollow
 
         return [$row['token'],$row['count'],$row['account_id']];
     }
-
+    function add_row($task_id, $user_id, $username, $resource_id, $responce)
+    {
+        $qr_result = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')")
+        or die(mysql_error());
+    }
     function  unFollow($follow,$token){
         $url="https://api.instagram.com/v1/users/$follow/relationship";
         $params = array(
@@ -84,6 +91,7 @@ class InstUnfollow
             "action" =>  'unfollow'
         );
         $result= ($this->httpPost($url, $params,0));
+        $this->add_row($this->TASK_ID,$follow['id'] , $follow['username'], 'http://instagram.com/'.$follow['username'], $result->meta->code);
     }
 
     function httpPost($url, $params,$try)

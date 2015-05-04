@@ -101,10 +101,11 @@ class DefaultController extends Controller
 */
 
         $count = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId()));
-        if(count($count>1))
+        /*if(count($count>1))
             return $this->redirectToRoute('accounts');
-
+*/var_dump($count);
         $accounts = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(), 'account_id' => $account_id));
+        var_dump($accounts);
 
         if(!isset($accounts)){
             $account= new Accounts();
@@ -120,6 +121,7 @@ class DefaultController extends Controller
             $em->persist($accounts);
             $em->flush();
         }
-        return $this->redirectToRoute('accounts');
+  //      return $this->redirectToRoute('accounts');
+        return 1;
     }
 }

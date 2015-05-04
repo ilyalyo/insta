@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    {% if task.byUsername == 1 %}
+    {% if task.byUsername == 1 or task.type == 0 %}
 
         <h3>Вы подписались на:</h3>
         {% for action in task.actions | reverse %}

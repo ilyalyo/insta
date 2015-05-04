@@ -180,7 +180,7 @@ class InstFollow
             "access_token" => $token
         );
 
-        $result = (httpPost($url, $params,0));
+        $result = ($this->httpPost($url, $params,0));
 
         $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
     }

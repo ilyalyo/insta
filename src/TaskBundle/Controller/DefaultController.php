@@ -87,9 +87,10 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            //проверка на иньекцию чуждого акк ид
 
-            $task->setTags(trim($task->getTags(),"#"));
+            $r=str_replace(" ","",$task->getTags());
+            $t=trim($r,"#");
+            $task->setTags($t);
 
             $user = $this->getUser();
             $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));

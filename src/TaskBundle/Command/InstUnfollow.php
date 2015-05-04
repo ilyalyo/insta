@@ -85,7 +85,8 @@ class InstUnfollow
         or die(mysql_error());
     }
     function  unFollow($follow,$token){
-        $url="https://api.instagram.com/v1/users/$follow/relationship";
+        $id=$follow['id'];
+        $url="https://api.instagram.com/v1/users/$id/relationship";
         $params = array(
             "access_token" =>  $token,
             "action" =>  'unfollow'

@@ -52,7 +52,7 @@
 
         {% endfor %}
 
-    {% elseif task.taskId.type == 1 %}
+    {% elseif task.type == 1 %}
         <h3>Вы лайкнули:</h3>
         {% for action in task.actions | reverse %}
 

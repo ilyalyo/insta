@@ -31,10 +31,7 @@ class History
      * @ORM\Column(type="integer")
      */
     protected $follows;
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $date;
+
     /**
      * Get id
      *
@@ -114,26 +111,4 @@ class History
         return $this->account_id;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return History
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
 }

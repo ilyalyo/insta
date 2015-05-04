@@ -95,15 +95,14 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $account_id=$response->user->id;
 
-        $exist= $em->getRepository('AppBundle:Accounts')->findOneBy(array('account_id' => $account_id));
+/*        $exist= $em->getRepository('AppBundle:Accounts')->findOneBy(array('account_id' => $account_id));
         if(isset($exist))
             return $this->redirectToRoute('accounts');
-
+*/
 
         $count = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId()));
         if(count($count>1))
             return $this->redirectToRoute('accounts');
-
 
         $accounts = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(), 'account_id' => $account_id));
 

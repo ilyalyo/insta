@@ -110,6 +110,11 @@ class DefaultController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
+            $this->addFlash(
+                'notice',
+                'Задача создана!'
+            );
+
             return  $this->redirectToRoute('accounts');
         }
 /*

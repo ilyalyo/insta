@@ -30,6 +30,12 @@ class Accounts
      */
     protected $tasks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Proxy")
+     * @ORM\JoinColumn(name="proxy", referencedColumnName="id")
+     */
+    protected $proxy;
+
     public function __construct()
     {
        // $this->$tasks = new ArrayCollection();
@@ -183,5 +189,28 @@ class Accounts
     public function getTasks()
     {
         return $this->tasks;
+    }
+
+    /**
+     * Set proxy
+     *
+     * @param \AppBundle\Entity\Proxy $proxy
+     * @return Accounts
+     */
+    public function setProxy(\AppBundle\Entity\Proxy $proxy = null)
+    {
+        $this->proxy = $proxy;
+
+        return $this;
+    }
+
+    /**
+     * Get proxy
+     *
+     * @return \AppBundle\Entity\Proxy 
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
     }
 }

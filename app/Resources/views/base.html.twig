@@ -51,6 +51,33 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade bs-example-modal-sm" id='flash_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Новое сообщение<a class="anchorjs-link" href="#mySmallModalLabel"><span class="anchorjs-icon"></span></a></h4>
+                </div>
+                <div class="modal-body">
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        <p>{{ flashMessage }}</p>
+                    </div>
+                    {% if loop.last %}
+                        <script>
+                            $( document ).ready(function(){
+                                $('#flash_modal').modal('show');
+                            })
+                        </script>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <!-- Yandex.Metrika counter -->

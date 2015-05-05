@@ -100,10 +100,15 @@ class DefaultController extends Controller
             return $this->redirectToRoute('accounts');
 */
 
-        $count = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId()));
+        $count = $em->getRepository('AppBundle:Accounts')->findAll(array('user' => $user->getId()));
         if(isset($count))
-            if(count($count>1))
+            if(count($count>1)) {
+                $this->addFlash(
+                    'notice',
+                    'Нельзя добавить более 2х аккаунтов!'
+                );
                 return $this->redirectToRoute('accounts');
+            }
 
         $accounts = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(), 'account_id' => $account_id));
 
@@ -113,13 +118,31 @@ class DefaultController extends Controller
             $account->setUsername($response->user->username);
             $account->setToken($response->access_token);
             $account->setAccountId($response->user->id);
+
+            $query = $em->createQueryBuilder();
+            $query->select('count(p.id)');
+            $query->from('AppBundle\Entity\Proxy', 'p');
+            $count= $query->getQuery()->getSingleScalarResult();
+
+            $em->persist($account);
+            $proxy_id=$count % $account->getId() + 1;
+            $account->setProxy($proxy_id);
             $em->persist($account);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Аккаунт добавлен!'
+            );
         }
         else{
             $accounts->setToken($response->access_token);
             $em->persist($accounts);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                'Токен обновлен!'
+            );
         }
       return $this->redirectToRoute('accounts');
     }

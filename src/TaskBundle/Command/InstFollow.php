@@ -217,14 +217,14 @@ class InstFollow
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+      //  curl_setopt($ch, CURLOPT_PROXY, $proxy);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_POST, count($postData));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        //curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
 
 
         $output = curl_exec($ch);
@@ -238,12 +238,12 @@ class InstFollow
             }
             else{
                 curl_close($ch);
-                $this->close(curl_error($ch) . curl_errno($ch));
+                $this->close(curl_error($ch) . curl_errno($ch) . substr($output,0,200));
             }
         }
         elseif($result->meta->code!=200){
             curl_close($ch);
-            $this->close($result->meta->code);
+            $this->close($result->meta->code . substr($output,0,200) );
         }
         else
             curl_close($ch);
@@ -283,12 +283,12 @@ class InstFollow
                 $this->debug( "!full stop!"  );
 
                 curl_close($ch);
-                $this->close(curl_error($ch) . curl_errno($ch));
+                $this->close(curl_error($ch) . curl_errno($ch) . substr($output,0,200));
             }
         }
         elseif($result->meta->code!=200){
             curl_close($ch);
-            $this->close($result->meta->code);
+            $this->close($result->meta->code . substr($output,0,200));
         }
         else
             curl_close($ch);
@@ -312,7 +312,7 @@ class InstFollow
 
     public function close($message){
         $task=$this->TASK_ID;
-        mysql_query("INSERT INTO errors (task_id,message) VALUES ($task,$message)")
+        mysql_query("INSERT INTO errors (task_id,code,message) VALUES ($task,$message)")
             or die(mysql_error());
         $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$task")
             or die(mysql_error());

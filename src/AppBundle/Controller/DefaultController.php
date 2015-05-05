@@ -100,19 +100,20 @@ class DefaultController extends Controller
             return $this->redirectToRoute('accounts');
 */
 
-        $count = $em->getRepository('AppBundle:Accounts')->findAll(array('user' => $user->getId()));
-        if(isset($count))
-            if(count($count>1)) {
-                $this->addFlash(
-                    'notice',
-                    'Нельзя добавить более 2х аккаунтов!'
-                );
-                return $this->redirectToRoute('accounts');
-            }
-
         $accounts = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(), 'account_id' => $account_id));
 
         if(!isset($accounts)){
+
+            $count = $em->getRepository('AppBundle:Accounts')->findAll(array('user' => $user->getId()));
+            if(isset($count))
+                if(count($count>1)) {
+                    $this->addFlash(
+                        'notice',
+                        'Нельзя добавить более 2х аккаунтов!'
+                    );
+                    return $this->redirectToRoute('accounts');
+                }
+
             $account= new Accounts();
             $account->setUser($user);
             $account->setUsername($response->user->username);

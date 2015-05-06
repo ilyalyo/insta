@@ -5,6 +5,7 @@ class InstFollow
 {
     private $TASK_ID;
     private $PROXY;
+    private $PROXY_ID;
     private $PROXY_USED_ID;
     private $PROXY_TIME=10;
 
@@ -12,7 +13,7 @@ class InstFollow
         $this->PROXY_USED_ID=array();
         $this->TASK_ID = $task_id;
         $this->connect();
-        $this->PROXY = $this->get_proxy();
+       // $this->PROXY = $this->get_proxy();
     }
 
     function getUserFollowers($task)
@@ -121,7 +122,7 @@ class InstFollow
 
     function get_task($task_id)
     {
-        $qr_result = mysql_query("SELECT t.*,a.token FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0")
+        $qr_result = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0")
         or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
@@ -133,40 +134,28 @@ class InstFollow
             'token' => $row['token'],
             'byUsername' => $row['byUsername']);
 
+        $this->$PROXY_ID =  $row['proxy'];
+        $this->PROXY = $this->get_proxy();
         mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id")
-        or die(mysql_error());
+            or die(mysql_error());
         return $result;
     }
 
 
     function get_proxy()
     {
-        $blocked_proxy="";
-        if(count($this->PROXY_USED_ID) > 0 ) {
-            $blocked_proxy = " WHERE id NOT IN (";
-            foreach ($this->PROXY_USED_ID as $id) {
-                $blocked_proxy .= $id . ',';
-            }
-            $blocked_proxy = rtrim($blocked_proxy, ',');
-            $blocked_proxy .= ')';
-        }
-        $sql="SELECT * FROM  proxy ". $blocked_proxy ."
-             ORDER BY  proxy.use ASC LIMIT 0 , 1";
+        $proxy_id=$this->$PROXY_ID;
+        $sql="SELECT * FROM  proxy WHERE id =$proxy_id";
         $qr_result = mysql_query($sql)
-        or die(mysql_error());
+            or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
-        $id = $row['id'];
-        $use = $row['use'] + 1;
         $result = array(
             'id' => $row['id'],
             'ip' => $row['ip'],
             'port' => $row['port']
         );
-        $this->PROXY_USED_ID[] = $id;
 
-        mysql_query("UPDATE proxy SET proxy.use=$use WHERE id=$id")
-        or die(mysql_error());
         return $result;
     }
 

@@ -107,9 +107,10 @@ class DefaultController extends Controller
             $count = $em->getRepository('AppBundle:Accounts')->findBy(array('user' => $user->getId()));
             if(isset($count))
                 if(count($count>1)) {
+                    $v=count($count);
                     $this->addFlash(
                         'notice',
-                        "Нельзя добавить более 2х аккаунтов $count!"
+                        "Нельзя добавить более 2х аккаунтов $v!"
                     );
                     return $this->redirectToRoute('accounts');
                 }

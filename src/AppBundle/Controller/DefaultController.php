@@ -104,7 +104,7 @@ class DefaultController extends Controller
 
         if(!isset($accounts)){
 
-            $count = $em->getRepository('AppBundle:Accounts')->findAll(array('user' => $user->getId()));
+            $count = $em->getRepository('AppBundle:Accounts')->findBy(array('user' => $user->getId()));
             if(isset($count))
                 if(count($count>1)) {
                     $this->addFlash(

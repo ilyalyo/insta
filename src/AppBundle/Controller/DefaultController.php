@@ -120,14 +120,12 @@ class DefaultController extends Controller
             $account->setToken($response->access_token);
             $account->setAccountId($response->user->id);
 
-            $query = $em->createQueryBuilder();
-            $query->select('count(p.id)');
-            $query->from('AppBundle\Entity\Proxy', 'p');
-            $count= $query->getQuery()->getSingleScalarResult();
-
             $em->persist($account);
-            $proxy_id=$count % $account->getId() + 1;
-            $account->setProxy($proxy_id);
+
+            $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
+            $proxy_count=$account->getId() % count($proxy);
+            $account->setProxy($proxy[$proxy_count]->getId());
+
             $em->persist($account);
             $em->flush();
 

@@ -122,9 +122,11 @@ class DefaultController extends Controller
             $account->setAccountId($response->user->id);
 
             $em->persist($account);
+            $em->flush();
 
             $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
             $proxy_count=$account->getId() % count($proxy);
+
             $account->setProxy($proxy[$proxy_count]->getId());
 
             $em->persist($account);

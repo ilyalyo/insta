@@ -109,7 +109,7 @@ class DefaultController extends Controller
                 if(count($count>1)) {
                     $this->addFlash(
                         'notice',
-                        'Нельзя добавить более 2х аккаунтов!'
+                        "Нельзя добавить более 2х аккаунтов $count!"
                     );
                     return $this->redirectToRoute('accounts');
                 }

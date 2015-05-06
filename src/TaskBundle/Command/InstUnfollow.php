@@ -71,7 +71,7 @@ class InstUnfollow
 
     function get_tokenUserIdCount(){
         $task_id=$this->TASK_ID;
-        $qr_result = mysql_query("SELECT token,count,a.account_id,a.proxy  as account_id FROM tasks t LEFT JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id")
+        $qr_result = mysql_query("SELECT token,count,a.account_id as account_id, a.proxy  FROM tasks t LEFT JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id")
             or die(mysql_error());
 
         $row = mysql_fetch_array($qr_result);

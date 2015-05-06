@@ -14,7 +14,8 @@
                 {% if error %}
                     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-                <p>Сегодня 05.05.15 с 23:30 до завтра 10:00 вход закрыт в связи с техническими работами</p>
+              <!--  <p>Сегодня 05.05.15 с 23:30 до завтра 10:00 вход закрыт в связи с техническими работами</p>
+              -->
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                 <div style="padding-top: 15px;">
                     <label for="username">Имя пользователя:</label>

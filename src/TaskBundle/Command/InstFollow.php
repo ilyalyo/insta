@@ -95,19 +95,22 @@ class InstFollow
 
     function  getUsernameAndIdsbyTag($tag, $token)
     {
-        $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=5";
-        $response = ($this->httpGet($url,0));
+        $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=10";
+        do {
+            $response = ($this->httpGet($url, 0));
 
-        $data = $response->data;
-        foreach ($data as $d) {
-            if ($this->checkUser($d->user->id, $token)) {
-                $result['id'] = $d->id;
-                $result['username'] = $d->user->username;
-                $result['user_id'] = $d->user->id;
-                $result['link'] = $d->link;
-                return $result;
+            $data = $response->data;
+            foreach ($data as $d) {
+                if ($this->checkUser($d->user->id, $token)) {
+                    $result['id'] = $d->id;
+                    $result['username'] = $d->user->username;
+                    $result['user_id'] = $d->user->id;
+                    $result['link'] = $d->link;
+                    return $result;
+                }
             }
-        }
+            $url = $response->pagination->next_url;
+        }while(isset($next_url));
     }
 
     function checkUser($user_id, $token)
@@ -123,7 +126,7 @@ class InstFollow
     function get_task($task_id)
     {
         $qr_result = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0")
-        or die(mysql_error());
+            or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
 
         $result = array(
@@ -134,7 +137,7 @@ class InstFollow
             'token' => $row['token'],
             'byUsername' => $row['byUsername']);
 
-        $this->$PROXY_ID =  $row['proxy'];
+        $this->PROXY_ID =  $row['proxy'];
         $this->PROXY = $this->get_proxy();
         mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id")
             or die(mysql_error());
@@ -144,7 +147,7 @@ class InstFollow
 
     function get_proxy()
     {
-        $proxy_id=$this->$PROXY_ID;
+        $proxy_id=$this->PROXY_ID;
         $sql="SELECT * FROM  proxy WHERE id =$proxy_id";
         $qr_result = mysql_query($sql)
             or die(mysql_error());

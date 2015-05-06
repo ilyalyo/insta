@@ -11,6 +11,24 @@
                 $('[data-toggle="popover"]').popover()
             })
             $('.wrapper').css('min-height',$(window).height())
+
+            setInterval(function(){
+                $.ajax({
+                    method: "POST",
+                    url: "{{ path('tasks_status') }}"
+                })
+                .done(function( msg ) {
+                    for (var k in msg){
+                        if (msg.hasOwnProperty(k)) {
+                            $('#prgrs0'+msg[k]['id']).text(msg[k]['done'] + '/' + msg[k]['shouldbedone']);
+                            $('#prgrs1'+msg[k]['id']).text(msg[k]['done'] + '/' + msg[k]['shouldbedone']);
+                            $('#prgrs0'+msg[k]['id']).css('width',msg[k]['done']/msg[k]['shouldbedone']*100 + '%');
+                            $('#prgrs1'+msg[k]['id']).css('width',msg[k]['done']/msg[k]['shouldbedone']*100 + '%');
+                        }
+                    }
+                });
+
+            }, 5000);
         })
     </script>
 
@@ -77,7 +95,7 @@
                   <div class="row">
                       <div class="col-xs-12">
                           <div class="progress" style="margin-bottom: 0px; height: 4px" title="{{ ((account.tasks | last).actions | length)}} / {{ ((account.tasks | last).count) }}">
-                              <div class="progress-bar progress-bar-success" id="prgrs{{ account.id }}" role="progressbar" style="width:{{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
+                              <div class="progress-bar progress-bar-success" id="prgrs0{{ account.id }}" role="progressbar" style="width:{{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
                               </div>
                           </div>
                       </div>
@@ -118,7 +136,7 @@
                                         {% elseif (account.tasks | last).status == 4 %}
                                             <p><span class="label label-danger"></span>Ошибка</p>
                                         {% elseif (account.tasks | last).status == 0 %}
-                                            <p><span class="label label-default"></span>Начинается</p>
+                                            <p id="time{{ account.id }}"><span class="label label-default "></span>До начала задачи ~{{ ("now"|date_modify("+10 minutes")|date("U") - (account.tasks | last).createdAt|date('U')) |date('i:s') }}</p>
                                         {% endif %}
                                     </div>
                                     <div class="col-xs-4">
@@ -162,7 +180,7 @@
                                 <div class="col-xs-10">
                                     <h3>Прогресс:</h3>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
+                                        <div class="progress-bar progress-bar-success" id="prgrs1{{ account.id }}" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
                                             {{ ((account.tasks | last).actions | length)}} / {{ ((account.tasks | last).count) }}
                                         </div>
                                     </div>

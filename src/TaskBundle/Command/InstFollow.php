@@ -110,7 +110,7 @@ class InstFollow
                 }
             }
             $url = $response->pagination->next_url;
-        }while(isset($next_url));
+        }while(isset($url));
     }
 
     function checkUser($user_id, $token)

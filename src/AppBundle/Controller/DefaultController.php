@@ -126,9 +126,7 @@ class DefaultController extends Controller
 
             $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
             $proxy_count=$account->getId() % count($proxy);
-           // var_dump($proxy);
-            var_dump($proxy[$proxy_count]->getId());
-            $account->setProxy($proxy[$proxy_count]->getId());
+            $account->setProxy($proxy[$proxy_count]);
 
             $em->persist($account);
             $em->flush();

@@ -9,6 +9,8 @@ $task = $inst->get_task($TASK_ID);
 
 $token = $task["token"];
 
+try{
+
 if ($task['byUsername']==1)
 {
     $users = $inst->getUserFollowers($task);
@@ -45,4 +47,15 @@ for ($i = 0; $i <= $task['count'] - 1; $i++) {
 }
 if (!$inst->is_stopped($TASK_ID))
     $inst->done_task($TASK_ID);
+}
+catch (Exception $e){
+
+    $m=substr($e->getMessage(),0,200);
+    $task=$_SERVER['argv'][1];
+
+    mysql_query("INSERT INTO errors (task_id,message) VALUES ($task,'$m')")
+         or die(mysql_error());
+    $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$task")
+         or die(mysql_error());
+}
 

@@ -68,9 +68,10 @@ class InstFollow
 
     function is_stopped($id)
     {
-        $qr_result = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id")
-        or die(mysql_error());
-        $row = mysql_fetch_array($qr_result);
+        $mysql = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id");
+        if(!$mysql)
+            throw new Exception(mysql_error());
+        $row = mysql_fetch_array($mysql);
 
         if (!empty($row['id'])) {
             return true;
@@ -81,15 +82,17 @@ class InstFollow
 
     function done_task($id)
     {
-        $qr_result = mysql_query("UPDATE tasks SET status=1 WHERE id=$id")
-        or die(mysql_error());
+        $mysql = mysql_query("UPDATE tasks SET status=1 WHERE id=$id");
+        if(!$mysql)
+            throw new Exception(mysql_error());
     }
 
 
     function add_row($task_id, $user_id, $username, $resource_id, $responce)
     {
-        $qr_result = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')")
-        or die(mysql_error());
+        $mysql = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')");
+          if(!$mysql)
+              throw new Exception(mysql_error());
     }
 
 
@@ -125,9 +128,10 @@ class InstFollow
 
     function get_task($task_id)
     {
-        $qr_result = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0")
-            or die(mysql_error());
-        $row = mysql_fetch_array($qr_result);
+        $mysql = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0");
+        if(!$mysql)
+           throw new Exception(mysql_error());
+        $row = mysql_fetch_array($mysql);
 
         $result = array(
             'id' => $task_id,
@@ -139,8 +143,9 @@ class InstFollow
 
         $this->PROXY_ID =  $row['proxy'];
         $this->PROXY = $this->get_proxy();
-        mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id")
-            or die(mysql_error());
+        $mysql = mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id");
+          if(!$mysql)
+              throw new Exception(mysql_error());
         return $result;
     }
 
@@ -149,9 +154,10 @@ class InstFollow
     {
         $proxy_id=$this->PROXY_ID;
         $sql="SELECT * FROM  proxy WHERE id =$proxy_id";
-        $qr_result = mysql_query($sql)
-            or die(mysql_error());
-        $row = mysql_fetch_array($qr_result);
+        $mysql = mysql_query($sql);
+          if(!$mysql)
+              throw new Exception(mysql_error());
+        $row = mysql_fetch_array($mysql);
 
         $result = array(
             'id' => $row['id'],
@@ -205,18 +211,16 @@ class InstFollow
         $ch = curl_init();
         $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
 
-        $this->debug($proxy . "|" . $try );
-
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_URL, $url);
-      //  curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        curl_setopt($ch, CURLOPT_PROXY, $proxy);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_POST, count($postData));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        //curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
 
 
         $output = curl_exec($ch);
@@ -239,7 +243,6 @@ class InstFollow
         }
         else
             curl_close($ch);
-        $this->debug( "stop post|"  );
         return $result;
     }
 
@@ -248,8 +251,6 @@ class InstFollow
         $ch = curl_init();
 
         $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
-
-        $this->debug("\n" . $proxy . "|" . $try );
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_PROXY, $proxy);
@@ -264,22 +265,13 @@ class InstFollow
         $result=json_decode($output);
 
         if(FALSE === $output){
-            //throw new Exception(curl_error($ch), curl_errno($ch));
-            if($try++<5) {
-                curl_close($ch);
-                $this->PROXY = $this->get_proxy();
-
-                $result = $this->httpGet($url, $try);
-            }
-            else{
-                $this->debug( "!full stop!"  );
-
-                curl_close($ch);
-                $this->close(curl_error($ch) . curl_errno($ch) . substr($output,0,200));
-            }
+            //curl_close($ch);
+            var_dump(curl_error($ch));
+            var_dump(curl_errno($ch));
+            $this->close(curl_error($ch));
         }
         elseif($result->meta->code!=200){
-            curl_close($ch);
+            //curl_close($ch);
             $this->close($result->meta->code . substr($output,0,200));
         }
         else
@@ -290,7 +282,7 @@ class InstFollow
 
     function connect()
     {
-        $connection = mysql_connect('localhost', 'root', 'bycnfcntkkfh,fpf');//bycnfcntkkfh,fpf
+        $connection = mysql_connect('localhost', 'root', '');//bycnfcntkkfh,fpf
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }
@@ -304,10 +296,12 @@ class InstFollow
 
     public function close($message){
         $task=$this->TASK_ID;
-        mysql_query("INSERT INTO errors (task_id,code,message) VALUES ($task,$message)")
-            or die(mysql_error());
-        $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$task")
-            or die(mysql_error());
+        $mysql = mysql_query("INSERT INTO errors (task_id,message) VALUES ($task,'$message')");
+        if(!$mysql)
+            throw new Exception(mysql_error());
+        $mysql = mysql_query("UPDATE tasks SET status=4 WHERE id=$task");
+        if(!$mysql)
+            throw new Exception(mysql_error());
         exit();
     }
 }

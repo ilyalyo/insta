@@ -282,7 +282,7 @@ class InstFollow
 
     function connect()
     {
-        $connection = mysql_connect('localhost', 'root', '');//bycnfcntkkfh,fpf
+        $connection = mysql_connect('localhost', 'root', 'bycnfcntkkfh,fpf');//bycnfcntkkfh,fpf
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }

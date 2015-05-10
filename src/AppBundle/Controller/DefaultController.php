@@ -54,8 +54,6 @@ class DefaultController extends Controller
         );
     }
 
-
-
     /**
      * @Route("/account/add", name="add_account")
      */

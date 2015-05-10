@@ -32,6 +32,7 @@ class CasperAjaxController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($account);
             $em->flush();
+            return new JsonResponse('step1');
         }
         return $this->render('accounts/login_password.html.twig',
             array('form' => $form->createView()));

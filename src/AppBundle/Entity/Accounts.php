@@ -57,6 +57,20 @@ class Accounts
     protected $token;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $instLogin;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $instPass;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $isTrue;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -212,5 +226,74 @@ class Accounts
     public function getProxy()
     {
         return $this->proxy;
+    }
+
+    /**
+     * Set instLogin
+     *
+     * @param string $instLogin
+     * @return Accounts
+     */
+    public function setInstLogin($instLogin)
+    {
+        $this->instLogin = $instLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get instLogin
+     *
+     * @return string 
+     */
+    public function getInstLogin()
+    {
+        return $this->instLogin;
+    }
+
+    /**
+     * Set instPass
+     *
+     * @param string $instPass
+     * @return Accounts
+     */
+    public function setInstPass($instPass)
+    {
+        $this->instPass = $instPass;
+
+        return $this;
+    }
+
+    /**
+     * Get instPass
+     *
+     * @return string 
+     */
+    public function getInstPass()
+    {
+        return $this->instPass;
+    }
+
+    /**
+     * Set isTrue
+     *
+     * @param integer $isTrue
+     * @return Accounts
+     */
+    public function setIsTrue($isTrue)
+    {
+        $this->isTrue = $isTrue;
+
+        return $this;
+    }
+
+    /**
+     * Get isTrue
+     *
+     * @return integer 
+     */
+    public function getIsTrue()
+    {
+        return $this->isTrue;
     }
 }

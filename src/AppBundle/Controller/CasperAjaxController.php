@@ -59,7 +59,7 @@ class CasperAjaxController extends Controller
         $url = 'https://api.instagram.com/oauth/access_token';
         $code = $request->get('code');
         $account_id = $request->get('account_id');
-
+        var_dump ($account_id);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         $params=array(
@@ -78,14 +78,10 @@ class CasperAjaxController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        //$account= new Accounts();
         $account = $em->getRepository('AppBundle:Accounts')->find($account_id);
         $account->setUsername($response->user->username);
         $account->setToken($response->access_token);
         $account->setAccountId($response->user->id);
-
-        //$em->persist($account);
-        //$em->flush();
 
         $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
         $proxy_count=$account->getId() % count($proxy);

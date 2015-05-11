@@ -25,7 +25,7 @@ class CasperAjaxController extends Controller
         $account = new Accounts();
         $form = $this->createFormBuilder($account)
             ->add('instLogin', 'text', array('label' => 'Логин'))
-            ->add('instPass', 'password', array(
+            ->add('instPass', 'text', array(
                 'label' => 'Пароль'))
             ->getForm();
         $form->handleRequest($request);
@@ -38,7 +38,7 @@ class CasperAjaxController extends Controller
             $command->setContainer($this->container);
             $input = new ArrayInput(array(
                 'username'=>$account->getInstLogin(),
-                'password' =>$account->getInstPass(),
+                'pass' =>$account->getInstPass(),
                 'account_id' => $account->getId()
             ));
 

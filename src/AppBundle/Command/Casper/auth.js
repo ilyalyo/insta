@@ -4,7 +4,7 @@ var uname=casper.cli.get(0).toString();
 var pass=casper.cli.get(1).toString();
 var id=casper.cli.get(2).toString();
 
-var auth_url='https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78b125602b90989cc&response_type=code&redirect_uri=http://instastellar.su/get_token?account_id=' + id + '&scope=likes+comments+relationships';
+var auth_url='https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78b125602b90989cc&response_type=code&scope=likes+comments+relationships&redirect_uri=http://instastellar.su/get_token?account_id=' + id;
 
 casper.start().thenOpen(auth_url, function() {
     this.wait(2000, function() {

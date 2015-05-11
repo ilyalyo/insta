@@ -38,7 +38,7 @@ class CasperAjaxController extends Controller
             $command->setContainer($this->container);
             $input = new ArrayInput(array(
                 'username'=>$account->getInstLogin(),
-                'pass' =>$account->getInstPass(),
+                'password' =>$account->getInstPass(),
                 'account_id' => $account->getId()
             ));
 

@@ -13,19 +13,22 @@ class AuthCommand extends ContainerAwareCommand
         $this
             ->setName('casper:auth')
             ->addArgument(
-                'username',
-                'pass',
-                'account_id',
-                InputArgument::OPTIONAL,
-                'Who do you want to greet?'
+                'username'
             )
+            ->addArgument(
+                'password'
+            )
+            ->addArgument(
+                'account_id'
+            )
+
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $username = $input->getArgument('username');
-        $password = $input->getArgument('pass');
+        $password = $input->getArgument('password');
         $account_id = $input->getArgument('account_id');
         $file = __DIR__ . "Casper/auth.php";
         shell_exec("casperjs $file '" . $username . "' '" . $password ."' '" . $account_id . "' > /dev/null &");

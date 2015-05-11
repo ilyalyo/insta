@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Command\AuthCommand;
 use AppBundle\Entity\Accounts;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,6 +33,18 @@ class CasperAjaxController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($account);
             $em->flush();
+
+            $command = new AuthCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array(
+                'username'=>$account->getInstLogin(),
+                'password' =>$account->getInstPass(),
+                'account_id' => $account->getId()
+            ));
+
+            $output = new NullOutput();
+            $command->run($input, $output);
+
             return new JsonResponse('step1');
         }
         return $this->render('accounts/login_password.html.twig',
@@ -45,6 +58,7 @@ class CasperAjaxController extends Controller
     {
         $url = 'https://api.instagram.com/oauth/access_token';
         $code = $request->get('code');
+        $account_id = $request->get('account_id');
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -64,18 +78,19 @@ class CasperAjaxController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $account= new Accounts();
+        //$account= new Accounts();
+        $account = $em->getRepository('AppBundle:Accounts')->find($account_id);
         $account->setUsername($response->user->username);
         $account->setToken($response->access_token);
         $account->setAccountId($response->user->id);
 
-        $em->persist($account);
-        $em->flush();
+        //$em->persist($account);
+        //$em->flush();
 
         $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
         $proxy_count=$account->getId() % count($proxy);
         $account->setProxy($proxy[$proxy_count]);
-        var_dump($proxy[$proxy_count]);
+
         $em->persist($account);
         $em->flush();
 

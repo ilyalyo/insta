@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Command\AuthCommand;
 use AppBundle\Entity\Accounts;
+use Symfony\Component\Console\Input\ArrayInput;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Console\Output\NullOutput;
 
 class CasperAjaxController extends Controller
 {
@@ -47,8 +49,13 @@ class CasperAjaxController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
-            return new JsonResponse('step1');
+            return new JsonResponse($account->getId());
         }
+
+        if($request->getMethod()=='POST'){
+            return new JsonResponse(0);
+        }
+
         return $this->render('accounts/login_password.html.twig',
             array('form' => $form->createView()));
     }
@@ -91,7 +98,7 @@ class CasperAjaxController extends Controller
         $em->persist($account);
         $em->flush();
 
-        return new JsonResponse($account->getId());
+        return Response($account->getId());
     }
 
     /**
@@ -108,12 +115,17 @@ class CasperAjaxController extends Controller
     }
 
     /**
-     * @Route("/accounts/get/{account}", name="get_login_result")
+     * @Route("/accounts/is_exist", name="is_account_exist")
      */
-    public function loginResultAction($account)
+    public function loginResultAction(Request $request)
     {
+        $account = $request->get('account');
         $em = $this->getDoctrine()->getManager();
         $account = $em->getRepository('AppBundle:Accounts')->find($account);
-        return new JsonResponse($account->getIsTrue());
+        $token=$account->getToken();
+        if(isset($token))
+            return new JsonResponse(1);
+        else
+            return new JsonResponse(0);
     }
 }

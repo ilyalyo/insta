@@ -31,6 +31,8 @@ class CasperAjaxController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user=$this->getUser();
+            $account->setUser($user);
             $em->persist($account);
             $em->flush();
 
@@ -59,14 +61,13 @@ class CasperAjaxController extends Controller
         $url = 'https://api.instagram.com/oauth/access_token';
         $code = $request->get('code');
         $account_id = $request->get('account_id');
-        var_dump ($account_id);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         $params=array(
             'client_id'=>self::CLIENT_ID,
             'client_secret'=>self::CLIENT_SECRET,
             'grant_type'=>'authorization_code',
-            'redirect_uri'=>self::REDIRECT_URL,
+            'redirect_uri'=>self::REDIRECT_URL . $account_id,
             'code'=>$code);
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));

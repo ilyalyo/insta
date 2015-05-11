@@ -14,7 +14,7 @@ class CasperAjaxController extends Controller
     const CLIENT_ID='6e336200a7f446a78b125602b90989cc';
     const CLIENT_SECRET='5e9449ed34a141d3925c852a4f6baa7e';
     const RESPONSE_TYPE='code';
-    const REDIRECT_URL='http://instastellar.su/get_token';
+    const REDIRECT_URL='http://instastellar.su/get_token?account_id=';
     const SCOPE='likes+comments+relationships';
 
     /**

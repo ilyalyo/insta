@@ -6,7 +6,7 @@ var task_id=casper.cli.get(2).toString();
 var wait=casper.cli.get(3);
 
 var fs = require('fs');
-var data = fs.read(task_id);
+var data = fs.read('/var/www/instastellar/tasks/' + task_id);
 var arr_data=data.split(",");
 
 var auth_url='https://instagram.com/accounts/login/';

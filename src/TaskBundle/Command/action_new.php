@@ -29,6 +29,9 @@ for ($i = 0; $i <= $task['count'] - 1; $i++) {
 }
 
 var_dump($usernames);
-$file = fopen('var/www/instastellar/tasks/' . $TASK_ID, "w") or die("Unable to open file!");
+$file = fopen('/var/www/instastellar/tasks/' . $TASK_ID, "w") or die("Unable to open file!");
 fwrite($file, $usernames);
 fclose($file);
+$wait=10000;
+$data=$inst->get_login_pass($task['account_id']);
+shell_exec("casperjs $file '" . $data['login'] . "' '" . $data['pass'] ."' '" . $TASK_ID . "' '" . $wait . "' > /dev/null &");

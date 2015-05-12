@@ -29,7 +29,7 @@ casper.start().thenOpen(auth_url,
  });
 
  casper.then(function(self) {
-   for (a = 0; a < arr_data.length - 1 ; a++)
+   for (a = 0; a < arr_data.length; a++)
    {
     (function(self){
         var i = a;

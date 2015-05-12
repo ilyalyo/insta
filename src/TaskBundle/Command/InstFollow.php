@@ -73,7 +73,7 @@ class InstFollow
 
     function get_task($task_id)
     {
-        $mysql = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id");// AND status=0
+        $mysql = mysql_query("SELECT t.*,a.token, a.proxy,a.id FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id");// AND status=0
         if(!$mysql)
            throw new Exception(mysql_error());
         $row = mysql_fetch_array($mysql);
@@ -84,9 +84,24 @@ class InstFollow
             'tags' => $row['tags'],
             'type' => $row['type'],
             'token' => $row['token'],
+            'account_id' => $row['account_id'],
             'byUsername' => $row['byUsername']);
 
         $this->PROXY = $this->get_proxy($row['proxy']);
+
+        return $result;
+    }
+
+    function get_login_pass($account_id)
+    {
+        $mysql = mysql_query("SELECT instLogin, instPass FROM accounts WHERE id=$account_id");// AND status=0
+        if(!$mysql)
+            throw new Exception(mysql_error());
+        $row = mysql_fetch_array($mysql);
+
+        $result = array(
+            'login' => $row['instLogin'],
+            'pass' => $row['instPass']);
 
         return $result;
     }

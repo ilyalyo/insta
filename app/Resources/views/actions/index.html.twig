@@ -42,10 +42,10 @@
         <h3>Вы подписались на:</h3>
         {% for action in task.actions | reverse %}
 
-            {% if action.resource_id %}
-                <p>{{ action.resource_id }}
-                    {% if action.resource_id %}
-                        <a href="https://instagram.com/{{ action.resource_id }}">+</a>
+            {% if action.resourceId %}
+                <p>{{ action.resourceId }}
+                    {% if action.resourceId %}
+                        <a href="https://instagram.com/{{ action.resourceId }}">+</a>
                     {% endif %}
                 </p>
             {% endif %}

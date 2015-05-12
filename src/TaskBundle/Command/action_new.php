@@ -34,4 +34,5 @@ fwrite($file, $usernames);
 fclose($file);
 $wait=10000;
 $data=$inst->get_login_pass($task['account_id']);
-shell_exec("casperjs $file '" . $data['login'] . "' '" . $data['pass'] ."' '" . $TASK_ID . "' '" . $wait . "' > /dev/null &");
+$file_ex = __DIR__ . "/Casper/follow.js";
+shell_exec("casperjs $file_ex '" . $data['login'] . "' '" . $data['pass'] ."' '" . $TASK_ID . "' '" . $wait . "' > /dev/null &");

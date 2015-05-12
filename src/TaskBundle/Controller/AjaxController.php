@@ -2,6 +2,7 @@
 
 namespace TaskBundle\Controller;
 
+use Proxies\__CG__\TaskBundle\Entity\Actions;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -37,5 +38,20 @@ class AjaxController extends Controller
             ->getQuery();
 
         return new JsonResponse($query->getArrayResult());
+    }
+
+    /**
+     * @Route("/tasks/set_result/{id}/{link}", name="tasks_set_result")
+     */
+    public function setResultAction($id,$link)
+    {
+        $action = new Actions();
+        $em = $this->getDoctrine()->getManager();
+        $task = $em->getRepository('TaskBundle:Tasks')->find($id);
+        $action->setTaskId($task);
+        $action->setResourceId($link);
+        $em->persist($action);
+        $em->flush();
+        return new JsonResponse(1);
     }
 }

@@ -26,7 +26,7 @@ class WriteCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $id = $input->getArgument('id');
-        $file = __DIR__ . "/action.php";
+        $file = __DIR__ . "/action_new.php";
         shell_exec("php $file '" . $id . "' > /dev/null &");
     }
 }

@@ -5,15 +5,11 @@ class InstFollow
 {
     private $TASK_ID;
     private $PROXY;
-    private $PROXY_ID;
-    private $PROXY_USED_ID;
     private $PROXY_TIME=10;
 
     public function __construct ($task_id){
-        $this->PROXY_USED_ID=array();
         $this->TASK_ID = $task_id;
         $this->connect();
-       // $this->PROXY = $this->get_proxy();
     }
 
     function getUserFollowers($task)
@@ -21,6 +17,7 @@ class InstFollow
         $user_name = $task['tags'];
         $token = $task['token'];
         $url = "https://api.instagram.com/v1/users/search?q=$user_name" . "&access_token=$token";
+
         $response = ($this->httpGet($url,0));
         $user_id = $response->data[0]->id;
 
@@ -39,10 +36,7 @@ class InstFollow
                     break;
 
                 if ($this->checkUser($d->id, $token)) {
-                    $user['username'] = $d->username;
-                    $user['user_id'] = $d->id;
-                    $user['link'] = '';
-                    $result[] = $user;
+                    $result[] = $d->username;
                 }
             }
 
@@ -51,52 +45,7 @@ class InstFollow
         return $result;
     }
 
-
-    function debug($message)
-    {
-        /*$filename=$this->TASK_ID;
-        $file = "var/www/Debug/$filename";
-        $fp = fopen($file, 'w');
-        fwrite($fp, json_encode($message));
-        fclose($fp);
-        chmod($file, 0777);  //changed to add the zero
-        */
-        //$filename=$this->TASK_ID;
-        //$file = "var/www/Debug/$filename";
-        //file_put_contents("$file", "|" . json_encode($message) . '\n', FILE_APPEND);
-    }
-
-    function is_stopped($id)
-    {
-        $mysql = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id");
-        if(!$mysql)
-            throw new Exception(mysql_error());
-        $row = mysql_fetch_array($mysql);
-
-        if (!empty($row['id'])) {
-            return true;
-        }
-        return false;
-    }
-
-
-    function done_task($id)
-    {
-        $mysql = mysql_query("UPDATE tasks SET status=1 WHERE id=$id");
-        if(!$mysql)
-            throw new Exception(mysql_error());
-    }
-
-
-    function add_row($task_id, $user_id, $username, $resource_id, $responce)
-    {
-        $mysql = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')");
-          if(!$mysql)
-              throw new Exception(mysql_error());
-    }
-
-
-    function  getUsernameAndIdsbyTag($tag, $token)
+    function  getUsernameByTag($tag, $token)
     {
         $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=10";
         do {
@@ -105,11 +54,7 @@ class InstFollow
             $data = $response->data;
             foreach ($data as $d) {
                 if ($this->checkUser($d->user->id, $token)) {
-                    $result['id'] = $d->id;
-                    $result['username'] = $d->user->username;
-                    $result['user_id'] = $d->user->id;
-                    $result['link'] = $d->link;
-                    return $result;
+                    return $d->user->username;
                 }
             }
             $url = $response->pagination->next_url;
@@ -128,7 +73,7 @@ class InstFollow
 
     function get_task($task_id)
     {
-        $mysql = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id AND status=0");
+        $mysql = mysql_query("SELECT t.*,a.token, a.proxy FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id");// AND status=0
         if(!$mysql)
            throw new Exception(mysql_error());
         $row = mysql_fetch_array($mysql);
@@ -141,66 +86,25 @@ class InstFollow
             'token' => $row['token'],
             'byUsername' => $row['byUsername']);
 
-        $this->PROXY_ID =  $row['proxy'];
-        $this->PROXY = $this->get_proxy();
-        $mysql = mysql_query("UPDATE tasks SET status=2 WHERE id=$task_id");
-          if(!$mysql)
-              throw new Exception(mysql_error());
+        $this->PROXY = $this->get_proxy($row['proxy']);
+
         return $result;
     }
 
-
-    function get_proxy()
+    function get_proxy($id)
     {
-        $proxy_id=$this->PROXY_ID;
-        $sql="SELECT * FROM  proxy WHERE id =$proxy_id";
+        $sql="SELECT * FROM  proxy WHERE id =$id";
         $mysql = mysql_query($sql);
           if(!$mysql)
               throw new Exception(mysql_error());
         $row = mysql_fetch_array($mysql);
 
-        $result = array(
-            'id' => $row['id'],
-            'ip' => $row['ip'],
-            'port' => $row['port']
-        );
+        $result =$row['ip'] . ":" . $row['port'];
 
         return $result;
     }
 
-    function  sendLike($task, $media)
-    {
-        $media_id = $media['id'];
-        $token = $task["token"];
-        $url = "https://api.instagram.com/v1/media/$media_id/likes";
-
-        $params = array(
-            "access_token" => $token
-        );
-
-        $result = ($this->httpPost($url, $params,0));
-
-        $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
-    }
-
-    function  follow($task, $media)
-    {
-        $target_id = $media['user_id'];
-        $token = $task["token"];
-        $url = "https://api.instagram.com/v1/users/$target_id/relationship";
-
-
-        $params = array(
-            "access_token" => $token,
-            "action" => 'follow'
-        );
-        $result = ( $this->httpPost($url, $params,0));
-
-        $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
-    }
-
-
-    function httpPost($url, $params,$try)
+    function httpPost($url, $params)
     {
         $postData = '';
         foreach ($params as $k => $v) {
@@ -209,11 +113,10 @@ class InstFollow
         rtrim($postData, '&');
 
         $ch = curl_init();
-        $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        curl_setopt($ch, CURLOPT_PROXY, $this->PROXY);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_POST, count($postData));
@@ -227,15 +130,8 @@ class InstFollow
         $result=json_decode($output);
 
         if(FALSE === $output){
-            if($try++ < 5) {
-                curl_close($ch);
-                $this->PROXY = $this->get_proxy();
-                $result = $this->httpPost($url, $params, $try);
-            }
-            else{
-                curl_close($ch);
-                $this->close(curl_error($ch) . curl_errno($ch) . substr($output,0,200));
-            }
+            curl_close($ch);
+            $this->close(curl_error($ch) . curl_errno($ch) . substr($output,0,200));
         }
         elseif($result->meta->code!=200){
             curl_close($ch);
@@ -246,32 +142,27 @@ class InstFollow
         return $result;
     }
 
-    function httpGet($url,$try)
+    function httpGet($url)
     {
         $ch = curl_init();
 
-        $proxy = $this->PROXY['ip'] . ":" . $this->PROXY['port'];
-
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        curl_setopt($ch, CURLOPT_PROXY, $this->PROXY);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
-
+        //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $output = curl_exec($ch);
+
         $result=json_decode($output);
 
         if(FALSE === $output){
-            //curl_close($ch);
-            var_dump(curl_error($ch));
-            var_dump(curl_errno($ch));
             $this->close(curl_error($ch));
         }
         elseif($result->meta->code!=200){
-            //curl_close($ch);
             $this->close($result->meta->code . substr($output,0,200));
         }
         else
@@ -282,7 +173,7 @@ class InstFollow
 
     function connect()
     {
-        $connection = mysql_connect('localhost', 'root', 'bycnfcntkkfh,fpf');//bycnfcntkkfh,fpf
+        $connection = mysql_connect('localhost', 'root', '');//bycnfcntkkfh,fpf
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }

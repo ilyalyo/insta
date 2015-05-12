@@ -73,7 +73,7 @@ class InstFollow
 
     function get_task($task_id)
     {
-        $mysql = mysql_query("SELECT t.*,a.token, a.proxy,a.id FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id");// AND status=0
+        $mysql = mysql_query("SELECT t.*,a.token, a.proxy,a.id as account_id FROM tasks t INNER JOIN accounts a ON t.account_id=a.id WHERE t.id=$task_id");// AND status=0
         if(!$mysql)
            throw new Exception(mysql_error());
         $row = mysql_fetch_array($mysql);

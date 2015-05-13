@@ -51,9 +51,6 @@ casper.start().thenOpen(auth_url,
                 } else {
                     this.echo('not found', 'ERROR');
                 }
-            }).then(function () {
-                casper.page.close();
-                casper.newPage();
             });
 
         });

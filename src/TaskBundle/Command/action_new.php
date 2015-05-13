@@ -35,7 +35,7 @@ try {
     $data = $inst->get_login_pass($task['account_id']);
     $file_ex = __DIR__ . "/Casper/follow.js";
     $proxy=$inst->PROXY;
-    shell_exec("casperjs $file_ex '" . $data['login'] . "' '" . $data['pass'] . "' '" . $TASK_ID . "' '" . $wait . "'  --proxy=$proxy --proxy-type=socks5 > /dev/null");
+    shell_exec("casperjs $file_ex '" . $data['login'] . "' '" . $data['pass'] . "' '" . $TASK_ID . "' '" . $wait . "'  '--proxy=$proxy --proxy-type=socks5' > /dev/null");
     $inst->done_task($TASK_ID);
 }catch (Exception $e){
     $inst->close($e);

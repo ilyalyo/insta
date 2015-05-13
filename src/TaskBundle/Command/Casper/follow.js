@@ -42,6 +42,7 @@ casper.start().thenOpen(auth_url,
                     this.mouseEvent('click', '.FollowButton');
                     casper.wait(1000,function(self){
                         if (this.exists('.followButtonFollowing')) {
+                            this.echo('subscribed', 'INFO');
                             casper.thenOpen('http://instastellar.su/tasks/set_result/'+task_id + '/' + arr_data[i], function() {})
                         }
                         else{

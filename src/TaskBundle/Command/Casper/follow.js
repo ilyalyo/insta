@@ -33,20 +33,36 @@ casper.start().thenOpen(auth_url,
    {
     (function(self){
         var i = a;
-        casper.wait(wait,function(self){
+        var rnd_wait = getRandomArbitrary(wait/1.5, wait*1.5);
+        casper.wait(rnd_wait,function(self){
             casper.thenOpen('https://instagram.com/' + arr_data[i], function(self) {
                 casper.echo(casper.getTitle());
-                if (this.exists('.FollowButton')) {
+                if (this.exists('.followButtonFollow')) {
                     this.echo('found ', 'INFO');
                     this.mouseEvent('click', '.FollowButton');
-                    casper.thenOpen('http://instastellar.su/tasks/set_result/'+task_id + '/' + arr_data[i], function() {})
+                    casper.wait(1000,function(self){
+                        if (this.exists('.followButtonFollowing')) {
+                            casper.thenOpen('http://instastellar.su/tasks/set_result/'+task_id + '/' + arr_data[i], function() {})
+                        }
+                        else{
+                            this.echo('follow broken', 'ERROR');
+                        }
+                    });
                 } else {
                     this.echo('not found', 'ERROR');
                 }
+            }).then(function () {
+                casper.page.close();
+                casper.newPage();
             });
+
         });
     })();
     }
  });
 
 casper.run();
+
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}

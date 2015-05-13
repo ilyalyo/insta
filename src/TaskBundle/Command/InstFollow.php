@@ -3,8 +3,8 @@
 
 class InstFollow
 {
+    public $PROXY;
     private $TASK_ID;
-    private $PROXY;
     private $PROXY_TIME=10;
 
     public function __construct ($task_id){

@@ -199,7 +199,10 @@ class InstFollow
         mysql_query("SET NAMES 'utf8'");
         mysql_query("SET CHARACTER SET utf8 ");
     }
-
+    function done_task($id){
+        $qr_result = mysql_query("UPDATE tasks SET status=1 WHERE id=$id")
+        or die(mysql_error());
+    }
     public function close($message){
         $task=$this->TASK_ID;
         $mysql = mysql_query("INSERT INTO errors (task_id,message) VALUES ($task,'$message')");

@@ -43,7 +43,10 @@ casper.start().thenOpen(auth_url,
                     casper.wait(1000,function(self){
                         if (this.exists('.followButtonFollowing')) {
                             this.echo('subscribed', 'INFO');
-                            casper.thenOpen('http://instastellar.su/tasks/set_result/'+task_id + '/' + arr_data[i], function() {})
+                            casper.wait(500,function(self) {
+                                casper.thenOpen('http://instastellar.su/tasks/set_result/' + task_id + '/' + arr_data[i], function () {
+                                })
+                            });
                         }
                         else{
                             this.echo('follow broken', 'ERROR');

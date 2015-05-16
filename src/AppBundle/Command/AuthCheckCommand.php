@@ -11,7 +11,7 @@ class AuthCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('casper:auth')
+            ->setName('casper:cjheckauth')
             ->addArgument(
                 'username'
             )

@@ -31,6 +31,6 @@ class AuthCommand extends ContainerAwareCommand
         $password = $input->getArgument('password');
         $account_id = $input->getArgument('account_id');
         $file = __DIR__ . "/Casper/auth.js";
-        shell_exec("casperjs $file '" . $username . "' '" . $password ."' '" . $account_id . "' > /dev/null &");
+        shell_exec("casperjs $file '" . $username . "' '" . $password ."' '" . $account_id . "' > /dev/null");
     }
 }

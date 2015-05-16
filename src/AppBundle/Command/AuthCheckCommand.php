@@ -11,7 +11,7 @@ class AuthCheckCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('casper:cjheckauth')
+            ->setName('casper:checkauth')
             ->addArgument(
                 'username'
             )
@@ -26,7 +26,6 @@ class AuthCheckCommand extends ContainerAwareCommand
     {
         $username = $input->getArgument('username');
         $password = $input->getArgument('password');
-        $account_id = $input->getArgument('account_id');
         $file = __DIR__ . "/Casper/check_auth.js";
         $text = shell_exec("casperjs $file '" . $username . "' '" . $password ."' ");
         $output->writeln($text);;

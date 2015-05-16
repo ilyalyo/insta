@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Form\FormError;
 use AppBundle\Command\AuthCommand;
 use AppBundle\Entity\Accounts;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -25,15 +26,28 @@ class CasperAjaxController extends Controller
     public function addLoginPasswordAction(Request $request)
     {
         $account = new Accounts();
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
         $form = $this->createFormBuilder($account)
             ->add('instLogin', 'text', array('label' => 'Логин'))
             ->add('instPass', 'text', array(
                 'label' => 'Пароль'))
             ->getForm();
+
+        $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
+            'user'=>$user->getId()
+        ));
+
+        if(count($accounts)>3){
+            $form->get('instLogin')->addError(new FormError('У вас уже есть 3 аккаунта'));
+            return $this->render('accounts/login_password.html.twig',
+                array('form' => $form->createView()));
+        }
+
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $user=$this->getUser();
+
             $account->setUser($user);
             $em->persist($account);
             $em->flush();
@@ -51,6 +65,7 @@ class CasperAjaxController extends Controller
 
             return new JsonResponse($account->getId());
         }
+
 
         if($request->getMethod()=='POST'){
             return new JsonResponse(0);

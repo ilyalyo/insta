@@ -77,6 +77,12 @@ class Tasks
      */
     protected $createdAt;
 
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $speed;
+    
     /**
      * @ORM\PrePersist
      */
@@ -294,5 +300,28 @@ class Tasks
     public function getActions()
     {
         return $this->actions;
+    }
+
+    /**
+     * Set speed
+     *
+     * @param integer $speed
+     * @return Tasks
+     */
+    public function setSpeed($speed)
+    {
+        $this->speed = $speed;
+
+        return $this;
+    }
+
+    /**
+     * Get speed
+     *
+     * @return integer 
+     */
+    public function getSpeed()
+    {
+        return $this->speed;
     }
 }

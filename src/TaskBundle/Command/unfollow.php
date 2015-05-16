@@ -1,24 +1,38 @@
 <?php
-include_once("InstUnfollow.php");
+include_once("InstFollow.php");
 
     $TASK_ID =$_SERVER['argv'][1];
-    $inst = new InstUnfollow($TASK_ID);
+    $inst = new InstFollow($TASK_ID);
 
-    $data = $inst->get_tokenUserIdCount();
-    $token=$data[0];
-    $count=$data[1];
-    $account_id = $data[2];
+    $task= $inst->get_task($TASK_ID );
+    $token=$task['token'];
+    $count=$task['count'];
+    $account_id = $task['account_id'];
 
-    $users=$inst->getUserFollowers($account_id,$count,$token);
+try {
+    $users=$inst->getUserFollowersFromBack($account_id,$count,$token);
     $counter=0;
+    $usernames ='';
 
     foreach($users as $user){
-        $inst->unFollow($user, $token);
-        sleep(rand(30,50));
+        $usernames .=$user;
         if($counter++>$count)
             break;
         if ($inst->is_stopped($TASK_ID))
             break;
     }
-$inst->done_task($TASK_ID);
 
+    $file = fopen('/var/www/instastellar/tasks/' . $TASK_ID, "w") or die("Unable to open file!");
+    fwrite($file, $usernames);
+    fclose($file);
+    $wait = $inst->SPEED;
+    $data = $inst->get_login_pass($task['account_id']);
+    $file_ex = __DIR__ . "/Casper/unfollow.js";
+    $proxy=$inst->PROXY;
+    $inst->start_task($TASK_ID);
+    shell_exec("casperjs $file_ex '" . $data['login'] . "' '" . $data['pass'] . "' '" . $TASK_ID . "'  '--proxy=$proxy --proxy-type=socks5' > /dev/null");
+    $inst->done_task($TASK_ID);
+
+}catch (Exception $e){
+    $inst->close($e);
+}

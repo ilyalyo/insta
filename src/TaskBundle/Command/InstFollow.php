@@ -4,6 +4,7 @@
 class InstFollow
 {
     public $PROXY;
+    public $SPEED;
     private $TASK_ID;
     private $PROXY_TIME=10;
 
@@ -42,6 +43,31 @@ class InstFollow
 
         } while ($task['count'] - 1 > count($result) && isset($next));
 
+        return $result;
+    }
+
+    function getUserFollowersFromBack($user_id,$count,$token )
+    {
+        $next="";
+        $result=array();
+        $counter=0;
+        $about_count=$count/50;
+
+        $all=$this->getFollowedBy($user_id,$token)/50;
+
+        do {
+            $counter++;
+            $url = "https://api.instagram.com/v1/users/$user_id/follows?" . "access_token=$token" . "&cursor=$next";
+            $response = ($this->httpGet($url,0));
+
+            $data = $response->data;
+            $next = $response->pagination->next_cursor;
+            if($all-$counter<=$about_count)
+                foreach ($data as $d) {
+                    $result[]=$d->username;;
+                }
+
+        }while(isset($next));
         return $result;
     }
 
@@ -87,6 +113,7 @@ class InstFollow
             'account_id' => $row['account_id'],
             'byUsername' => $row['byUsername']);
 
+        $this->SPEED = $this->get_speed($row['speed']);
         $this->PROXY = $this->get_proxy($row['proxy']);
 
         return $result;
@@ -105,7 +132,13 @@ class InstFollow
 
         return $result;
     }
-
+    function get_speed($speed){
+        if ($speed==0)
+            return 20000;
+        if ($speed==1)
+            return 30000;
+        return 60000;
+    }
     function get_proxy($id)
     {
         $sql="SELECT * FROM  proxy WHERE id =$id";
@@ -199,6 +232,12 @@ class InstFollow
         mysql_query("SET NAMES 'utf8'");
         mysql_query("SET CHARACTER SET utf8 ");
     }
+
+    function start_task($id){
+        $qr_result = mysql_query("UPDATE tasks SET status=2 WHERE id=$id")
+        or die(mysql_error());
+    }
+
     function done_task($id){
         $qr_result = mysql_query("UPDATE tasks SET status=1 WHERE id=$id")
         or die(mysql_error());

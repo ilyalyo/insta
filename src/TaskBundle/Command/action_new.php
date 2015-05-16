@@ -27,14 +27,14 @@ try {
             $usernames .= $inst->getUsernameByTag($tag, $token);
         }
 
-    var_dump($usernames);
     $file = fopen('/var/www/instastellar/tasks/' . $TASK_ID, "w") or die("Unable to open file!");
     fwrite($file, $usernames);
     fclose($file);
-    $wait = 10000;
+    $wait = $inst->SPEED;
     $data = $inst->get_login_pass($task['account_id']);
     $file_ex = __DIR__ . "/Casper/follow.js";
     $proxy=$inst->PROXY;
+    $inst->start_task($TASK_ID);
     shell_exec("casperjs $file_ex '" . $data['login'] . "' '" . $data['pass'] . "' '" . $TASK_ID . "' '" . $wait . "'  '--proxy=$proxy --proxy-type=socks5' > /dev/null");
     $inst->done_task($TASK_ID);
 }catch (Exception $e){

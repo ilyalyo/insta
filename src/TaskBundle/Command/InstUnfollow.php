@@ -3,15 +3,12 @@
 
 class InstUnfollow
 {
-    private $TASK_ID;
-    private $PROXY;
-    private $PROXY_ID;
+    public $TASK_ID;
+    public $PROXY;
 
-    private $PROXY_USED_ID;
     private $PROXY_TIME=10;
 
     public function __construct ($task_id){
-        $this->PROXY_USED_ID=array();
         $this->TASK_ID = $task_id;
         $this->connect();
       //  $this->PROXY = $this->get_proxy();
@@ -213,6 +210,19 @@ class InstUnfollow
     }
 
 
+    function get_login_pass($account_id)
+    {
+        $mysql = mysql_query("SELECT instLogin, instPass FROM accounts WHERE id=$account_id");// AND status=0
+        if(!$mysql)
+            throw new Exception(mysql_error());
+        $row = mysql_fetch_array($mysql);
+
+        $result = array(
+            'login' => $row['instLogin'],
+            'pass' => $row['instPass']);
+
+        return $result;
+    }
     function get_proxy()
     {
         $proxy_id=$this->PROXY_ID;

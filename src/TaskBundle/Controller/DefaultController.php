@@ -62,12 +62,30 @@ class DefaultController extends Controller
                 ->add('tags', 'textarea', array(
                     'label' => 'Тэги',
                     'attr' => array('placeholder'=>'#sun#love#peace')))
+                ->add('speed', 'choice', array(
+                'choices' => array(
+                    '0'   => '20-30с',
+                    '1' => '30-45с',
+                    '2'   => '1м-1.5м',
+                ),
+                'label' => 'Скорость',
+                'multiple' => false,
+            ))
                 ->getForm();
         }
         else
             $form = $this->createFormBuilder($task)
                 ->add('count', 'text',array('label' => 'Количество'))
                 ->add('tags', 'text',array('label' => 'ID'))
+                ->add('speed', 'choice', array(
+                    'choices' => array(
+                        '0'   => '20-30 с',
+                        '1' => '30-45 с',
+                        '2'   => '1-1.5 мин',
+                    ),
+                    'label' => 'Скорость',
+                    'multiple' => false,
+                ))
                 ->getForm();
 
         $em = $this->getDoctrine()->getManager();

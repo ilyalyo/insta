@@ -13,11 +13,14 @@ casper.start().thenOpen(auth_url, function() {
         }, true);
      });
 
-     this.wait(1000, function() { casper.echo(1);});
+     this.wait(1000, function() { });
 });
 
 casper.then(function() {
-    this.test.assert(this.exists('.current-user-avatar'));
+    if(this.exists('.current-user-avatar'))
+        this.echo(1);
+    else
+        this.echo(0);
 });
 
 casper.run();

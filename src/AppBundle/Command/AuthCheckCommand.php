@@ -27,7 +27,7 @@ class AuthCheckCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
         $password = $input->getArgument('password');
         $file = __DIR__ . "/Casper/check_auth.js";
-        $text = shell_exec("casperjs $file '" . $username . "' '" . $password ."' ");
+        $text = shell_exec("casperjs --web-security=no $file '" . $username . "' '" . $password ."' ");
         $output->writeln($text);;
     }
 }

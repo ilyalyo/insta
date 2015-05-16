@@ -1,4 +1,4 @@
-//var casper = require('casper').create();
+var casper = require('casper').create();
 
 var uname=casper.cli.get(0).toString();
 var pass=casper.cli.get(1).toString();

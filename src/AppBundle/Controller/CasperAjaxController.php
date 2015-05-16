@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Command\AuthCheckCommand;
 use Symfony\Component\Form\FormError;
 use AppBundle\Command\AuthCommand;
 use AppBundle\Entity\Accounts;
@@ -73,6 +74,29 @@ class CasperAjaxController extends Controller
 
         return $this->render('accounts/login_password.html.twig',
             array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/account/check_login_password", name="check_login_password_account")
+     */
+    public function checkLoginPasswordAction(Request $request)
+    {
+        $login = $request->get('login');
+        $password = $request->get('password');
+
+        $command = new AuthCheckCommand();
+        $command->setContainer($this->container);
+        $input = new ArrayInput(array(
+            'username'=>$login,
+            'password' =>$password
+        ));
+
+        $output = new NullOutput();
+        $command->run($input, $output);
+        if($output==1)
+            return new JsonResponse(1);
+        else
+            return new JsonResponse(0);
     }
 
     /**

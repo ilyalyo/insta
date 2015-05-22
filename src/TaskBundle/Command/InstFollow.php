@@ -37,7 +37,10 @@ class InstFollow
                     break;
 
                 if ($this->checkUser($d->id, $token)) {
-                    $result[] = $d->username;
+                    $user['username'] = $d->username;
+                    $user['user_id'] = $d->id;
+                    $user['link'] = '';
+                    $result[] = $user;
                 }
             }
 

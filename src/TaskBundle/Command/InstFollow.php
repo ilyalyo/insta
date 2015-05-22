@@ -71,6 +71,28 @@ class InstFollow
         return $result;
     }
 
+    function  follow($task, $media)
+    {
+        $target_id = $media['user_id'];
+        $token = $task["token"];
+        $url = "https://api.instagram.com/v1/users/$target_id/relationship";
+
+        $params = array(
+            "access_token" => $token,
+            "action" => 'follow'
+        );
+        $result = ( $this->httpPost($url, $params, 0));
+
+        $this->add_row($task['id'], $media['user_id'], $media['username'], $media['link'], $result->meta->code);
+    }
+
+    function add_row($task_id, $user_id, $username, $resource_id, $responce)
+    {
+        $mysql = mysql_query("INSERT INTO actions (task_id,target_user_id,username,resource_id,responce) VALUES ($task_id,'$user_id','$username','$resource_id','$responce')");
+        if(!$mysql)
+            throw new Exception(mysql_error());
+    }
+
     function  getUsernameByTag($tag, $token)
     {
         $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=10";

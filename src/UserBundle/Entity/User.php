@@ -22,11 +22,17 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->accounts = new ArrayCollection();
+        $this->maxAccounts = 2;
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
      */
     protected $accounts;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $maxAccounts;
 
     /**
      * Get id
@@ -69,5 +75,28 @@ class User extends BaseUser
     public function getAccounts()
     {
         return $this->accounts;
+    }
+
+    /**
+     * Set maxAccounts
+     *
+     * @param integer $maxAccounts
+     * @return User
+     */
+    public function setMaxAccounts($maxAccounts)
+    {
+        $this->maxAccounts = $maxAccounts;
+
+        return $this;
+    }
+
+    /**
+     * Get maxAccounts
+     *
+     * @return integer 
+     */
+    public function getMaxAccounts()
+    {
+        return $this->maxAccounts;
     }
 }

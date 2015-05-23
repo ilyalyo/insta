@@ -27,35 +27,8 @@ class Actions
     /**
      * @ORM\Column(type="string", length=250)
      */
-    protected $target_user_id;
-
-    /**
-     * @ORM\Column(type="string", length=250)
-     */
-    protected $responce;
-
-    /**
-     * @ORM\Column(type="string", length=250)
-     */
-    protected $username;
-
-    /**
-     * @ORM\Column(type="string", length=250)
-     */
     protected $resource_id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $createdAt;
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        $this->createdAt = new \DateTime();
-    }
     /**
      * Get id
      *
@@ -64,75 +37,6 @@ class Actions
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set target_user_id
-     *
-     * @param string $targetUserId
-     * @return Actions
-     */
-    public function setTargetUserId($targetUserId)
-    {
-        $this->target_user_id = $targetUserId;
-
-        return $this;
-    }
-
-    /**
-     * Get target_user_id
-     *
-     * @return string 
-     */
-    public function getTargetUserId()
-    {
-        return $this->target_user_id;
-    }
-
-    /**
-     * Set responce
-     *
-     * @param string $responce
-     * @return Actions
-     */
-    public function setResponce($responce)
-    {
-        $this->responce = $responce;
-
-        return $this;
-    }
-
-    /**
-     * Get responce
-     *
-     * @return string 
-     */
-    public function getResponce()
-    {
-        return $this->responce;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return Actions
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
     }
 
     /**
@@ -179,28 +83,5 @@ class Actions
     public function getTaskId()
     {
         return $this->task_id;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     * @return Actions
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 }

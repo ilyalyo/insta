@@ -27,7 +27,7 @@ class CasperAjaxController extends Controller
     public function addLoginPasswordAction(Request $request)
     {
         $account = new Accounts();
-        $user=$this->getUser();
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder($account)
@@ -40,8 +40,8 @@ class CasperAjaxController extends Controller
             'user'=>$user->getId()
         ));
 
-        if(count($accounts)>3){
-            $form->get('instLogin')->addError(new FormError('У вас уже есть 3 аккаунта'));
+        if(count($accounts) >= $user->getMaxAccounts()){
+            $form->get('instLogin')->addError(new FormError('Превышен лимит числа аккаунтов'));
             return $this->render('accounts/login_password.html.twig',
                 array('form' => $form->createView()));
         }
@@ -64,7 +64,7 @@ class CasperAjaxController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
-            return new JsonResponse($account->getId());
+            return new JsonResponse(1);
         }
 
 
@@ -92,7 +92,7 @@ class CasperAjaxController extends Controller
         ));
 
         $output = new NullOutput();
-        $command->run($input, $output);
+        $output = $command->run($input,$output);
         if($output==1)
             return new JsonResponse(1);
         else

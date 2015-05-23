@@ -42,7 +42,7 @@ class Accounts
     }
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,unique=true)
      */
     protected $account_id;
 

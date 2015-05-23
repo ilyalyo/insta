@@ -1,7 +1,96 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>ИНФО</h1>
+    <div class="row"><div class="col-xs-9">
+<h1 class="heads_menu">Руководство пользователя</h1>
+    <h2 class="heads_podmenu">Содержание:</h2>
+    <div class="titul"><p>Как начать продвижение</p>
+    <p>Подробнее о заданиях</p>
+        <p style="padding-left:40px">1)Массфоловинг</p>
+            <p style="padding-left:60px">-По конкурентам</p>
+            <p style="padding-left:60px">-По тегам</p>
+            <p style="padding-left:60px">-По спискам</p>
+        <p style="padding-left:40px">2)Масслайкинг</p>
+        <p style="padding-left:40px">3)Отписка</p>
+            <p style="padding-left:60px">-Зачем нужна?</p>
+    <p>Что такое токен</p>
+            <p style="padding-left:60px">-Как обновить токен</p>
+        <p>Если возникла ошибка</p></div>
+
+    <div class="text"><p>Интерфейс нашего сервиса интуитивно понятен любому человеку, даже незнакомому с SMM и продвижением.
+        </p>
+    <p class="heads_text">Как начать продвижение</p>
+        <p>Вы зарегистрировались, вошли в панель управления аккаунтами. </p>
+        <p>Для того чтобы начать продвижение, необходимо перейти по вкладке Мои аккаунты(КНОПКУ ВСТАВИТЬ) в левом меню и щелкнуть по кнопке Добавить аккаунт (КНОПКУ ВСТАВИТЬ).</p>
+        <p>Вы автоматически оказываетесь на защищенной странице авторизации сайта
+            Instagram, вводите логин и пароль своего аккаунта и возвращаетесь в Панель управления аккаунтами instaStellar.
+        </p>
+        <p>Теперь добавленный аккаунт отображается на странице и Вы можете добавлять задания.</p>
+        <p>Чтобы избежать бана, максимум на 1 аккаунте можно одновременно выполнять 1 задание:
+        </p>
+        <p>Массфоловинг, масслайкинг или отписку. </p>
+        <p>Для того чтобы добавить нужное задание необходимо нажать на кнопку + или СЕРДЕЧКО и выбрать из предложенного списка подходящую опцию. </p>
+
+        <p class="heads_text">Подробнее о видах заданий</p>
+        <p>Задания могут быть 3-х видов:</p>
+        <p class="titul" style="padding-left:40px">1)Массфоловинг</p>
+        <p class="titul" style="padding-left:40px">2)Масслайкинг</p>
+        <p class="titul" style="padding-left:40px">3)Отписка</p>
+
+        <p>Остановимся подробнее на каждом из них в отдельности.</p>
+
+
+    </div>
+        </div><div class="col-xs-2"><img src="/img/half-rocket.png"></div></div>
     <script>
         $('#info').addClass('active');
     </script>
+
+
+    <style>
+        .heads_menu {
+            color: #fb007c;
+            font-family: Roboto Condensed;
+            text-align: center;
+            font-weight: lighter;
+            letter-spacing: 5;
+        }
+    </style>
+    <style>
+        .heads_podmenu {
+            padding-left:50px;
+            color: #fb007c;
+            font-family: Roboto Condensed;
+            font-weight: lighter;
+            letter-spacing: 5
+        }
+    </style>
+    <style>
+        .titul {
+            padding-left:50px;
+            color: #fb007c;
+            font-family: Roboto Condensed;
+            font-weight: lighter;
+            line-height: 0.01;
+            letter-spacing: 5;
+        }
+    </style>
+    <style>
+        .text {
+            padding-left:50px;
+            color: #636363;
+            font-family: Roboto Condensed;
+            font-weight: lighter;
+            letter-spacing: 5;
+        }
+    </style>
+    <style>
+        .text .heads_text {
+            text-align: center;
+            color: #f82785;
+            font-family: Roboto Condensed;
+            font-weight: bold;
+            letter-spacing: 5;
+        }
+    </style>
 {% endblock %}
+

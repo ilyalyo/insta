@@ -23,7 +23,7 @@ casper.then(function() {
     this.click('.button-green');
 });
 
-casper.start().thenOpen(auth_url2, function() {
+casper.thenOpen(auth_url2, function() {
     this.wait(1000, function() {});
 });
 
@@ -31,7 +31,7 @@ casper.then(function() {
     this.click('.button-green');
 });
 
-casper.start().thenOpen(auth_url3, function() {
+casper.thenOpen(auth_url3, function() {
     this.wait(1000, function() {});
 });
 

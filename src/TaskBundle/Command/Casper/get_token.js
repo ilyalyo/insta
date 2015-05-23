@@ -25,22 +25,23 @@ casper.start().thenOpen(auth_url,
 //3 ficonosquare
 
 casper.thenOpen(manage, function() {
+    var r = "";
     if(client_id == 1){
-        this.evaluate(function(){
-            this.echo( $('#client_easytogo').find('form').find('input').val() );
-        })
+         r = this.evaluate(function(){
+            return $('#client_easytogo').find('form').find('input').val();
+        });
     }
     else if (client_id == 2) {
-        this.evaluate(function(){
-            this.echo( $('#client_extragram').find('form').find('input').val() );
+        r = this.evaluate(function(){
+           return $('#client_extragram').find('form').find('input').val();
+        });
+    }
+    else if (client_id == 3) {
+        r = this.evaluate(function(){
+            return $('#client_ficonosquare').find('form').find('input').val();
         })
     }
-    else {
-        this.evaluate(function(){
-            this.echo( $('#client_ficonosquare').find('form').find('input').val() );
-        })
-    }
-
+    this.echo(r);
 });
 
 casper.run();

@@ -94,7 +94,7 @@ class CasperAjaxController extends Controller
 
         $output =  new BufferedOutput();
         $command->run($input,$output);
-        if($output == $output->fetch())
+        if($output->fetch() == 1)
             return new JsonResponse(1);
         else
             return new JsonResponse(0);

@@ -65,7 +65,7 @@ class CasperAjaxController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
-            return new JsonResponse(1);
+            return $this->redirect('accounts');
         }
 
 

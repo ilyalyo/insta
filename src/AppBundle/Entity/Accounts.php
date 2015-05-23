@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use UserBundle\Entity\User;
+use AppBundle\Entity\Token;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,9 +27,14 @@ class Accounts
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="TaskBundle\Entity\Tasks", mappedBy="account_id")
-     */
+ * @ORM\OneToMany(targetEntity="TaskBundle\Entity\Tasks", mappedBy="account_id")
+ */
     protected $tasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Token", mappedBy="account")
+     */
+    protected $tokens;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Proxy")
@@ -65,10 +71,6 @@ class Accounts
      * @ORM\Column(type="string", length=100)
      */
     protected $instPass;
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $isTrue;
 
     /**
      * Get id
@@ -295,5 +297,38 @@ class Accounts
     public function getIsTrue()
     {
         return $this->isTrue;
+    }
+
+    /**
+     * Add tokens
+     *
+     * @param \AppBundle\Entity\Token $tokens
+     * @return Accounts
+     */
+    public function addToken(\AppBundle\Entity\Token $tokens)
+    {
+        $this->tokens[] = $tokens;
+
+        return $this;
+    }
+
+    /**
+     * Remove tokens
+     *
+     * @param \AppBundle\Entity\Token $tokens
+     */
+    public function removeToken(\AppBundle\Entity\Token $tokens)
+    {
+        $this->tokens->removeElement($tokens);
+    }
+
+    /**
+     * Get tokens
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTokens()
+    {
+        return $this->tokens;
     }
 }

@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 class CasperAjaxController extends Controller
 {
@@ -91,9 +92,9 @@ class CasperAjaxController extends Controller
             'password' =>$password
         ));
 
-        $output = new NullOutput();
-        $output = $command->run($input,$output);
-        if($output==1)
+        $output =  new BufferedOutput();
+        $command->run($input,$output);
+        if($output == $output->fetch())
             return new JsonResponse(1);
         else
             return new JsonResponse(0);

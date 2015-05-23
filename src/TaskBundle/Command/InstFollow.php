@@ -121,6 +121,18 @@ class InstFollow
             return true;
         return false;
     }
+    function is_stopped($id){
+
+        $qr_result = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id")
+        or die(mysql_error());
+        $row = mysql_fetch_array($qr_result);
+
+        if(!empty($row['id'])){
+            return true;
+        }
+        return false;
+    }
+
 
     function get_task($task_id)
     {

@@ -2,7 +2,7 @@ var casper = require('casper').create();
 
 var uname=casper.cli.get(0).toString();
 var pass=casper.cli.get(1).toString();
-var client_id=casper.cli.get(2).toString();
+var client=casper.cli.get(2).toString();
 
 
 var auth_url='https://instagram.com/accounts/login/';
@@ -25,22 +25,9 @@ casper.start().thenOpen(auth_url,
 //3 ficonosquare
 
 casper.thenOpen(manage, function() {
-    var r = "";
-    if(client_id == 1){
-         r = this.evaluate(function(){
-            return $('#client_easytogo').find('form').find('input').val();
-        });
-    }
-    else if (client_id == 2) {
-        r = this.evaluate(function(){
-           return $('#client_extragram').find('form').find('input').val();
-        });
-    }
-    else if (client_id == 3) {
-        r = this.evaluate(function(){
-            return $('#client_ficonosquare').find('form').find('input').val();
-        })
-    }
+     r = this.evaluate(function(){
+        return $('#client_' + client).find('form').find('input').val();
+    });
     this.echo(r);
 });
 

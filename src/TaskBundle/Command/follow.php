@@ -30,31 +30,9 @@ try{
         case 3:
             unfollowing();
             break;
-    }
+    };
 
-    function follow_by_username(){
-        global $inst;
-        global $task;
-        $users = $inst->get_followers($task['username'], $task['count'] );
-        foreach ($users as $user)
-        {
-            $inst->follow($user['user_id']);
-            $inst->add_row($user['user_id'], $user['resource_id']);
 
-            sleep(sleepTime($task['speed']));
-
-            if ($inst->get_task_status() == 3)
-                break;
-        }
-        if ($inst->get_task_status() == 2)
-            $inst->set_task_status(1);
-    }
-    function follow_by_tags(){
-
-    }
-    function liking_by_username(){}
-    function liking_by_tags(){}
-    function unfollowing(){}
 
     if ($task['byUsername']==1)
     {
@@ -81,8 +59,7 @@ try{
             if ($inst->is_stopped($TASK_ID))
                 break;
         }
-    if (!$inst->is_stopped($TASK_ID))
-        $inst->done_task($TASK_ID);
+
 }
 catch (Exception $e){
 
@@ -94,6 +71,31 @@ catch (Exception $e){
     $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$task")
     or die(mysql_error());
 }
+
+function follow_by_username(){
+    global $inst;
+    global $task;
+    $users = $inst->get_followers($task['tags'], $task['count'] );
+    foreach ($users as $user)
+    {
+        $result = $inst->follow($user['user_id']);
+        if(isset($result) && $result->meta->code == 200)
+            $inst->add_row($user['user_id']);
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3)
+            break;
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+function follow_by_tags(){
+
+}
+function liking_by_username(){}
+function liking_by_tags(){}
+function unfollowing(){}
 
 function sleepTime($interval_id){
     switch ($interval_id) {

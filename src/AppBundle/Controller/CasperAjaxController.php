@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use TaskBundle\TaskBundle;
-use TaskBundle\Command;
+use TaskBundle\Command\GetTokenCommand;
 
 class CasperAjaxController extends Controller
 {

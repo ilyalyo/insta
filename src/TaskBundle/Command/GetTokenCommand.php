@@ -11,7 +11,7 @@ class GetTokenCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('casper:auth')
+            ->setName('casper:gettoken')
             ->addArgument(
                 'username'
             )

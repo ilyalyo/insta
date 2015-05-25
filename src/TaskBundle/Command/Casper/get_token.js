@@ -25,9 +25,11 @@ casper.start().thenOpen(auth_url,
 //3 ficonosquare
 
 casper.thenOpen(manage, function() {
-     r = this.evaluate(function(){
+     r = this.evaluate(function(client){
         return $('#client_' + client).find('form').find('input').val();
-    });
+    },{
+         client: client
+     });
     this.echo(r);
 });
 

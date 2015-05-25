@@ -101,7 +101,7 @@ class CasperAjaxController extends Controller
         $token->setAccount($account);
         $token->setToken($output);
         $em = $this->getDoctrine()->getManager();
-        $em->persist($account);
+        $em->persist($token);
         $em->flush();
     }
 

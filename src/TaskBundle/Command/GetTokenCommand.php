@@ -31,6 +31,7 @@ class GetTokenCommand extends ContainerAwareCommand
         $password = $input->getArgument('password');
         $client = $input->getArgument('client');
         $file = __DIR__ . "/Casper/get_token.js";
-        shell_exec("casperjs $file '" . $username . "' '" . $password ."' '" . $client . "' ");
+        $text = shell_exec("casperjs $file '" . $username . "' '" . $password ."' '" . $client . "' ");
+        $output->writeln($text);;
     }
 }

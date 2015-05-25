@@ -85,7 +85,7 @@ class CasperAjaxController extends Controller
     }
 
     private function addProvider($account, $client){
-        $command = new Command\GetTokenCommand();
+        $command = new GetTokenCommand();
         $command->setContainer($this->container);
         $input = new ArrayInput(array(
             'username'=>$account->getInstLogin(),

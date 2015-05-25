@@ -1,10 +1,10 @@
 <?php
 class Instagram
 {
-    private $PROXY;
+    public $PROXY;
     private $TASK_ID;
-    private $TOKEN_ARRAY;
-    private $TOKEN_INDEX;
+    public $TOKEN_ARRAY;
+    public $TOKEN_INDEX;
     private $PROXY_TIME=10;
     private $LOGIN;
     private $PASSWORD;
@@ -197,7 +197,7 @@ class Instagram
     }
 
     public function change_token(){
-        return ($this->TOKEN_INDEX + 1) % count($this->TOKEN_ARRAY);
+        $this->TOKEN_INDEX = ($this->TOKEN_INDEX + 1) % count($this->TOKEN_ARRAY);
     }
 
     public function update_token(){

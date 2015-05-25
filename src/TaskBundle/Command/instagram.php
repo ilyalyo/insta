@@ -196,17 +196,17 @@ class Instagram
         or die(mysql_error());
     }
 
-    private function change_token(){
+    public function change_token(){
         return ($this->TOKEN_INDEX + 1) % count($this->TOKEN_ARRAY);
     }
 
-    private function update_token(){
+    public function update_token(){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
         $file = __DIR__ . "/Casper/update_token.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
         shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
-        $output = shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
+        $output = shell_exec("casperjs $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
         if($output != $token['token'] && count($token['token']) == count($output) )
             return true;
         return false;

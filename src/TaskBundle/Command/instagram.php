@@ -23,20 +23,20 @@ class Instagram
     function  follow($user_id)
     {
         $index = $this->TOKEN_INDEX;
-        $token = $this->TOKEN_ARRAY[$index];
+        $token = $this->TOKEN_ARRAY[$index]['token'];
         $url = "https://api.instagram.com/v1/users/$user_id/relationship";
 
         $params = array(
             "access_token" => $token,
             "action" => 'follow'
         );
-        return $result = $this->httpPost($url, $params);
+        return $this->httpPost($url, $params);
 
     }
 
     public function get_followers($username, $count){
         $index = $this->TOKEN_INDEX;
-        $token = $this->TOKEN_ARRAY[$index];
+        $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
 
@@ -60,6 +60,7 @@ class Instagram
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $user['link'] = '';
+                    $user['resource_id'] = '';
                     $result[] = $user;
                 }
             }
@@ -128,7 +129,7 @@ class Instagram
 
         $id= $this->TASK_ID;
         $mysql = mysql_query("
-          SELECT t.*,a.token, p.ip, p.port, a.id as account_id
+          SELECT t.*,a.token, a.instLogin, a.instPass, p.ip, p.port, a.id as account_id
           FROM tasks t
           INNER JOIN accounts a
           ON t.account_id=a.id
@@ -150,9 +151,9 @@ class Instagram
             'speed' => $row['speed'],
             'byUsername' => $row['byUsername']);
 
-        $this->PROXY = $row['ip'] . ':' . $row['proxy'];
-        $this->LOGIN = $row['login'];
-        $this->PASSWORD = $row['password'];
+        $this->PROXY = $row['ip'] . ':' . $row['port'];
+        $this->LOGIN = $row['instLogin'];
+        $this->PASSWORD = $row['instPass'];
 
         return $result;
     }
@@ -170,10 +171,10 @@ class Instagram
         return $code;
     }
 
-    public function add_row($user_id, $resource_id)
+    public function add_row( $resource_id)
     {
         $task_id = $this->TASK_ID;
-        $mysql = mysql_query("INSERT INTO actions (task_id,target_user_id,resource_id) VALUES ($task_id,'$user_id','$resource_id')");
+        $mysql = mysql_query("INSERT INTO actions (task_id,resource_id) VALUES ($task_id,'$resource_id')");
         if(!$mysql)
             throw new Exception(mysql_error());
     }
@@ -203,7 +204,12 @@ class Instagram
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
         $file = __DIR__ . "/Casper/update_token.js";
+        $file2 = __DIR__ . "/Casper/get_token.js";
         shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
+        $output = shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
+        if($output != $token['token'] && count($token['token']) == count($output) )
+            return true;
+        return false;
     }
 
     function httpPost($url, $params){
@@ -223,7 +229,8 @@ class Instagram
                 $this->httpPost($url, $params);
             }
             if($json->meta->code == 400){
-                $this->update_token();
+                if($this->update_token())
+                    $this->change_token();
                 $this->httpPost($url, $params);
             }
         }

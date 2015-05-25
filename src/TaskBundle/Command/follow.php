@@ -1,5 +1,5 @@
 <?php
-include_once("Instagram.php");
+include_once("instagram.php");
 
 $TASK_ID = $_SERVER['argv'][1];
 

@@ -99,7 +99,7 @@ class CasperAjaxController extends Controller
         $token = new \AppBundle\Entity\Token();
         $token->setClient($client);
         $token->setAccount($account);
-        $token->setToken($output);
+        $token->setToken($output->fetch());
         $em = $this->getDoctrine()->getManager();
         $em->persist($token);
         $em->flush();

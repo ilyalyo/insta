@@ -6,6 +6,7 @@ class Instagram
     public $TOKEN_ARRAY;
     public $TOKEN_INDEX;
     private $PROXY_TIME=10;
+    private $ACCOUNT_ID;
     private $LOGIN;
     private $PASSWORD;
 
@@ -13,10 +14,10 @@ class Instagram
         $this->TASK_ID = $task_id;
         $this->connect();
 
-        $qr_result = mysql_query("SELECT token, client FROM tokens")
+        $qr_result = mysql_query("SELECT token, client,id FROM tokens")
         or die(mysql_error());
         while ($row = mysql_fetch_array($qr_result))
-            $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token']);
+            $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token'], 'id' => $row['id']);
         $this->TOKEN_INDEX = 0;
     }
 
@@ -154,6 +155,7 @@ class Instagram
         $this->PROXY = $row['ip'] . ':' . $row['port'];
         $this->LOGIN = $row['instLogin'];
         $this->PASSWORD = $row['instPass'];
+        $this->ACCOUNT_ID = $row['account_id'];
 
         return $result;
     }
@@ -193,7 +195,7 @@ class Instagram
     public function set_task_status($status){
         $id = $this->TASK_ID;
         $qr_result = mysql_query("UPDATE tasks SET status=$status WHERE id=$id")
-        or die(mysql_error());
+            or die(mysql_error());
     }
 
     public function change_token(){
@@ -203,14 +205,20 @@ class Instagram
     public function update_token(){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
-        $file = __DIR__ . "/Casper/update_token.js";
+        $file = __DIR__ . "/Casper/auth.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
-        shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
+        shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $this->ACCOUNT_ID . "' ");
         $output = shell_exec("casperjs $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
-        if($output != $token['token'] && count($token['token']) == count($output) )
+        if($output != $token['token'] && strlen($output) == 53 ){
+            $this->TOKEN_ARRAY[$index]=$output;
+            $token_id=$token['id'];
+            $qr_result = mysql_query("UPDATE tokens SET token=$output WHERE id=$token_id")
+                or die(mysql_error());
             return true;
+        }
         return false;
     }
+
 
     function httpPost($url, $params){
         try {

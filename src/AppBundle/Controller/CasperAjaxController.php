@@ -72,7 +72,7 @@ class CasperAjaxController extends Controller
             $this->addProvider($account,'extragram');
             $this->addProvider($account,'ficonosquare');
 
-            return $this->redirect('accounts');
+            return $this->redirectToRoute('accounts');
         }
 
 
@@ -100,6 +100,9 @@ class CasperAjaxController extends Controller
         $token->setClient($client);
         $token->setAccount($account);
         $token->setToken($output);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($account);
+        $em->flush();
     }
 
     /**

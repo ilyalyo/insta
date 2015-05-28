@@ -21,7 +21,7 @@ class Token
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Accounts")
-     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * @ORM\JoinColumn(name="account", referencedColumnName="id")
      */
     protected $account;
 
@@ -34,6 +34,11 @@ class Token
      * @ORM\Column(type="string", length=100,unique=true)
      */
     protected $url;
+
+    /**
+     * @ORM\Column(type="string", length=100,unique=true)
+     */
+    protected $client;
 
     /**
      * Get id
@@ -112,5 +117,28 @@ class Token
     public function getAccount()
     {
         return $this->account;
+    }
+
+    /**
+     * Set client
+     *
+     * @param string $client
+     * @return Token
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return string 
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

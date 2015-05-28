@@ -121,6 +121,7 @@ class InstFollow
             return true;
         return false;
     }
+
     function is_stopped($id){
 
         $qr_result = mysql_query("SELECT id FROM tasks WHERE status=3 AND id=$id")

@@ -1,28 +1,42 @@
 <?php
-include_once("InstFollow.php");
+include_once("instagram.php");
 
 $TASK_ID = $_SERVER['argv'][1];
 
-$inst = new InstFollow($TASK_ID);
-
-$task = $inst->get_task($TASK_ID);
-
-$token = $task["token"];
+$inst = new Instagram($TASK_ID);
+$task = $inst->get_task();
 
 try{
+//0 - following by username
+//10 - following by tags
+//1 - liking by username
+//11 - liking by tags
+//3 - un following
+
+    $inst->set_task_status(2);
+    switch ($task['type']) {
+        case 0:
+            follow_by_username();
+            break;
+        case 10:
+            follow_by_tags();
+            break;
+        case 1:
+            liking_by_username();
+            break;
+        case 11:
+            liking_by_tags();
+            break;
+        case 3:
+            unfollowing();
+            break;
+    };
+
+
 
     if ($task['byUsername']==1)
     {
-        $users = $inst->getUserFollowers($task);
-        foreach ($users as $user)
-        {
-            $inst->follow($task, $user);
 
-            sleep(rand(30, 50));
-
-            if ($inst->is_stopped($TASK_ID))
-                break;
-        }
     }
     else
         for ($i = 0; $i <= $task['count'] - 1; $i++) {
@@ -45,8 +59,7 @@ try{
             if ($inst->is_stopped($TASK_ID))
                 break;
         }
-    if (!$inst->is_stopped($TASK_ID))
-        $inst->done_task($TASK_ID);
+
 }
 catch (Exception $e){
 
@@ -57,5 +70,41 @@ catch (Exception $e){
     or die(mysql_error());
     $qr_result = mysql_query("UPDATE tasks SET status=4 WHERE id=$task")
     or die(mysql_error());
+}
+
+function follow_by_username(){
+    global $inst;
+    global $task;
+    $users = $inst->get_followers($task['tags'], $task['count'] );
+    foreach ($users as $user)
+    {
+        $result = $inst->follow($user['user_id']);
+        if(isset($result) && $result->meta->code == 200)
+            $inst->add_row($user['user_id']);
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3)
+            break;
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+function follow_by_tags(){
+
+}
+function liking_by_username(){}
+function liking_by_tags(){}
+function unfollowing(){}
+
+function sleepTime($interval_id){
+    switch ($interval_id) {
+        case 0:
+            return rand(20, 30);
+        case 1:
+            return rand(30, 45);
+        default:
+            return rand(60, 90);
+    }
 }
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Command\AuthCheckCommand;
+use Symfony\Component\ExpressionLanguage\Token;
 use Symfony\Component\Form\FormError;
 use AppBundle\Command\AuthCommand;
 use AppBundle\Entity\Accounts;
@@ -13,6 +14,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use TaskBundle\TaskBundle;
+use TaskBundle\Command\GetTokenCommand;
 
 class CasperAjaxController extends Controller
 {
@@ -65,7 +68,11 @@ class CasperAjaxController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
-            return $this->redirect('accounts');
+            $this->addProvider($account,'easytogo');
+            $this->addProvider($account,'extragram');
+            $this->addProvider($account,'webstagram');
+
+            return $this->redirectToRoute('accounts');
         }
 
 
@@ -75,6 +82,27 @@ class CasperAjaxController extends Controller
 
         return $this->render('accounts/login_password.html.twig',
             array('form' => $form->createView()));
+    }
+
+    private function addProvider($account, $client){
+        $command = new GetTokenCommand();
+        $command->setContainer($this->container);
+        $input = new ArrayInput(array(
+            'username'=>$account->getInstLogin(),
+            'password' =>$account->getInstPass(),
+            'client' => $client
+        ));
+
+        $output =  new BufferedOutput();
+        $command->run($input, $output);
+
+        $token = new \AppBundle\Entity\Token();
+        $token->setClient($client);
+        $token->setAccount($account);
+        $token->setToken($output->fetch());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($token);
+        $em->flush();
     }
 
     /**

@@ -2,9 +2,11 @@
 function follow_by_username(){
     global $inst;
     global $task;
+    var_dump('start searching');
     $users = $inst->get_followers($task['tags'], $task['count'] );
     foreach ($users as $user)
     {
+        var_dump($user);
         $result = $inst->follow($user['user_id']);
         if(isset($result) && $result->meta->code == 200)
             $inst->add_row($user['user_id']);

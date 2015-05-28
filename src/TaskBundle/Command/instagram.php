@@ -52,7 +52,7 @@ class Instagram
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
-
+            var_dump($next);
             foreach ($data as $d) {
                 if ($count - 1 < count($result))
                     break;

@@ -223,20 +223,25 @@ class Instagram
     function httpPost($url, $params){
         try {
             $output = $this->httpPostReal($url, $params);
+            var_dump($output);
             $json = json_decode($output);
             if(!isset($json)){
+                var_dump('json is null');
                 return null;
             }
             if($json->meta->code == 200)
                 return $json;
             if($output === FALSE){
+                var_dump('json is false');
                 $this->httpPost($url, $params);
             }
             if($json->meta->code == 429){
+                var_dump('code 429');
                 $this->change_token();
                 $this->httpPost($url, $params);
             }
             if($json->meta->code == 400){
+                var_dump('code 400');
                 if($this->update_token())
                     $this->change_token();
                 $this->httpPost($url, $params);

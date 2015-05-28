@@ -1,4 +1,26 @@
 <?php
+function follow_by_username(){
+    global $inst;
+    global $task;
+    var_dump('start searching');
+    $users = $inst->get_followers($task['tags'], $task['count'] );
+    foreach ($users as $user)
+    {
+        var_dump($user);
+        $result = $inst->follow($user['user_id']);
+        if(isset($result) && $result->meta->code == 200)
+            $inst->add_row($user['user_id']);
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3)
+            break;
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+
+
 include_once("instagram.php");
 
 $TASK_ID = $_SERVER['argv'][1];
@@ -72,24 +94,7 @@ catch (Exception $e){
     or die(mysql_error());
 }
 
-function follow_by_username(){
-    global $inst;
-    global $task;
-    $users = $inst->get_followers($task['tags'], $task['count'] );
-    foreach ($users as $user)
-    {
-        $result = $inst->follow($user['user_id']);
-        if(isset($result) && $result->meta->code == 200)
-            $inst->add_row($user['user_id']);
 
-        sleep(sleepTime($task['speed']));
-
-        if ($inst->get_task_status() == 3)
-            break;
-    }
-    if ($inst->get_task_status() == 2)
-        $inst->set_task_status(1);
-}
 function follow_by_tags(){
 
 }

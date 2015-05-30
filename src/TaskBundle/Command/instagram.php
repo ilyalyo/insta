@@ -14,7 +14,9 @@ class Instagram
         $this->TASK_ID = $task_id;
         $this->connect();
 
-        $qr_result = mysql_query("SELECT token, client,id FROM tokens")
+        $qr_result = mysql_query("
+          SELECT token, client,id FROM tokens WHERE account = (
+          SELECT account_id FROM tasks WHERE id =$task_id)")
         or die(mysql_error());
         while ($row = mysql_fetch_array($qr_result))
             $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token'], 'id' => $row['id']);

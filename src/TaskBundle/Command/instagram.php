@@ -322,7 +322,7 @@ class Instagram
     private function debug($message)
     {
         $filename = $this->TASK_ID;
-        $file = "var/www/tasks/$filename";
+        $file = "/var/www/tasks/$filename";
         file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
     }
 }

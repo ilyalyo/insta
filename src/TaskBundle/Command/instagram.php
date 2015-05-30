@@ -52,7 +52,7 @@ class Instagram
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
-            debug($next);
+            $this->debug($next);
             foreach ($data as $d) {
                 if ($count - 1 < count($result))
                     break;
@@ -168,7 +168,7 @@ class Instagram
             $code = $json->meta->code;
         }
         catch(Exception $e){
-            debug($e);
+            $this->debug($e);
         }
         return $code;
     }
@@ -223,32 +223,32 @@ class Instagram
     function httpPost($url, $params){
         try {
             $output = $this->httpPostReal($url, $params);
-            debug($output);
+            $this->debug($output);
             $json = json_decode($output);
             if(!isset($json)){
-                debug('json is null');
+                $this->debug('json is null');
                 return null;
             }
             if($json->meta->code == 200)
                 return $json;
             if($output === FALSE){
-                debug('json is false');
+                $this->debug('json is false');
                 return null;
             }
             if($json->meta->code == 429){
-                debug('code 429');
+                $this->debug('code 429');
                 $this->change_token();
                 return null;
             }
             if($json->meta->code == 400){
-                debug('code 400');
+                $this->debug('code 400');
                 if($this->update_token())
                     $this->change_token();
                 return null;
             }
         }
         catch(Exception $e){
-            debug($e);
+            $this->debug($e);
         }
         return null;
     }

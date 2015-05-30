@@ -248,6 +248,8 @@ class Instagram
                     $this->change_token();
                 return null;
             }
+            $this->debug('un tracked error');
+            $this->change_token();
         }
         catch(Exception $e){
             $this->debug($e);

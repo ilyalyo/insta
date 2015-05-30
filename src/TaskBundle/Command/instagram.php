@@ -52,7 +52,7 @@ class Instagram
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
-            var_dump($next);
+            debug($next);
             foreach ($data as $d) {
                 if ($count - 1 < count($result))
                     break;
@@ -168,7 +168,7 @@ class Instagram
             $code = $json->meta->code;
         }
         catch(Exception $e){
-            var_dump($e);
+            debug($e);
         }
         return $code;
     }
@@ -223,32 +223,32 @@ class Instagram
     function httpPost($url, $params){
         try {
             $output = $this->httpPostReal($url, $params);
-            var_dump($output);
+            debug($output);
             $json = json_decode($output);
             if(!isset($json)){
-                var_dump('json is null');
+                debug('json is null');
                 return null;
             }
             if($json->meta->code == 200)
                 return $json;
             if($output === FALSE){
-                var_dump('json is false');
-                $this->httpPost($url, $params);
+                debug('json is false');
+                return null;
             }
             if($json->meta->code == 429){
-                var_dump('code 429');
+                debug('code 429');
                 $this->change_token();
-                $this->httpPost($url, $params);
+                return null;
             }
             if($json->meta->code == 400){
-                var_dump('code 400');
+                debug('code 400');
                 if($this->update_token())
                     $this->change_token();
-                $this->httpPost($url, $params);
+                return null;
             }
         }
         catch(Exception $e){
-            var_dump($e);
+            debug($e);
         }
         return null;
     }
@@ -316,5 +316,13 @@ class Instagram
         }
         mysql_query("SET NAMES 'utf8'");
         mysql_query("SET CHARACTER SET utf8 ");
+    }
+
+
+    private function debug($message)
+    {
+        $filename = $this->TASK_ID;
+        $file = "var/www/tasks/$filename";
+        file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
     }
 }

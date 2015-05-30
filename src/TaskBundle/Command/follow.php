@@ -9,7 +9,7 @@ function follow_by_username(){
         var_dump($user);
         $result = $inst->follow($user['user_id']);
         if(isset($result) && $result->meta->code == 200)
-            $inst->add_row($user['user_id']);
+            $inst->add_row($user['username']);
 
         sleep(sleepTime($task['speed']));
 

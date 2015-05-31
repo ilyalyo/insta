@@ -48,17 +48,17 @@ class Accounts
     }
 
     /**
-     * @ORM\Column(type="string", length=100,unique=true)
+     * @ORM\Column(type="string", length=100,unique=true, nullable=true)
      */
     protected $account_id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $username;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $token;
 

@@ -33,11 +33,6 @@ class Token
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $url;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
     protected $client;
 
     /**
@@ -71,29 +66,6 @@ class Token
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     * @return Token
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
-    {
-        return $this->url;
     }
 
     /**

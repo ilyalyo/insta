@@ -55,6 +55,7 @@ class UnfollowController extends Controller
             $task->setStatus(Tasks::CREATED);
             $task->setTags('');
             $task->setType(3);
+            $task->setSpeed(1);
             $em = $this->getDoctrine()->getManager();
             $task->onPrePersist();
             $em->persist($task);

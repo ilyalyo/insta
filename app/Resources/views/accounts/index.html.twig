@@ -160,7 +160,7 @@
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
                                     <h3><span class="glyphicon glyphicon-time"></span> Задание началось в:</h3>
-                                    <p>{{ (account.tasks | last).createdAt |date("h:i d/m/Y") }}</p>
+                                    <p>{{ (account.tasks | last).createdAt | date("H:i d/m/Y", user.timezone) }} {{ user.timezone }}</p> {#date("h:i d/m/Y")#}
                                 </div>
                                 <div class="col-xs-4">
                                     {% if (account.tasks | last).byUsername == 1 %}

@@ -23,6 +23,7 @@ class User extends BaseUser
         parent::__construct();
         $this->accounts = new ArrayCollection();
         $this->maxAccounts = 2;
+        $this->timezone = 'Europe/Moscow';
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")

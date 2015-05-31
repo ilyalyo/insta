@@ -29,7 +29,7 @@ class DefaultController extends Controller
     /**
      * @Route("/info", name="info")
      */
-    public function infoxAction()
+    public function infoAction()
     {
         return $this->render('info.html.twig');
     }
@@ -52,6 +52,23 @@ class DefaultController extends Controller
                 'user' => $user
             ]
         );
+    }
+
+    /**
+     * @Route("/settings")
+     */
+    public  function setTimezone()
+    {
+        $form = $this->createFormBuilder()
+            ->add('states', 'timezone', array(
+                'preferred_choices' => array('Europe/Moscow', 'Europe/Kiev'),
+            ))
+            ->getForm();
+
+
+        return $this->render('settings/index.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**

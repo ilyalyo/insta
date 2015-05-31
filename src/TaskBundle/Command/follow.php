@@ -4,16 +4,21 @@ function follow_by_username(){
     global $task;
     var_dump('start searching');
     $users = $inst->get_followers($task['tags'], $task['count'] );
+    $errors = 0;
     foreach ($users as $user)
     {
         var_dump($user);
         $result = $inst->follow($user['user_id']);
-        if(isset($result) && $result->meta->code == 200)
+        if(isset($result) && $result->meta->code == 200){
+            $errors = 0;
             $inst->add_row($user['username']);
+        }
+        else
+            $errors++;
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3)
+        if ($inst->get_task_status() == 3 || $errors > 5)
             break;
     }
     if ($inst->get_task_status() == 2)

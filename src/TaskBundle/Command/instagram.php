@@ -244,7 +244,7 @@ class Instagram
             }
             if($json->meta->code == 400){
                 $this->debug('code 400');
-                if($this->update_token())
+                if(!$this->update_token())
                     $this->change_token();
                 return null;
             }

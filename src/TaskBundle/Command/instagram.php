@@ -85,19 +85,20 @@ class Instagram
         return $result;
     }
 
-    public function get_followers_revers($user_id, $count){
+    public function get_followers_revers($count){
         $next="";
         $result=array();
         $counter=0;
         $about_count=$count/50;
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
+        $account_id = $this->$ACCOUNT_ID;
 
-        $all = $this->getFollowedBy($user_id)/50;
+        $all = $this->getFollowedBy($account_id)/50;
 
         do {
             $counter++;
-            $url = "https://api.instagram.com/v1/users/$user_id/follows?" . "access_token=$token" . "&cursor=$next";
+            $url = "https://api.instagram.com/v1/users/$account_id/follows?" . "access_token=$token" . "&cursor=$next";
             $response = ($this->httpGet($url));
 
             $data = $response->data;

@@ -54,14 +54,13 @@ class UnfollowController extends Controller
             $task->setAccountId($account);
             $task->setStatus(Tasks::CREATED);
             $task->setTags('');
-            $task->setType(-1);
-            $task->setByUsername(-1);
+            $task->setType(3);
             $em = $this->getDoctrine()->getManager();
             $task->onPrePersist();
             $em->persist($task);
             $em->flush();
 
-            $command = new UnFollowCommand();
+            $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
             $output = new NullOutput();

@@ -9,3 +9,8 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     form_errors:
         class: TaskBundle\Form\FormErrors
+    ausenco_user.user_subscriber:
+        class: UserBundle\EventListener\UserSubscriber
+        arguments: [@service_container]
+        tags:
+            - { name: kernel.event_subscriber }

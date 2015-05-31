@@ -35,6 +35,11 @@ class User extends BaseUser
     protected $maxAccounts;
 
     /**
+     * @ORM\Column(type="string", length=50,nullable = TRUE)
+     */
+    protected $timezone;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -98,5 +103,28 @@ class User extends BaseUser
     public function getMaxAccounts()
     {
         return $this->maxAccounts;
+    }
+
+    /**
+     * Set timezone
+     *
+     * @param string $timezone
+     * @return User
+     */
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * Get timezone
+     *
+     * @return string 
+     */
+    public function getTimezone()
+    {
+        return $this->timezone;
     }
 }

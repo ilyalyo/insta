@@ -37,6 +37,18 @@ class Instagram
 
     }
 
+    function  unfollow($user_id){
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+        $url="https://api.instagram.com/v1/users/$user_id/relationship";
+
+        $params = array(
+            "access_token" =>  $token,
+            "action" =>  'unfollow'
+        );
+        return $this->httpPost($url, $params);
+    }
+
     public function get_followers($username, $count){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
@@ -73,13 +85,15 @@ class Instagram
         return $result;
     }
 
-    public function get_followers_revers($user_id, $token, $count){
+    public function get_followers_revers($user_id, $count){
         $next="";
         $result=array();
         $counter=0;
         $about_count=$count/50;
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
 
-        $all=$this->getFollowedBy($user_id,$token)/50;
+        $all = $this->getFollowedBy($user_id)/50;
 
         do {
             $counter++;
@@ -90,11 +104,24 @@ class Instagram
             $next = $response->pagination->next_cursor;
             if($all-$counter<=$about_count)
                 foreach ($data as $d) {
-                    $result[]=$d->username;;
+                    $user['username'] = $d->username;
+                    $user['user_id'] = $d->id;
+                    $user['link'] = '';
+                    $user['resource_id'] = '';
+                    $result[] = $user;
                 }
 
         }while(isset($next));
         return $result;
+    }
+
+    function  getFollowedBy($id){
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+        $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
+
+        $response = $this->httpGet($url);
+        return $response->data->counts->follows;
     }
 
     public function  get_followers_by_tag($tag, $token)

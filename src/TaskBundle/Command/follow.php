@@ -27,6 +27,34 @@ function follow_by_username(){
         $inst->set_task_status(1);
 }
 
+function unfollowing(){
+    global $inst;
+    global $task;
+    var_dump('start unfollowing');
+    $users = $inst->get_followers_revers($task['tags'], $task['count'] );
+    $errors = 0;
+    foreach ($users as $user)
+    {
+        var_dump($user);
+        $result = $inst->follow($user['user_id']);
+        if(isset($result) && $result->meta->code == 200){
+            $errors = 0;
+            $inst->add_row($user['username']);
+        }
+        else
+            $errors++;
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3 || $errors > 5){
+            $inst->set_task_status(3);
+            break;
+        }
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+
 
 include_once("instagram.php");
 
@@ -107,7 +135,6 @@ function follow_by_tags(){
 }
 function liking_by_username(){}
 function liking_by_tags(){}
-function unfollowing(){}
 
 function sleepTime($interval_id){
     switch ($interval_id) {

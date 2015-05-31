@@ -99,7 +99,7 @@ class Instagram
 
         do {
             $counter++;
-            $url = "https://api.instagram.com/v1/users/$account_id/follows?" . "access_token=$token" . "&cursor=$next";
+            $url = "https://api.instagram.com/v1/users/$account_id/follows?count=50" . "&cursor=$next" . "&access_token=$token" ;
             $response = ($this->httpGet($url));
 
             $data = $response->data;

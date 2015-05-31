@@ -31,7 +31,7 @@ function unfollowing(){
     global $inst;
     global $task;
     var_dump('start unfollowing');
-    $users = $inst->get_followers_revers($task['tags'], $task['count'] );
+    $users = $inst->get_followers_revers($task['count'] );
     $errors = 0;
     foreach ($users as $user)
     {

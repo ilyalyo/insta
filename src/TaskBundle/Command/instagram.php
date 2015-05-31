@@ -7,6 +7,7 @@ class Instagram
     public $TOKEN_INDEX;
     private $PROXY_TIME=10;
     private $ACCOUNT_ID;
+    private $ACCOUNT_ID_INST;
     private $LOGIN;
     private $PASSWORD;
 
@@ -92,7 +93,7 @@ class Instagram
         $about_count=$count/50;
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
-        $account_id = $this->ACCOUNT_ID;
+        $account_id = $this->ACCOUNT_ID_INST;
 
         $all = $this->getFollowedBy($account_id)/50;
 
@@ -160,7 +161,7 @@ class Instagram
 
         $id= $this->TASK_ID;
         $mysql = mysql_query("
-          SELECT t.*,a.token, a.instLogin, a.instPass, p.ip, p.port, a.id as account_id
+          SELECT t.*,a.token, a.instLogin, a.instPass, p.ip, p.port, a.id as account_id, a.account_id as account_id_inst
           FROM tasks t
           INNER JOIN accounts a
           ON t.account_id=a.id
@@ -186,6 +187,7 @@ class Instagram
         $this->LOGIN = $row['instLogin'];
         $this->PASSWORD = $row['instPass'];
         $this->ACCOUNT_ID = $row['account_id'];
+        $this->ACCOUNT_ID_INST = $row['account_id_inst'];
 
         return $result;
     }

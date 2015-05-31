@@ -75,8 +75,6 @@ class Instagram
                 if ($this->checkUser($d->id, $token)) {
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
-                    $user['link'] = '';
-                    $user['resource_id'] = '';
                     $result[] = $user;
                 }
             }
@@ -95,7 +93,7 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $account_id = $this->ACCOUNT_ID_INST;
 
-        $all = $this->getFollowedBy($account_id)/50;
+        $all = $this->get_followed_by($account_id)/50;
 
         do {
             $counter++;
@@ -108,8 +106,6 @@ class Instagram
                 foreach ($data as $d) {
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
-                    $user['link'] = '';
-                    $user['resource_id'] = '';
                     $result[] = $user;
                 }
 
@@ -117,7 +113,7 @@ class Instagram
         return $result;
     }
 
-    function  getFollowedBy($id){
+    function  get_followed_by($id){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
@@ -126,20 +122,35 @@ class Instagram
         return $response->data->counts->follows;
     }
 
-    public function  get_followers_by_tag($tag, $token)
+    public function  get_followers_by_tags($tags_str, $count)
     {
-        $url = "https://api.instagram.com/v1/tags/$tag/media/recent?" . "access_token=$token" . "&count=10";
-        do {
-            $response = ($this->httpGet($url, 0));
+        $next="";
+        $result=array();
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
 
-            $data = $response->data;
-            foreach ($data as $d) {
-                if ($this->checkUser($d->user->id, $token)) {
-                    return $d->user->username;
+        $tags = explode('#', $tags_str);
+        $part_size = round(count($tags) / $count, 0, PHP_ROUND_HALF_UP);
+
+        foreach($tags as $index => $tag){
+            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&cursor=$next" . "access_token=$token";
+            do {
+                $response = $this->httpGet($url);
+
+                $data = $response->data;
+                $next = $response->pagination->next_cursor;
+
+                foreach ($data as $d) {
+                    if ($this->checkUser($d->user->id, $token) && count($result) < $part_size * ($index + 1) ) {
+                        $user['username'] = $d->username;
+                        $user['user_id'] = $d->id;
+                        $result[] = $user;
+                    }
                 }
-            }
-            $url = $response->pagination->next_url;
-        }while(isset($url));
+                $url = $response->pagination->next_url;
+            }while(isset($next)  && count($result) < $part_size * ($index + 1) );
+        }
+
         return null;
     }
 

@@ -62,7 +62,7 @@ class Instagram
         $next = "";
         $result = array();
         do {
-            $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" . "access_token=$token" . "&cursor=$next";
+            $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" .  "cursor=$next" . "&access_token=$token";
             $response = ($this->httpGet($url));
 
             $data = $response->data;

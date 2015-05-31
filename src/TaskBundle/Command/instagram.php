@@ -92,7 +92,7 @@ class Instagram
         $about_count=$count/50;
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
-        $account_id = $this->$ACCOUNT_ID;
+        $account_id = $this->ACCOUNT_ID;
 
         $all = $this->getFollowedBy($account_id)/50;
 

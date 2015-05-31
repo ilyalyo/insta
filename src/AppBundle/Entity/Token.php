@@ -36,7 +36,7 @@ class Token
     protected $url;
 
     /**
-     * @ORM\Column(type="string", length=100,unique=true)
+     * @ORM\Column(type="string", length=100)
      */
     protected $client;
 

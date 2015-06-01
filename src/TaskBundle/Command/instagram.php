@@ -130,28 +130,33 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $tags = explode('#', $tags_str);
-        $part_size = round(count($tags) / $count, 0, PHP_ROUND_HALF_UP);
+        $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
 
         foreach($tags as $index => $tag){
-            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&cursor=$next" . "access_token=$token";
+            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id =$next" . "&access_token=$token";
             do {
                 $response = $this->httpGet($url);
 
                 $data = $response->data;
-                $next = $response->pagination->next_cursor;
+                $next = $response->pagination->next_max_tag_id;
 
                 foreach ($data as $d) {
-                    if ($this->checkUser($d->user->id, $token) && count($result) < $part_size * ($index + 1) ) {
-                        $user['username'] = $d->username;
-                        $user['user_id'] = $d->id;
-                        $result[] = $user;
-                    }
+                    if(count($result) < $part_size * ($index + 1))
+                        if ($this->checkUser($d->user->id, $token) ) {
+                            $user['username'] = $d->user->username;
+                            $user['user_id'] = $d->user->id;
+                            $user['resource_id'] = $d->id;
+                            $user['link'] = $d->link;
+                            $result[] = $user;
+                        }
+                    else
+                        break;
                 }
                 $url = $response->pagination->next_url;
             }while(isset($next)  && count($result) < $part_size * ($index + 1) );
         }
 
-        return null;
+        return $result;
     }
 
     function checkUser($user_id, $token)

@@ -73,6 +73,11 @@ class Accounts
     protected $instPass;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $picture;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -330,5 +335,28 @@ class Accounts
     public function getTokens()
     {
         return $this->tokens;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     * @return Accounts
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string 
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

@@ -158,6 +158,7 @@ class CasperAjaxController extends Controller
         $account->setUsername($response->user->username);
         $account->setToken($response->access_token);
         $account->setAccountId($response->user->id);
+        $account->setPicture($response->user->profile_picture);
 
         $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
         $proxy_count=$account->getId() % count($proxy);

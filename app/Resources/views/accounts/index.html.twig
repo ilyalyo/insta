@@ -65,6 +65,9 @@
 
                 <h4 class="panel-title" style="display: inline-block">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ account.id }}" class="collapsed">
+                        {% if account.picture %}
+                            <img src="{{ account.picture }}" style="width: 24px;height: 24px;">
+                        {% endif %}
                         {% if account.username %}
                             {{ account.username }}<br/>
                         {% endif %}

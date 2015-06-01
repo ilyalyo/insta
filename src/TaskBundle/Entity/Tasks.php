@@ -42,7 +42,7 @@ class Tasks
     protected $tags;
 
     /**
-     * @ORM\OneToOne(targetEntity="TaskBundle\Entity\Lists", mappedBy="id")
+     * @ORM\OneToOne(targetEntity="TaskBundle\Entity\Lists", mappedBy="task")
      **/
     private $list;
 

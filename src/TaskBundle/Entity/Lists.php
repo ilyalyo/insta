@@ -23,7 +23,7 @@ class Lists
      * @ORM\OneToOne(targetEntity="TaskBundle\Entity\Tasks")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
-    protected $task_id;
+    protected $task;
 
 
     /**

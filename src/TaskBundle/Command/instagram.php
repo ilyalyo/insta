@@ -179,7 +179,7 @@ class Instagram
         foreach($usernames as $username){
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
-            $d = $response->data[0]->id;
+            $d = $response->data[0];
             if ($this->checkUser($d->id, $token) ) {
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
@@ -192,7 +192,7 @@ class Instagram
     private function load_users(){
         $task_id = $this->TASK_ID;
         $qr_result = mysql_query("
-          SELECT list FROM lists WHERE task_id =$task_id")
+          SELECT list FROM lists WHERE id = $task_id")
         or die(mysql_error());
         $row = mysql_fetch_array($qr_result);
         return explode("\r\n", $row['list']);
@@ -236,7 +236,7 @@ class Instagram
             'token' => $row['token'],
             'account_id' => $row['account_id'],
             'speed' => $row['speed'],
-            'byUsername' => $row['byUsername']);
+            );
 
         $this->PROXY = $row['ip'] . ':' . $row['port'];
         $this->LOGIN = $row['instLogin'];

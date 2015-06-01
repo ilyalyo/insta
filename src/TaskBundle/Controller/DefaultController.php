@@ -193,10 +193,7 @@ dima_bilan')
             if (!isset($account))
                 throw new NotFoundHttpException("Page not found");
 
-            $list = new Lists();
-            $list->setList($without_spaces);
-            $list->setTaskId($task);
-            $em->persist($list);
+
 
             $task->setCount(count($exp_ids));
             $task->setAccountId($account);
@@ -204,6 +201,12 @@ dima_bilan')
             $task->setTags('');
             $task->onPrePersist();
             $em->persist($task);
+
+            $list = new Lists();
+            $list->setList($without_spaces);
+            $list->setTaskId($task);
+            $em->persist($list);
+            
             $em->flush();
 
             $command = new WriteCommand();

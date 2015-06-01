@@ -133,7 +133,7 @@ class Instagram
         $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
 
         foreach($tags as $index => $tag){
-            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id =$next" . "&access_token=$token";
+            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id=$next" . "&access_token=$token";
             do {
                 $response = $this->httpGet($url);
 

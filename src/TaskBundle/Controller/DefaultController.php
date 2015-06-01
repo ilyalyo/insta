@@ -55,7 +55,7 @@ class DefaultController extends Controller
         if(in_array($task->getType(), [0 , 10]))
             $label = "Задача на фоловинг";
 
-        if($task->getType() == 10) {
+        if(in_array($task->getType(),[10, 11] )) {
             $form = $this->createFormBuilder($task)
                 ->add('count', 'text', array('label' => 'Количество'))
                 ->add('tags', 'textarea', array(

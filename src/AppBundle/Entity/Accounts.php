@@ -73,7 +73,7 @@ class Accounts
     protected $instPass;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=150)
      */
     protected $picture;
 

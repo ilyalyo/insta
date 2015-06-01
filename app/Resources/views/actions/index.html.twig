@@ -42,7 +42,7 @@
 
             {% if action.resourceId %}
                 <p>{{ action.resourceId }}
-                    <a href="https://instagram.com/{{ action.resourceId }}">+</a>
+                    <a href="https://instagram.com/{{ action.resourceId }}" target="_blank">+</a>
                 </p>
             {% endif %}
 
@@ -52,7 +52,7 @@
         <h3>Вы лайкнули:</h3>
         {% for action in task.actions | reverse %}
             {% if action.resourceId %}
-                <a href="{{action.resourceId}}">{{ action.resourceId }}</a>
+                <p><a href="{{action.resourceId}}" target="_blank">{{ action.resourceId }}</a></p>
             {% endif %}
         {% endfor %}
 
@@ -61,7 +61,7 @@
     {% for action in task.actions | reverse %}
         {% if action.resourceId %}
             <p>{{ action.resourceId }}
-                <a href="https://instagram.com/{{ action.resourceId }}">+</a>
+                <a href="https://instagram.com/{{ action.resourceId }}" target="_blank">+</a>
             </p>
         {% endif %}
     {% endfor %}

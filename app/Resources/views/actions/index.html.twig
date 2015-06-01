@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    {% if task.type in [0, 10] %}
+    {% if task.type in [0, 10, 20] %}
 
         <h3>Вы подписались на:</h3>
         {% for action in task.actions | reverse %}

@@ -201,7 +201,6 @@ dima_bilan')
             $task->setTags('');
             $task->onPrePersist();
             $em->persist($task);
-            $em->flush();
 
             $list = new Lists();
             $list->setList($without_spaces);

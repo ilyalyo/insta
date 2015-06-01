@@ -38,7 +38,6 @@ class Lists
     protected $list;
 
 
-
     /**
      * Get id
      *
@@ -73,25 +72,25 @@ class Lists
     }
 
     /**
-     * Set task_id
+     * Set task
      *
-     * @param \TaskBundle\Entity\Tasks $taskId
+     * @param \TaskBundle\Entity\Tasks $task
      * @return Lists
      */
-    public function setTaskId(\TaskBundle\Entity\Tasks $taskId = null)
+    public function setTask(\TaskBundle\Entity\Tasks $task = null)
     {
-        $this->task_id = $taskId;
+        $this->task = $task;
 
         return $this;
     }
 
     /**
-     * Get task_id
+     * Get task
      *
      * @return \TaskBundle\Entity\Tasks 
      */
-    public function getTaskId()
+    public function getTask()
     {
-        return $this->task_id;
+        return $this->task;
     }
 }

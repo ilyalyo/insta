@@ -45,18 +45,17 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/tasks/add/{isbyUsername}/{type}/{id}", name="add_tasks")
+     * @Route("/tasks/add/{type}/{id}", name="add_tasks")
      */
-    public function addAction(Request $request,$isbyUsername,$type,$id)
+    public function addAction(Request $request,$type,$id)
     {
         $task = new Tasks();
-        $task->setByUsername($isbyUsername);
         $task->setType($type);
         $label="Задача на лайкинг";
-        if($task->getType()==0)
+        if(in_array($task->getType(), [0 , 10]))
             $label = "Задача на фоловинг";
 
-        if($task->getByUsername()==0) {
+        if($task->getType() == 10) {
             $form = $this->createFormBuilder($task)
                 ->add('count', 'text', array('label' => 'Количество'))
                 ->add('tags', 'textarea', array(
@@ -73,7 +72,7 @@ class DefaultController extends Controller
             ))
                 ->getForm();
         }
-        else
+        elseif($task->getType() == 0)
             $form = $this->createFormBuilder($task)
                 ->add('count', 'text',array('label' => 'Количество'))
                 ->add('tags', 'text',array('label' => 'ID'))

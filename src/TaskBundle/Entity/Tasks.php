@@ -51,11 +51,6 @@ class Tasks
     protected $type;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $byUsername;
-
-    /**
      *@Assert\Range(
      *      min = 1,
      *      max = 500,
@@ -214,29 +209,6 @@ class Tasks
     public function getAccountId()
     {
         return $this->account_id;
-    }
-
-    /**
-     * Set byUsername
-     *
-     * @param integer $byUsername
-     * @return Tasks
-     */
-    public function setByUsername($byUsername)
-    {
-        $this->byUsername = $byUsername;
-
-        return $this;
-    }
-
-    /**
-     * Get byUsername
-     *
-     * @return integer 
-     */
-    public function getByUsername()
-    {
-        return $this->byUsername;
     }
 
     /**

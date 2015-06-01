@@ -73,9 +73,9 @@
                 </h4>
 
                 <div class="btn-group pull-right">
-                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 1 })}}" type="button" class="btn btn-default" title="Добавление задачи по ID"><span class="glyphicon glyphicon-asterisk"></span></a>
-                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0, 'isbyUsername': 0 })}}" type="button" class="btn btn-default" title="Добавление задачи по тэгам"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a href="{{ path('add_tasks', {'id': account.id, 'type' : 1, 'isbyUsername': 0 }) }}" type="button" class="btn btn-default" title="Лайкинг по тэгам"><span class="glyphicon glyphicon-heart"></span></a>
+                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0 })}}" type="button" class="btn btn-default" title="Добавление задачи по ID"><span class="glyphicon glyphicon-asterisk"></span></a>
+                    <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 10})}}" type="button" class="btn btn-default" title="Добавление задачи по тэгам"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a href="{{ path('add_tasks', {'id': account.id, 'type' : 11, 'isbyUsername': 0 }) }}" type="button" class="btn btn-default" title="Лайкинг по тэгам"><span class="glyphicon glyphicon-heart"></span></a>
                     <a href="{{ path('unfollow',{'id': account.id }) }}" type="button" class="btn btn-default" title="Отписка"><span class="glyphicon glyphicon-minus"></span></a>
                     <a href="{{ path('add_account') }}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat" title="Обновление токена"></span></a>
                     {% if account.tasks | length >0 %}
@@ -141,16 +141,14 @@
                                     </div>
                                     <div class="col-xs-4">
                                         <h3><span class="glyphicon glyphicon-file"></span>  Тип задания:</h3>
-                                        {% if (account.tasks | last).byUsername == 1 %}
+                                        {% if (account.tasks | last).type == 0 %}
                                             <p>Подписка по ID</p>
-                                        {% else %}
-                                            {% if (account.tasks | last).type == 0 %}
-                                                <p>Подписка по тэгам</p>
-                                            {% elseif (account.tasks | last).type == 1 %}
-                                                <p>Лайкинг по тэгам</p>
-                                            {% elseif (account.tasks | last).type == -1 %}
-                                                <p>Отписка</p>
-                                            {% endif %}
+                                        {% elseif (account.tasks | last).type == 10 %}
+                                            <p>Подписка по тэгам</p>
+                                        {% elseif (account.tasks | last).type == 11 %}
+                                            <p>Лайкинг по тэгам</p>
+                                        {% elseif (account.tasks | last).type == 3 %}
+                                            <p>Отписка</p>
                                         {% endif %}
                                     </div>
 
@@ -163,14 +161,12 @@
                                     <p>{{ (account.tasks | last).createdAt | date("H:i d/m/Y", user.timezone) }} {{ user.timezone }}</p> {#date("h:i d/m/Y")#}
                                 </div>
                                 <div class="col-xs-4">
-                                    {% if (account.tasks | last).byUsername == 1 %}
+                                    {% if (account.tasks | last).type in [0 ,10] %}
                                         <h3><span class="glyphicon glyphicon-link"></span> ID конкурента:</h3>
                                         <p>{{ (account.tasks | last).tags  }}</p>
-                                    {% else %}
-                                        {% if (account.tasks | last).type != -1 %}
-                                            <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
-                                            <textarea>{{ (account.tasks | last).tags  }}</textarea>
-                                        {% endif %}
+                                    {% elseif (account.tasks | last).type in [1,11] %}
+                                        <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
+                                        <textarea>{{ (account.tasks | last).tags  }}</textarea>
                                     {% endif %}
                                 </div>
                             </div>
@@ -204,25 +200,21 @@
                             {% for task in account.tasks|reverse %}
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        {% if task.byUsername == 1 %}
-                                            <p>Подписка по ID<p>
-                                        {% else %}
-                                            {% if task.type == 0 %}
-                                                <p>Подписка по тэгам</p>
-                                            {% elseif task.type == 1 %}
-                                                <p>Лайкинг по тэгам</p>
-                                            {% elseif task.type == -1 %}
-                                                <p>Отписка</p>
-                                            {% endif %}
+                                        {% if task.type == 0 %}
+                                        <p>Подписка по ID<p>
+                                        {% elseif task.type == 10 %}
+                                            <p>Подписка по тэгам</p>
+                                        {% elseif task.type == 11 %}
+                                            <p>Лайкинг по тэгам</p>
+                                        {% elseif task.type == 3 %}
+                                            <p>Отписка</p>
                                         {% endif %}
                                     </div>
                                     <div class="col-xs-3">
-                                        {% if task.byUsername == 1 %}
+                                        {% if task.type in [0, 1] %}
                                             <p>{{ task.tags  }}</p>
-                                        {% else %}
-                                            {% if task.type != -1 %}
-                                                <textarea>{{ task.tags }}</textarea>
-                                            {% endif %}
+                                        {% elseif task.type in [10, 11] %}
+                                            <textarea>{{ task.tags }}</textarea>
                                         {% endif %}
                                     </div>
                                     <div class="col-xs-1">

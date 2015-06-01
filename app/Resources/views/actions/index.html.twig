@@ -2,16 +2,14 @@
 
 {% block body %}
 
-    {% if task.byUsername == 1 %}
+    {% if task.type == 0 %}
         <h1>Подписка по ID</h1>
-    {% else %}
-        {% if task.type == 0 %}
-            <h1>Подписка по тэгам</h1>
-        {% elseif task.type == 1 %}
-            <h1>Лайкинг по тэгам</h1>
-        {% elseif task.type == -1 %}
-            <h1>Отписка</h1>
-        {% endif %}
+    {% elseif task.type == 10 %}
+        <h1>Подписка по тэгам</h1>
+    {% elseif task.type == 11 %}
+        <h1>Лайкинг по тэгам</h1>
+    {% elseif task.type == 3 %}
+        <h1>Отписка</h1>
     {% endif %}
 
 <div class="container">
@@ -37,35 +35,36 @@
         </div>
     </div>
 
-    {% if task.byUsername == 1 or task.type == 0 %}
+    {% if task.type in [0, 10] %}
 
         <h3>Вы подписались на:</h3>
         {% for action in task.actions | reverse %}
 
             {% if action.resourceId %}
                 <p>{{ action.resourceId }}
-                    {% if action.resourceId %}
-                        <a href="https://instagram.com/{{ action.resourceId }}">+</a>
-                    {% endif %}
+                    <a href="https://instagram.com/{{ action.resourceId }}">+</a>
                 </p>
             {% endif %}
 
         {% endfor %}
 
-    {% elseif task.type == 1 %}
+    {% elseif task.type in [1, 11] %}
         <h3>Вы лайкнули:</h3>
         {% for action in task.actions | reverse %}
-
-            {% if action.username %}
-                <p>{{ action.username }}
-                    {% if action.resourceId %}
-                        <a href="{{action.resourceId}}">+</a>
-                    {% endif %}
-                </p>
+            {% if action.resourceId %}
+                <a href="{{action.resourceId}}">{{ action.resourceId }}</a>
             {% endif %}
-
         {% endfor %}
 
+    {% elseif task.type == 3 %}
+        <h3>Вы отписались от:</h3>
+    {% for action in task.actions | reverse %}
+        {% if action.resourceId %}
+            <p>{{ action.resourceId }}
+                <a href="https://instagram.com/{{ action.resourceId }}">+</a>
+            </p>
+        {% endif %}
+    {% endfor %}
     {% endif %}
 
 </div>

@@ -201,12 +201,13 @@ dima_bilan')
             $task->setTags('');
             $task->onPrePersist();
             $em->persist($task);
+            $em->flush();
 
             $list = new Lists();
             $list->setList($without_spaces);
             $list->setTaskId($task);
             $em->persist($list);
-            
+
             $em->flush();
 
             $command = new WriteCommand();

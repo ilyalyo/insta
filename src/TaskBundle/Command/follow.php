@@ -69,7 +69,7 @@ function liking_by_tags(){
         $result = $inst->like($user['resource_id']);
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
-            $inst->add_row($user['resource_id']);
+            $inst->add_row($user['link']);
         }
         else
             $errors++;

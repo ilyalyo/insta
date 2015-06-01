@@ -35,7 +35,18 @@ class Instagram
             "action" => 'follow'
         );
         return $this->httpPost($url, $params);
+    }
 
+    function  like($resource_id)
+    {
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+        $url = "https://api.instagram.com/v1/media/$resource_id/likes";
+
+        $params = array(
+            "access_token" => $token
+        );
+        return $this->httpPost($url, $params);
     }
 
     function  unfollow($user_id){

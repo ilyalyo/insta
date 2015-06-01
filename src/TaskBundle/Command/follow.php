@@ -56,6 +56,35 @@ function follow_by_tags(){
         $inst->set_task_status(1);
 }
 
+function liking_by_tags(){
+
+    global $inst;
+    global $task;
+
+    $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
+    $errors = 0;
+    foreach ($users as $user)
+    {
+        var_dump($user);
+        $result = $inst->like($user['resource_id']);
+        if(isset($result) && $result->meta->code == 200){
+            $errors = 0;
+            $inst->add_row($user['resource_id']);
+        }
+        else
+            $errors++;
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3 || $errors > 5){
+            $inst->set_task_status(3);
+            break;
+        }
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+
 function unfollowing(){
     global $inst;
     global $task;
@@ -160,7 +189,7 @@ catch (Exception $e){
 
 
 function liking_by_username(){}
-function liking_by_tags(){}
+
 
 function sleepTime($interval_id){
     switch ($interval_id) {

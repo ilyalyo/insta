@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{{ form_start(form) }}
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h1>Фоловинг по списку</h1>
+    </div>
+    <div class="modal-body">
+        {{ form_row(form.tmp_tags) }}
+        {{ form_row(form.speed) }}
+    </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary">Добавить</button>
+        </div>
+    </div>
+</div>
+<input name="account_id" id="account_id" hidden="hidden"/>
+{{ form_end(form) }}
+<style>
+    .modal-error{
+        margin-bottom: 0px;
+        color: red;
+    }
+</style>
+{% endblock %}

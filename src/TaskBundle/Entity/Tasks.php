@@ -1,6 +1,7 @@
 <?php
 
 namespace TaskBundle\Entity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Accounts;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,6 +40,21 @@ class Tasks
      * @ORM\Column(type="string", length=250)
      */
     protected $tags;
+
+    /**
+     * @ORM\OneToOne(targetEntity="TaskBundle\Entity\Lists", mappedBy="id")
+     **/
+    private $list;
+
+    /**
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 10000,
+     *      minMessage = "Минимальная длинна {{ limit }} символов",
+     *      maxMessage = "Максимальная длинна {{ limit }} символов"
+     * )
+     */
+    protected $tmp_tags;
 
     /**
      * @ORM\Column(type="integer")
@@ -117,6 +133,29 @@ class Tasks
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set tags
+     *
+     * @param string $tags
+     * @return Tasks
+     */
+    public function setTmpTags($tmp_tags)
+    {
+        $this->tmp_tags= $tmp_tags;
+
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return string
+     */
+    public function getTmpTags()
+    {
+        return $this->tmp_tags;
     }
 
     /**
@@ -295,5 +334,28 @@ class Tasks
     public function getSpeed()
     {
         return $this->speed;
+    }
+
+    /**
+     * Set list
+     *
+     * @param \TaskBundle\Entity\Lists $list
+     * @return Tasks
+     */
+    public function setList(\TaskBundle\Entity\Lists $list = null)
+    {
+        $this->list = $list;
+
+        return $this;
+    }
+
+    /**
+     * Get list
+     *
+     * @return \TaskBundle\Entity\Lists 
+     */
+    public function getList()
+    {
+        return $this->list;
     }
 }

@@ -39,19 +39,4 @@ class AjaxController extends Controller
 
         return new JsonResponse($query->getArrayResult());
     }
-
-    /**
-     * @Route("/tasks/set_result/{id}/{link}", name="tasks_set_result")
-     */
-    public function setResultAction($id,$link)
-    {
-        $action = new Actions();
-        $em = $this->getDoctrine()->getManager();
-        $task = $em->getRepository('TaskBundle:Tasks')->find($id);
-        $action->setTaskId($task);
-        $action->setResourceId($link);
-        $em->persist($action);
-        $em->flush();
-        return new JsonResponse(1);
-    }
 }

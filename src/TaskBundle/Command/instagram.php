@@ -133,7 +133,7 @@ class Instagram
         return $response->data->counts->follows;
     }
 
-    public function  get_followers_by_tags($tags_str, $count)
+    public function get_followers_by_tags($tags_str, $count)
     {
         $next="";
         $result=array();
@@ -168,6 +168,34 @@ class Instagram
         }
 
         return $result;
+    }
+
+    public function get_followers_by_list(){
+        $result = [];
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+
+        $usernames = $this->load_users();
+        foreach($usernames as $username){
+            $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
+            $response = $this->httpGet($url);
+            $d = $response->data[0]->id;
+            if ($this->checkUser($d->id, $token) ) {
+                $user['username'] = $d->username;
+                $user['user_id'] = $d->id;
+                $result[] = $user;
+            }
+        }
+        return $result;
+    }
+
+    private function load_users(){
+        $task_id = $this->TASK_ID;
+        $qr_result = mysql_query("
+          SELECT list FROM lists WHERE task_id =$task_id")
+        or die(mysql_error());
+        $row = mysql_fetch_array($qr_result);
+        return explode("\r\n", $row['list']);
     }
 
     function checkUser($user_id, $token)

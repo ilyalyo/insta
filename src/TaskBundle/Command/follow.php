@@ -56,6 +56,36 @@ function follow_by_tags(){
         $inst->set_task_status(1);
 }
 
+
+function follow_by_list(){
+
+    global $inst;
+    global $task;
+
+    $users = $inst->get_followers_by_list();
+    $errors = 0;
+    foreach ($users as $user)
+    {
+        var_dump($user);
+        $result = $inst->follow($user['user_id']);
+        if(isset($result) && $result->meta->code == 200){
+            $errors = 0;
+            $inst->add_row($user['username']);
+        }
+        else
+            $errors++;
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3 || $errors > 5){
+            $inst->set_task_status(3);
+            break;
+        }
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+
 function liking_by_tags(){
 
     global $inst;
@@ -136,6 +166,9 @@ try{
         case 10:
             follow_by_tags();
             break;
+        case 20:
+            follow_by_list();
+            break;
         case 1:
             liking_by_username();
             break;
@@ -146,35 +179,6 @@ try{
             unfollowing();
             break;
     };
-
-
-
-    if ($task['byUsername']==1)
-    {
-
-    }
-    else
-        for ($i = 0; $i <= $task['count'] - 1; $i++) {
-
-            $tags = explode('#', $task['tags']);
-
-            $rand_key = array_rand($tags);
-
-            $tag = $tags[$rand_key];
-
-            $media = $inst->getUsernameAndIdsbyTag($tag, $token);
-
-            if ($task['type'] == 0)
-                $inst->follow($task, $media);
-            else
-                $inst->sendLike($task, $media);
-
-            sleep(rand(30, 50));
-
-            if ($inst->is_stopped($TASK_ID))
-                break;
-        }
-
 }
 catch (Exception $e){
 

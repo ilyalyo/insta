@@ -29,6 +29,39 @@
                 });
 
             }, 5000);
+
+            /*comments*/
+            var showChar = 100;
+            var ellipsestext = "...";
+            var moretext = "+++";
+            var lesstext = "---";
+            $('.more').each(function() {
+                var content = $(this).html();
+
+                if(content.length > showChar) {
+
+                    var c = content.substr(0, showChar);
+                    var h = content.substr(showChar-1, content.length - showChar);
+
+                    var html = c + '<span class="moreellipses">' + ellipsestext+ ' </span><span class="morecontent"><span>' + h + '</span>  <a href="" class="morelink">' + moretext + '</a></span>';
+
+                    $(this).html(html);
+                }
+
+            });
+
+            $(".morelink").click(function(){
+                if($(this).hasClass("less")) {
+                    $(this).removeClass("less");
+                    $(this).html(moretext);
+                } else {
+                    $(this).addClass("less");
+                    $(this).html(lesstext);
+                }
+                $(this).parent().prev().toggle();
+                $(this).prev().toggle();
+                return false;
+            });
         })
     </script>
 
@@ -166,13 +199,13 @@
                                     <h3><span class="glyphicon glyphicon-time"></span> Задание началось в:</h3>
                                     <p>{{ (account.tasks | last).createdAt | date("H:i d/m/Y", user.timezone) }} {{ user.timezone }}</p> {#date("h:i d/m/Y")#}
                                 </div>
-                                <div class="col-xs-4">
-                                    {% if (account.tasks | last).type in [0 ,10] %}
+                                <div class="col-xs-4 long_tags">
+                                    {% if (account.tasks | last).type in [0 ,1] %}
                                         <h3><span class="glyphicon glyphicon-link"></span> ID конкурента:</h3>
                                         <p>{{ (account.tasks | last).tags  }}</p>
-                                    {% elseif (account.tasks | last).type in [1,11] %}
+                                    {% elseif (account.tasks | last).type in [10,11] %}
                                         <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
-                                        <textarea>{{ (account.tasks | last).tags  }}</textarea>
+                                        <div class="comment more">{{ (account.tasks | last).tags  }}</div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -216,11 +249,11 @@
                                             <p>Отписка</p>
                                         {% endif %}
                                     </div>
-                                    <div class="col-xs-3">
+                                    <div class="col-xs-3 long_tags">
                                         {% if task.type in [0, 1] %}
                                             <p>{{ task.tags  }}</p>
                                         {% elseif task.type in [10, 11] %}
-                                            <textarea>{{ task.tags }}</textarea>
+                                        <div class="comment more">{{ task.tags }}</div>
                                         {% endif %}
                                     </div>
                                     <div class="col-xs-1">

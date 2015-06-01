@@ -123,3 +123,22 @@ color: #ffffff;
 .btn-group.pull-right{
     bottom: 5px;
 }
+
+.long_tags a {
+    color: #0254EB
+}
+.long_tags a:visited {
+    color: #0254EB
+}
+.long_tags a.morelink {
+    text-decoration:none;
+    outline: none;
+}
+.long_tags .morecontent span {
+    display: none;
+}
+.long_tags .comment {
+    word-wrap: break-word;
+    background-color: #f0f0f0;
+    margin: 10px;
+}

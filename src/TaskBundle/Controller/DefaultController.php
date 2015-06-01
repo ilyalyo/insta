@@ -204,7 +204,7 @@ dima_bilan')
 
             $list = new Lists();
             $list->setList($without_spaces);
-            $list->setTaskId($task);
+            $list->setTask($task);
             $em->persist($list);
 
             $em->flush();

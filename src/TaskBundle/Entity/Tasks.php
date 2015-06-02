@@ -69,7 +69,7 @@ class Tasks
     /**
      *@Assert\Range(
      *      min = 1,
-     *      max = 500,
+     *      max = 1000,
      *      minMessage = "Минимальное значение - {{ limit }}",
      *      maxMessage = "Максимальное значение - {{ limit }}"
      * )

@@ -18,8 +18,11 @@ function follow_by_username(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3 || $errors > 5){
-            $inst->set_task_status(3);
+        if ($inst->get_task_status() == 3){
+            break;
+        }
+        if($errors > 5){
+            $inst->set_task_status(4);
             break;
         }
     }
@@ -47,8 +50,11 @@ function follow_by_tags(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3 || $errors > 5){
-            $inst->set_task_status(3);
+        if ($inst->get_task_status() == 3){
+            break;
+        }
+        if($errors > 5){
+            $inst->set_task_status(4);
             break;
         }
     }
@@ -77,8 +83,11 @@ function follow_by_list(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3 || $errors > 5){
-            $inst->set_task_status(3);
+        if ($inst->get_task_status() == 3){
+            break;
+        }
+        if($errors > 5){
+            $inst->set_task_status(4);
             break;
         }
     }
@@ -106,8 +115,11 @@ function liking_by_tags(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3 || $errors > 5){
-            $inst->set_task_status(3);
+        if ($inst->get_task_status() == 3){
+            break;
+        }
+        if($errors > 5){
+            $inst->set_task_status(4);
             break;
         }
     }
@@ -134,10 +146,15 @@ function unfollowing(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3 || $errors > 5){
-            $inst->set_task_status(3);
+        if ($inst->get_task_status() == 3){
             break;
         }
+        if($errors > 5){
+            $inst->set_task_status(4);
+            break;
+        }
+
+
     }
     if ($inst->get_task_status() == 2)
         $inst->set_task_status(1);

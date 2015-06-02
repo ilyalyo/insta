@@ -294,9 +294,10 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index];
         $file = __DIR__ . "/Casper/auth.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
-        shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $this->ACCOUNT_ID . "' ");
+     //   shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $this->ACCOUNT_ID . "' ");
         $output = shell_exec("casperjs $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
-        if($output != $token['token'] && strlen($output) == 53 ){
+        $output = trim($output);
+        if( isset($output) && $output != $token['token']){
             $this->TOKEN_ARRAY[$index]=$output;
             $token_id=$token['id'];
             $qr_result = mysql_query("UPDATE tokens SET token=$output WHERE id=$token_id")

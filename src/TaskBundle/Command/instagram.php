@@ -300,7 +300,7 @@ class Instagram
         if( isset($output) && $output != $token['token']){
             $this->TOKEN_ARRAY[$index]=$output;
             $token_id=$token['id'];
-            $qr_result = mysql_query("UPDATE tokens SET token=$output WHERE id=$token_id")
+            $qr_result = mysql_query("UPDATE tokens SET token='$output' WHERE id=$token_id")
                 or die(mysql_error());
             return true;
         }

@@ -24,6 +24,7 @@ class User extends BaseUser
         $this->accounts = new ArrayCollection();
         $this->maxAccounts = 2;
         $this->timezone = 'Europe/Moscow';
+        $this->createdAt = new \DateTime();
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
@@ -34,6 +35,11 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $maxAccounts;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $createdAt;
 
     /**
      * @ORM\Column(type="string", length=50,nullable = TRUE)
@@ -127,5 +133,28 @@ class User extends BaseUser
     public function getTimezone()
     {
         return $this->timezone;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

@@ -8,6 +8,7 @@ var auth_url='https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78
 var auth_url2='https://instagram.com/oauth/authorize/?client_id=c02d1c473e53485d946a1c44d3daf8d2&redirect_uri=http://extragr.am/sessions/callback&response_type=code&scope=comments+likes+relationships';
 var auth_url3='https://accounts.crowdfireapp.com/auth/instagram';
 var auth_url4='https://instagram.com/oauth/authorize?client_id=67be0e2777b94bc9bdacf4e2680d77d4&response_type=code&redirect_uri=http%3A%2F%2Flogingram.com%2Findex.php&scope=likes+comments+relationships';
+var auth_url5='https://instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes';
 
 casper.start().thenOpen(auth_url, function() {
     this.wait(2000, function() {
@@ -47,6 +48,17 @@ casper.then(function() {
 });
 
 casper.thenOpen(auth_url4, function() {
+    this.wait(1000, function() {});
+});
+
+casper.then(function() {
+    try{
+        this.click('.button-green');
+    }catch(e){}
+});
+
+
+casper.thenOpen(auth_url5, function() {
     this.wait(1000, function() {});
 });
 

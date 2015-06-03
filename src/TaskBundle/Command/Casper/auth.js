@@ -10,6 +10,8 @@ var auth_url2='https://instagram.com/oauth/authorize/?client_id=c02d1c473e53485d
 var auth_url3='https://accounts.crowdfireapp.com/auth/instagram';
     //'https://instagram.com/oauth/authorize?client_id=d9494686198d4dfeb954979a3e270e5e&redirect_uri=http%3A%2F%2Ficonosquare.com&response_type=code&scope=likes+comments+relationships';
 var auth_url4='https://instagram.com/oauth/authorize?client_id=67be0e2777b94bc9bdacf4e2680d77d4&response_type=code&redirect_uri=http%3A%2F%2Flogingram.com%2Findex.php&scope=likes+comments+relationships';
+var auth_url5='https://instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes';
+
 var url="";
 
 switch (client){
@@ -22,8 +24,11 @@ switch (client){
     case 'crowdfire':
         url = auth_url3;
         break;
-    default:
+    case 'webstagram':
         url = auth_url4;
+        break;
+    default:
+        url = auth_url5;
         break;
 }
 

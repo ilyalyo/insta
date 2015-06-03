@@ -54,15 +54,6 @@ class CasperAjaxController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
-                'instLogin'=>$account->getInstLogin()
-            ));
-            if(isset($exist)){
-                $form->get('instLogin')->addError(new FormError('Аккаунт уже добавлен'));
-                return $this->render('accounts/login_password.html.twig',
-                    array('form' => $form->createView()));
-            }
-
             $account->setUser($user);
             $em->persist($account);
             $em->flush();
@@ -123,6 +114,13 @@ class CasperAjaxController extends Controller
     {
         $login = $request->get('login');
         $password = $request->get('password');
+
+        $em = $this->getDoctrine()->getManager();
+        $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
+            'instLogin'=>$login
+        ));
+        if(isset($exist))
+            return new JsonResponse(-1);
 
         $command = new AuthCheckCommand();
         $command->setContainer($this->container);

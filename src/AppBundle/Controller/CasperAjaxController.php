@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\HttpFoundation\Response;
 use TaskBundle\TaskBundle;
 use TaskBundle\Command\GetTokenCommand;
 
@@ -53,6 +54,15 @@ class CasperAjaxController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
+            $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
+                'instLogin'=>$account->getInstLogin()
+            ));
+            if(isset($exist)){
+                $form->get('instLogin')->addError(new FormError('Аккаунт уже добавлен'));
+                return $this->render('accounts/login_password.html.twig',
+                    array('form' => $form->createView()));
+            }
+
             $account->setUser($user);
             $em->persist($account);
             $em->flush();
@@ -71,6 +81,7 @@ class CasperAjaxController extends Controller
             $this->addProvider($account,'easytogo');
             $this->addProvider($account,'extragram');
             $this->addProvider($account,'iconosquare');
+            $this->addProvider($account,'logingram');
 
             return $this->redirectToRoute('accounts');
         }
@@ -167,7 +178,7 @@ class CasperAjaxController extends Controller
         $em->persist($account);
         $em->flush();
 
-        return Response($account->getId());
+        return new JsonResponse($account->getId());
     }
 
     /**

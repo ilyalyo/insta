@@ -131,7 +131,7 @@
               {% if account.tasks | length >0 %}
                   <div class="row">
                       <div class="col-xs-12">
-                          <div class="progress" style="margin-bottom: 0px; height: 4px" title="{{ ((account.tasks | last).actions | length)}} / {{ ((account.tasks | last).count) }}">
+                          <div class="progress" style="margin-bottom: 0px; height: 4px" title="{{ ((account.tasks | last).actions | length)}}/ {{ ((account.tasks | last).count) }}">
                               <div class="progress-bar progress-bar-success" id="prgrs0{{ account.id }}" role="progressbar" style="width:{{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
                               </div>
                           </div>
@@ -216,7 +216,7 @@
                                     <h3>Прогресс:</h3>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-success" id="prgrs1{{ account.id }}" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
-                                            {{ ((account.tasks | last).actions | length)}} / {{ ((account.tasks | last).count) }}
+                                            {{ ((account.tasks | last).actions | length)}}/ {{ ((account.tasks | last).count) }}
                                         </div>
                                     </div>
                                 </div>

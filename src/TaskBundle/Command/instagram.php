@@ -286,6 +286,7 @@ class Instagram
     }
 
     public function change_token(){
+        $this->debug($this->TOKEN_ARRAY[$this->TOKEN_INDEX]);
         $this->TOKEN_INDEX = ($this->TOKEN_INDEX + 1) % count($this->TOKEN_ARRAY);
     }
 
@@ -294,13 +295,14 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index];
         $file = __DIR__ . "/Casper/auth.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
-     //   shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $this->ACCOUNT_ID . "' ");
+        shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' ");
         $output = shell_exec("casperjs $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
         $output = trim($output);
-        $this->debug('new token for ' . $token['client']);
+        $this->debug($token['client']);
         $this->debug($output);
         if( isset($output) && $output != $token['token']){
-            $this->TOKEN_ARRAY[$index]=$output;
+            $this->debug('success update');
+            $this->TOKEN_ARRAY[$index]['token']=$output;
             $token_id=$token['id'];
             $qr_result = mysql_query("UPDATE tokens SET token='$output' WHERE id=$token_id")
                 or die(mysql_error());
@@ -319,19 +321,19 @@ class Instagram
                 $this->debug('json is null');
                 return null;
             }
-            if($json->meta->code == 200)
-                return $json;
             if($output === FALSE){
                 $this->debug('json is false');
                 return null;
             }
+            if($json->meta->code == 200)
+                return $json;
             if($json->meta->code == 429){
-                $this->debug('code 429');
                 $this->change_token();
                 return null;
             }
             if($json->meta->code == 400){
-                $this->debug('code 400');
+                if($json->meta->error_type == '"APINotAllowedError')
+                    return null;
                 if(!$this->update_token())
                     $this->change_token();
                 return null;

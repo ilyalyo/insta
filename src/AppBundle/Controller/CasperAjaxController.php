@@ -119,7 +119,7 @@ class CasperAjaxController extends Controller
         $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
             'instLogin'=>$login
         ));
-        if(isset($exist))
+        if(count($exist) > 0)
             return new JsonResponse(-1);
 
         $command = new AuthCheckCommand();

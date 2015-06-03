@@ -297,6 +297,8 @@ class Instagram
      //   shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $this->ACCOUNT_ID . "' ");
         $output = shell_exec("casperjs $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
         $output = trim($output);
+        $this->debug('new token for ' . $token['client']);
+        $this->debug($output);
         if( isset($output) && $output != $token['token']){
             $this->TOKEN_ARRAY[$index]=$output;
             $token_id=$token['id'];

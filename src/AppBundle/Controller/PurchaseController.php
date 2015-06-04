@@ -47,10 +47,10 @@ class PurchaseController extends Controller
         $errors = new Errors();
         $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
         $errors->setTaskId($task);
-        $errors->setMessage( $str . '&' . $sha1);
+        $errors->setMessage($withdraw_amount . '|' . $str . '&' . $sha1);
         $em->persist($errors);
         $em->flush();
-        //p2p-incoming&test-notification&441.94&643&2015-06-04T17:50:38Z&41001000040&false&nzyqKS9YdRwGoNZ+OrFfQh0D&&ddfbb4d4716ba9c5f6142c92b5adec7c5f813d16
+        
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
             if(sha1($str) == $sha1){
@@ -58,13 +58,13 @@ class PurchaseController extends Controller
                 if($date->getTimestamp() < time())
                     $date= new \DateTime();
                 switch ($withdraw_amount){
-                    case 1:
+                    case '1.00':
                         $date->add(new \DateInterval('P1M'));
                         break;
-                    case 1999:
+                    case '1999.00':
                         $date->add(new \DateInterval('P3M'));
                         break;
-                    case 3999:
+                    case '3999.00':
                         $date->add(new \DateInterval('P7M'));
                         break;
                 }

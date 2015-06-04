@@ -1,0 +1,29 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block fos_user_content %}
+
+
+<div class="modal-dialog" style="padding-top: 100px;
+  max-width: 400px;">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h1>Восстановление аккаунта</h1>
+        </div>
+        <div class="modal-body">
+
+                <form class="form-horizontal text-center" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                    <div>
+                        {% if invalid_username is defined %}
+                            <p>Введены не существующий email или имя пользователя</p>
+                        {% endif %}
+                        <label for="username">Введите имя пользователя или email</label>
+                        <input type="text" id="username" name="username" required="required" />
+                    </div>
+                    <div>
+                        <input style="margin-top: 15px;" class="btn btn-success" type="submit" value="Восстановить" />
+                    </div>
+                </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

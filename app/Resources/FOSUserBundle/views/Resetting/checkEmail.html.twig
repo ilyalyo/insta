@@ -1,0 +1,12 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+<div class="modal-dialog" style="padding-top: 100px;
+  max-width: 400px;">
+    {% transchoice email %}
+        <p>Ссылка для подтверждения была выслана на %email%</p>
+    {% endtranschoice %}
+</div>
+{% endblock %}

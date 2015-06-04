@@ -47,7 +47,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/settings")
+     * @Route("/settings", name="settings")
      */
     public  function setTimezone()
     {

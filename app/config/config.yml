@@ -79,5 +79,8 @@ fos_user:
     registration:
         confirmation:
               enabled:    true
+    from_email:
+           address:        support@instastellar.su
+           sender_name:    Support group
 mopa_bootstrap:
     form: ~  # Adds twig form theme  support

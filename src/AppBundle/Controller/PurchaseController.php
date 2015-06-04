@@ -50,7 +50,7 @@ class PurchaseController extends Controller
         $errors->setMessage($withdraw_amount . '|' . $str . '&' . $sha1);
         $em->persist($errors);
         $em->flush();
-        
+
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
             if(sha1($str) == $sha1){
@@ -58,13 +58,13 @@ class PurchaseController extends Controller
                 if($date->getTimestamp() < time())
                     $date= new \DateTime();
                 switch ($withdraw_amount){
-                    case '1.00':
+                    case 1.00:
                         $date->add(new \DateInterval('P1M'));
                         break;
-                    case '1999.00':
+                    case 1999.00:
                         $date->add(new \DateInterval('P3M'));
                         break;
-                    case '3999.00':
+                    case 3999.00:
                         $date->add(new \DateInterval('P7M'));
                         break;
                 }

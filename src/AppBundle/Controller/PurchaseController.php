@@ -53,10 +53,21 @@ class PurchaseController extends Controller
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
             if(sha1($str) == $sha1){
-                $date = new \DateTime();
-                $date->add(new \DateInterval('P30D'));
+                $date = $user->getValidUntil();
+                if($date->getTimestamp() < time())
+                    $date= new \DateTime();
+                switch ($params['amount']){
+                    case 1:
+                        $date->add(new \DateInterval('P1M'));
+                        break;
+                    case 1999:
+                        $date->add(new \DateInterval('P3M'));
+                        break;
+                    case 3999:
+                        $date->add(new \DateInterval('P7M'));
+                        break;
+                }
                 $user->setValidUntil($date);
-
                 $this->get('fos_user.user_manager')->updateUser($user, false);
                 $em->flush();
                 return new JsonResponse('200 OK');

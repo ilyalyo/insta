@@ -32,37 +32,28 @@ class PurchaseController extends Controller
         $params['notification_type'] = $request->get('notification_type');
         $params['operation_id']  = $request->get('operation_id');
         $params['amount']  = $request->get('amount');
-        $params['withdraw_amount'] = $request->get('withdraw_amount');
+        //$params['withdraw_amount'] = $request->get('withdraw_amount');
         $params['currency'] = $request->get('currency');
         $params['datetime'] = $request->get('datetime');
         $params['sender']= $request->get('sender');
         $params['codepro']= $request->get('codepro');
-        $params['label'] = $request->get('label');
         $params['notification_secret'] = 'nzyqKS9YdRwGoNZ+OrFfQh0D';
+        $params['label'] = $request->get('label');
         $sha1 = $request->get('sha1_hash');
+
+        $str= implode($params, '&');
 
         $em = $this->getDoctrine()->getManager();
         $errors = new Errors();
         $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-        $errors = new Errors();
-        $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
         $errors->setTaskId($task);
-        $errors->setMessage(implode($params) . '|' . $sha1);
+        $errors->setMessage( $str . '&' . $sha1);
         $em->persist($errors);
         $em->flush();
-
-
+        //p2p-incomingtest-notification&456.25643&2015-06-04T17:09:47Z41001000040falsenzyqKS9YdRwGoNZ+OrFfQh0D|c925797120f62f3ac09137881d00ef1c1db79636
+//|c925797120f62f3ac09137881d00ef1c1db79636
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
-            $str="";
-            foreach($params as $k => $v){
-                $str += $v;
-            }
-
-            $errors->setTaskId($task);
-            $errors->setMessage($str);
-            $em->persist($errors);
-            $em->flush();
             if(sha1($str) == $sha1){
                 $date = new \DateTime();
                 $date->add(new \DateInterval('P30D'));

@@ -8,9 +8,9 @@
         <input type="hidden" name="formcomment" value="Месячная подписка">
         <input type="hidden" name="short-dest" value="Месячная подписка">
         <input type="hidden" name="quickpay-form" value="shop">
-        <input type="hidden" name="label" value="1">
+        <input type="hidden" name="label" value="{{ user.id }}">
         <input type="hidden" name="targets" value="firstpay">
-        <input type="hidden" name="sum" value="4568.25" data-type="number" >
+        <input type="hidden" name="sum" value="1.00" data-type="number" >
 
         <input type="radio" name="paymentType" value="PC">Яндекс.Деньгами</input>
         <input type="radio" name="paymentType" value="AC">Банковской картой</input>

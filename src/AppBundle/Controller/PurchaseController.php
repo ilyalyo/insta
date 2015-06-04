@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use TaskBundle\Entity\Errors;
 use Zend\Json\Json;
 
 class PurchaseController extends Controller
@@ -40,6 +41,8 @@ class PurchaseController extends Controller
         $params['notification_secret'] = 'nzyqKS9YdRwGoNZ+OrFfQh0D';
         $sha1 = $request->get('sha1_hash');
 
+
+
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
@@ -47,10 +50,21 @@ class PurchaseController extends Controller
             foreach($params as $k => $v){
                 $str += $v;
             }
+
+            $errors = new Errors();
+            $task = $em->getRepository('TaskBundle:Tasks')->find(81);
+
+            $errors->setTaskId($task);
+            $errors->setMessage($str);
+            $em->persist($errors);
+            $em->flush();
             if(sha1($str) == $sha1){
                 $date = new \DateTime();
                 $date->add(new \DateInterval('P30D'));
                 $user->setValidUntil($date);
+
+                $this->get('fos_user.user_manager')->updateUser($user, false);
+                $em->flush();
                 return new JsonResponse('200 OK');
             }
         }
@@ -63,21 +77,6 @@ class PurchaseController extends Controller
      */
     public function purchaseFailAction(Request $request)
     {
-        $login = $request->get('WMI_MERCHANT_ID');
-        $login = $request->get('WMI_CUSTOMER_ID');
-        $login = $request->get('WMI_PAYMENT_AMOUNT');
-        $login = $request->get('WMI_COMMISSION_AMOUNT');
-        $login = $request->get('WMI_CURRENCY_ID');
-        $login = $request->get('WMI_PAYMENT_NO');
-        $login = $request->get('WMI_ORDER_STATE');
-        $login = $request->get('WMI_SIGNATURE');
-
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
-                'user' => $user->getId())
-        );
-
         return new JsonResponse('WMI_RESULT=OK');
     }
 }

@@ -289,7 +289,7 @@ dima_bilan')
         ));
 
         $user = $this->getUser();
-        if($user->getValidUntil() < date('now')){
+        if($user->getValidUntil()->getTimestamp() < time()){
             $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
             return $this->render('tasks/new.html.twig', array(
                 'form' => $form->createView(),

@@ -36,7 +36,7 @@ class UnfollowController extends Controller
             ->getForm();
 
         $user = $this->getUser();
-        if($user->getValidUntil() < date('now')){
+        if($user->getValidUntil()->getTimestamp() < time()){
             $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
             return $this->render('tasks/new_unfollow.html.twig', array(
                 'form' => $form->createView(),

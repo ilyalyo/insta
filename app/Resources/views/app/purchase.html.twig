@@ -69,7 +69,11 @@
             </div>
         </div>
     </div>
-    <p>Ваш аккаунт действителен до: {{ user.validUntil | date("H:00 d/m/Y", user.timezone) }}</p>
+    {% if (user.validUntil| date('U')) < ('now' | date('U')) %}
+        <p style="color: red;">Срок действия Вашего аккаунта истек</p>
+    {% else %}
+        <p>Ваш аккаунт действителен до: {{ user.validUntil | date("H:00 d/m/Y", user.timezone) }}</p>
+    {% endif %}
     <style>
         .box{
             width: 90%;

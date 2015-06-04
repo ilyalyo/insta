@@ -5,9 +5,9 @@
         <div class="col-xs-4">
             <div class="box">
                 <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
-                    <h2>К открытию 1 мес!</h2>
+                    <h2 class="payment-h2">К открытию 1 мес!</h2>
                     <img src="/img/rocket1.png">
-                    <p>Подписка на Pro версию за 799 р/мес</p>
+                    <p class="payment-p">Подписка на Pro версию за 799 р/мес</p>
                     <select class="payment-option" name="paymentType" >
                         <option value="AC">Банковской картой</option>
                         <option value="PC">Яндекс.Деньгами</option>
@@ -15,8 +15,8 @@
                     <input class="btn-purchase" type="submit" name="submit-button" value="Купить">
 
                     <input type="hidden" name="receiver" value="410013109261032">
-                    <input type="hidden" name="formcomment" value="Месячная подписка instastellar">
-                    <input type="hidden" name="short-dest" value="Месячная подписка instastellar">
+                    <input type="hidden" name="formcomment" value="Подписка instastellar 1 мес">
+                    <input type="hidden" name="short-dest" value="Подписка instastellar 1 мес">
                     <input type="hidden" name="quickpay-form" value="shop">
                     <input type="hidden" name="label" value="{{ user.id }}">
                     <input type="hidden" name="targets" value="instastellar">
@@ -27,9 +27,9 @@
         <div class="col-xs-4">
             <div class="box">
                 <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
-                <h2>Базовый 3 мес!</h2>
+                <h2 class="payment-h2">Базовый 3 мес!</h2>
                 <img src="/img/rocket2.png">
-                <p>Подписка на Pro версию за 1999 р/мес</p>
+                <p class="payment-p">Подписка на Pro версию за 1999 р/мес</p>
                 <select class="payment-option" name="paymentType" >
                     <option value="AC">Банковской картой</option>
                     <option value="PC">Яндекс.Деньгами</option>
@@ -37,8 +37,8 @@
                 <input class="btn-purchase" type="submit" name="submit-button" value="Купить">
 
                 <input type="hidden" name="receiver" value="410013109261032">
-                <input type="hidden" name="formcomment" value="Месячная подписка instastellar">
-                <input type="hidden" name="short-dest" value="Месячная подписка instastellar">
+                <input type="hidden" name="formcomment" value="Подписка instastellar 3 мес">
+                <input type="hidden" name="short-dest" value="Подписка instastellar 3 мес">
                 <input type="hidden" name="quickpay-form" value="shop">
                 <input type="hidden" name="label" value="{{ user.id }}">
                 <input type="hidden" name="targets" value="instastellar">
@@ -49,9 +49,9 @@
         <div class="col-xs-4">
             <div class="box">
                 <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
-                <h2>SMM-Pro 7 мес!</h2>
+                <h2 class="payment-h2">SMM-Pro 7 мес!</h2>
                 <img src="/img/rocket3.png">
-                <p>Подписка на Pro версию за 3999 р/мес</p>
+                <p class="payment-p">Подписка на Pro версию за 3999 р/мес</p>
                 <select class="payment-option" name="paymentType" >
                     <option value="AC">Банковской картой</option>
                     <option value="PC">Яндекс.Деньгами</option>
@@ -59,8 +59,8 @@
                 <input class="btn-purchase" type="submit" name="submit-button" value="Купить">
 
                 <input type="hidden" name="receiver" value="410013109261032">
-                <input type="hidden" name="formcomment" value="Месячная подписка instastellar">
-                <input type="hidden" name="short-dest" value="Месячная подписка instastellar">
+                <input type="hidden" name="formcomment" value="Подписка instastellar 7 мес">
+                <input type="hidden" name="short-dest" value="Подписка instastellar 7 мес">
                 <input type="hidden" name="quickpay-form" value="shop">
                 <input type="hidden" name="label" value="{{ user.id }}">
                 <input type="hidden" name="targets" value="instastellar">
@@ -69,6 +69,7 @@
             </div>
         </div>
     </div>
+    <p>Ваш аккаунт действителен до: {{ user.validUntil | date("H:00 d/m/Y", user.timezone) }}</p>
     <style>
         .box{
             width: 90%;
@@ -87,6 +88,13 @@
         .payment-option{
             color: black;
             margin-bottom: 5px;
+        }
+        .payment-h2{
+            padding-top: 15px;
+        }
+        .payment-p{
+            padding-left: 20px;
+            padding-right: 20px;
         }
     </style>
     <!--<iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/shop.xml?account=410013109261032&quickpay=shop&payment-type-choice=on&writer=seller&targets=%D0%9D%D0%B0+%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D1%82%D0%B8%D0%B5+%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%B0+Instastellar&targets-hint=&default-sum=100&button-text=01&successURL=instastellar.su" width="450" height="198"></iframe>

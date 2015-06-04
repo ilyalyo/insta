@@ -162,6 +162,14 @@ dima_bilan')
             ->getForm();
 
 
+        $user = $this->getUser();
+        if($user->getValidUntil()->getTimestamp() < time()){
+            $form->get('tmp_tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+            return $this->render('tasks/followByList.html.twig', array(
+                'form' => $form->createView(),
+            ));
+        }
+
         $em = $this->getDoctrine()->getManager();
         $running_task = $em->getRepository('TaskBundle:Tasks')->findBy(array(
             'account_id'=>$id,
@@ -188,7 +196,6 @@ dima_bilan')
                 ));
             }
 
-            $user = $this->getUser();
             $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
             if (!isset($account))
                 throw new NotFoundHttpException("Page not found");
@@ -281,6 +288,15 @@ dima_bilan')
             'status' => array(Tasks::RUNNING, Tasks::CREATED),
         ));
 
+        $user = $this->getUser();
+        if($user->getValidUntil() < date('now')){
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+            return $this->render('tasks/new.html.twig', array(
+                'form' => $form->createView(),
+                'label' => $label
+            ));
+        }
+
         if(count($running_task)>0){
             $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
             return $this->render('tasks/new.html.twig', array(
@@ -297,7 +313,6 @@ dima_bilan')
             $t=trim($r,"#");
             $task->setTags($t);
 
-            $user = $this->getUser();
             $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
             if (!isset($account))
                 throw new NotFoundHttpException("Page not found");

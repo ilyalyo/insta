@@ -35,6 +35,14 @@ class UnfollowController extends Controller
             ->add('count', 'text', array('label' => 'Количество'))
             ->getForm();
 
+        $user = $this->getUser();
+        if($user->getValidUntil() < date('now')){
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+            return $this->render('tasks/new_unfollow.html.twig', array(
+                'form' => $form->createView(),
+            ));
+        }
+
         $running_task = $em->getRepository('TaskBundle:Tasks')->findBy(array(
             'account_id'=>$id,
             'status' => array(Tasks::RUNNING, Tasks::CREATED),
@@ -51,6 +59,9 @@ class UnfollowController extends Controller
 
         if ($form->isValid()) {
 
+            $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
+            if (!isset($account))
+                throw new NotFoundHttpException("Page not found");
             $task->setAccountId($account);
             $task->setStatus(Tasks::CREATED);
             $task->setTags('');

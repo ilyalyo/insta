@@ -73,7 +73,7 @@ class CasperAjaxController extends Controller
             $this->addProvider($account,'extragram');
             $this->addProvider($account,'stapico ');
             $this->addProvider($account,'collecto');
-            $this->addProvider($account,'test socialhammer app');
+            $this->addProvider($account,'test-socialhammer-app');
 
             return $this->redirectToRoute('accounts');
         }

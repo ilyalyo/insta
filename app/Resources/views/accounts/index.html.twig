@@ -20,10 +20,26 @@
                 .done(function( msg ) {
                     for (var k in msg){
                         if (msg.hasOwnProperty(k)) {
-                            $('#prgrs0'+msg[k]['id']).text(msg[k]['done'] + '/' + msg[k]['shouldbedone']);
-                            $('#prgrs1'+msg[k]['id']).text(msg[k]['done'] + '/' + msg[k]['shouldbedone']);
-                            $('#prgrs0'+msg[k]['id']).css('width',msg[k]['done']/msg[k]['shouldbedone']*100 + '%');
-                            $('#prgrs1'+msg[k]['id']).css('width',msg[k]['done']/msg[k]['shouldbedone']*100 + '%');
+                            var text = msg[k]['done'] + '/' + msg[k]['shouldbedone'];
+                            var proc = msg[k]['done']/msg[k]['shouldbedone']*100 + '%';
+                            $('#prgrs0'+msg[k]['id']).text(text);
+                            $('#prgrs1'+msg[k]['id']).text(text);
+                            $('#prgrs0'+msg[k]['id']).css('width', proc);
+                            $('#prgrs1'+msg[k]['id']).css('width', proc);
+                            $('#prgrs01').parent().prop('title',text)
+                            if(msg[k]['status']==1){
+                                $('#prgrs0'+msg[k]['id']).addClass('progress-bar-success');
+                                $('#prgrs1'+msg[k]['id']).addClass('progress-bar-success');
+                                $('#status'+msg[k]['id']).text('Завершено');
+                            }
+                            else if(msg[k]['status']==4 || msg[k]['status']==3 ){
+                                $('#prgrs0'+msg[k]['id']).addClass('progress-bar-danger');
+                                $('#prgrs1'+msg[k]['id']).addClass('progress-bar-danger');
+                                if(msg[k]['status']==3)
+                                    $('#status'+msg[k]['id']).text('Прервана');
+                                else
+                                    $('#status'+msg[k]['id']).text('Ошибка');
+                            }
                         }
                     }
                 });
@@ -131,8 +147,8 @@
               {% if account.tasks | length >0 %}
                   <div class="row">
                       <div class="col-xs-12">
-                          <div class="progress" style="margin-bottom: 0px; height: 4px" title="{{ ((account.tasks | last).actions | length)}}/ {{ ((account.tasks | last).count) }}">
-                              <div class="progress-bar progress-bar-success" id="prgrs0{{ account.id }}" role="progressbar" style="width:{{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
+                          <div class="progress" style="margin-bottom: 0px; height: 4px" title="{{ ((account.tasks | last).actions | length)}}/{{ ((account.tasks | last).count) }}">
+                              <div class="progress-bar" id="prgrs0{{ account.id }}" role="progressbar" style="width:{{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
                               </div>
                           </div>
                       </div>
@@ -164,17 +180,19 @@
                                     <div class="col-xs-1"></div>
                                     <div class="col-xs-4">
                                         <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
+                                        <p id="status{{ account.id }}">
                                         {% if (account.tasks | last).status == 1 %}
-                                            <p><span class="label label-success"></span>Завершено</p>
+                                            Завершено
                                         {% elseif (account.tasks | last).status == 2 %}
-                                            <p><span class="label label-primary"></span>Выполняется</p>
+                                            Выполняется
                                         {% elseif (account.tasks | last).status == 3 %}
-                                            <p><span class="label label-warning"></span>Прервана</p>
+                                            Прервана
                                         {% elseif (account.tasks | last).status == 4 %}
-                                            <p><span class="label label-danger"></span>Ошибка</p>
+                                            Ошибка
                                         {% elseif (account.tasks | last).status == 0 %}
-                                            <p id="time{{ account.id }}"><span class="label label-default "></span>До начала задачи ~{{ ("now"|date_modify("+10 minutes")|date("U") - (account.tasks | last).createdAt|date('U')) |date('i:s') }}</p>
+                                            До начала задачи ~{{ ("now"|date_modify("+10 minutes")|date("U") - (account.tasks | last).createdAt|date('U')) |date('i:s') }}
                                         {% endif %}
+                                        </p>
                                     </div>
                                     <div class="col-xs-4">
                                         <h3><span class="glyphicon glyphicon-file"></span>  Тип задания:</h3>
@@ -215,8 +233,8 @@
                                 <div class="col-xs-10">
                                     <h3>Прогресс:</h3>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success" id="prgrs1{{ account.id }}" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
-                                            {{ ((account.tasks | last).actions | length)}}/ {{ ((account.tasks | last).count) }}
+                                        <div class="progress-bar" id="prgrs1{{ account.id }}" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
+                                            {{ ((account.tasks | last).actions | length)}}/{{ ((account.tasks | last).count) }}
                                         </div>
                                     </div>
                                 </div>

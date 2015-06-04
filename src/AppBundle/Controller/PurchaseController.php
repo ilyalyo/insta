@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Accounts;
-use Proxies\__CG__\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -56,7 +55,9 @@ class PurchaseController extends Controller
             if(sha1($str) == $sha1){
                 $date = $user->getValidUntil();
                 if($date->getTimestamp() < time())
-                    $date= new \DateTime();
+                    $date = new \DateTime();
+                else
+                    $date = new \DateTime($date->format('Y-m-d'));
                 switch ($withdraw_amount){
                     case 1.00:
                         $date->add(new \DateInterval('P1M'));
@@ -69,7 +70,7 @@ class PurchaseController extends Controller
                         break;
                 }
                 $user->setValidUntil($date);
-                $this->get('fos_user.user_manager')->updateUser($user, false);
+                $em->persist($user);
                 $em->flush();
                 return new JsonResponse('200 OK');
             }

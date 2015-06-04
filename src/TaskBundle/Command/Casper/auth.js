@@ -7,10 +7,9 @@ var id=casper.cli.get(2).toString();
 
 var auth_url='https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78b125602b90989cc&response_type=code&scope=likes+comments+relationships&redirect_uri=http://instastellar.su/get_token?account_id=' + id;
 var auth_url2='https://instagram.com/oauth/authorize/?client_id=c02d1c473e53485d946a1c44d3daf8d2&redirect_uri=http://extragr.am/sessions/callback&response_type=code&scope=comments+likes+relationships';
-var auth_url3='https://accounts.crowdfireapp.com/auth/instagram';
-    //'https://instagram.com/oauth/authorize?client_id=d9494686198d4dfeb954979a3e270e5e&redirect_uri=http%3A%2F%2Ficonosquare.com&response_type=code&scope=likes+comments+relationships';
-var auth_url4='https://instagram.com/oauth/authorize?client_id=67be0e2777b94bc9bdacf4e2680d77d4&response_type=code&redirect_uri=http%3A%2F%2Flogingram.com%2Findex.php&scope=likes+comments+relationships';
-var auth_url5='https://instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes';
+var auth_url3='https://instagram.com/oauth/authorize/?client_id=e77306665eb54866ae0a8185c4028604&redirect_uri=http://stapico.ru/accounts/auth/complete&response_type=code&scope=likes+comments+relationships';
+var auth_url4='https://instagram.com/oauth/authorize/?client_id=2b5a0c10371c4784935b03e5619e94ca&redirect_uri=http://collec.to/login&response_type=code&scope=likes+comments+relationships&display=touch';
+var auth_url5='https://instagram.com/oauth/authorize?response_type=code&client_id=0be8de7ce4924f69ae3f9b4c8c35acd6&redirect_uri=http%3A%2F%2Fwww.latergram.me%2Fusers%2Fauth%2Finstagram%2Fcallback&state=5eb7d79a7e76eb504d9f1cb82e79d8146e9ee8120d52ba41&scope=relationships+comments+likes';
 
 var url="";
 
@@ -21,10 +20,10 @@ switch (client){
     case 'extragram':
         url = auth_url2;
         break;
-    case 'crowdfire':
+    case 'stapico':
         url = auth_url3;
         break;
-    case 'webstagram':
+    case 'collecto':
         url = auth_url4;
         break;
     default:

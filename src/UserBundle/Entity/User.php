@@ -25,6 +25,9 @@ class User extends BaseUser
         $this->maxAccounts = 2;
         $this->timezone = 'Europe/Moscow';
         $this->createdAt = new \DateTime();
+        $date = new \DateTime();
+        $date->add(new \DateInterval('P3D'));
+        $this->validUntil = $date;
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
@@ -40,6 +43,11 @@ class User extends BaseUser
      * @ORM\Column(type="datetime")
      */
     protected $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $validUntil;
 
     /**
      * @ORM\Column(type="string", length=50,nullable = TRUE)
@@ -156,5 +164,28 @@ class User extends BaseUser
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set validUntil
+     *
+     * @param \DateTime $validUntil
+     * @return User
+     */
+    public function setValidUntil($validUntil)
+    {
+        $this->validUntil = $validUntil;
+
+        return $this;
+    }
+
+    /**
+     * Get validUntil
+     *
+     * @return \DateTime 
+     */
+    public function getValidUntil()
+    {
+        return $this->validUntil;
     }
 }

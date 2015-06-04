@@ -193,8 +193,6 @@ dima_bilan')
             if (!isset($account))
                 throw new NotFoundHttpException("Page not found");
 
-
-
             $task->setCount(count($exp_ids));
             $task->setAccountId($account);
             $task->setStatus(Tasks::CREATED);

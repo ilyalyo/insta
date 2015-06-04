@@ -19,14 +19,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/purchase", name="purchase")
-     */
-    public function purchaseAction()
-    {
-        return $this->render('app/purchase.html.twig');
-    }
-
-    /**
      * @Route("/info", name="info")
      */
     public function infoAction()

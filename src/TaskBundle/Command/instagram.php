@@ -300,7 +300,7 @@ class Instagram
         $output = trim($output);
         $this->debug($token['client']);
         $this->debug($output);
-        if( isset($output) && $output != $token['token']){
+        if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== false && $output != $token['token']){
             $this->debug('success update');
             $this->TOKEN_ARRAY[$index]['token']=$output;
             $token_id=$token['id'];

@@ -32,7 +32,6 @@ class PurchaseController extends Controller
         $params['notification_type'] = $request->get('notification_type');
         $params['operation_id']  = $request->get('operation_id');
         $params['amount']  = $request->get('amount');
-        //$params['withdraw_amount'] = $request->get('withdraw_amount');
         $params['currency'] = $request->get('currency');
         $params['datetime'] = $request->get('datetime');
         $params['sender']= $request->get('sender');
@@ -50,8 +49,7 @@ class PurchaseController extends Controller
         $errors->setMessage( $str . '&' . $sha1);
         $em->persist($errors);
         $em->flush();
-        //p2p-incomingtest-notification&456.25643&2015-06-04T17:09:47Z41001000040falsenzyqKS9YdRwGoNZ+OrFfQh0D|c925797120f62f3ac09137881d00ef1c1db79636
-//|c925797120f62f3ac09137881d00ef1c1db79636
+        //p2p-incoming&test-notification&441.94&643&2015-06-04T17:50:38Z&41001000040&false&nzyqKS9YdRwGoNZ+OrFfQh0D&&ddfbb4d4716ba9c5f6142c92b5adec7c5f813d16
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
             if(sha1($str) == $sha1){

@@ -41,18 +41,23 @@ class PurchaseController extends Controller
         $params['notification_secret'] = 'nzyqKS9YdRwGoNZ+OrFfQh0D';
         $sha1 = $request->get('sha1_hash');
 
-
-
         $em = $this->getDoctrine()->getManager();
+        $errors = new Errors();
+        $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+        $errors = new Errors();
+        $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+        $errors->setTaskId($task);
+        $errors->setMessage(implode($params) . '|' . $sha1);
+        $em->persist($errors);
+        $em->flush();
+
+
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
             $str="";
             foreach($params as $k => $v){
                 $str += $v;
             }
-
-            $errors = new Errors();
-            $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
 
             $errors->setTaskId($task);
             $errors->setMessage($str);

@@ -52,7 +52,7 @@ class PurchaseController extends Controller
             }
 
             $errors = new Errors();
-            $task = $em->getRepository('TaskBundle:Tasks')->find(81);
+            $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
 
             $errors->setTaskId($task);
             $errors->setMessage($str);

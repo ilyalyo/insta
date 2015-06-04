@@ -29,6 +29,7 @@ class PurchaseController extends Controller
     public function purchaseSuccessAction(Request $request)
     {
         $params=[];
+        $withdraw_amount = $request->get('withdraw_amount');
         $params['notification_type'] = $request->get('notification_type');
         $params['operation_id']  = $request->get('operation_id');
         $params['amount']  = $request->get('amount');
@@ -56,7 +57,7 @@ class PurchaseController extends Controller
                 $date = $user->getValidUntil();
                 if($date->getTimestamp() < time())
                     $date= new \DateTime();
-                switch ($params['amount']){
+                switch ($withdraw_amount){
                     case 1:
                         $date->add(new \DateInterval('P1M'));
                         break;

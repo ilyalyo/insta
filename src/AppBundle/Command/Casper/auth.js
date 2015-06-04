@@ -8,7 +8,7 @@ var auth_url='https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78
 var auth_url2='https://instagram.com/oauth/authorize/?client_id=c02d1c473e53485d946a1c44d3daf8d2&redirect_uri=http://extragr.am/sessions/callback&response_type=code&scope=comments+likes+relationships';
 var auth_url3='https://instagram.com/oauth/authorize/?client_id=e77306665eb54866ae0a8185c4028604&redirect_uri=http://stapico.ru/accounts/auth/complete&response_type=code&scope=likes+comments+relationships';
 var auth_url4='https://instagram.com/oauth/authorize/?client_id=2b5a0c10371c4784935b03e5619e94ca&redirect_uri=http://collec.to/login&response_type=code&scope=likes+comments+relationships&display=touch';
-var auth_url5='https://instagram.com/oauth/authorize?response_type=code&client_id=0be8de7ce4924f69ae3f9b4c8c35acd6&redirect_uri=http%3A%2F%2Fwww.latergram.me%2Fusers%2Fauth%2Finstagram%2Fcallback&state=5eb7d79a7e76eb504d9f1cb82e79d8146e9ee8120d52ba41&scope=relationships+comments+likes';
+var auth_url5='https://instagram.com/oauth/authorize?client_id=6976c26a83f44047b339578982f7eb30&redirect_uri=http%3A%2F%2Fsocialhammer.com%2Fajax.php%3Fdo%3Dinstagram_callback%26accsID%3D22725%26apiID%3D2%26groupID%3D-1&scope=basic+comments+likes+relationships&response_type=code';
 
 casper.start().thenOpen(auth_url, function() {
     this.wait(2000, function() {

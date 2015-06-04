@@ -26,7 +26,7 @@
                             $('#prgrs1'+msg[k]['id']).text(text);
                             $('#prgrs0'+msg[k]['id']).css('width', proc);
                             $('#prgrs1'+msg[k]['id']).css('width', proc);
-                            $('#prgrs01').parent().prop('title',text)
+                            $('#prgrs0'+msg[k]['id']).parent().prop('title',text)
                             if(msg[k]['status']==1){
                                 $('#prgrs0'+msg[k]['id']).addClass('progress-bar-success');
                                 $('#prgrs1'+msg[k]['id']).addClass('progress-bar-success');

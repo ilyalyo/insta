@@ -25,6 +25,10 @@
                     <label for="password">Пароль:</label>
                     <input class="form-control" type="password" id="password" name="_password" required="required" />
                 </div>
+                <div style="padding-top: 15px;">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">Запомнить меня</label>
+                </div>
                 <input style="margin-top: 15px;" class="btn btn-success" type="submit" id="_submit" name="_submit" value="Войти" />
             </form>
             <a href="{{ path('fos_user_registration_register') }}">Регистрация</a>

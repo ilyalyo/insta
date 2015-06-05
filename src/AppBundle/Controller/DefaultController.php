@@ -47,23 +47,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/settings", name="settings")
-     */
-    public  function setTimezone()
-    {
-        $form = $this->createFormBuilder()
-            ->add('states', 'timezone', array(
-                'preferred_choices' => array('Europe/Moscow', 'Europe/Kiev'),
-            ))
-            ->getForm();
-
-
-        return $this->render('settings/index.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * @Route("/account/add", name="add_account")
      */
     public function addAction()

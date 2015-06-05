@@ -8,6 +8,7 @@
         </div>
     <div class="modal-body">
         <form class="form-horizontal text-center" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+            {{ form_start(form) }}
             <div style="padding-top: 15px;">
                 {{ form_errors(form.email) }}
                 <label for="email">Email:</label>

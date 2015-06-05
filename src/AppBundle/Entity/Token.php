@@ -21,7 +21,7 @@ class Token
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Accounts")
-     * @ORM\JoinColumn(name="account", referencedColumnName="id")
+     * @ORM\JoinColumn(name="account", referencedColumnName="id",onDelete="CASCADE")
      */
     protected $account;
 

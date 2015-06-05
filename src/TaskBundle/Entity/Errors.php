@@ -20,7 +20,7 @@ class Errors
 
     /**
      * @ORM\ManyToOne(targetEntity="TaskBundle\Entity\Tasks")
-     * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="task_id", referencedColumnName="id",onDelete="CASCADE")
      */
     protected $task_id;
 

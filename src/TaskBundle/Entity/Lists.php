@@ -21,7 +21,7 @@ class Lists
 
     /**
      * @ORM\OneToOne(targetEntity="TaskBundle\Entity\Tasks")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id",onDelete="CASCADE")
      */
     protected $task;
 

@@ -1,0 +1,23 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+
+
+<div class="modal-dialog" style="padding-top: 100px;
+  max-width: 400px;">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h1>Восстановление аккаунта</h1>
+        </div>
+        <div class="modal-body">
+            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+                {{ form_widget(form) }}
+            <div>
+                <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+            </div>
+        </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

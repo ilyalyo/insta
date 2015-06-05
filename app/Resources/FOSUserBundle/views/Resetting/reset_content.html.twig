@@ -10,6 +10,7 @@
         </div>
         <div class="modal-body">
             <form class="form-horizontal text-center"  action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+                {{ form_start(form) }}
                 <div style="padding-top: 15px;">
                     {{ form_errors(form.plainPassword.first) }}
                     <label for="email">Новый пароль:</label>
@@ -20,8 +21,11 @@
                     <label for="email">Повторите пароль:</label>
                     {{ form_widget(form.plainPassword.second) }}
                 </div>
-            <div>
+
+                {{ form_errors(form) }}
                 <input style="margin-top: 15px;" class="btn btn-success"  type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+                {{ form_end(form) }}
+                <div>
             </div>
         </form>
         </div>

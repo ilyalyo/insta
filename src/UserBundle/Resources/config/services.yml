@@ -1,4 +1,6 @@
 services:
-#    user.example:
-#        class: UserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+  acme_user.password_resetting:
+      class: UserBundle\EventListener\PasswordResettingListener
+      arguments: [ @router ]
+      tags:
+          - { name: kernel.event_subscriber }

@@ -24,122 +24,6 @@ use TaskBundle\Form\Type\FollowByTagsType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/tasks/add/followById/{id}", name="followById")
-     */
-    public function followByIdAction(Request $request,$id)
-    {
-        $task = new Tasks();
-        $task->setType(0);
-        $form = $this->createFormBuilder($task)
-            ->add('count', 'text',array('label' => 'Количество'))
-            ->add('tags', 'text',array('label' => 'ID'))
-            ->add('speed', 'choice', array(
-                'choices' => array(
-                    '0'   => '20-30 с',
-                    '1' => '30-45 с',
-                    '2'   => '1-1.5 мин',
-                ),
-                'label' => 'Скорость',
-                'multiple' => false,
-            ))
-            ->getForm();
-        $em = $this->getDoctrine()->getManager();
-        $running_task = $em->getRepository('TaskBundle:Tasks')->findBy(array(
-            'account_id'=>$id,
-            'status' => array(Tasks::RUNNING, Tasks::CREATED),
-        ));
-
-        if($running_task > 0){
-            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
-            return $this->render('tasks/followById.html.twig', array(
-                'form' => $form->createView(),
-            ));
-        }
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-
-            $user = $this->getUser();
-            $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
-            if (!isset($account))
-                throw new NotFoundHttpException("Page not found");
-
-            $task->setAccountId($account);
-            $task->setStatus(Tasks::CREATED);
-            $em = $this->getDoctrine()->getManager();
-            $task->onPrePersist();
-            $em->persist($task);
-            $em->flush();
-
-            $command = new WriteCommand();
-            $command->setContainer($this->container);
-            $input = new ArrayInput(array('id' => $task->getId()));
-            $output = new NullOutput();
-            $command->run($input, $output);
-
-            $this->addFlash(
-                'notice',
-                'Задача создана!'
-            );
-
-            return  $this->redirectToRoute('accounts');
-        }
-        return $this->render('tasks/followById.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-    }
-
-    /**
-     * @Route("/tasks/add/followByTags/{id}", name="followByTags")
-     */
-    public function followByTagsAction(Request $request,$id)
-    {
-        $task = new Tasks();
-        $task->setType(10);
-        $form = $this->createFormBuilder($task)
-            ->add('count', 'text', array('label' => 'Количество'))
-            ->add('tags', 'textarea', array(
-                'label' => 'Тэги',
-                'attr' => array('placeholder'=>'#sun#love#peace')))
-            ->add('speed', 'choice', array(
-                'choices' => array(
-                    '0'   => '20-30с',
-                    '1' => '30-45с',
-                    '2'   => '1м-1.5м',
-                ),
-                'label' => 'Скорость',
-                'multiple' => false,
-            ))
-            ->getForm();
-    }
-
-    /**
-     * @Route("/tasks/add/likeByTags/{id}", name="likeByTags")
-     */
-    public function likeByTagsAction(Request $request,$id)
-    {
-        $task = new Tasks();
-        $task->setType(11);
-        $form = $this->createFormBuilder($task)
-            ->add('count', 'text', array('label' => 'Количество'))
-            ->add('tags', 'textarea', array(
-                'label' => 'Тэги',
-                'attr' => array('placeholder'=>'#sun#love#peace')))
-            ->add('speed', 'choice', array(
-                'choices' => array(
-                    '0'   => '20-30с',
-                    '1' => '30-45с',
-                    '2'   => '1м-1.5м',
-                ),
-                'label' => 'Скорость',
-                'multiple' => false,
-            ))
-            ->getForm();
-    }
-
-    /**
      * @Route("/tasks/add/followByList/{id}", name="followByList")
      */
     public function followByListAction(Request $request, $id)
@@ -172,6 +56,7 @@ class DefaultController extends Controller
                 $form->get('tags')->addError(new FormError('В списке должно быть Не более 500 ID'));
                 return $this->render('tasks/followByList.html.twig', array(
                     'form' => $form->createView(),
+                    'account' =>$account
                 ));
             }
 
@@ -200,6 +85,7 @@ class DefaultController extends Controller
 
         return $this->render('tasks/followByList.html.twig', array(
             'form' => $form->createView(),
+            'account' =>$account
         ));
     }
 
@@ -263,7 +149,8 @@ class DefaultController extends Controller
 
         return $this->render('tasks/new.html.twig', array(
             'form' => $form->createView(),
-            'label' => $label
+            'account' =>$account
+
         ));
     }
 

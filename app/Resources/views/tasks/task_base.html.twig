@@ -7,6 +7,10 @@
     <button id="u_btn" type="button" class="btn btn-default">Отписка</button>
 </div>
 -->
+    <h1 class="pull-right">
+        <img src="{{ account.picture }}" style="width: 40px;height: 40px;">
+        {{ account.username }}
+    </h1>
     {% block task_body %}{% endblock %}
     <style>
         .btn-primary{

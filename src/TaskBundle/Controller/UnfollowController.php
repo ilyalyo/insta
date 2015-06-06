@@ -40,6 +40,8 @@ class UnfollowController extends Controller
             $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
             return $this->render('tasks/unfollow.html.twig', array(
                 'form' => $form->createView(),
+                'account' =>$account
+
             ));
         }
 
@@ -52,6 +54,8 @@ class UnfollowController extends Controller
             $form->get('count')->addError(new FormError('У вас уже есть работающая задача'));
             return $this->render('tasks/unfollow.html.twig', array(
                 'form' => $form->createView(),
+                'account' =>$account
+
             ));
         }
 
@@ -85,6 +89,8 @@ class UnfollowController extends Controller
 
         return $this->render('tasks/unfollow.html.twig', array(
             'form' => $form->createView(),
+            'account' =>$account
+
         ));
     }
 }

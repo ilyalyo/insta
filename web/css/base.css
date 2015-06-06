@@ -142,3 +142,6 @@ color: #ffffff;
     background-color: #f0f0f0;
     margin: 10px;
 }
+.left-menu > li.active{
+    background-color: rgba(189, 189, 189, 0.56);
+}

@@ -188,4 +188,8 @@ class User extends BaseUser
     {
         return $this->validUntil;
     }
+
+    public function isExpired(){
+        return $this->validUntil->getTimestamp() < time();
+    }
 }

@@ -1,0 +1,24 @@
+{% extends 'tasks/task_base.html.twig' %}
+{% block task_body %}
+    {% set type =  app.request.get('type') %}
+    {% if type != 11 %}
+        <h1>Добавление задачи  на фоловинг</h1>
+        <ul class="nav nav-tabs" style="padding-top: 30px;">
+            <li class="f f_0" role="presentation"><a href="{{ path('add_tasks',{ 'type': 0, 'id':  app.request.get('id') }) }}">По ID</a></li>
+            <li class="f f_10" role="presentation"><a href="{{ path('add_tasks',{ 'type': 10, 'id':  app.request.get('id') }) }}">По тэгам</a></li>
+            <li class="f f_20" role="presentation"><a href="{{ path('followByList',{ 'id':  app.request.get('id') }) }}">По списку</a></li>
+        </ul>
+        {% else %}
+            <h1>Добавление задачи  на лайкинг</h1>
+            <hr>
+    {% endif %}
+    {% block task %}{% endblock %}
+    <script>
+        {% if type is not null  %}
+            $(".f_{{ type }}").addClass('active');
+        {% else %}
+            $(".f_20").addClass('active');
+        {% endif %}
+    </script>
+
+{% endblock %}

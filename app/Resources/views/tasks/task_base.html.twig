@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
-<h1>Добавление задачи</h1>
+<!--
 <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default">Фоловинг</button>
-    <button type="button" class="btn btn-default">Лайкинг</button>
-    <button type="button" class="btn btn-default">Отписка</button>
+    <button id="f_btn" type="button" class="btn btn-default">Фоловинг</button>
+    <button id="l_btn" type="button" class="btn btn-default">Лайкинг</button>
+    <button id="u_btn" type="button" class="btn btn-default">Отписка</button>
 </div>
+-->
     {% block task_body %}{% endblock %}
+    <style>
+        .btn-primary{
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+    </style>
 {% endblock %}

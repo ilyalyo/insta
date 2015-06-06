@@ -9,7 +9,7 @@ class LikeByTagsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('count', 'text', array('label' => 'Количество'))
+            ->add('count', 'text', array('label' => 'Количество', 'attr' => array('placeholder'=>'100')))
             ->add('tags', 'textarea', array(
                 'label' => 'Тэги',
                 'attr' => array('placeholder'=>'#sun#love#peace')))

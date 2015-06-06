@@ -1,0 +1,22 @@
+{% extends 'tasks/task_base.html.twig' %}
+
+{% block task_body %}
+    <h1>Добавление задачи  на лайкинг</h1>
+    <hr>
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-md-6 col-md-offset-1">
+            {{ form_start(form) }}
+            {{ form_row(form.tags) }}
+            {{ form_row(form.count) }}
+            {{ form_row(form.speed) }}
+            <button class="btn btn-primary pull-right">Добавить</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <style>
+        .modal-error{
+            margin-bottom: 0px;
+            color: red;
+        }
+    </style>
+{% endblock %}

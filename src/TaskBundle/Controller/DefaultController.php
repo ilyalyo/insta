@@ -235,11 +235,11 @@ class DefaultController extends Controller
             throw new NotFoundHttpException("Page not found");
 
         if($user->isExpired())
-            $form->get('tmp_tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
 
         $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
         if(count($running_task) > 0)
-            $form->get('tmp_tags')->addError(new FormError('У вас уже есть работающая задача'));
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
 
         if ($form->isValid()) {
 
@@ -275,6 +275,10 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
         $task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array('id' => $id));
         $task->setStatus(3);
         $em->persist($task);

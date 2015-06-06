@@ -9,7 +9,7 @@ class FollowByIdType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('count', 'text',array('label' => 'Количество'))
+            ->add('count', 'text',array('label' => 'Количество', 'attr' => array('placeholder'=>'100')))
             ->add('tags', 'text',array('label' => 'ID'))
             ->add('speed', 'choice', array(
                 'choices' => array(

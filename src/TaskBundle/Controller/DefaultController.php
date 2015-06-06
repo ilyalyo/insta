@@ -49,7 +49,7 @@ class DefaultController extends Controller
             'status' => array(Tasks::RUNNING, Tasks::CREATED),
         ));
 
-        if(count($running_task)>0){
+        if($running_task > 0){
             $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
             return $this->render('tasks/followById.html.twig', array(
                 'form' => $form->createView(),
@@ -160,7 +160,7 @@ class DefaultController extends Controller
             $form->get('tmp_tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
 
         $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
-        if(count($running_task) > 0)
+        if($running_task > 0)
             $form->get('tmp_tags')->addError(new FormError('У вас уже есть работающая задача'));
 
         if ($form->isValid()) {
@@ -238,7 +238,7 @@ class DefaultController extends Controller
             $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
 
         $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
-        if(count($running_task) > 0)
+        if($running_task > 0)
             $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
 
         if ($form->isValid()) {

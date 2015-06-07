@@ -15,7 +15,6 @@ class AnalyticController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $chart='';
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
@@ -23,51 +22,32 @@ class AnalyticController extends Controller
         );
         $id = $request->get('id');
 
-        if(isset($id)){
+        if(!isset($id) && isset($accounts)  && isset($accounts[0]))
+            $id = $accounts[0]->getId();
+
             $history = $em->getRepository('AppBundle:History')->findBy(array(
                 'account_id' => $id));
 
             $n = 0;
             $count = count($history);
-            $followedBy=array();
-            $followers=array();
-            $d=array();
-            foreach($history as $h){
+            $followedBy = array();
+            $followers = array();
+            foreach ($history as $h) {
                 $date = gmdate("d/m/Y H:00 ", time() - (($count - $n++) * 3600));
-                $followedBy[]=  array($date, $h->getFollowedBy());
-                $followers[]=   array($date,$h->getFollows());
-                $d[]=   $date;
+                $dates[] = $date;
+                $followedBy[] = $h->getFollowedBy();
+                $followers[] =$h->getFollows();
             }
 
-            $series = array(
-                array("name" => "Подписчики",    "data" => $followedBy),
-                array("name" => "Вы подписаны",    "data" => $followers)
-            );
-           // pointInterval: 24 * 3600 * 1000,
-         //   pointStart: Date.UTC(2006, 0, 1)
-
-            $ob = new Highchart();
-            $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
-            $ob->chart->type('spline');
-            $ob->chart->zoomType('x');
-            $ob->title->text('Аналитика');
-            $ob->xAxis->title(array('text'  => "Время"));
-            $ob->yAxis->title(array('text'  => "Количество"));
-
-            $ob->xAxis->type('datetime');
-            $ob->xAxis->dateTimeLabelFormats(array('month' => '%e. %b', ' year' => '%b' ));
-            $ob->series($series);
-            $ob->xAxis->categories($d);
-            $ob->xAxis->tickInterval(24);
-
-        }
-
+        $local = $user->getTimezone();
         return $this->render(
-            'app/index.html.twig',
-            [
-                'accounts' => $accounts,
-                'chart' => isset($ob) ? $ob : null
-            ]
-        );
+        'analytic/analytic.html.twig',
+        [
+            'accounts' => $accounts,
+            'followedBy' => $followedBy,
+            'followers' => $followers,
+            'date' => (time() - ($count)* 3600 + (new \DateTimeZone($local))->getOffset(new \DateTime())) * 1000
+        ]
+    );
     }
 }

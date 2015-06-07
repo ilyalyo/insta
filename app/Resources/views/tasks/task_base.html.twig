@@ -7,11 +7,20 @@
     <button id="u_btn" type="button" class="btn btn-default">Отписка</button>
 </div>
 -->
-    <h1 class="pull-right">
-        <img src="{{ account.picture }}" style="width: 40px;height: 40px;">
-        {{ account.username }}
-    </h1>
+    <div class="pull-right">
+        <h1>
+            <img src="{{ account.picture }}" style="width: 40px;height: 40px;">
+            {{ account.username }}
+        </h1>
+        <div class="btn-group pull-right">
+            <a href="{{ path("add_tasks", {'id' :account.id, 'type' : 0 })}}" type="button" class="btn btn-default" title="Добавление задачи по ID"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{{ path('add_tasks', {'id': account.id, 'type' : 11 }) }}" type="button" class="btn btn-default" title="Лайкинг по тэгам"><span class="glyphicon glyphicon-heart"></span></a>
+            <a href="{{ path('unfollow',  {'id': account.id }) }}" type="button" class="btn btn-default" title="Отписка"><span class="glyphicon glyphicon-minus"></span></a>
+        </div>
+    </div>
+
     {% block task_body %}{% endblock %}
+
     <style>
         .btn-primary{
             margin-top: 20px;

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <script src="//code.highcharts.com/4.0.1/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.0.1/modules/exporting.js"></script>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>Аналитика</h1>
+            <div id="container" style="padding-top: 30px"></div>
+            <p style="display: inline;">Разница: </p><p id="points_diff" style="display: inline;"></p>
+            <form action="{{ path('analytic') }}" method="get" style="padding-top: 40px">
+                <select name="id">
+                    {% for account in accounts %}
+                        {% if account.id == app.request.get('id') %}
+                                <option value="{{ account.id }}" selected >{{ account.username }}</option>
+                            {% else %}
+                                <option value="{{ account.id }}">{{ account.username }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <button type="submit">Посмотреть</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var q1 = 0;
+        $(function () {
+            $('#container').highcharts({
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                plotOptions: {
+                    series: {
+                        cursor: 'Dot',
+                        pointStart: {{ date }},
+                        pointInterval: 3600 * 1000,
+                        allowPointSelect: true,
+                        point: {
+                            events: {
+                                click: function () {
+                                    var chart = $('#container').highcharts(),
+                                            selectedPoints = chart.getSelectedPoints();
+                                    console.log(1);
+                                    if( selectedPoints.length>0)
+                                        $('#points_diff').text(this.y-q1);
+                                    q1=this.y;
+
+                                }
+                            }
+                        }
+                    }
+
+                },
+
+                series: [
+                    {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                    name: 'Ваши подписчики',
+                    data: [{{ followedBy | join(', ') }}]
+                }, {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                    name: 'Вы подписаны',
+                    data: [{{ followers | join(', ') }}]
+                }]
+            });
+        });
+    </script>
+{% endblock %}

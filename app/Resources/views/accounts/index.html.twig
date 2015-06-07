@@ -43,7 +43,7 @@
                             }
                             else if(msg[k]['status']==0){
                                 var p_proc = msg[k]['parsingStatus']/msg[k]['shouldbedone']*100 + '%';
-                                $('#status'+msg[k]['id']).text('Парсинг задачи ' + p_proc);
+                                $('#status'+msg[k]['id']).text('Парсинг списка ' + p_proc);
                             }
                         }
                     }
@@ -168,7 +168,7 @@
                                         {% elseif (account.tasks | last).status == 4 %}
                                             Ошибка
                                         {% elseif (account.tasks | last).status == 0 %}
-                                            Парсинг задачи 
+                                            Парсинг списка {{ (account.tasks | last).parsingStatus / (account.tasks | last).count * 100 }}%
                                         {% endif %}
                                         </p>
                                     </div>

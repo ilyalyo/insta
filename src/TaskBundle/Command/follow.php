@@ -4,6 +4,7 @@ function follow_by_username(){
     global $task;
     var_dump('start searching');
     $users = $inst->get_followers($task['tags'], $task['count'] );
+    $inst->set_task_status(2);
     $errors = 0;
     foreach ($users as $user)
     {
@@ -36,6 +37,8 @@ function follow_by_tags(){
     global $task;
 
     $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
+    $inst->set_task_status(2);
+
     $errors = 0;
     foreach ($users as $user)
     {
@@ -69,6 +72,8 @@ function follow_by_list(){
     global $task;
 
     $users = $inst->get_followers_by_list();
+    $inst->set_task_status(2);
+
     $errors = 0;
     foreach ($users as $user)
     {
@@ -101,6 +106,8 @@ function liking_by_tags(){
     global $task;
 
     $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
+    $inst->set_task_status(2);
+
     $errors = 0;
     foreach ($users as $user)
     {
@@ -132,6 +139,8 @@ function unfollowing(){
     global $task;
     var_dump('start unfollowing');
     $users = $inst->get_followers_revers($task['count'] );
+    $inst->set_task_status(2);
+
     $errors = 0;
     foreach ($users as $user)
     {
@@ -175,7 +184,6 @@ try{
 //11 - liking by tags
 //3 - un following
 
-    $inst->set_task_status(2);
     switch ($task['type']) {
         case 0:
             follow_by_username();

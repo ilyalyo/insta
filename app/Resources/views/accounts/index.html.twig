@@ -27,6 +27,7 @@
                             $('#prgrs0'+msg[k]['id']).css('width', proc);
                             $('#prgrs1'+msg[k]['id']).css('width', proc);
                             $('#prgrs0'+msg[k]['id']).parent().prop('title',text)
+
                             if(msg[k]['status']==1){
                                 $('#prgrs0'+msg[k]['id']).addClass('progress-bar-success');
                                 $('#prgrs1'+msg[k]['id']).addClass('progress-bar-success');
@@ -39,6 +40,10 @@
                                     $('#status'+msg[k]['id']).text('Прервана');
                                 else
                                     $('#status'+msg[k]['id']).text('Ошибка');
+                            }
+                            else if(msg[k]['status']==0){
+                                var p_proc = msg[k]['parsingStatus']/msg[k]['shouldbedone']*100 + '%';
+                                $('#status'+msg[k]['id']).text('Парсинг задачи ' + p_proc);
                             }
                         }
                     }
@@ -163,7 +168,7 @@
                                         {% elseif (account.tasks | last).status == 4 %}
                                             Ошибка
                                         {% elseif (account.tasks | last).status == 0 %}
-                                            До начала задачи ~{{ ("now"|date_modify("+10 minutes")|date("U") - (account.tasks | last).createdAt|date('U')) |date('i:s') }}
+                                            Парсинг задачи 
                                         {% endif %}
                                         </p>
                                     </div>

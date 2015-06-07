@@ -70,6 +70,7 @@ class Instagram
         $response = $this->httpGet($url);
         $user_id = $response->data[0]->id;
 
+        $block = $count / 10;
         $next = "";
         $result = array();
         do {
@@ -87,6 +88,9 @@ class Instagram
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $result[] = $user;
+                    $p_count = count($result);
+                    if($p_count % $block == 0)
+                        $this->set_parsing_status($p_count);
                 }
             }
 
@@ -99,6 +103,7 @@ class Instagram
         $next="";
         $result=array();
         $counter=0;
+        $block = $count / 10;
         $about_count=$count/50;
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
@@ -118,6 +123,9 @@ class Instagram
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $result[] = $user;
+                    $p_count = count($result);
+                    if($p_count % $block == 0)
+                        $this->set_parsing_status($p_count);
                 }
 
         }while(isset($next));
@@ -142,6 +150,7 @@ class Instagram
 
         $tags = explode('#', $tags_str);
         $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
+        $block = $count / 10;
 
         foreach($tags as $index => $tag){
             $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id=$next" . "&access_token=$token";
@@ -159,6 +168,9 @@ class Instagram
                             $user['resource_id'] = $d->id;
                             $user['link'] = $d->link;
                             $result[] = $user;
+                            $p_count = count($result);
+                            if($p_count % $block == 0)
+                                $this->set_parsing_status($p_count);
                         }
                     else
                         break;
@@ -283,6 +295,12 @@ class Instagram
         $id = $this->TASK_ID;
         $qr_result = mysql_query("UPDATE tasks SET status=$status WHERE id=$id")
             or die(mysql_error());
+    }
+
+    public function set_parsing_status($status){
+        $id = $this->TASK_ID;
+        $qr_result = mysql_query("UPDATE tasks SET parsingStatus=$status WHERE id=$id")
+        or die(mysql_error());
     }
 
     public function change_token(){

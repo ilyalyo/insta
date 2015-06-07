@@ -27,13 +27,13 @@ class AjaxController extends Controller
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $query = $qb
-            ->select('ac.id,COUNT(a.id) as done,t.count as shouldbedone, t.status')
-            ->from('TaskBundle\Entity\Actions','a')
-            ->innerJoin('a.task_id','t', 'WITH', 'a.task_id=t.id')
-            ->innerJoin('t.account_id','ac','WITH','t.account_id=ac.id')
+            ->select('ac.id,COUNT(a.id) as done,t.count as shouldbedone, t.status,t.parsingStatus')
+            ->from('TaskBundle\Entity\Tasks','t')
+            ->leftJoin('t.actions','a', 'WITH', 'a.task_id=t.id')
+            ->leftJoin('t.account_id','ac','WITH','t.account_id=ac.id')
             ->groupBy('t.id')
             ->where('ac.user=:user')
-            ->andWhere('t.status=2')
+            ->andWhere('t.status in (0,2)')
             ->setParameter('user', $user->getId())
             ->getQuery();
 

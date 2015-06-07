@@ -94,6 +94,11 @@ class Tasks
      * @ORM\Column(type="integer")
      */
     protected $speed;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $parsingStatus;
     
     /**
      * @ORM\PrePersist
@@ -358,5 +363,28 @@ class Tasks
     public function getList()
     {
         return $this->list;
+    }
+
+    /**
+     * Set parsingStatus
+     *
+     * @param integer $parsingStatus
+     * @return Tasks
+     */
+    public function setParsingStatus($parsingStatus)
+    {
+        $this->parsingStatus = $parsingStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get parsingStatus
+     *
+     * @return integer 
+     */
+    public function getParsingStatus()
+    {
+        return $this->parsingStatus;
     }
 }

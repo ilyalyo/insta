@@ -1,20 +1,26 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block fos_user_content %}
 
-    <div class="container">
-        <div class="row" style="padding-top: 100px">
-            <div class="col-lg-4">
-            </div>
-            <div class="col-lg-4">
-                <p style="font-size: 24px;padding-top: 32px;">Поздравляю с успешной регистрацией!</p>
+<div class="container">
+    <div class="row" style="padding-top: 100px">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+            <p style="font-size: 24px;padding-top: 32px;">Ваш аккаунт подтвержден!</p>
 
-                <p>В данный момент проходит закрытое тестирование,</p>
-                <p>по его завершению мы связимся с Вами по указанному email.</p>
-                <p>Открытие сервиса запланированно на 7 июня.</p>
-                <p>Спасибо.</p>
-
-            </div>
+            <p>Сейчас Вы будете перенаправлены на главную страницу.</p>
+            <p>Если этого не происходит перейдите по этой <a href="{{ path('accounts') }}"> ссылке</a></p>
         </div>
     </div>
+</div>
+    <script>
+        $( document ).ready(function() {
+            setTimeout(function(){
+                window.location.replace("{{ path('accounts') }}");
+            },2000)
+        });
+    </script>
 {% endblock fos_user_content %}

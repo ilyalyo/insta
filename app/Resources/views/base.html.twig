@@ -20,7 +20,10 @@
         {% elseif _route == 'purchase' %}
             $('#purchase').addClass('active');
         {% endif %}
+        $('.content').css('min-height',$(window).height() - 51 )
+
     })
+
 </script>
 <head>
     <title>Instastellar</title>
@@ -53,8 +56,22 @@
                         <li id="info"><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
                         <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span> Покупка</a></li>
                     </ul>
+
                 </div>
+                {% if user is defined %}
+                <div style="position: relative;"><h4 style="position: fixed;bottom: 15px;">
+                        {% set valid = user.validUntil | date('U') - "now" | date('U') %}
+                        {% if valid | date("d") > 1 %}
+                            Осталось: {{ valid | date("j") }} дн.
+                        {% elseif valid | date("h") > 0 %}
+                            Осталось: {{ valid | date("G") }} ч.
+                        {% else %}
+                            Аккаунт потрачен
+                        {% endif %}</h4>
+                </div>
+                {% endif %}
             </div>
+
             <div class="col-xs-8 col-md-10 content" style="min-height: 500px;">
                 {% block body %}{% endblock %}
             </div>

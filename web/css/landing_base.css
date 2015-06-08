@@ -23,14 +23,13 @@ body.modal-open{
 footer{
     background-color: #000;
     MARGIN-TOP: 30px;
-    color: antiquewhite;1;
+    color: antiquewhite;
 }
 #why p{
     padding-top: 15px;
 }
 body .wrapper{
     padding-top: 50px;
-    padding-bottom: 50px;
 }
 .rocket{
     padding-bottom: 20px;

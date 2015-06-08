@@ -19,4 +19,12 @@ class TasksRepository extends EntityRepository
             )
             ->getSingleScalarResult();
     }
+
+    public function getUserId($id){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a.user FROM TaskBundle:Tasks t INNER JOIN AppBundle:Accounts a ON t.account_id=a.id WHERE t.id = $id"
+            )
+            ->getSingleScalarResult();
+    }
 }

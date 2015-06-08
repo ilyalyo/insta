@@ -10,7 +10,7 @@ class FollowByIdType extends AbstractType
     {
         $builder
             ->add('count', 'text',array('label' => 'Количество', 'attr' => array('placeholder'=>'100')))
-            ->add('tags', 'text',array('label' => 'ID'))
+            ->add('tags', 'text',array('label' => 'ID', 'attr' => array('placeholder'=>'i_stellar')))
             ->add('speed', 'choice', array(
                 'choices' => array(
                     '0'   => '20-30 с',

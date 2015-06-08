@@ -1,9 +1,9 @@
 /*head*/
 header .navbar-default{
     background-color: #000000;
+    border-bottom: 0px;
 }
 .navigation{
-    padding-top: 20px;
     width: inherit;
     margin-left: -15px;
 }
@@ -27,7 +27,7 @@ footer{
     padding-top: 15px;
 }
 body .wrapper{
-    padding-top: 50px;
+    padding-top: 53px;
 }
 .rocket{
     padding-bottom: 20px;
@@ -109,7 +109,7 @@ color: #ffffff;
 }
 /**/
 
-.wrapper {min-width:500px;padding: 0 15px;background-color:#dddddd;}
+.wrapper {min-width:500px;padding: 0 15px;background-color:#f2f2f2;}
 .navigation {position:fixed;}
 .content {background-color:#fff;}
 
@@ -141,6 +141,19 @@ color: #ffffff;
     background-color: #f0f0f0;
     margin: 10px;
 }
-.left-menu > li.active{
-    background-color: rgba(189, 189, 189, 0.56);
+.left-menu > .active a {
+    background-color: #428BCA;
+    color: #FFFFFF;
+}
+.left-menu a{
+    width: 80%;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+.left-menu li{
+    border: 3px solid #f2f2f2;
+}
+.nav>li>a:hover{
+    background-color: #BBCAD8!important;
+    color: #FFFFFF;
 }

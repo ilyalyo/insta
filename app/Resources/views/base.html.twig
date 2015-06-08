@@ -58,20 +58,6 @@
                     </ul>
 
                 </div>
-                {% if user is defined %}
-                <div style="position: relative;"><h4 style="position: fixed;bottom: 15px;">
-                        {% set valid = user.validUntil | date('U') - "now" | date('U') %}
-                        {% if valid | date("m") > 1 %}
-                            Осталось: {{ valid | date("n") }} мес.
-                        {% elseif valid | date("d") > 0 %}
-                            Осталось: {{ valid | date("j") }} дн.
-                        {% elseif valid | date("h") > 0 %}
-                            Осталось: {{ valid | date("G") }} ч.
-                        {% else %}
-                            Аккаунт потрачен
-                        {% endif %}</h4>
-                </div>
-                {% endif %}
             </div>
 
             <div class="col-xs-8 col-md-10 content" style="min-height: 500px;">

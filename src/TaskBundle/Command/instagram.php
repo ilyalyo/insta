@@ -188,6 +188,7 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $usernames = $this->load_users();
+        $block = count($usernames)/ 10;
         foreach($usernames as $username){
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
@@ -196,6 +197,9 @@ class Instagram
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
                 $result[] = $user;
+                $p_count = count($result);
+                if($p_count % $block == 0)
+                    $this->set_parsing_status($p_count);
             }
         }
         return $result;

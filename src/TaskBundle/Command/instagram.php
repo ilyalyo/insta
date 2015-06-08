@@ -82,7 +82,7 @@ class Instagram
             $this->debug($next);
             foreach ($data as $d) {
                 if ($count - 1 < count($result))
-                    break;
+                    return $result;
 
                 if ($this->checkUser($d->id, $token)) {
                     $user['username'] = $d->username;
@@ -173,7 +173,7 @@ class Instagram
                                 $this->set_parsing_status($p_count);
                         }
                     else
-                        break;
+                        return $result;
                 }
                 $url = $response->pagination->next_url;
             }while(isset($next)  && count($result) < $part_size * ($index + 1) );
@@ -341,6 +341,7 @@ class Instagram
             $json = json_decode($output);
             if(!isset($json)){
                 $this->debug('json is null');
+                $this->debug($params['url']);
                 return null;
             }
             if($output === FALSE){

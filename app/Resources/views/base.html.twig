@@ -61,7 +61,9 @@
                 {% if user is defined %}
                 <div style="position: relative;"><h4 style="position: fixed;bottom: 15px;">
                         {% set valid = user.validUntil | date('U') - "now" | date('U') %}
-                        {% if valid | date("d") > 1 %}
+                        {% if valid | date("m") > 1 %}
+                            Осталось: {{ valid | date("n") }} мес.
+                        {% elseif valid | date("d") > 0 %}
                             Осталось: {{ valid | date("j") }} дн.
                         {% elseif valid | date("h") > 0 %}
                             Осталось: {{ valid | date("G") }} ч.

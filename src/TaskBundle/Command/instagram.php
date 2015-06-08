@@ -129,7 +129,7 @@ class Instagram
                 }
 
         }while(isset($next));
-        return $result;
+        return array_slice($result, $count);
     }
 
     function  get_followed_by($id){
@@ -161,7 +161,7 @@ class Instagram
                 $next = $response->pagination->next_max_tag_id;
 
                 foreach ($data as $d) {
-                    if(count($result) < $part_size * ($index + 1))
+                    if(count($result) < $part_size * ($index + 1) && count($result) < $count)
                         if ($this->checkUser($d->user->id, $token) ) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
@@ -173,10 +173,10 @@ class Instagram
                                 $this->set_parsing_status($p_count);
                         }
                     else
-                        return $result;
+                        break;
                 }
                 $url = $response->pagination->next_url;
-            }while(isset($next)  && count($result) < $part_size * ($index + 1) );
+            }while(isset($next)  && count($result) < $part_size * ($index + 1) && count($result) < $count);
         }
 
         return $result;

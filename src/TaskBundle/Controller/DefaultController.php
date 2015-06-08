@@ -163,7 +163,7 @@ class DefaultController extends Controller
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $user_id = $em->getRepository('TaskBundle:Tasks')->getUserId($id);
-        if (!isset($user_id) || $user->getId() != $id)
+        if (!isset($user_id) || $user->getId() != $user_id)
             throw new NotFoundHttpException("Page not found");
 
         $task = $em->getRepository('TaskBundle:Tasks')->findOneBy(array('id' => $id));

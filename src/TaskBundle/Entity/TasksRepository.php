@@ -23,7 +23,7 @@ class TasksRepository extends EntityRepository
     public function getUserId($id){
         return $this->getEntityManager()
             ->createQuery(
-                "SELECT a.user FROM TaskBundle:Tasks t INNER JOIN AppBundle:Accounts a ON t.account_id=a.id WHERE t.id = $id"
+                "SELECT IDENTITY(a.user) FROM TaskBundle:Tasks t INNER JOIN AppBundle:Accounts a WITH t.account_id=a.id WHERE t.id = $id"
             )
             ->getSingleScalarResult();
     }

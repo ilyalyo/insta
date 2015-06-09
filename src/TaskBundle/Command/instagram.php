@@ -335,7 +335,6 @@ class Instagram
 
 
     function httpPost($url, $params){
-        try {
             $output = $this->httpPostReal($url, $params);
             $this->debug($output);
             $json = json_decode($output);
@@ -363,10 +362,36 @@ class Instagram
             }
             $this->debug('un tracked error');
             $this->change_token();
-        }
-        catch(Exception $e){
-            $this->debug($e);
-        }
+        return null;
+    }
+
+    function httpGet($url){
+            $output = $this->httpGetReal($url);
+            $this->debug($output);
+            $json = json_decode($output);
+            if(!isset($json)){
+                $this->debug('json is null');
+                return null;
+            }
+            if($output === FALSE){
+                $this->debug('json is false');
+                return null;
+            }
+            if($json->meta->code == 200)
+                return $json;
+            if($json->meta->code == 429){
+                $this->change_token();
+                return null;
+            }
+            if($json->meta->code == 400){
+                if($json->meta->error_type == '"APINotAllowedError')
+                    return null;
+                if(!$this->update_token())
+                    $this->change_token();
+                return null;
+            }
+            $this->debug('un tracked error');
+            $this->change_token();
         return null;
     }
 
@@ -398,7 +423,7 @@ class Instagram
         return $output;
     }
 
-    function httpGet($url)
+    function httpGetReal($url)
     {
         $ch = curl_init();
 
@@ -413,11 +438,11 @@ class Instagram
         //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $output = curl_exec($ch);
 
-        $result=json_decode($output);
+//        $result=json_decode($output);
 
         curl_close($ch);
 
-        return $result;
+        return $output;
     }
 
 

@@ -367,7 +367,6 @@ class Instagram
 
     function httpGet($url){
             $output = $this->httpGetReal($url);
-            $this->debug($output);
             $json = json_decode($output);
             if(!isset($json)){
                 $this->debug('json is null');

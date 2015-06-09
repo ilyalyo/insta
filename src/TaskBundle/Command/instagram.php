@@ -24,7 +24,7 @@ class Instagram
         $this->TOKEN_INDEX = 0;
 
         for($i = 0; $i<5;$i++) {
-            $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]);
+            $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
                 break;
         }

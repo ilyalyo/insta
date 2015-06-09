@@ -67,7 +67,7 @@ class Instagram
 
         $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
 
-        $response = $this->httpGet($url);
+        $response = $this->httpGet($url, 0);
         $user_id = $response->data[0]->id;
 
         $block = $count / 10;
@@ -75,7 +75,7 @@ class Instagram
         $result = array();
         do {
             $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" .  "cursor=$next" . "&access_token=$token";
-            $response = ($this->httpGet($url));
+            $response = ($this->httpGet($url,0));
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
@@ -114,7 +114,7 @@ class Instagram
         do {
             $counter++;
             $url = "https://api.instagram.com/v1/users/$account_id/follows?count=50" . "&cursor=$next" . "&access_token=$token" ;
-            $response = ($this->httpGet($url));
+            $response = ($this->httpGet($url,0));
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
@@ -137,7 +137,7 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
 
-        $response = $this->httpGet($url);
+        $response = $this->httpGet($url,0);
         return $response->data->counts->follows;
     }
 
@@ -155,7 +155,7 @@ class Instagram
         foreach($tags as $index => $tag){
             $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id=$next" . "&access_token=$token";
             do {
-                $response = $this->httpGet($url);
+                $response = $this->httpGet($url,0);
 
                 $data = $response->data;
                 $next = $response->pagination->next_max_tag_id;
@@ -191,7 +191,7 @@ class Instagram
         $block = count($usernames)/ 10;
         foreach($usernames as $username){
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
-            $response = $this->httpGet($url);
+            $response = $this->httpGet($url,0);
             $d = $response->data[0];
             if ($this->checkUser($d->id, $token) ) {
                 $user['username'] = $d->username;
@@ -217,7 +217,7 @@ class Instagram
     function checkUser($user_id, $token)
     {
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-        $response = ($this->httpGet($url));
+        $response = ($this->httpGet($url,0));
 
         if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private == false)
             return true;
@@ -267,7 +267,7 @@ class Instagram
         $url = "https://api.instagram.com/v1/users/$account_id?access_token=$token";
         $code ="";
         try{
-            $json = $this->httpGet($url);
+            $json = $this->httpGet($url,0);
             $code = $json->meta->code;
         }
         catch(Exception $e){
@@ -365,29 +365,31 @@ class Instagram
         return null;
     }
 
-    function httpGet($url){
+    function httpGet($url, $count){
+            if($count >5);
+                return null;
             $output = $this->httpGetReal($url);
             $json = json_decode($output);
             if(!isset($json)){
                 $this->debug('json is null');
-                return null;
+                return httpGet($url, $count++);
             }
             if($output === FALSE){
                 $this->debug('json is false');
-                return null;
+                return httpGet($url, $count++);
             }
             if($json->meta->code == 200)
                 return $json;
             if($json->meta->code == 429){
                 $this->change_token();
-                return null;
+                return httpGet($url, $count++);
             }
             if($json->meta->code == 400){
                 if($json->meta->error_type == '"APINotAllowedError')
                     return null;
                 if(!$this->update_token())
                     $this->change_token();
-                return null;
+                return httpGet($url, $count++);
             }
             $this->debug('un tracked error');
             $this->change_token();

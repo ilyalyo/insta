@@ -25,7 +25,7 @@ function follow_by_username(){
             if (isset($media)) {
                 $result = $inst->like($media->data[0]->id);
                 if (isset($result) && $result->meta->code == 200)
-                    $inst->add_row($media->data->link);
+                    $inst->add_row($media->data[0]->link);
             }
         }
         sleep(sleepTime($task['speed']));

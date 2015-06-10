@@ -20,6 +20,14 @@ function follow_by_username(){
         else
             $errors++;
 
+        if($task['$optionAddLike'] == 1) {
+            $media = $inst->get_last_user_media($user['user_id']);
+            if (isset($media)) {
+                $result = $inst->like($media->data->link);
+                if (isset($result) && $result->meta->code == 200)
+                    $inst->add_row($media->data->link);
+            }
+        }
         sleep(sleepTime($task['speed']));
 
         if ($inst->get_task_status() == 3){

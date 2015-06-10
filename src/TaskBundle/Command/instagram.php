@@ -234,6 +234,13 @@ class Instagram
 
     }
 
+    public function get_last_user_media($user_id){
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+        $url = "https://api.instagram.com/v1/users/$user_id/media/recent?count=1&access_token=$token";
+        return $this->httpGet($url);
+    }
+
     public function get_task(){
 
         $id= $this->TASK_ID;
@@ -258,6 +265,7 @@ class Instagram
             'token' => $row['token'],
             'account_id' => $row['account_id'],
             'speed' => $row['speed'],
+            'optionAddLike' => $row['optionAddLike'],
             );
 
         $this->PROXY = $row['ip'] . ':' . $row['port'];

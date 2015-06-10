@@ -23,7 +23,7 @@ class Instagram
             $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token'], 'id' => $row['id']);
         $this->TOKEN_INDEX = 0;
 
-        for($i = 0; $i<5;$i++) {
+        for($i = 0; $i<7;$i++) {
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
                 break;
@@ -135,7 +135,7 @@ class Instagram
                 }
 
         }while(isset($next));
-        return array_slice($result, $count);
+        return array_slice($result, 0,  $count);
     }
 
     function  get_followed_by($id){

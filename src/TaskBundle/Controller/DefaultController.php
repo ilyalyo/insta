@@ -20,6 +20,7 @@ use TaskBundle\Entity\TaskType;
 use TaskBundle\Form\Type\FollowByIdType;
 use TaskBundle\Form\Type\FollowByListType;
 use TaskBundle\Form\Type\FollowByTagsType;
+use TaskBundle\Form\Type\LikeByTagsType;
 
 class DefaultController extends Controller
 {
@@ -106,6 +107,9 @@ class DefaultController extends Controller
                 break;
             case 10:
                 $form = $this->createForm(new FollowByTagsType(), $task);
+                break;
+            case 11:
+                $form = $this->createForm(new LikeByTagsType(), $task);
                 break;
             default:
                 $form = $this->createForm(new FollowByTagsType(), $task);

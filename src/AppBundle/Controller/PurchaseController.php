@@ -36,7 +36,7 @@ class PurchaseController extends Controller
         $params['datetime'] = $request->get('datetime');
         $params['sender']= $request->get('sender');
         $params['codepro']= $request->get('codepro');
-        $params['notification_secret'] = 'nzyqKS9YdRwGoNZ+OrFfQh0D';
+        $params['notification_secret'] = 's3kaMReHPmJK06H+oKyishHF';//s3kaMReHPmJK06H+oKyishHF//nzyqKS9YdRwGoNZ+OrFfQh0D
         $params['label'] = $request->get('label');
         $sha1 = $request->get('sha1_hash');
 

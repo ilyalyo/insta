@@ -19,6 +19,15 @@ function follow_by_username(){
         }
         else
             $errors++;
+/*
+        if($task['optionAddLike'] == 1) {
+            $media = $inst->get_last_user_media($user['user_id']);
+            if (isset($media)) {
+                $result = $inst->like($media->data[0]->id);
+                if (isset($result) && $result->meta->code == 200)
+                    $inst->add_row($media->data[0]->link);
+            }
+        }*/
 
         sleep(sleepTime($task['speed']));
 
@@ -234,11 +243,17 @@ function liking_by_username(){}
 function sleepTime($interval_id){
     switch ($interval_id) {
         case 0:
-            return rand(14, 26);
+            return rand(14, 35);
         case 1:
             return rand(30, 45);
-        default:
+        case 2:
             return rand(60, 90);
+        case 3:
+            return rand(35, 50);
+        case 4:
+            return rand(50, 80);
+        default:
+            return rand(70, 100);
     }
 }
 

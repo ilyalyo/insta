@@ -15,9 +15,9 @@ class LikeByTagsType extends AbstractType
                 'attr' => array('placeholder'=>'#sun#love#peace')))
             ->add('speed', 'choice', array(
                 'choices' => array(
-                    '0'   => '20-30с',
-                    '1' => '30-45с',
-                    '2'   => '1м-1.5м',
+                    '3'   => '30-50с',
+                    '4' => '50с-1.15м',
+                    '5'   => '1.15-1.4м',
                 ),
                 'label' => 'Скорость',
                 'multiple' => false,

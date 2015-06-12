@@ -17,7 +17,7 @@ casper.start().thenOpen(auth_url, function() {
 });
 
 casper.then(function() {
-    if(this.exists('.current-user-avatar'))
+    if(this.exists('.-cx-PRIVATE-Navigation__menuItems'))
         this.echo(1);
     else
         this.echo(0);

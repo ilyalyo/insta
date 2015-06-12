@@ -39,7 +39,7 @@ casper.start().thenOpen(url, function() {
         }, true);
     });
 
-    this.wait(1000, function() { casper.echo(1);});
+    this.wait(1000, function() { casper.echo('');});
 });
 
 casper.then(function() {

@@ -43,6 +43,11 @@ casper.start().thenOpen(url, function() {
 });
 
 casper.then(function() {
+    if(this.exists('#recaptcha_challenge_image'))
+        this.echo('CAPTCHA');
+});
+
+casper.then(function() {
     try{
         this.click('.button-green');
     }catch(e){}

@@ -10,6 +10,8 @@ class Instagram
     private $ACCOUNT_ID_INST;
     private $LOGIN;
     private $PASSWORD;
+    private $OPTIONS;
+    private $DB_USERS;
 
     public function __construct ($task_id){
         $this->TASK_ID = $task_id;
@@ -90,7 +92,7 @@ class Instagram
                 if ($count - 1 < count($result))
                     return $result;
 
-                if ($this->checkUser($d->id, $token)) {
+                if ($this->checkUser($d->id, $token, $d->username)) {
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $result[] = $user;
@@ -168,7 +170,7 @@ class Instagram
 
                 foreach ($data as $d) {
                     if(count($result) < $part_size * ($index + 1) && count($result) < $count)
-                        if ($this->checkUser($d->user->id, $token) ) {
+                        if ($this->checkUser($d->user->id, $token, $d->user->username) ) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
@@ -199,7 +201,7 @@ class Instagram
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
             $d = $response->data[0];
-            if ($this->checkUser($d->id, $token) ) {
+            if ($this->checkUser($d->id, $token, $d->username) ) {
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
                 $result[] = $user;
@@ -220,10 +222,26 @@ class Instagram
         return explode("\r\n", $row['list']);
     }
 
-    function checkUser($user_id, $token)
+    private function load_users_from_db(){
+        $account_id = $this->ACCOUNT_ID;
+        $qr_result = mysql_query("
+          SELECT distinct resource_id  FROM actions a
+          INNER JOIN tasks t ON  t.id = a.task_id
+          INNER JOIN accounts ac ON ac.id = t.account_id
+          WHERE ac.id = $account_id")
+        or die(mysql_error());
+        while ($row = mysql_fetch_array($qr_result))
+            $this->DB_USERS[] = $row['resource_id'];
+    }
+
+    function checkUser($user_id, $token, $username = null)
     {
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
         $response = ($this->httpGet($url));
+
+        if($this->OPTIONS['optionCheckUserFromDB'] == 1)
+            if(in_array($username, $this->DB_USERS))
+                return false;
 
         if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private == false)
             return true;
@@ -232,6 +250,13 @@ class Instagram
 
     public function get_media(){
 
+    }
+
+    public function get_last_user_media($user_id){
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+        $url = "https://api.instagram.com/v1/users/$user_id/media/recent?count=1&access_token=$token";
+        return $this->httpGet($url);
     }
 
     public function get_task(){
@@ -258,6 +283,7 @@ class Instagram
             'token' => $row['token'],
             'account_id' => $row['account_id'],
             'speed' => $row['speed'],
+            'optionAddLike' => $row['optionAddLike'],
             );
 
         $this->PROXY = $row['ip'] . ':' . $row['port'];
@@ -265,7 +291,9 @@ class Instagram
         $this->PASSWORD = $row['instPass'];
         $this->ACCOUNT_ID = $row['account_id'];
         $this->ACCOUNT_ID_INST = $row['account_id_inst'];
-
+        $this->OPTIONS[] = $row['optionCheckUserFromDB'];
+        if($this->OPTIONS['optionCheckUserFromDB'] == 1)
+           $this->load_users_from_db();
         return $result;
     }
 
@@ -319,8 +347,8 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index];
         $file = __DIR__ . "/Casper/auth.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
-        shell_exec("casperjs $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' ");
-        $output = shell_exec("casperjs $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' ");
+        shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . "= --proxy-type=socks5");
+        $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . "= --proxy-type=socks5");
         $output = trim($output);
         $this->debug($token['client']);
         $this->debug($output);
@@ -392,6 +420,7 @@ class Instagram
                 return null;
             }
             $this->debug('un tracked error');
+            $this->debug($output);
             $this->change_token();
         return null;
     }

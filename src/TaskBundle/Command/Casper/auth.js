@@ -1,5 +1,4 @@
 var casper = require('casper').create();
-var RuCaptcha   = require('/var/www/instastellar/rucaptcha/index.js');
 
 var uname=casper.cli.get(0).toString();
 var pass=casper.cli.get(1).toString();
@@ -11,7 +10,6 @@ var auth_url2='https://instagram.com/oauth/authorize/?client_id=c02d1c473e53485d
 var auth_url3='https://instagram.com/oauth/authorize/?client_id=e77306665eb54866ae0a8185c4028604&redirect_uri=http://stapico.ru/accounts/auth/complete&response_type=code&scope=likes+comments+relationships';
 var auth_url4='https://instagram.com/oauth/authorize/?client_id=2b5a0c10371c4784935b03e5619e94ca&redirect_uri=http://collec.to/login&response_type=code&scope=likes+comments+relationships&display=touch';
 var auth_url5='https://instagram.com/oauth/authorize?client_id=6976c26a83f44047b339578982f7eb30&redirect_uri=http%3A%2F%2Fsocialhammer.com%2Fajax.php%3Fdo%3Dinstagram_callback%26accsID%3D22725%26apiID%3D2%26groupID%3D-1&scope=basic+comments+likes+relationships&response_type=code';
-var captcha='https://instagram.com/integrity/checkpoint/';
 
 var url="";
 
@@ -33,7 +31,7 @@ switch (client){
         break;
 }
 
-casper.start().thenOpen('https://instagram.com/accounts/login/', function() {
+casper.start().thenOpen(url, function() {
     this.wait(2000, function() {
         this.fillSelectors('form', {
             'input[name="username"]':  uname,
@@ -41,34 +39,7 @@ casper.start().thenOpen('https://instagram.com/accounts/login/', function() {
         }, true);
     });
 
-    this.wait(1000, function() { casper.echo('');});
-});
-
-casper.thenOpen(captcha,function() {
-    if(this.exists('#recaptcha_challenge_image')){
-        var solver      = new RuCaptcha({
-            apiKey:     '9b5a393207b21e19b979059cf970639e',
-            tmpDir:     '/var/www/instastellar/tasks/captches',
-            checkDelay: 1000
-        });
-        var img = this.evaluate(function(client){
-            return $('#recaptcha_challenge_image').src;
-        });
-        var key ='';
-        solver.solve(img, function(err, answer) {
-            if (err)
-                console.log(err);
-            else {
-                console.log(answer);
-                key = answer;
-            }
-        });
-        this.evaluate(function(key){
-            $('#recaptcha_response_field').value = key;
-        },{
-            key: key
-        });
-    }
+    this.wait(1000, function() { casper.echo(1);});
 });
 
 casper.then(function() {
@@ -77,14 +48,4 @@ casper.then(function() {
     }catch(e){}
 });
 
-
-casper.thenOpen(url, function() {
-    this.wait(1000, function() {});
-});
-
-casper.then(function() {
-    try{
-        this.click('.button-green');
-    }catch(e){}
-});
 casper.run();

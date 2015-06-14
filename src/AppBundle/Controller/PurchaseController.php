@@ -70,6 +70,7 @@ class PurchaseController extends Controller
                         break;
                 }
                 $user->setValidUntil($date);
+                $user->setMaxAccounts(5);
                 $em->persist($user);
                 $em->flush();
                 return new JsonResponse('200 OK');

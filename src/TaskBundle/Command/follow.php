@@ -79,7 +79,7 @@ function follow_by_tags(){
         $inst->set_task_status(1);
 }
 
-
+//list glist
 function follow_by_list(){
 
     global $inst;

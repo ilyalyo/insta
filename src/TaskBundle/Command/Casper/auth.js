@@ -5,6 +5,8 @@ var pass=casper.cli.get(1).toString();
 var client=casper.cli.get(2).toString();
 var id=casper.cli.get(2).toString();
 
+var captcha='https://instagram.com/integrity/checkpoint/';
+var inst_auth_url='https://instagram.com/accounts/login/';
 var auth_url='https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78b125602b90989cc&response_type=code&scope=likes+comments+relationships&redirect_uri=http://instastellar.su/get_token?account_id=' + id;
 var auth_url2='https://instagram.com/oauth/authorize/?client_id=c02d1c473e53485d946a1c44d3daf8d2&redirect_uri=http://extragr.am/sessions/callback&response_type=code&scope=comments+likes+relationships';
 var auth_url3='https://instagram.com/oauth/authorize/?client_id=e77306665eb54866ae0a8185c4028604&redirect_uri=http://stapico.ru/accounts/auth/complete&response_type=code&scope=likes+comments+relationships';
@@ -31,15 +33,55 @@ switch (client){
         break;
 }
 
-casper.start().thenOpen(url, function() {
+casper.start().thenOpen(inst_auth_url, function() {
     this.wait(2000, function() {
         this.fillSelectors('form', {
             'input[name="username"]':  uname,
             'input[name="password"]':  pass
         }, true);
     });
-
     this.wait(1000, function() { casper.echo(1);});
+});
+
+casper.thenOpen(captcha,function() {
+    this.wait(1000,function() {
+        if(this.exists('#recaptcha_challenge_image')){
+            var img = this.evaluate(function(){
+                return document.getElementById('recaptcha_challenge_image').src;
+            });
+            r = this.evaluate(function(img){
+                var ws = new WebSocket('wss://instastellar.su:8001');
+                ws.onopen = function() {
+                    ws.send(img);
+                };
+
+                ws.onmessage = function(event) {
+                    document.querySelector('#recaptcha_response_field').value = event.data;
+                    ws2.send(event.data);
+                };
+            },{img: img})
+
+            this.wait(20000, function(){
+                this.evaluate(function(){
+                    ws.onmessage = function(event) {
+                        document.querySelector('#recaptcha_response_field').value = event.data;
+                    };
+                });
+            });
+
+            //for debug
+            casper.then(function (){
+                var img = this.evaluate(function(){
+                    return 'result is: ' + document.getElementById('recaptcha_response_field').value;
+                });
+                this.click('.button-green');
+            });
+        }
+    });
+})
+
+casper.thenOpen(url, function() {
+    casper.echo(1);
 });
 
 casper.then(function() {
@@ -49,3 +91,4 @@ casper.then(function() {
 });
 
 casper.run();
+

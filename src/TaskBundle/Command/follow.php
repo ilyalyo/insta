@@ -34,7 +34,7 @@ function follow_by_username(){
         if ($inst->get_task_status() == 3){
             break;
         }
-        if($errors > 5){
+        if($errors > 8){
             $inst->set_task_status(4);
             break;
         }
@@ -70,7 +70,7 @@ function follow_by_tags(){
         if ($inst->get_task_status() == 3){
             break;
         }
-        if($errors > 5){
+        if($errors > 8){
             $inst->set_task_status(4);
             break;
         }
@@ -107,7 +107,7 @@ function follow_by_list(){
         if ($inst->get_task_status() == 3){
             break;
         }
-        if($errors > 5){
+        if($errors > 8){
             $inst->set_task_status(4);
             break;
         }
@@ -143,7 +143,7 @@ function liking_by_tags(){
         if ($inst->get_task_status() == 3){
             break;
         }
-        if($errors > 5){
+        if($errors > 8){
             $inst->set_task_status(4);
             break;
         }
@@ -178,7 +178,7 @@ function unfollowing(){
         if ($inst->get_task_status() == 3){
             break;
         }
-        if($errors > 5){
+        if($errors > 8){
             $inst->set_task_status(4);
             break;
         }

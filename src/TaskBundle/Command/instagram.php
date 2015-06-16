@@ -103,7 +103,7 @@ class Instagram
             }
 
         } while ($count - 1 > count($result) && isset($next));
-
+        $this->debug('parsed: ' . count($result));
         return $result;
     }
 
@@ -137,6 +137,7 @@ class Instagram
                 }
 
         }while(isset($next));
+        $this->debug('parsed: ' . count($result));
         return array_slice($result, 0,  $count);
     }
 
@@ -186,7 +187,7 @@ class Instagram
                 $url = $response->pagination->next_url;
             }while(isset($next)  && count($result) < $part_size * ($index + 1) && count($result) < $count);
         }
-
+        $this->debug('parsed: ' . count($result));
         return $result;
     }
 
@@ -210,6 +211,7 @@ class Instagram
                     $this->set_parsing_status($p_count);
             }
         }
+        $this->debug('parsed: ' . count($result));
         return $result;
     }
 
@@ -239,7 +241,7 @@ class Instagram
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
         $response = ($this->httpGet($url));
 
-        if($this->OPTIONS['optionCheckUserFromDB'] == 1)
+       // if($this->OPTIONS['optionCheckUserFromDB'] == 1)
             if(in_array($username, $this->DB_USERS))
                 return false;
 
@@ -292,7 +294,7 @@ class Instagram
         $this->ACCOUNT_ID = $row['account_id'];
         $this->ACCOUNT_ID_INST = $row['account_id_inst'];
         $this->OPTIONS[] = $row['optionCheckUserFromDB'];
-        if($this->OPTIONS['optionCheckUserFromDB'] == 1)
+//        if($this->OPTIONS['optionCheckUserFromDB'] == 1)
            $this->load_users_from_db();
         return $result;
     }

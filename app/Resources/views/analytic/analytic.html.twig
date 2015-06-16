@@ -33,6 +33,9 @@
                 xAxis: {
                     type: 'datetime'
                 },
+                chart: {
+                    zoomType: 'x'
+                },
                 plotOptions: {
                     series: {
                         cursor: 'Dot',
@@ -44,7 +47,6 @@
                                 click: function () {
                                     var chart = $('#container').highcharts(),
                                             selectedPoints = chart.getSelectedPoints();
-                                    console.log(1);
                                     if( selectedPoints.length>0)
                                         $('#points_diff').text(this.y-q1);
                                     q1=this.y;

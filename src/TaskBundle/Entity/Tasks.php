@@ -106,6 +106,11 @@ class Tasks
     protected $optionAddLike;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionCheckUserFromDB;
+
+    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -414,5 +419,28 @@ class Tasks
     public function getOptionAddLike()
     {
         return $this->optionAddLike;
+    }
+
+    /**
+     * Set optionCheckUserFromDB
+     *
+     * @param integer $optionCheckUserFromDB
+     * @return Tasks
+     */
+    public function setOptionCheckUserFromDB($optionCheckUserFromDB)
+    {
+        $this->optionCheckUserFromDB = $optionCheckUserFromDB;
+
+        return $this;
+    }
+
+    /**
+     * Get optionCheckUserFromDB
+     *
+     * @return integer 
+     */
+    public function getOptionCheckUserFromDB()
+    {
+        return $this->optionCheckUserFromDB;
     }
 }

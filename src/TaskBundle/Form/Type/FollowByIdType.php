@@ -19,8 +19,7 @@ class FollowByIdType extends AbstractType
                 ),
                 'label' => 'Скорость',
                 'multiple' => false,
-            ))
-            ->add('optionAddLike', 'checkbox',array('label' => 'Ставить лайк перед подпиской'));
+            ));
     }
 
     public function getName()

@@ -62,20 +62,23 @@ class CasperAjaxController extends Controller
         if(count($exist) > 0)
             $form->get('instLogin')->addError(new FormError('Аккаунт с таким логином уже существует'));
 
-
-        $command = new AuthCheckCommand();
-        $command->setContainer($this->container);
-        $input = new ArrayInput(array(
-            'username'=>$account->getInstLogin(),
-            'password' =>$account->getInstPass()
-        ));
-
-        $output =  new BufferedOutput();
-        $command->run($input,$output);
-        if($output->fetch() != 1)
-            $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
-
         if ($form->isValid()) {
+
+            $command = new AuthCheckCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array(
+                'username'=>$account->getInstLogin(),
+                'password' =>$account->getInstPass()
+            ));
+
+            $output =  new BufferedOutput();
+            $command->run($input,$output);
+            if($output->fetch() != 1) {
+                $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
+                return $this->render('accounts/login_password.html.twig',
+                    array('form' => $form->createView()));
+            }
+
             $account->setUser($user);
             $em->persist($account);
             $em->flush();

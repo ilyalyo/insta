@@ -43,8 +43,14 @@
         {% for action in task.actions | reverse %}
 
             {% if action.resourceId %}
-                <p>{{ action.resourceId }}
-                    <a href="https://instagram.com/{{ action.resourceId }}" target="_blank">+</a>
+                <p>
+                    {% if 'https' in action.resourceId %}
+                        <a href="{{ action.resourceId }}" target="_blank">{{ action.resourceId }}</a>
+                    {% else %}
+                        {{ action.resourceId }}
+                        <a href="https://instagram.com/{{ action.resourceId }}" target="_blank">+</a>
+                    {% endif %}
+
                 </p>
             {% endif %}
 

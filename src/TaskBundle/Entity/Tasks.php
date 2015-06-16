@@ -99,7 +99,12 @@ class Tasks
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $parsingStatus;
-    
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionAddLike;
+
     /**
      * @ORM\PrePersist
      */
@@ -386,5 +391,28 @@ class Tasks
     public function getParsingStatus()
     {
         return $this->parsingStatus;
+    }
+
+    /**
+     * Set optionAddLike
+     *
+     * @param integer $optionAddLike
+     * @return Tasks
+     */
+    public function setOptionAddLike($optionAddLike)
+    {
+        $this->optionAddLike = $optionAddLike;
+
+        return $this;
+    }
+
+    /**
+     * Get optionAddLike
+     *
+     * @return integer 
+     */
+    public function getOptionAddLike()
+    {
+        return $this->optionAddLike;
     }
 }

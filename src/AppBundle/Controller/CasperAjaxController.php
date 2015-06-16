@@ -31,6 +31,7 @@ class CasperAjaxController extends Controller
      */
     public function addLoginPasswordAction(Request $request)
     {
+
         $account = new Accounts();
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -52,8 +53,29 @@ class CasperAjaxController extends Controller
         }
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
 
+
+        $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
+            'instLogin'=>$account->getInstLogin()
+        ));
+
+        if(count($exist) > 0)
+            $form->get('instLogin')->addError(new FormError('Аккаунт с таким логином уже существует'));
+
+
+        $command = new AuthCheckCommand();
+        $command->setContainer($this->container);
+        $input = new ArrayInput(array(
+            'username'=>$account->getInstLogin(),
+            'password' =>$account->getInstPass()
+        ));
+
+        $output =  new BufferedOutput();
+        $command->run($input,$output);
+        if($output->fetch() != 1)
+            $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
+
+        if ($form->isValid()) {
             $account->setUser($user);
             $em->persist($account);
             $em->flush();
@@ -76,11 +98,6 @@ class CasperAjaxController extends Controller
             $this->addProvider($account,'test-socialhammer-app');
 
             return $this->redirectToRoute('accounts');
-        }
-
-
-        if($request->getMethod()=='POST'){
-            return new JsonResponse(0);
         }
 
         return $this->render('accounts/login_password.html.twig',

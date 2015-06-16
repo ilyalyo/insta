@@ -54,7 +54,6 @@ class CasperAjaxController extends Controller
 
         $form->handleRequest($request);
 
-
         $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
             'instLogin'=>$account->getInstLogin()
         ));
@@ -71,10 +70,18 @@ class CasperAjaxController extends Controller
                 'password' =>$account->getInstPass()
             ));
 
-            $output =  new BufferedOutput();
-            $command->run($input,$output);
-            if($output->fetch() != 1) {
+            $output1 =  new BufferedOutput();
+            $output2=  new BufferedOutput();
+            $command->run($input,$output1);
+            $command->run($input,$output2);
+
+            if($output1->fetch() != 1 && $output2->fetch() != 1) {
                 $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
+                return $this->render('accounts/login_password.html.twig',
+                    array('form' => $form->createView()));
+            }
+            elseif($output1->fetch() != $output2->fetch()){
+                $form->get('instLogin')->addError(new FormError('Проблема авторизации обратитесь в тех. поддержку'));
                 return $this->render('accounts/login_password.html.twig',
                     array('form' => $form->createView()));
             }

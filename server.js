@@ -9,17 +9,18 @@ var options = {
 
 var server = ws.createServer(options,function (conn) {
     conn.on("text", function (str) {
-    var RuCaptcha   = require('./rucaptcha/index.js');
-    var solver      = new RuCaptcha({
-          apiKey:     '9b5a393207b21e19b979059cf970639e', //required
-          tmpDir:     './tasks',                //optional, default is './tmp'
-          checkDelay: 1000                    //optional, default is 1000 - interval between captcha checks
-    });
+        var RuCaptcha = require('./rucaptcha/index.js');
+        var solver = new RuCaptcha({
+            apiKey: '9b5a393207b21e19b979059cf970639e', //required
+            tmpDir: './tasks',                //optional, default is './tmp'
+            checkDelay: 1000                    //optional, default is 1000 - interval between captcha checks
+        });
 
-    solver.solve(str, function(err, answer) {
-        if (!err)
-          conn.sendText(answer);
-   });
+        solver.solve(str, function (err, answer) {
+            if (!err)
+                conn.sendText(answer);
+        });
+    })
  }).listen(8001)
 
 

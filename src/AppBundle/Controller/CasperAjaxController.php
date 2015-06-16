@@ -38,7 +38,7 @@ class CasperAjaxController extends Controller
 
         $form = $this->createFormBuilder($account)
             ->add('instLogin', 'text', array('label' => 'Логин'))
-            ->add('instPass', 'text', array(
+            ->add('instPass', 'password', array(
                 'label' => 'Пароль'))
             ->getForm();
 

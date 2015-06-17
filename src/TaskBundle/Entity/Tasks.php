@@ -19,6 +19,17 @@ class Tasks
     const INTERRUPTED=3;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->status = Tasks::CREATED;
+        $this->createdAt = new \DateTime();
+        $this->actions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -38,7 +49,7 @@ class Tasks
      *      minMessage = "Минимальная длинна {{ limit }} символов",
      *      maxMessage = "Максимальная длинна {{ limit }} символов"
      * )
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(type="string", length=250, nullable=true)
      */
     protected $tags;
 
@@ -109,14 +120,6 @@ class Tasks
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $optionCheckUserFromDB;
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
-    {
-        $this->createdAt = new \DateTime();
-    }
 
     /**
      * Get id
@@ -287,13 +290,6 @@ class Tasks
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->actions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

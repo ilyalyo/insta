@@ -1,0 +1,19 @@
+{% extends 'tasks/task_base.html.twig' %}
+{% block task_body %}
+
+    <h1>Добавление задачи  на фоловинг</h1>
+    <ul class="nav nav-tabs" style="padding-top: 30px;">
+        <li class="follow_by_id" role="presentation"><a href="{{ path('add_task_follow_by_id',{ 'id':  app.request.get('id') }) }}">По ID</a></li>
+        <li class="follow_by_tags" role="presentation"><a href="{{ path('add_task_follow_by_tags',{ 'id':  app.request.get('id') }) }}">По тэгам</a></li>
+        <li class="follow_by_list" role="presentation"><a href="{{ path('add_task_follow_by_list',{ 'id':  app.request.get('id') }) }}">По списку</a></li>
+    </ul>
+
+    {% block task %}{% endblock %}
+
+    <style>
+        .modal-error{
+            margin-bottom: 0px;
+            color: red;
+        }
+    </style>
+{% endblock %}

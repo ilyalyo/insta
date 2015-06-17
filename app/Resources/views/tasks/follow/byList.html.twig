@@ -1,0 +1,27 @@
+{% extends 'tasks/follow/nav.html.twig' %}
+
+{% block task %}
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-md-5 col-md-offset-1">
+        {{ form_start(form) }}
+            {{ form_row(form.tmp_tags) }}
+            {{ form_row(form.speed) }}
+            <button class="btn btn-primary pull-right">Добавить</button>
+        {{ form_end(form) }}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <p>
+                Если у Вас уже есть готовый список Инстаграм-аккаунтов, скопируйте его в поле таким образом, чтобы название каждого аккаунта было с новой строки.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        $('.follow_by_list').addClass('active');
+    </script>
+    <style>
+        textarea{
+            min-height: 150px;
+        }
+    </style>
+{% endblock %}

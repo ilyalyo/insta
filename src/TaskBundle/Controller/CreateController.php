@@ -1,0 +1,286 @@
+<?php
+
+namespace TaskBundle\Controller;
+
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Exception\ValidatorException;
+use TaskBundle\Command\WriteCommand;
+use TaskBundle\Entity\Actions;
+use TaskBundle\Entity\Lists;
+use TaskBundle\Entity\Tasks;
+use Symfony\Component\HttpFoundation\Request;
+use TaskBundle\Entity\TaskType;
+use TaskBundle\Form\Type\FollowByIdType;
+use TaskBundle\Form\Type\FollowByListType;
+use TaskBundle\Form\Type\FollowByTagsType;
+use TaskBundle\Form\Type\LikeByTagsType;
+
+class CreateController extends Controller
+{
+    /**
+     * @Route("/tasks/add/FollowByList/{id}", name="add_task_follow_by_list")
+     */
+    public function followByListAction(Request $request, $id)
+    {
+        $task = new Tasks();
+        $task->setType(20);
+        $form = $this->createForm(new FollowByListType(), $task);
+
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
+        if($user->isExpired())
+            $form->get('tmp_tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('tmp_tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if ($form->isValid()) {
+
+            $without_spaces = str_replace(' ', '', $task->getTmpTags());
+
+            $exp_ids = explode("\r\n", $without_spaces);
+            if(count($exp_ids) > 500){
+                $form->get('tags')->addError(new FormError('В списке должно быть Не более 500 ID'));
+                return $this->render('tasks/follow/byList.html.twig', array(
+                    'form' => $form->createView(),
+                    'account' =>$account
+                ));
+            }
+
+            $task->setCount(count($exp_ids));
+            $task->setAccountId($account);
+            $em->persist($task);
+
+            $list = new Lists();
+            $list->setList($without_spaces);
+            $list->setTask($task);
+            $em->persist($list);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return  $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/follow/byList.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+    /**
+     * @Route("/tasks/add/FollowById/{id}", name="add_task_follow_by_id")
+     */
+    public function followByIdAction(Request $request, $id)
+    {
+        $task = new Tasks();
+        $task->setType(0);
+        $form = $this->createForm(new FollowByIdType(), $task);
+
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+        $task->setAccountId($account);
+
+        if($user->isExpired())
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if ($form->isValid()) {
+
+            $tags=str_replace(" ","",$task->getTags());
+            $task->setTags($tags);
+            $em->persist($task);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return  $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/follow/byId.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+    /**
+     * @Route("/tasks/add/FollowByTags/{id}", name="add_task_follow_by_tags")
+     */
+    public function followByTagsAction(Request $request, $id)
+    {
+        $task = new Tasks();
+        $task->setType(10);
+        $form = $this->createForm(new FollowByTagsType(), $task);
+
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+        $task->setAccountId($account);
+
+        if($user->isExpired())
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if ($form->isValid()) {
+
+            $tmp = str_replace(" ","",$task->getTags());
+            $tags=trim($tmp,"#");
+            $task->setTags($tags);
+            $em->persist($task);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return  $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/follow/byTags.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+    /**
+     * @Route("/tasks/add/LikeByTags/{id}", name="add_task_like_by_tags")
+     */
+    public function likeByTagsAction(Request $request, $id)
+    {
+        $task = new Tasks();
+        $task->setType(11);
+        $form = $this->createForm(new LikeByTagsType(), $task);
+
+        $form->handleRequest($request);
+
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
+        if($user->isExpired())
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if ($form->isValid()) {
+
+            $tmp =str_replace(" ","",$task->getTags());
+            $tags=trim($tmp,"#");
+            $task->setTags($tags);
+            $task->setAccountId($account);
+            $em->persist($task);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return  $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/like/byTags.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+    /**
+     * @Route("/tasks/unFollow/{id}", name="add_task_unfollow")
+     */
+    public function unFollowAction($id,Request $request)
+    {
+        $task = new Tasks();
+        $task->setType(3);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
+
+        $task->setAccountId($account);
+
+        $form = $this->createFormBuilder($task)
+            ->add('count', 'text', array('label' => 'Количество'))
+            ->getForm();
+
+        $user = $this->getUser();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
+        if($user->isExpired())
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $task->setAccountId($account);
+            $task->setSpeed(1);
+            $em->persist($task);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/unfollow/unfollow.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+}

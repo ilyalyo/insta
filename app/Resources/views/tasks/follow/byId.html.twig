@@ -1,0 +1,26 @@
+{% extends 'tasks/follow/nav.html.twig' %}
+
+{% block task %}
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-md-5 col-md-offset-1">
+        {{ form_start(form) }}
+            {{ form_row(form.tags) }}
+            {{ form_row(form.count) }}
+            {{ form_row(form.speed) }}
+            <div class="pull-right">
+            </div>
+            <button class="btn btn-primary pull-right">Добавить</button>
+        {{ form_end(form) }}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+           <p>
+               Для максимально эффективной работы по сбору Целевой Аудитории впишите в поле ввода ID инстаграм аккаунт, схожий по тематике с Вашим (например, ID Вашего конкурента) и Вы будете подписываться на подписчиков этого аккаунта.
+           </p>
+        </div>
+    </div>
+
+    <script>
+        $(".follow_by_id").addClass('active');
+    </script>
+
+{% endblock %}

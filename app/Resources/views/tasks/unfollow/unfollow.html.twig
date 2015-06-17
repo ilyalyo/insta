@@ -1,0 +1,29 @@
+{% extends 'tasks/task_base.html.twig' %}
+
+{% block task_body %}
+    <h1>Добавление задачи  на отписку</h1>
+    <hr style="margin-top: 80px;">
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-md-5 col-md-offset-1">
+            {{ form_start(form) }}
+            {{ form_row(form.count) }}
+            <button class="btn btn-primary pull-right">Добавить</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <p>
+                По достижению количества подписок 6000-6500 Вы больше не сможете подписываться на людей(Инстаграм блокирует подписку), необходимо осуществлять отписку.
+            </p>
+            <p>
+                Мы советуем чередовать подписку и отписку для того чтобы продвижение аккаунта осуществлялось непрерывно.
+            </p>
+
+        </div>
+    </div>
+    <style>
+        .modal-error{
+            margin-bottom: 0px;
+            color: red;
+        }
+    </style>
+{% endblock %}

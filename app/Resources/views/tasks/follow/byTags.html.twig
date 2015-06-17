@@ -1,0 +1,27 @@
+{% extends 'tasks/follow/nav.html.twig' %}
+
+{% block task %}
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-md-5 col-md-offset-1">
+        {{ form_start(form) }}
+            {{ form_row(form.tags) }}
+            {{ form_row(form.count) }}
+            {{ form_row(form.speed) }}
+            <div class="pull-right">
+            </div>
+            <button class="btn btn-primary pull-right">Добавить</button>
+        {{ form_end(form) }}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <p>
+                Впишите в поле список хэштегов, которые по вашему мнению может ставить под своими фотографиями Ваша Целевая Аудитория.
+                instaStellar будет подписываться на этих людей.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        $(".follow_by_tags").addClass('active');
+    </script>
+
+{% endblock %}

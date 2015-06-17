@@ -22,7 +22,7 @@ use TaskBundle\Form\Type\FollowByListType;
 use TaskBundle\Form\Type\FollowByTagsType;
 use TaskBundle\Form\Type\LikeByTagsType;
 
-class CreateController extends Controller
+class PlayerController extends Controller
 {
     /**
      * @Route("/tasks/stop/{id}", name="stop_tasks")

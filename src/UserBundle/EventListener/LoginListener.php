@@ -52,11 +52,12 @@ class LoginListener
         // do some other magic here
         $user = $event->getAuthenticationToken()->getUser();
 
-        if($user->isExpired())
+        if($user->isExpired()) {
             $user->setIsPro(0);
             $this->session->getFlashBag()->add(
                 'notice',
                 "Бесплатный период использования сервиса закончился, для продления аккаунта перейдите на страницу покупки, либо свяжитесь с нашей технической поддержкой в группе вконтакте, если Вы еще не успели вполне опробовать наш ресурс и испытать весь его функционал!"
             );
+        }
     }
 }

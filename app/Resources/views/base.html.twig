@@ -21,9 +21,7 @@
             $('#purchase').addClass('active');
         {% endif %}
         $('.content').css('min-height',$(window).height() - 51 )
-
     })
-
 </script>
 <head>
     <title>Instastellar</title>
@@ -50,13 +48,21 @@
         <div class="row">
             <div class="col-xs-2 left">
                 <div class="navigation">
-                    <ul class="nav left-menu">
+                    <ul class="nav left-menu text-center">
                         <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span> Аккаунты</a></li>
                         <li id="analytic"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span> Аналитика</a></li>
                         <li id="info">    <a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
                         <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span> Покупка</a></li>
                     </ul>
-
+                </div>
+                <div class="navigation" style="bottom: 20px">
+                    <ul class="nav left-menu text-center">
+                        <li id="purchase"><a href="{{ path('support') }}"><span class="glyphicon glyphicon-pencil"></span> Поддержка
+                                {% if app.security.getToken().getUser().unRead > 0 %}
+                                    <span class="badge">{{ app.security.getToken().getUser().unRead  }}</span>
+                                {% endif %}
+                            </a></li>
+                    </ul>
                 </div>
             </div>
 
@@ -93,22 +99,7 @@
 
 
 </body>
-<!-- {literal} -->
-<script type='text/javascript'>
-    window['li'+'v'+'eTe'+'x'] = true,
-            window['li'+'v'+'eTex'+'I'+'D'] = 101475,
-            window['li'+'ve'+'Tex_'+'obj'+'ect'] = true;
-    (function() {
-        var t = document['crea'+'teE'+'le'+'m'+'ent']('script');
-        t.type ='text/javascript';
-        t.async = true;
-        t.src = '//cs15.livet'+'ex.ru/js/clien'+'t.'+'js';
-        var c = document['getElem'+'entsByT'+'ag'+'Nam'+'e']('script')[0];
-        if ( c ) c['pa'+'rentN'+'od'+'e']['ins'+'e'+'r'+'t'+'Be'+'fore'](t, c);
-        else document['doc'+'umen'+'tEle'+'ment']['fi'+'rstC'+'hil'+'d']['ap'+'pe'+'ndChi'+'l'+'d'](t);
-    })();
-</script>
-<!-- {/literal} -->
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {

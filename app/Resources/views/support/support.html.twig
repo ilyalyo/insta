@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+        <table style="width: 50%; margin-left: 10%;  margin-bottom: 150px;">
+            <tbody>
+                {% for h in history %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="wrapped">
+                                <div class="author_chat">
+                                    <a>
+                                        {% if h.isAnswer == 1 %}
+                                            Служба поддержки
+                                        {% else %}
+                                            {{ h.user.username }}
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="msg_text">{{ h.message }}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="date_link pull-right">{{ h.createdAt | date("H:i d/m/Y", h.user.timezone)  }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+
+    <div class="msg_form">
+        <div class="new_msg">
+            <table style="width: 50%;margin-left: 30px;">
+                <td>
+                    <div class="wrapped">
+            {{ form_start(form) }}
+                {{ form_errors(form.message) }}
+                {{ form_widget(form.message) }}
+                <div class="pull-right">
+                </div>
+                <button class="btn btn-primary pull-right" style="margin-top: 10px">Отправить</button>
+                {{ form_end(form) }}
+                    </div>
+                </td>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    <style>
+        .author_chat{
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .msg_text{
+            padding-top: 5px;
+        }
+        .wrapped{
+            padding-top: 15px;
+            word-wrap: break-word;
+            width: 360px;
+        }
+        .msg_form{
+            position: fixed;
+            bottom: 0px;
+            width: 66.66666667%;
+            margin-left: -15px !important;
+            background-color: white;
+            height: 150px;
+        }
+        .new_msg{
+            width: 50%;
+            margin-left: 10%;
+            padding-top: 15px;
+        }
+        .date_link{
+            color: #999;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 11px;
+        }
+        .date_link:hover {
+            color: #999;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        $(window).load(function() {
+            $("html, body").animate({ scrollTop: $(document).height() }, 100);
+        });
+    </script>
+{% endblock %}

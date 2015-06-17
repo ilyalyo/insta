@@ -61,6 +61,16 @@ class User extends BaseUser
     protected $timezone;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Support", mappedBy="messages")
+     */
+    protected $messages;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $unRead;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -220,5 +230,61 @@ class User extends BaseUser
     public function getIsPro()
     {
         return $this->isPro;
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \AppBundle\Entity\Support $messages
+     * @return User
+     */
+    public function addMessage(\AppBundle\Entity\Support $messages)
+    {
+        $this->messages[] = $messages;
+
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \AppBundle\Entity\Support $messages
+     */
+    public function removeMessage(\AppBundle\Entity\Support $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Set unRead
+     *
+     * @param integer $unRead
+     * @return User
+     */
+    public function setUnRead($unRead)
+    {
+        $this->unRead = $unRead;
+
+        return $this;
+    }
+
+    /**
+     * Get unRead
+     *
+     * @return integer 
+     */
+    public function getUnRead()
+    {
+        return $this->unRead;
     }
 }

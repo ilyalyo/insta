@@ -61,17 +61,21 @@ class DefaultController extends Controller
      */
     public function deleteAction($id)
     {
-        $removed_account = new RemovedAccounts();
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('id' => $id, 'user'=>$user->getId()));
         if(!isset($account))
             throw new NotFoundHttpException("Page not found");
 
-        $removed_account->setInstLogin($account->getInstLogin());
-        $removed_account->setUser($user);
+        //if user expired we save login in db to prevent him to use this
+        // instagram acc with different instastellar acc
+        if($user->getIsPro() == 0) {
+            $removed_account = new RemovedAccounts();
+            $removed_account->setInstLogin($account->getInstLogin());
+            $removed_account->setUser($user);
+            $em->persist($removed_account);
+        }
 
-        $em->persist($removed_account);
         $em->remove($account);
         $em->flush();
 

@@ -28,6 +28,7 @@ class User extends BaseUser
         $date = new \DateTime();
         $date->add(new \DateInterval('P3D'));
         $this->validUntil = $date;
+        $this->isPro = 0;
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
@@ -48,6 +49,11 @@ class User extends BaseUser
      * @ORM\Column(type="datetime")
      */
     protected $validUntil;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $isPro;
 
     /**
      * @ORM\Column(type="string", length=50,nullable = TRUE)
@@ -191,5 +197,28 @@ class User extends BaseUser
 
     public function isExpired(){
         return $this->validUntil->getTimestamp() < time();
+    }
+
+    /**
+     * Set isPro
+     *
+     * @param integer $isPro
+     * @return User
+     */
+    public function setIsPro($isPro)
+    {
+        $this->isPro = $isPro;
+
+        return $this;
+    }
+
+    /**
+     * Get isPro
+     *
+     * @return integer 
+     */
+    public function getIsPro()
+    {
+        return $this->isPro;
     }
 }

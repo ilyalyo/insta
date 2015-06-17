@@ -61,6 +61,14 @@ class CasperAjaxController extends Controller
         if(count($exist) > 0)
             $form->get('instLogin')->addError(new FormError('Аккаунт с таким логином уже существует'));
 
+        $created_before = $em->getRepository('AppBundle:RemovedAccounts')->findBy(array(
+            'instLogin'=>$account->getInstLogin()
+        ));
+
+        if(count($created_before) > 0 && $user->getIsPro() == 0)
+            $form->get('instLogin')->addError(new FormError('Этот аккаунт уже добавлялся, обратитесь в тех. поддержку'));
+
+
         if ($form->isValid()) {
 
             $command = new AuthCheckCommand();

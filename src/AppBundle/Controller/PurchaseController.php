@@ -71,6 +71,7 @@ class PurchaseController extends Controller
                 }
                 $user->setValidUntil($date);
                 $user->setMaxAccounts(5);
+                $user->isPro(1);
                 $em->persist($user);
                 $em->flush();
                 return new JsonResponse('200 OK');

@@ -3,6 +3,12 @@
 {% block body %}
     <script>
         $( document ).ready(function(){
+                $('[data-toggle="popover"]').popover({
+                    trigger: 'click'
+                    , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner" style="min-width: 150px"><h3 class="popover-title"></h3><div class="popover-content  text-center"><p></p></div></div></div>'
+                });
+
+
             $('#mainTab').click(function (e) {
                 e.preventDefault()
                 $(this).tab('show')
@@ -117,8 +123,7 @@
                     {% else %}
                         <a disabled type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
                     {% endif %}
-                    <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>-->
-
+                    <button title="<p>Вы уверены?</p>" data-content="<a href='{{ path('delete_account', {'id': account.id }) }}' type='button' class='btn btn-danger text-center'>Удалить</a>" data-placement="bottom" data-container="body" data-html="true"  data-toggle="popover" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
                 </div>
 
               {% if account.tasks | length >0 %}

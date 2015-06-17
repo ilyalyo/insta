@@ -3,10 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Accounts;
+use AppBundle\Entity\RemovedAccounts;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -53,4 +55,27 @@ class DefaultController extends Controller
     {
         return $this->redirect('https://instagram.com/oauth/authorize/?client_id=6e336200a7f446a78b125602b90989cc&response_type=code&redirect_uri=http://instastellar.su/get_token&scope=likes+comments+relationships');
     }
+
+    /**
+     * @Route("/account/delete/{id}", name="delete_account")
+     */
+    public function deleteAction($id)
+    {
+        $removed_account = new RemovedAccounts();
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('id' => $id, 'user'=>$user->getId()));
+        if(!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
+        $removed_account->setInstLogin($account->getInstLogin());
+        $removed_account->setUser($user);
+
+        $em->persist($removed_account);
+        $em->remove($account);
+        $em->flush();
+
+        return  $this->redirectToRoute('accounts');
+    }
+
 }

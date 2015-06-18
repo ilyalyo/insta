@@ -29,6 +29,7 @@ class User extends BaseUser
         $date->add(new \DateInterval('P3D'));
         $this->validUntil = $date;
         $this->isPro = 0;
+        $this->unRead = 0;
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")

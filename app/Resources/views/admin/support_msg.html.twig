@@ -7,7 +7,11 @@
                     <tr>
                         <td></td>
                         <td>
-                            <div class="wrapped">
+                            <div class="wrapped"
+                            {% if h.isRead == 0 %}
+                                style="background-color: aliceblue;"
+                            {% endif %}
+                                    >
                                 <div class="author_chat">
                                     <a>
                                         {% if h.isAnswer == 1 %}
@@ -17,7 +21,7 @@
                                         {% endif %}
                                     </a>
                                 </div>
-                                <div class="msg_text">{{ h.message }}</div>
+                                    <div class="msg_text">{{ h.message }}</div>
                             </div>
                         </td>
                         <td>

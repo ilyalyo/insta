@@ -4,6 +4,7 @@ namespace AdminBundle\Controller;
 
 use AppBundle\Entity\Support;
 use AppBundle\Form\Type\SupportType;
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,6 +32,9 @@ class SupportController extends Controller
         $form = $this->createFormBuilder()
             ->add('users', 'entity', array(
              'class' => 'UserBundle:User',
+             'query_builder' => function(EntityRepository $repository) {
+                 return $repository->createQueryBuilder('u')->orderBy('u.username', 'ASC');
+             },
              'property' => 'username'))
             ->getForm();
 

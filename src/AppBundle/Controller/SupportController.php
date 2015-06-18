@@ -25,10 +25,10 @@ class SupportController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $history = $em->getRepository('AppBundle:Support')->findBy(array('user' => $user->getId()), array('createdAt' => 'DESC'));
-        $history_unreaded = $em->getRepository('AppBundle:Support')->findBy(array('user' => $user->getId(), 'isRead' => 0));
+        $history = $em->getRepository('AppBundle:Support')->findBy(array('user' => $user->getId()), array('createdAt' => 'ASC'));
+        $history_unread = $em->getRepository('AppBundle:Support')->findBy(array('user' => $user->getId(), 'isRead' => 0, 'isAnswer' => 1));
 
-        foreach($history_unreaded as $h)
+        foreach($history_unread as $h)
         {
             $h->setIsRead(1);
             $em->persist($h);

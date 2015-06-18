@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
             new TaskBundle\TaskBundle(),
+            new AdminBundle\AdminBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
         );

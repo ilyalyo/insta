@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form.users) }}
+    <button class="btn btn-primary pull-right" style="margin-top: 10px">Перейти к диалогу</button>
+    {{ form_end(form) }}
+
+    <h3>Новые сообщения от пользователей:</h3>
+    {% for u in users_with_new_msg  %}
+            <a href="{{ path('admin_support_msg', { 'id': u.id }) }}">{{ u.username }}
+                <span class="badge">{{ u.new_msgs  }}</span>
+            </a>
+    {% endfor %}
+{% endblock %}

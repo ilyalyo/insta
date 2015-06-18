@@ -63,7 +63,7 @@ class SupportController extends Controller
         $form = $this->createForm(new SupportType(), $support);
 
         $history = $em->getRepository('AppBundle:Support')->findBy(array('user' => $id));
-        $history_unread = $em->getRepository('AppBundle:Support')->findBy(array('isRead' => 0, 'isAnswer' => 0));
+        $history_unread = $em->getRepository('AppBundle:Support')->findBy(array('user' => $id,'isRead' => 0, 'isAnswer' => 0));
 
         foreach($history_unread as $h)
         {

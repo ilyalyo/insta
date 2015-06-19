@@ -41,6 +41,16 @@ class SupportController extends Controller
         if ($form->isValid()) {
             $em->persist($support);
             $em->flush();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Вопрос в тех. поддержке')
+                ->setFrom('support@instastellar.su')
+                ->setTo('support@instastellar.su')
+                ->setBody(
+                    'новое сообщение от пользователя ' . $user->getUsername()
+                );
+            $this->get('mailer')->send($message);
+
             return  $this->redirectToRoute('support');
         }
 

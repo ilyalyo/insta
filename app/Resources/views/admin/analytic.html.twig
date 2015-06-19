@@ -19,7 +19,8 @@
                 },
                 xAxis: {
                     type: 'datetime',
-                   // minRange: 24 * 3600000, // fourteen days
+                    pointInterval: 24 * 3600 * 1000,
+                    // minRange: 24 * 3600000, // fourteen days
                     dateTimeLabelFormats: { // don't display the dummy year
                         month: '%e. %b',
                         year: '%b'

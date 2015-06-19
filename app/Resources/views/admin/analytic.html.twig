@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <script src="//code.highcharts.com/4.0.1/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.0.1/modules/exporting.js"></script>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>Аналитика</h1>
+            <div id="container" style="padding-top: 30px"></div>
+        </div>
+    </div>
+    <script>
+        var q1 = 0;
+        $(function () {
+            $('#container').highcharts({
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    type: 'datetime',
+                    minRange: 24 * 3600000, // fourteen days
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        month: '%e. %b',
+                        year: '%b'
+                    },
+                    title: {
+                        text: 'Date'
+                    }
+                },
+                chart: {
+                    zoomType: 'x',
+                },
+                plotOptions: {
+                    series: {
+                        cursor: 'Dot',
+                    },
+                },
+                series: [
+                    {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                    name: 'Регистрации',
+                    data: [{{ usersCount | join(', ') }}]
+                }, {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                    name: 'Вы подписаны',
+                    data: [{{ usersCount | join(', ') }}]
+                }]
+            });
+        });
+    </script>
+{% endblock %}

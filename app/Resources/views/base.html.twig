@@ -60,7 +60,7 @@
                 </div>
                 <div class="navigation" style="bottom: 20px">
                     <ul class="nav left-menu text-center">
-                        <li id="purchase"><a href="{{ path('support') }}"><span class="glyphicon glyphicon-pencil"></span> Поддержка
+                        <li id="support"><a href="{{ path('support') }}"><span class="glyphicon glyphicon-pencil"></span> Поддержка
                                 {% if app.security.getToken().getUser().unRead > 0 %}
                                     <span class="badge">{{ app.security.getToken().getUser().unRead  }}</span>
                                 {% endif %}
@@ -68,6 +68,20 @@
                     </ul>
                 </div>
             </div>
+            {% if app.security.getToken().getUser().unRead > 0 %}
+            <script>
+                $(function () {
+                    var flag = false;$('#purchase').find('a').css("background-color", "F2F2F2");
+                    setTimeout(function () {
+                        $('#purchase').find('a').css("background-color", "F2F2F2");
+                        setInterval(function () {
+                            $('#purchase').find('a').css("background-color", flag? "F2F2F2":"white");
+                            flag = !flag;
+                        }, 500)
+                    }, 3000);
+                });
+            </script>
+            {% endif %}
 
             <div class="col-xs-8 col-md-10 content" style="min-height: 500px;">
                 {% block body %}{% endblock %}

@@ -2,9 +2,6 @@
 header .navbar-default{
     background-color: #000000;
 }
-header .navbar-nav.active{
-    background-color: #e90a71;
-}
 .navigation{
     padding-top: 20px;
     width: inherit;
@@ -19,29 +16,9 @@ header .navbar-nav.active{
 body.modal-open{
     overflow:inherit; padding-right:inherit !important;
 }
-/*
-#brief{
-    background-image: url(/img/background_space.jpg);
-    background-size: cover;
-
-}
-*/
-#brief p{
-    color:#ffffff;
-    //Здесь выбрать нормальный шрифт
-    //font-family:HelveticaNeue-Light;
-}
-
 #poss{
-    /*background-image: url(/img/passability.png);
-    background-image: url(/img/background_space.jpg);
-    */
+    background-image: url(/img/passability.png);
     background-size: cover;
-}
-#why{
-    background-image: url(/img/background_space.jpg);
-    background-size: cover;
-    padding-bottom: 30px;"
 }
 footer{
     background-color: #000;
@@ -50,17 +27,12 @@ footer{
 }
 #why p{
     padding-top: 15px;
-    color:#ffffff;
 }
-#why h3{
-    color:#e90a71;
-}
-
 body .wrapper{
     padding-top: 50px;
 }
 .rocket{
-    padding-left: 5%;
+    padding-bottom: 20px;
 }
 nav p{
     margin: 0px;
@@ -79,14 +51,9 @@ p{
 .text-center h1,h2,h3{
     letter-spacing: 1px;
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif !important;
-    color:#ffffff;
 }
 #promote .btn-start{
     margin-top: 0px;
-}
-#promote h1{
-    font-family: "Lobster-Regular";
-    color:#000000;
 }
 .btn-start p{
     letter-spacing: 4px;
@@ -101,8 +68,7 @@ p{
     border-color: #ccc;
     font-size: 24px;
     margin-top: 30px;
-    padding-top: 10px;
-    text-align: center;
+    padding-top: 0px;
 }
 .btn-default.btn-start:hover{
     color: #fff;
@@ -140,8 +106,6 @@ color: #ffffff;
     padding-top: 50px;
 }
 #poss h1{
-    /*wtf?*/
-    font-family: "Lobster-Regular"!important;
     text-align: center;
     color: #ffffff;
 }

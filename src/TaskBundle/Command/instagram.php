@@ -295,14 +295,15 @@ class Instagram
             'optionAddLike' => $row['optionAddLike'],
             );
 
+
         $this->PROXY = $row['ip'] . ':' . $row['port'];
         $this->LOGIN = $row['instLogin'];
         $this->PASSWORD = $row['instPass'];
         $this->ACCOUNT_ID = $row['account_id'];
         $this->ACCOUNT_ID_INST = $row['account_id_inst'];
 
-        $this->OPTIONS[] = $row['optionCheckUserFromDB'];
-        $this->OPTIONS[] = $row['optionFollowClosed'];
+        $this->OPTIONS['optionCheckUserFromDB'] = $row['optionCheckUserFromDB'];
+        $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();

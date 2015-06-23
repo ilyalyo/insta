@@ -126,6 +126,7 @@ class Instagram
 
             $data = $response->data;
             $next = $response->pagination->next_cursor;
+            $this->debug($next);
             if($all-$counter<=$about_count)
                 foreach ($data as $d) {
                     $user['username'] = $d->username;

@@ -241,7 +241,7 @@ class Instagram
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
         $response = $this->httpGet($url);
 
-        if($this->OPTIONS['optionFollowClosed'])
+        if(!$this->OPTIONS['optionFollowClosed'])
             if(!$response->data->target_user_is_private)
                 return false;
 

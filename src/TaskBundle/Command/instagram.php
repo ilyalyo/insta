@@ -245,7 +245,7 @@ class Instagram
             if(!$response->data->target_user_is_private)
                 return false;
 
-        if($this->OPTIONS['optionCheckUserFromDB'])
+        if(!$this->OPTIONS['optionCheckUserFromDB'])
             if(in_array($username, $this->DB_USERS))
                 return false;
 
@@ -303,7 +303,7 @@ class Instagram
         $this->OPTIONS[] = $row['optionCheckUserFromDB'];
         $this->OPTIONS[] = $row['optionFollowClosed'];
 
-        if($this->OPTIONS['optionCheckUserFromDB'])
+        if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();
         return $result;
     }

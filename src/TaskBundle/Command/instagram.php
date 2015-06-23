@@ -239,14 +239,20 @@ class Instagram
     function checkUser($user_id, $token, $username = null)
     {
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-        $response = ($this->httpGet($url));
+        $response = $this->httpGet($url);
 
-       // if($this->OPTIONS['optionCheckUserFromDB'] == 1)
+        if($this->OPTIONS['optionFollowClosed'])
+            if(!$response->data->target_user_is_private)
+                return false;
+
+        if($this->OPTIONS['optionCheckUserFromDB'])
             if(in_array($username, $this->DB_USERS))
                 return false;
 
-        if ($response->data->outgoing_status == 'none' && $response->data->target_user_is_private == false)
+        if ($response->data->outgoing_status == 'none')
             return true;
+
+        return false;
     }
 
 
@@ -293,8 +299,11 @@ class Instagram
         $this->PASSWORD = $row['instPass'];
         $this->ACCOUNT_ID = $row['account_id'];
         $this->ACCOUNT_ID_INST = $row['account_id_inst'];
+
         $this->OPTIONS[] = $row['optionCheckUserFromDB'];
-//        if($this->OPTIONS['optionCheckUserFromDB'] == 1)
+        $this->OPTIONS[] = $row['optionFollowClosed'];
+
+        if($this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();
         return $result;
     }

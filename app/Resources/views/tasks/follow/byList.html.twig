@@ -6,6 +6,9 @@
         {{ form_start(form) }}
             {{ form_row(form.tmp_tags) }}
             {{ form_row(form.speed) }}
+
+            {{ form_widget(form.optionFollowClosed) }}
+            {{ form_widget(form.optionCheckUserFromDB) }}
             <button class="btn btn-primary pull-right">Добавить</button>
         {{ form_end(form) }}
         </div>

@@ -117,9 +117,14 @@ class Tasks
     protected $optionAddLike;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $optionCheckUserFromDB;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $optionFollowClosed;
 
     /**
      * Get id
@@ -438,5 +443,28 @@ class Tasks
     public function getOptionCheckUserFromDB()
     {
         return $this->optionCheckUserFromDB;
+    }
+
+    /**
+     * Set optionFollowClosed
+     *
+     * @param boolean $optionFollowClosed
+     * @return Tasks
+     */
+    public function setOptionFollowClosed($optionFollowClosed)
+    {
+        $this->optionFollowClosed = $optionFollowClosed;
+
+        return $this;
+    }
+
+    /**
+     * Get optionFollowClosed
+     *
+     * @return boolean 
+     */
+    public function getOptionFollowClosed()
+    {
+        return $this->optionFollowClosed;
     }
 }

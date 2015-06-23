@@ -18,6 +18,7 @@ class Support
     {
         $this->isRead = 0;
         $this->createdAt = new \DateTime();
+        $this->isDuplicateToEmail = false;
     }
 
     /**
@@ -51,6 +52,11 @@ class Support
      * @ORM\Column(type="integer")
      */
     protected $isAnswer;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $isDuplicateToEmail;
 
     /**
      * @ORM\Column(type="datetime")
@@ -180,5 +186,28 @@ class Support
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set isDuplicateToEmail
+     *
+     * @param integer $isDuplicateToEmail
+     * @return Support
+     */
+    public function setIsDuplicateToEmail($isDuplicateToEmail)
+    {
+        $this->isDuplicateToEmail = $isDuplicateToEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get isDuplicateToEmail
+     *
+     * @return integer 
+     */
+    public function getIsDuplicateToEmail()
+    {
+        return $this->isDuplicateToEmail;
     }
 }

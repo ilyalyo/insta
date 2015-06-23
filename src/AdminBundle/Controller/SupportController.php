@@ -2,8 +2,8 @@
 
 namespace AdminBundle\Controller;
 
+use AdminBundle\Form\Type\SupportType;
 use AppBundle\Entity\Support;
-use AppBundle\Form\Type\SupportType;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -82,6 +82,19 @@ class SupportController extends Controller
             $em->persist($client);
             $em->persist($support);
             $em->flush();
+
+            if($support->getIsDuplicateToEmail()){
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Обращение из тех. поддержки')
+                    ->setFrom('support@instastellar.su')
+                    ->setTo($client->getEmail())
+                    ->setBody(
+                        'Вам поступило новое сообщение из тех. поддержки сервиса Instastellar:' .
+                        $support->getMessage()
+                    );
+                $this->get('mailer')->send($message);
+            }
+
             return $this->redirect($request->headers->get('referer'));
         }
 

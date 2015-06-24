@@ -243,7 +243,7 @@ class Instagram
         $response = $this->httpGet($url);
 
         if(!$this->OPTIONS['optionFollowClosed'])
-            if(!$response->data->target_user_is_private)
+            if($response->data->target_user_is_private)
                 return false;
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])

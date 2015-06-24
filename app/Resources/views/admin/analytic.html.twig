@@ -11,11 +11,10 @@
         </div>
     </div>
     <script>
-        var q1 = 0;
-        $(function () {
+       $(function () {
             $('#container').highcharts({
                 title: {
-                    text: ''
+                    text: 'Кумулятивный график регистраций'
                 },
                 xAxis: {
                     type: 'datetime',
@@ -28,6 +27,7 @@
                     }
                 },
                 chart: {
+                    type: 'spline',
                     zoomType: 'x',
                 },
                 plotOptions: {

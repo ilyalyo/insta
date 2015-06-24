@@ -23,7 +23,7 @@ class AnalyticController extends Controller
         $index = 0;
         foreach ($users as $u) {
             $userDates[] = $u->getCreatedAt();
-            $usersCount[] = '[' . ($u->getCreatedAt()->getTimestamp() == 0 ? 1433306697 : $u->getCreatedAt()->getTimestamp() ) *1000   . ',' . $index++ . ']';
+            $usersCount[] = '[' . $u->getCreatedAt()->getTimestamp() *1000   . ',' . $index++ . ']';
         }
 
         return $this->render(

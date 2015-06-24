@@ -42,12 +42,6 @@
                         },
                     name: 'Регистрации',
                     data: [{{ usersCount | join(', ') }}]
-                }, {
-                        marker: {
-                            symbol: 'circle'
-                        },
-                    name: 'Вы подписаны',
-                    data: [{{ usersCount | join(', ') }}]
                 }]
             });
         });

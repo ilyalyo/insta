@@ -50,6 +50,9 @@
                                 var p_proc = msg[k]['parsingStatus']/msg[k]['shouldbedone']*100 + '%';
                                 $('#status'+msg[k]['id']).text('Парсинг списка ' + p_proc);
                             }
+                            else if(msg[k]['status']==2){
+                                $('#status'+msg[k]['id']).text('Выполняется');
+                            }
                         }
                     }
                 });

@@ -111,8 +111,8 @@
                 </h4>
 
                 <div class="btn-group pull-right">
-                    <a href="{{ path("add_task_follow_by_id", {'id' :account.id }) }}" type="button" class="btn btn-default" title="Добавление задачи по ID"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a href="{{ path('add_task_like_by_tags', {'id': account.id }) }}" type="button" class="btn btn-default" title="Лайкинг по тэгам"><span class="glyphicon glyphicon-heart"></span></a>
+                    <a href="{{ path("add_task_follow_by_id", {'id' :account.id }) }}" type="button" class="btn btn-default" title="Добавление задачи на фоловинг"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a href="{{ path('add_task_like_by_tags', {'id': account.id }) }}" type="button" class="btn btn-default" title="Добавление задачи на лайкинг"><span class="glyphicon glyphicon-heart"></span></a>
                     <a href="{{ path('add_task_unfollow',  {'id': account.id }) }}" type="button" class="btn btn-default" title="Отписка"><span class="glyphicon glyphicon-minus"></span></a>
                     {% if account.tasks | length > 0 %}
                          {% if ((account.tasks | last).status in [2,0]) %}
@@ -123,7 +123,7 @@
                     {% else %}
                         <a disabled type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
                     {% endif %}
-                    <button title="<p>Вы уверены?</p>" data-content="<a href='{{ path('delete_account', {'id': account.id }) }}' type='button' class='btn btn-danger text-center'>Удалить</a>" data-placement="bottom" data-container="body" data-html="true"  data-toggle="popover" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button title="<p>Удалить аккаунт?</p>" data-content="<a href='{{ path('delete_account', {'id': account.id }) }}' type='button' class='btn btn-danger text-center'>Удалить</a>" data-placement="bottom" data-container="body" data-html="true"  data-toggle="popover" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
                 </div>
 
               {% if account.tasks | length >0 %}

@@ -120,6 +120,9 @@ class CreateController extends Controller
 
         if ($form->isValid()) {
 
+            if($task->getOptionAddLike() == 1)
+                $task->setCount($task->getCount() * 2);
+
             $tags=str_replace(" ","",$task->getTags());
             $task->setTags($tags);
             $em->persist($task);
@@ -169,6 +172,9 @@ class CreateController extends Controller
             $form->get('count')->addError(new FormError('При подписке с опцией лайкинг, количество должно быть менее 500'));
 
         if ($form->isValid()) {
+
+            if($task->getOptionAddLike() == 1)
+                $task->setCount($task->getCount() * 2);
 
             $tmp = str_replace(" ","",$task->getTags());
             $tags=trim($tmp,"#");

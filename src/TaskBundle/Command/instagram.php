@@ -309,7 +309,7 @@ class Instagram
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();
 
-        if(!$this->OPTIONS['optionAddLike'])
+        if($this->OPTIONS['optionAddLike'])
             $result['count'] = $result['count'] / 2;
 
         return $result;

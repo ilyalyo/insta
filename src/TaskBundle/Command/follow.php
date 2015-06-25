@@ -20,17 +20,17 @@ function follow_by_username(){
         else
             $errors++;
 
+        sleep(sleepTime($task['speed']));
+
         if($task['optionAddLike']) {
             $media = $inst->get_last_user_media($user['user_id']);
             if (isset($media)) {
                 $result = $inst->like($media->data[0]->id);
                 if (isset($result) && $result->meta->code == 200)
                     $inst->add_row($media->data[0]->link);
-                sleep(sleepTime($task['speed']));
+                sleep(sleepTime(3));
             }
         }
-
-        sleep(sleepTime($task['speed']));
 
         if ($inst->get_task_status() == 3){
             break;
@@ -68,6 +68,16 @@ function follow_by_tags(){
 
         sleep(sleepTime($task['speed']));
 
+        if($task['optionAddLike']) {
+            $media = $inst->get_last_user_media($user['user_id']);
+            if (isset($media)) {
+                $result = $inst->like($media->data[0]->id);
+                if (isset($result) && $result->meta->code == 200)
+                    $inst->add_row($media->data[0]->link);
+                sleep(sleepTime(3));
+            }
+        }
+
         if ($inst->get_task_status() == 3){
             break;
         }
@@ -104,6 +114,16 @@ function follow_by_list(){
             $errors++;
 
         sleep(sleepTime($task['speed']));
+
+        if($task['optionAddLike']) {
+            $media = $inst->get_last_user_media($user['user_id']);
+            if (isset($media)) {
+                $result = $inst->like($media->data[0]->id);
+                if (isset($result) && $result->meta->code == 200)
+                    $inst->add_row($media->data[0]->link);
+                sleep(sleepTime(3));
+            }
+        }
 
         if ($inst->get_task_status() == 3){
             break;

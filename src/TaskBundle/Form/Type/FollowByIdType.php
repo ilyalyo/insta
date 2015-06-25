@@ -20,6 +20,7 @@ class FollowByIdType extends AbstractType
                 'label' => 'Скорость',
                 'multiple' => false,
             ))
+            ->add('optionAddLike', 'checkbox', array('label' => 'Ставить лайк перед подиской' , 'required' => false ))
             ->add('optionFollowClosed', 'checkbox', array('label' => 'Подписываться на закрытые страницы' , 'required' => false ))
             ->add('optionCheckUserFromDB', 'checkbox', array('label' => 'Подписываться на бывших подписчиков' , 'required' => false ));
     }

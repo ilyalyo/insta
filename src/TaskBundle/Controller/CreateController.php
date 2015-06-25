@@ -61,7 +61,11 @@ class CreateController extends Controller
                 ));
             }
 
-            $task->setCount(count($exp_ids));
+            if($task->getOptionAddLike() == 1)
+                $task->setCount(count($exp_ids) * 2);
+            else
+                $task->setCount(count($exp_ids));
+
             $task->setAccountId($account);
             $em->persist($task);
 
@@ -111,6 +115,9 @@ class CreateController extends Controller
         if($running_task > 0)
             $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
 
+        if($task->getOptionAddLike() == 1 && $task->getCount() > 500)
+            $form->get('count')->addError(new FormError('При подписке с опцией лайкинг, количество должно быть менее 500'));
+
         if ($form->isValid()) {
 
             $tags=str_replace(" ","",$task->getTags());
@@ -157,6 +164,9 @@ class CreateController extends Controller
         $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
         if($running_task > 0)
             $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if($task->getOptionAddLike() == 1 && $task->getCount() > 500)
+            $form->get('count')->addError(new FormError('При подписке с опцией лайкинг, количество должно быть менее 500'));
 
         if ($form->isValid()) {
 

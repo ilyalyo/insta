@@ -304,6 +304,7 @@ class Instagram
 
         $this->OPTIONS['optionCheckUserFromDB'] = $row['optionCheckUserFromDB'];
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
+        $this->OPTIONS['optionAddLike'] = $row['optionAddLike'];
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();

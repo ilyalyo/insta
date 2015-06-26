@@ -1,7 +1,8 @@
 {% block head_style %}
-    <link rel="stylesheet" href="/css/landing_base.css">
+    <link href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/roboto-condensed.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/landing_base.css">
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 {% endblock head_style %}
 <head>
@@ -10,27 +11,32 @@
 </head>
 
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink" style="border: none;">
-        <div class="col-xs-2 left">
-            <a href="{{ path('homepage') }}#main"><img  class="logo" src="/img/instastellar_header.png"/></a>
+    <nav class="navbar navbar-default navbar-fixed-top col-xs-12" style="border: none;">
+            <a class="col-sm-12 col-md-3 col-lg-4" href="{{ path('homepage') }}#main"><img  class="logo" src="/img/instastellar_header.png"/></a>
+        <!--
+        <div class="container" style="border: none; padding-left:0">
+        -->
+            <div class="nav navbar-nav col-sm-12 col-md-9 col-lg-8">
+                 <ul class="nav navbar-nav" style="border:none;">
+                    <li><a href="{{ path('homepage') }}#main"><p>Главная</p></a></li>
+                    <li><a href="{{ path('homepage') }}#poss"><p>Возможности</p></a></li>
+                    <li><a href="{{ path('homepage') }}#promote"><p>Как раскрутить</p></a></li>
+                    <li><a href="{{ path('homepage') }}#why"><p>Почему мы?</p></a></li>
+                    <li><a href="{{ path('homepage') }}#contacts"><p>Контакты</p></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="border:none;">
+                    <li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('accounts') }}"><p>Панель управления</p></a>
+                    {% else %}
+                        <a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a>
+                    {% endif %}
+                    </li>
+                </ul>
+            </div>
+        <!--
         </div>
-
-        <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ path('homepage') }}#main"><p>Главная</p></a></li>
-                <li><a href="{{ path('homepage') }}#poss"><p>Возможности</p></a></li>
-                <li><a href="{{ path('homepage') }}#promote"><p>Как раскрутить</p></a></li>
-                <li><a href="{{ path('homepage') }}#why"><p>Почему мы?</p></a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="{{ path('accounts') }}"><p>Панель управления</p></a></li>
-                {% else %}
-                    <li><a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a></li>
-                {% endif %}
-            </ul>
-        </div>
+        -->
     </nav>
 </header>
 {% block content %}
@@ -61,6 +67,7 @@
             } else { f(); }
         })(document, window, "yandex_metrika_callbacks");
     </script>
+
     <noscript><div><img src="//mc.yandex.ru/watch/29905164" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 {% endblock %}

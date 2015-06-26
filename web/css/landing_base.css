@@ -1,18 +1,60 @@
 /*head*/
 header .navbar-default{
     background-color: #000000;
+    vertical-align: bottom;
+    text-align: center;
 }
-header .navbar-nav.active{
+.navbar-nav >.active{
+    background-color: #ffff00;
+}
+header nav p{
+    font-size: 13pt;
+}
+header li{
+    padding-left: 0px;
+}
+header .nav.li.a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    background-color: #fb2c93;
+}
+.navbar-default .navbar-nav > li > a:active{
     background-color: #e90a71;
+}
+.navbar-default .navbar-nav > li > a:focus{
+    background-color: #e90a71;
+}
+
+.col-xs-12{
+    text-align: center;
 }
 .navigation{
     padding-top: 20px;
     width: inherit;
     margin-left: -15px;
+    padding-bottom: 20px;
 }
 .nav .glyphicon{
     padding-left: 30px;
 }
+.navbar-fixed-top .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #000;  /*Sets the text hover color on navbar*/
+}
+.navbar-fixed-top .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
+a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #e90a71;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+}
+
 .logo{
     padding-top: 5px;
 }
@@ -39,7 +81,7 @@ body.modal-open{
     background-size: cover;
 }
 #why{
-    background-image: url(/img/background_space.jpg);
+    background-image: url('/img/background_space.jpg');
     background-size: cover;
     padding-bottom: 30px;"
 }
@@ -85,8 +127,17 @@ p{
     margin-top: 0px;
 }
 #promote h1{
-    font-family: "Lobster-Regular";
+    font-family: 'Lobster', cursive!important;
     color:#000000;
+    font-size: 48pt;
+}
+#promote h3{
+    color: #666666;
+}
+#why h1{
+    font-family: 'Lobster', cursive!important;
+    color:#FFFFFF;
+    font-size: 36pt;
 }
 .btn-start p{
     letter-spacing: 4px;
@@ -141,9 +192,9 @@ color: #ffffff;
 }
 #poss h1{
     /*wtf?*/
-    font-family: "Lobster-Regular"!important;
-    text-align: center;
+    font-family: 'Lobster', cursive!important;
     color: #ffffff;
+    font-size: 34pt;
 }
 /**/
 
@@ -156,4 +207,14 @@ color: #ffffff;
 .panel {
     box-shadow: none !important;
 }
+
+#poss .container2{
+    text-align: center;
+    vertical-align: top;
+}
+
+#poss .imgholder{
+    margin-bottom: 40px;
+}
+
 /* slider*/

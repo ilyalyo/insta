@@ -20,6 +20,7 @@ use TaskBundle\Entity\TaskType;
 use TaskBundle\Form\Type\FollowByIdType;
 use TaskBundle\Form\Type\FollowByListType;
 use TaskBundle\Form\Type\FollowByTagsType;
+use TaskBundle\Form\Type\LikeByGeoType;
 use TaskBundle\Form\Type\LikeByTagsType;
 
 class CreateController extends Controller
@@ -192,6 +193,55 @@ class CreateController extends Controller
         }
 
         return $this->render('tasks/follow/byTags.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+
+    /**
+     * @Route("/tasks/add/LikeByGeo/{id}", name="add_task_like_by_geo")
+     */
+    public function likeByGeoAction(Request $request, $id)
+    {
+        $task = new Tasks();
+        $task->setType(31);
+        $form = $this->createForm(new LikeByGeoType(), $task);
+
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+        $task->setAccountId($account);
+
+        if($user->isExpired())
+            $form->get('count')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('count')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if($task->getOptionAddLike() == 1 && $task->getCount() > 500)
+            $form->get('count')->addError(new FormError('При подписке с опцией лайкинг, количество должно быть менее 500'));
+
+        if ($form->isValid()) {
+
+            $em->persist($task);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return  $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/like/byGeo.html.twig', array(
             'form' => $form->createView(),
             'account' =>$account
         ));

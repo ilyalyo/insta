@@ -189,6 +189,8 @@
                                             <p>Подписка по списку</p>
                                         {% elseif (account.tasks | last).type == 11 %}
                                             <p>Лайкинг по тэгам</p>
+                                        {% elseif (account.tasks | last).type == 31 %}
+                                            <p>Гео лайкинг</p>
                                         {% elseif (account.tasks | last).type == 3 %}
                                             <p>Отписка</p>
                                         {% endif %}
@@ -208,6 +210,9 @@
                                         <p>{{ (account.tasks | last).tags  }}</p>
                                     {% elseif (account.tasks | last).type in [10,11] %}
                                         <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
+                                        <div class="comment more">{{ (account.tasks | last).tags  }}</div>
+                                    {% elseif (account.tasks | last).type == 31 %}
+                                        <p>Lat;Lng;Радиус</p>
                                         <div class="comment more">{{ (account.tasks | last).tags  }}</div>
                                     {% endif %}
                                 </div>
@@ -248,6 +253,8 @@
                                             <p>Подписка по тэгам</p>
                                         {% elseif task.type == 11 %}
                                             <p>Лайкинг по тэгам</p>
+                                        {% elseif task.type == 31 %}
+                                            <p>Гео лайкинг</p>
                                         {% elseif task.type == 3 %}
                                             <p>Отписка</p>
                                         {% endif %}

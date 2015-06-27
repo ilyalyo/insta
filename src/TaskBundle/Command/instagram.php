@@ -192,6 +192,51 @@ class Instagram
         return $result;
     }
 
+
+    public function get_followers_by_geo($lat_lng_radius_str, $count)
+    {
+        $next="";
+        $result=array();
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+
+        $lat_lng_radius = explode(';', $lat_lng_radius_str);
+        var_dump('start get media');
+
+        $locations_url = "https://api.instagram.com/v1/locations/search?LAT=" . $lat_lng_radius[0] . "&LNG=" . $lat_lng_radius[1] . "&DISTANCE=" . $lat_lng_radius[2] . "&access_token=$token";
+        $response = $this->httpGet($locations_url);
+        $locations = $response->data;
+        $block = $count / 10;
+
+        foreach($locations as $location){
+            $id = $location->id;
+            $url = "https://api.instagram.com/v1/locations/$id/media/recent?count=50&access_token=$token";
+            do {
+                $response = $this->httpGet($url);
+                $data = $response->data;
+
+                foreach ($data as $d) {
+                    if(count($result) < $count)
+                        if ($this->checkUser($d->user->id, $token, $d->user->username) ) {
+                            $user['username'] = $d->user->username;
+                            $user['user_id'] = $d->user->id;
+                            $user['resource_id'] = $d->id;
+                            $user['link'] = $d->link;
+                            $result[] = $user;
+                            $p_count = count($result);
+                            if($p_count % $block == 0)
+                                $this->set_parsing_status($p_count);
+                        }
+                        else
+                            break;
+                }
+                $url = $response->pagination->next_url;
+            }while(count($result) < $count);
+        }
+        $this->debug('parsed: ' . count($result));
+        return $result;
+    }
+
     public function get_followers_by_list(){
         $result = [];
         $index = $this->TOKEN_INDEX;
@@ -203,7 +248,7 @@ class Instagram
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
             $d = $response->data[0];
-            if ($this->checkUser($d->id, $token, $d->username) ) {
+            if ($this->checkMedia($d->id, $token) ) {
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
                 $result[] = $user;
@@ -255,6 +300,18 @@ class Instagram
 
         return false;
     }
+
+    function checkMedia($media_id, $token)
+    {
+        $url = "https://api.instagram.com/v1/media/$media_id?" . "access_token=$token";
+        $response = $this->httpGet($url);
+
+        if ($response->data->user_has_liked == false)
+            return true;
+
+        return false;
+    }
+
 
 
     public function get_media(){
@@ -513,6 +570,7 @@ class Instagram
     {
         $filename = $this->TASK_ID;
         $file = "/var/www/instastellar/tasks/$filename";
-        file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
+        var_dump($message);
+        //file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
     }
 }

@@ -203,7 +203,7 @@ class Instagram
         $lat_lng_radius = explode(';', $lat_lng_radius_str);
         var_dump('start get media');
 
-        $locations_url = "https://api.instagram.com/v1/locations/search?LAT=" . $lat_lng_radius[0] . "&LNG=" . $lat_lng_radius[1] . "&DISTANCE=" . $lat_lng_radius[2] . "&access_token=$token";
+        $locations_url = "https://api.instagram.com/v1/locations/search?lat=" . $lat_lng_radius[0] . "&lng=" . $lat_lng_radius[1] . "&DISTANCE=" . $lat_lng_radius[2] . "&access_token=$token";
         $response = $this->httpGet($locations_url);
         $locations = $response->data;
         $block = $count / 10;
@@ -217,7 +217,7 @@ class Instagram
 
                 foreach ($data as $d) {
                     if(count($result) < $count)
-                        if ($this->checkUser($d->user->id, $token, $d->user->username) ) {
+                        if ($this->checkMedia($d->id, $token) ) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
@@ -231,7 +231,7 @@ class Instagram
                             break;
                 }
                 $url = $response->pagination->next_url;
-            }while(count($result) < $count);
+            }while(isset($url) && count($result) < $count);
         }
         $this->debug('parsed: ' . count($result));
         return $result;
@@ -248,7 +248,7 @@ class Instagram
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
             $d = $response->data[0];
-            if ($this->checkMedia($d->id, $token) ) {
+            if ($this->checkUser($d->id, $token) ) {
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
                 $result[] = $user;

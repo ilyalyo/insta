@@ -1,8 +1,6 @@
-{% extends 'tasks/task_base.html.twig' %}
+{% extends 'tasks/like/nav.html.twig' %}
 
-{% block task_body %}
-    <h1>Добавление задачи  на лайкинг</h1>
-    <hr style="margin-top: 80px;">
+{% block task %}
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 col-md-offset-1">
             <div id="map-canvas"></div>
@@ -114,4 +112,8 @@ s
             color: red;
         }
     </style>
+
+    <script>
+        $(".like_by_geo").addClass('active');
+    </script>
 {% endblock %}

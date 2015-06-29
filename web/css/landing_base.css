@@ -7,6 +7,7 @@ header .navbar-default{
 .navbar-nav >.active{
     background-color: #ffff00;
 }
+
 header nav p{
     font-size: 13pt;
 }
@@ -20,6 +21,7 @@ header .nav.li.a{
     padding-right: 5px;
 }
 .navbar-default .navbar-nav > li > a:hover{
+    transition: 0.5s all linear;
     background-color: #fb2c93;
 }
 .navbar-default .navbar-nav > li > a:active{
@@ -170,6 +172,9 @@ p{
     border: 0px;
     color: #fff;
     background-color: #e90a71;
+    white-space: normal;
+    max-width: 100%;
+    height:auto;
 }
 /*
 2
@@ -215,6 +220,27 @@ color: #ffffff;
 
 #poss .imgholder{
     margin-bottom: 40px;
+}
+#poss .img-responsive{
+    margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+    #poss h1{font-size:7vw;}
+    #poss .img-responsive{padding-top:2px!important;}
+    #poss .xs-noleftpadding{padding-left: 0px; padding-right:30px;} /*костыль для слова instastellar в строке*/
+    #why h1{font-size: 10vw;}
+    #why .img-responsive{padding-top:0!important;}
+    #promote h1{font-size: 40pt;}
+}
+
+#why a{
+    padding-top: 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    margin-top: 40px;
 }
 
 /* slider*/

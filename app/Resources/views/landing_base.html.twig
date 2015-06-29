@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/landing_base.css">
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/transition.js"></script>
+    <script src="/js/collapse.js"></script>
 {% endblock head_style %}
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,28 +14,39 @@
 </head>
 
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top col-xs-12" style="border: none;">
-            <a class="col-sm-12 col-md-3 col-lg-4" href="{{ path('homepage') }}#main"><img  class="logo" src="/img/instastellar_header.png"/></a>
-        <!--
+    <nav class="navbar navbar-default navbar-fixed-top" style="border: none;">
+          <!--
         <div class="container" style="border: none; padding-left:0">
         -->
-            <div class="nav navbar-nav col-sm-12 col-md-9 col-lg-8">
-                 <ul class="nav navbar-nav" style="border:none;">
-                    <li><a href="{{ path('homepage') }}#main"><p>Главная</p></a></li>
-                    <li><a href="{{ path('homepage') }}#poss"><p>Возможности</p></a></li>
-                    <li><a href="{{ path('homepage') }}#promote"><p>Как раскрутить</p></a></li>
-                    <li><a href="{{ path('homepage') }}#why"><p>Почему мы?</p></a></li>
-                    <li><a href="{{ path('homepage') }}#contacts"><p>Контакты</p></a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" style="border:none;">
-                    <li>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <a href="{{ path('accounts') }}"><p>Панель управления</p></a>
-                    {% else %}
-                        <a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a>
-                    {% endif %}
-                    </li>
-                </ul>
+        <div class="col-xs-9 col-sm-12 col-md-3 col-lg-3">
+            <a href="{{ path('homepage') }}#main" style="padding-right: 0;"><img class="logo" src="/img/instastellar_header.png"/></a>
+        </div>
+
+        <div class="nav navbar-nav col-sm-12 col-md-9 col-lg-9">
+                <button type="button" class="navbar-toggle collapsed col-xs-2" style="width:auto; margin-top:0;" data-toggle="collapse" data-target="#collapsive-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsive-nav">
+                    <ul class="nav navbar-nav" style="border:none;">
+                        <li><a href="{{ path('homepage') }}#main"><p>Главная</p></a></li>
+                        <li><a href="{{ path('homepage') }}#poss"><p>Возможности</p></a></li>
+                        <li><a href="{{ path('homepage') }}#promote"><p>Как раскрутить</p></a></li>
+                        <li><a href="{{ path('homepage') }}#why"><p>Почему мы?</p></a></li>
+                        <li><a href="{{ path('homepage') }}#contacts"><p>Контакты</p></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" style="border:none;">
+                        <li>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ path('accounts') }}"><p>Панель управления</p></a>
+                        {% else %}
+                            <a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a>
+                        {% endif %}
+                        </li>
+                    </ul>
+                </div>
             </div>
         <!--
         </div>
@@ -43,6 +56,17 @@
 {% block content %}
 {% endblock %}
 {% block footer %}
+    <!-- Navbar onclick collapser -->
+    <script type="text/javascript">
+        $(function() {
+            $('.nav a').on('click', function(){
+                if($('.navbar-toggle').css('display') !='none'){
+                    $(".navbar-toggle").trigger( "click" );
+                }
+            });
+        });
+    </script>
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (d, w, c) {

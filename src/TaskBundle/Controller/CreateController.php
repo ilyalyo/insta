@@ -55,7 +55,7 @@ class CreateController extends Controller
 
             $exp_ids = explode("\r\n", $without_spaces);
             if(count($exp_ids) > 500){
-                $form->get('tags')->addError(new FormError('В списке должно быть Не более 500 ID'));
+                $form->get('tmp_tags')->addError(new FormError('В списке должно быть Не более 500 ID'));
                 return $this->render('tasks/follow/byList.html.twig', array(
                     'form' => $form->createView(),
                     'account' =>$account

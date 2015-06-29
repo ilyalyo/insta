@@ -1,24 +1,88 @@
 /*head*/
 header .navbar-default{
     background-color: #000000;
+    vertical-align: bottom;
+    text-align: center;
+}
+.navbar-nav >.active{
+    background-color: #ffff00;
+}
+
+header nav p{
+    font-size: 13pt;
+}
+header .nav.li.a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    transition: 0.5s all linear;
+    background-color: #fb2c93;
+}
+.navbar-default .navbar-nav > li > a:active{
+    background-color: #e90a71;
+}
+.navbar-default .navbar-nav > li > a:focus{
+    background-color: #e90a71;
+}
+
+#promote #brief #poss #why .col-xs-12{
+    text-align: center;
 }
 .navigation{
     padding-top: 20px;
     width: inherit;
     margin-left: -15px;
+    padding-bottom: 20px;
 }
 .nav .glyphicon{
     padding-left: 30px;
 }
+.navbar-fixed-top .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #000;  /*Sets the text hover color on navbar*/
+}
+.navbar-fixed-top .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
+a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #e90a71;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+}
+
 .logo{
     padding-top: 5px;
 }
 body.modal-open{
     overflow:inherit; padding-right:inherit !important;
 }
-#poss{
-    background-image: url(/img/passability.png);
+/*
+#brief{
+    background-image: url(/img/background_space.jpg);
     background-size: cover;
+
+}
+*/
+#brief p{
+    color:#ffffff;
+    //Здесь выбрать нормальный шрифт
+    //font-family:HelveticaNeue-Light;
+}
+
+#poss{
+    /*background-image: url(/img/passability.png);
+    background-image: url(/img/background_space.jpg);
+    */
+    background-size: cover;
+}
+#why{
+    background-image: url('/img/background_space.jpg');
+    background-size: cover;
+    padding-bottom: 30px;"
 }
 footer{
     background-color: #000;
@@ -27,12 +91,17 @@ footer{
 }
 #why p{
     padding-top: 15px;
+    color:#ffffff;
 }
+#why h3{
+    color:#e90a71;
+}
+
 body .wrapper{
     padding-top: 50px;
 }
 .rocket{
-    padding-bottom: 20px;
+    padding-left: 5%;
 }
 nav p{
     margin: 0px;
@@ -51,9 +120,23 @@ p{
 .text-center h1,h2,h3{
     letter-spacing: 1px;
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif !important;
+    color:#ffffff;
 }
 #promote .btn-start{
     margin-top: 0px;
+}
+#promote h1{
+    font-family: 'Lobster', cursive!important;
+    color:#000000;
+    font-size: 48pt;
+}
+#promote h3{
+    color: #666666;
+}
+#why h1{
+    font-family: 'Lobster', cursive!important;
+    color:#FFFFFF;
+    font-size: 36pt;
 }
 .btn-start p{
     letter-spacing: 4px;
@@ -68,7 +151,8 @@ p{
     border-color: #ccc;
     font-size: 24px;
     margin-top: 30px;
-    padding-top: 0px;
+    padding-top: 10px;
+    text-align: center;
 }
 .btn-default.btn-start:hover{
     color: #fff;
@@ -85,6 +169,9 @@ p{
     border: 0px;
     color: #fff;
     background-color: #e90a71;
+    white-space: normal;
+    max-width: 100%;
+    height:auto;
 }
 /*
 2
@@ -106,8 +193,10 @@ color: #ffffff;
     padding-top: 50px;
 }
 #poss h1{
-    text-align: center;
+    /*wtf?*/
+    font-family: 'Lobster', cursive!important;
     color: #ffffff;
+    font-size: 34pt;
 }
 /**/
 
@@ -120,4 +209,37 @@ color: #ffffff;
 .panel {
     box-shadow: none !important;
 }
+
+#poss .container2{
+    text-align: center;
+    vertical-align: top;
+}
+
+#poss .imgholder{
+    margin-bottom: 40px;
+}
+#poss .img-responsive{
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    #poss h1{font-size:7vw;}
+    #poss .img-responsive{padding-top:2px!important;}
+    #poss .xs-noleftpadding{padding-left: 0px; padding-right:30px;} /*костыль для слова instastellar в строке*/
+    #why h1{font-size: 10vw;}
+    #why .img-responsive{padding-top:0!important;}
+    #promote h1{font-size: 40pt;}
+    header nav p{font-size: 13pt!important;}
+    header .navbar-nav.navbar-right{padding-right:0!important;}
+}
+
+#why a{
+    padding-top: 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    margin-top: 40px;
+}
+
 /* slider*/

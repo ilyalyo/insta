@@ -3,6 +3,7 @@ class Instagram
 {
     public $PROXY;
     private $TASK_ID;
+    // массив токенов вида : [client,token,id]
     public $TOKEN_ARRAY;
     public $TOKEN_INDEX;
     private $PROXY_TIME=10;
@@ -13,6 +14,8 @@ class Instagram
     private $OPTIONS;
     private $DB_USERS;
 
+    // устанавливаем соединение с БД, выгружаем все токены
+    // находим рабочий токен
     public function __construct ($task_id){
         $this->TASK_ID = $task_id;
         $this->connect();
@@ -32,6 +35,7 @@ class Instagram
         }
     }
 
+    // фоловим указанного юзера
     function  follow($user_id)
     {
         $index = $this->TOKEN_INDEX;
@@ -45,6 +49,7 @@ class Instagram
         return $this->httpPost($url, $params);
     }
 
+    // лайкаем указанный медиа
     function  like($resource_id)
     {
         $index = $this->TOKEN_INDEX;
@@ -56,7 +61,7 @@ class Instagram
         );
         return $this->httpPost($url, $params);
     }
-
+    //анфолов
     function  unfollow($user_id){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
@@ -69,19 +74,23 @@ class Instagram
         return $this->httpPost($url, $params);
     }
 
+    // получаем подписчиков указанного пользователя
     public function get_followers($username, $count){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
 
+        // находим пользователя, подписчиков которого нужно спарсить
         $response = $this->httpGet($url);
         $user_id = $response->data[0]->id;
 
+        // вычисляем количество юзеров, после нахождения которого надо будет обновить статус парсинга( каждые 10%)
         $block = $count / 10;
         $next = "";
         $result = array();
         do {
+            // на каждом шаге получаем новый блок подписчиков
             $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" .  "cursor=$next" . "&access_token=$token";
             $response = ($this->httpGet($url));
 
@@ -96,17 +105,24 @@ class Instagram
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $result[] = $user;
+                    // каждые 10% обновляем парсинг статус в базе
                     $p_count = count($result);
                     if($p_count % $block == 0)
                         $this->set_parsing_status($p_count);
                 }
             }
-
+            // работаем до тех пор пока у пользователя есть подписчики и количество спарсенных подписчиков меньше необходимого
         } while ($count - 1 > count($result) && isset($next));
         $this->debug('parsed: ' . count($result));
         return $result;
     }
 
+    // парсинг подписчиков с конца для отписки
+    // зная сколько всего подписчиков и сколько нужно спарсить
+    // двигаемся по подписчикам с начала в конец до тех пор пока до конца не останется необходимое количество подписчиков
+    // ( округленное в большую сторону, тк мы двигаемся фиксированными блоками по 50)
+    // с этого момента начинаем запоминать подписчиков и дойдя до конца округляем их количество до заданного
+    // и возвращаем массив с этими пользователями
     public function get_followers_revers($count){
         $next="";
         $result=array();
@@ -117,6 +133,7 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $account_id = $this->ACCOUNT_ID_INST;
 
+        // количество подписчиков
         $all = $this->get_followed_by($account_id)/50;
 
         do {
@@ -142,6 +159,7 @@ class Instagram
         return array_slice($result, 0,  $count);
     }
 
+    // вытаскиваем количество подписчиков
     function  get_followed_by($id){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
@@ -151,6 +169,9 @@ class Instagram
         return $response->data->counts->follows;
     }
 
+    // выбираем недавно загруженное медиа по заданным тэгам
+    // фоловим пользователей загрузивших эти медиа
+    // тк тэгов несколько, набираем по каждому их них равно количество пользователей( примерно)
     public function get_followers_by_tags($tags_str, $count)
     {
         $next="";
@@ -193,6 +214,9 @@ class Instagram
     }
 
 
+    // парсим медиа загруженно в указанной области
+    // по указанным координатам и радиусу получаем список мест
+    // начиная перебирать все места получаем недавние медиа загруженные с привязкой к ним
     public function get_followers_by_geo($lat_lng_radius_str, $count)
     {
         $next="";
@@ -237,6 +261,8 @@ class Instagram
         return $result;
     }
 
+    //исключаем из списка загруженного пользователем
+    // всех юзеров, которые лиоб не существуют, либо не подходят под выбранные опции(см. $this->checkUser)
     public function get_followers_by_list(){
         $result = [];
         $index = $this->TOKEN_INDEX;
@@ -261,6 +287,7 @@ class Instagram
         return $result;
     }
 
+    //загружаем список, загруженный пользоватем, из базы
     private function load_users(){
         $task_id = $this->TASK_ID;
         $qr_result = mysql_query("
@@ -270,6 +297,8 @@ class Instagram
         return explode("\r\n", $row['list']);
     }
 
+    // загружаем всех пользователей, которых уже добавлял/анфоловил пользователь,
+    // что бы не добавлять их еще раз, тк он мог их добавить, отписать, и опять добавить и опять отписать и тд
     private function load_users_from_db(){
         $account_id = $this->ACCOUNT_ID;
         $qr_result = mysql_query("
@@ -282,25 +311,30 @@ class Instagram
             $this->DB_USERS[] = $row['resource_id'];
     }
 
+    // проверяем подходит ли заданный пользователь под наши критерии
     function checkUser($user_id, $token, $username = null)
     {
         $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
         $response = $this->httpGet($url);
 
+        // закрыта ли страница
         if(!$this->OPTIONS['optionFollowClosed'])
             if($response->data->target_user_is_private)
                 return false;
 
+        // добавлялся ли ранее
         if(!$this->OPTIONS['optionCheckUserFromDB'])
             if(in_array($username, $this->DB_USERS))
                 return false;
 
+        // не наш браток
         if ($response->data->outgoing_status == 'none')
             return true;
 
         return false;
     }
 
+    // проверяем не лайкали ли этот объект ранее
     function checkMedia($media_id, $token)
     {
         $url = "https://api.instagram.com/v1/media/$media_id?" . "access_token=$token";
@@ -325,6 +359,7 @@ class Instagram
         return $this->httpGet($url);
     }
 
+    // загружем из базы все необходимое по заданной задаче
     public function get_task(){
 
         $id= $this->TASK_ID;
@@ -412,11 +447,13 @@ class Instagram
         or die(mysql_error());
     }
 
+    // меняем индекс текущего токена
     public function change_token(){
         $this->debug($this->TOKEN_ARRAY[$this->TOKEN_INDEX]);
         $this->TOKEN_INDEX = ($this->TOKEN_INDEX + 1) % count($this->TOKEN_ARRAY);
     }
 
+    // если выпала капча, или токен просто устарел, обновляем его через каспер
     public function update_token(){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
@@ -437,8 +474,7 @@ class Instagram
         }
         return false;
     }
-
-
+    
     function httpPost($url, $params){
             $output = $this->httpPostReal($url, $params);
             $this->debug($output);

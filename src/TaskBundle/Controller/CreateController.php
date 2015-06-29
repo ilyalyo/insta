@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use TaskBundle\Command\WriteCommand;
 use TaskBundle\Entity\Actions;
+use TaskBundle\Entity\Errors;
 use TaskBundle\Entity\Lists;
 use TaskBundle\Entity\Tasks;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +50,7 @@ class CreateController extends Controller
             $form->get('tmp_tags')->addError(new FormError('У вас уже есть работающая задача'));
 
         if ($form->isValid()) {
-
+        try{
             $without_spaces = str_replace(' ', '', $task->getTmpTags());
 
             $exp_ids = explode("\r\n", $without_spaces);
@@ -81,6 +82,15 @@ class CreateController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
+        } catch (\Exception $e) {
+        $errors = new Errors();
+        $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+        $errors->setTaskId($task);
+        $m=substr($e->getMessage(),0,200);
+        $errors->setMessage($m);
+        $em->persist($errors);
+        $em->flush();
+    }
             return  $this->redirectToRoute('accounts');
         }
 

@@ -1,0 +1,18 @@
+{% extends 'tasks/task_base.html.twig' %}
+{% block task_body %}
+
+    <h1>Добавление задачи  на лайкинг</h1>
+    <ul class="nav nav-tabs" style="padding-top: 30px;">
+        <li class="like_by_tags" role="presentation"><a href="{{ path('add_task_like_by_tags',{ 'id':  app.request.get('id') }) }}">По тэгам</a></li>
+        <li class="like_by_geo" role="presentation"><a href="{{ path('add_task_like_by_geo',{ 'id':  app.request.get('id') }) }}">По гео</a></li>
+    </ul>
+
+    {% block task %}{% endblock %}
+
+    <style>
+        .modal-error{
+            margin-bottom: 0px;
+            color: red;
+        }
+    </style>
+{% endblock %}

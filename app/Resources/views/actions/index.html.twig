@@ -10,6 +10,8 @@
         <h1>Подписка по списку</h1>
     {% elseif task.type == 11 %}
         <h1>Лайкинг по тэгам</h1>
+    {% elseif task.type == 31 %}
+        <p>Гео лайкинг</p>
     {% elseif task.type == 3 %}
         <h1>Отписка</h1>
     {% endif %}
@@ -56,7 +58,7 @@
 
         {% endfor %}
 
-    {% elseif task.type in [1, 11] %}
+    {% elseif task.type in [1, 11, 31] %}
         <h3>Вы лайкнули:</h3>
         {% for action in task.actions | reverse %}
             {% if action.resourceId %}

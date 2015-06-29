@@ -11,9 +11,6 @@ header .navbar-default{
 header nav p{
     font-size: 13pt;
 }
-header li{
-    padding-left: 0px;
-}
 header .nav.li.a{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -225,13 +222,15 @@ color: #ffffff;
     margin: 0 auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
     #poss h1{font-size:7vw;}
     #poss .img-responsive{padding-top:2px!important;}
     #poss .xs-noleftpadding{padding-left: 0px; padding-right:30px;} /*костыль для слова instastellar в строке*/
     #why h1{font-size: 10vw;}
     #why .img-responsive{padding-top:0!important;}
     #promote h1{font-size: 40pt;}
+    header nav p{font-size: 13pt!important;}
+    header .navbar-nav.navbar-right{padding-right:0!important;}
 }
 
 #why a{

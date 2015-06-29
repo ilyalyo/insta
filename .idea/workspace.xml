@@ -2,9 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b4ba256-244a-48e1-8721-6f7178baeb9b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByIdType.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByIdType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByListType.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByListType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByTagsType.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByTagsType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/InstFollow.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/InstFollow.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/InstUnfollow.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/InstUnfollow.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Form/Type/LikeByTagsType.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Form/Type/LikeByTagsType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Entity/Tasks.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Entity/Tasks.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/UnFollowCommand.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/UnFollowCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Controller/UnfollowController.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Controller/UnfollowController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/action_new.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/action_new.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app_dev.php" afterPath="$PROJECT_DIR$/web/app_dev.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/Casper/auth.js" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/Casper/auth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/base.css" afterPath="$PROJECT_DIR$/web/css/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/bootstrap.js" afterPath="$PROJECT_DIR$/web/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/Casper/check_auth.js" afterPath="$PROJECT_DIR$/src/AppBundle/Command/Casper/check_auth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/collapse.js" afterPath="$PROJECT_DIR$/web/js/collapse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/Casper/follow.js" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/Casper/follow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/follow_old.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/follow_old.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/instagram.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/instagram.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/landing.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/landing_base.css" afterPath="$PROJECT_DIR$/web/css/landing_base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/landing_base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/landing_base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/transition.js" afterPath="$PROJECT_DIR$/web/js/transition.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/Casper/unfollow.js" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/Casper/unfollow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/unfollow.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/unfollow.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="instastellar.iws" />
@@ -50,30 +77,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="landing.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/landing.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="19.653847" vertical-offset="4013" max-vertical-offset="4607">
-              <caret line="206" column="29" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.38321996" vertical-offset="3163" max-vertical-offset="4743">
+              <caret line="196" column="30" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
               <folding>
                 <element signature="e#8232#8351#0#HTML" expanded="true" />
-                <element signature="e#10506#10550#0#HTML" expanded="true" />
-                <element signature="e#10925#10970#0#HTML" expanded="true" />
-                <element signature="e#11190#11236#0#HTML" expanded="true" />
-                <element signature="e#11518#11544#0#HTML" expanded="true" />
-                <element signature="e#11577#11621#0#HTML" expanded="true" />
-                <element signature="e#11955#12001#0#HTML" expanded="true" />
-                <element signature="e#12268#12294#0#HTML" expanded="true" />
-                <element signature="e#12327#12371#0#HTML" expanded="true" />
+                <element signature="e#9518#9561#0#HTML" expanded="true" />
+                <element signature="e#10280#10323#0#HTML" expanded="true" />
+                <element signature="e#10988#11032#0#HTML" expanded="true" />
+                <element signature="e#11407#11452#0#HTML" expanded="true" />
+                <element signature="e#11672#11718#0#HTML" expanded="true" />
+                <element signature="e#12000#12026#0#HTML" expanded="true" />
+                <element signature="e#12059#12103#0#HTML" expanded="true" />
+                <element signature="e#12437#12483#0#HTML" expanded="true" />
+                <element signature="e#12750#12776#0#HTML" expanded="true" />
+                <element signature="e#12809#12853#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing_base.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="landing_base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53741497" vertical-offset="749" max-vertical-offset="1751">
+            <state vertical-scroll-proportion="12.461538" vertical-offset="1310" max-vertical-offset="1751">
               <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
               <folding>
                 <element signature="e#1270#1303#0#HTML" expanded="true" />
@@ -96,8 +125,8 @@
         <option value="$PROJECT_DIR$/web/css/navbar_hider.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/navbar_hider.js" />
         <option value="$PROJECT_DIR$/web/css/landing_base.css" />
-        <option value="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/landing_base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
       </list>
     </option>
   </component>
@@ -428,14 +457,16 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -472,14 +503,16 @@
           <caret line="85" column="112" selection-start-line="85" selection-start-column="105" selection-end-line="85" selection-end-column="112" />
           <folding>
             <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -508,14 +541,16 @@
           <caret line="0" column="18" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
           <folding>
             <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -559,14 +594,16 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -603,14 +640,16 @@
           <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
           <folding>
             <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -647,14 +686,16 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -845,30 +886,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="19.653847" vertical-offset="4013" max-vertical-offset="4607">
-          <caret line="206" column="29" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="29" />
+        <state vertical-scroll-proportion="12.461538" vertical-offset="1310" max-vertical-offset="1751">
+          <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
           <folding>
-            <element signature="e#8232#8351#0#HTML" expanded="true" />
-            <element signature="e#10506#10550#0#HTML" expanded="true" />
-            <element signature="e#10925#10970#0#HTML" expanded="true" />
-            <element signature="e#11190#11236#0#HTML" expanded="true" />
-            <element signature="e#11518#11544#0#HTML" expanded="true" />
-            <element signature="e#11577#11621#0#HTML" expanded="true" />
-            <element signature="e#11955#12001#0#HTML" expanded="true" />
-            <element signature="e#12268#12294#0#HTML" expanded="true" />
-            <element signature="e#12327#12371#0#HTML" expanded="true" />
+            <element signature="e#1270#1303#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53741497" vertical-offset="749" max-vertical-offset="1751">
-          <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.38321996" vertical-offset="3163" max-vertical-offset="4743">
+          <caret line="196" column="30" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
           <folding>
-            <element signature="e#1270#1303#0#HTML" expanded="true" />
+            <element signature="e#8232#8351#0#HTML" expanded="true" />
+            <element signature="e#9518#9561#0#HTML" expanded="true" />
+            <element signature="e#10280#10323#0#HTML" expanded="true" />
+            <element signature="e#10988#11032#0#HTML" expanded="true" />
+            <element signature="e#11407#11452#0#HTML" expanded="true" />
+            <element signature="e#11672#11718#0#HTML" expanded="true" />
+            <element signature="e#12000#12026#0#HTML" expanded="true" />
+            <element signature="e#12059#12103#0#HTML" expanded="true" />
+            <element signature="e#12437#12483#0#HTML" expanded="true" />
+            <element signature="e#12750#12776#0#HTML" expanded="true" />
+            <element signature="e#12809#12853#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

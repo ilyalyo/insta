@@ -5,7 +5,7 @@
 
     <script>
         $( document ).ready(function() {
-            $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+            $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
 
             var spb = new google.maps.LatLng(59.94, 30.34);
             var map;
@@ -35,17 +35,17 @@
                 circle = new google.maps.Circle(options);
                 google.maps.event.addListener(circle, 'radius_changed', function () {
                     $('#radius').val(circle.getRadius());
-                    $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                    $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
                 });
                 google.maps.event.addListener(circle, 'center_changed', function () {
                     $('#lat').val(circle.getCenter()['A']);
                     $('#lng').val(circle.getCenter()['F']);
-                    $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                    $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
                 });
                 var sw = $("[name='my-checkbox']").bootstrapSwitch('size', 'small');
                 $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function (event, state) {
                     if (!state) {
-                        $('#likebygeo_tags').val('');
+                        $('.hidden_geo').val('');
                         $('#lat').prop('disabled', true);
                         $('#lng').prop('disabled', true);
                         $('#radius').prop('disabled', true);
@@ -54,7 +54,7 @@
 
                     }
                     else {
-                        $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                        $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
                         $('#lat').prop('disabled', false);
                         $('#lng').prop('disabled', false);
                         $('#radius').prop('disabled', false);
@@ -69,7 +69,7 @@
             $('.lat-lng').bind("change paste keyup", function () {
                 circle.setCenter(new google.maps.LatLng($('#lat').val(), $('#lng').val()));
                 circle.setRadius(parseInt($('#radius').val()));
-                $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
             })
 
             $('[data-toggle="collapse"]').click('shown.bs.collapse', function() {

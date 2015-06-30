@@ -29,7 +29,8 @@
                             {{ form_row(form.optionStopPhrases) }}
                             {{ form_widget(form.optionFollowClosed) }}
                             {{ form_widget(form.optionHasAvatar) }}
-                            {{ form_row(form.optionGeo)}}
+                            {{ form_row(form.optionGeo, {'attr': {'class': 'hidden_geo'}}) }}
+
                             <h3 style="height: 28px">ГЕО                     <input type="checkbox" name="my-checkbox">
                             </h3>
 

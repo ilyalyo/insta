@@ -127,6 +127,31 @@ class Tasks
     protected $optionFollowClosed;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $optionHasAvatar;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $optionSex;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionLastActivity;
+
+    /**
+    * @ORM\Column(type="string", length=250, nullable=true)
+    */
+    protected $optionStopPhrases;
+
+    /**
+     * @ORM\Column(type="string", length=250, nullable=true)
+     */
+    protected $optionGeo;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -466,5 +491,120 @@ class Tasks
     public function getOptionFollowClosed()
     {
         return $this->optionFollowClosed;
+    }
+
+    /**
+     * Set optionHasAvatar
+     *
+     * @param boolean $optionHasAvatar
+     * @return Tasks
+     */
+    public function setOptionHasAvatar($optionHasAvatar)
+    {
+        $this->optionHasAvatar = $optionHasAvatar;
+
+        return $this;
+    }
+
+    /**
+     * Get optionHasAvatar
+     *
+     * @return boolean 
+     */
+    public function getOptionHasAvatar()
+    {
+        return $this->optionHasAvatar;
+    }
+
+    /**
+     * Set optionSex
+     *
+     * @param boolean $optionSex
+     * @return Tasks
+     */
+    public function setOptionSex($optionSex)
+    {
+        $this->optionSex = $optionSex;
+
+        return $this;
+    }
+
+    /**
+     * Get optionSex
+     *
+     * @return boolean 
+     */
+    public function getOptionSex()
+    {
+        return $this->optionSex;
+    }
+
+    /**
+     * Set optionLastActivity
+     *
+     * @param integer $optionLastActivity
+     * @return Tasks
+     */
+    public function setOptionLastActivity($optionLastActivity)
+    {
+        $this->optionLastActivity = $optionLastActivity;
+
+        return $this;
+    }
+
+    /**
+     * Get optionLastActivity
+     *
+     * @return integer 
+     */
+    public function getOptionLastActivity()
+    {
+        return $this->optionLastActivity;
+    }
+
+    /**
+     * Set optionStopPhrases
+     *
+     * @param string $optionStopPhrases
+     * @return Tasks
+     */
+    public function setOptionStopPhrases($optionStopPhrases)
+    {
+        $this->optionStopPhrases = $optionStopPhrases;
+
+        return $this;
+    }
+
+    /**
+     * Get optionStopPhrases
+     *
+     * @return string 
+     */
+    public function getOptionStopPhrases()
+    {
+        return $this->optionStopPhrases;
+    }
+
+    /**
+     * Set optionGeo
+     *
+     * @param string $optionGeo
+     * @return Tasks
+     */
+    public function setOptionGeo($optionGeo)
+    {
+        $this->optionGeo = $optionGeo;
+
+        return $this;
+    }
+
+    /**
+     * Get optionGeo
+     *
+     * @return string 
+     */
+    public function getOptionGeo()
+    {
+        return $this->optionGeo;
     }
 }

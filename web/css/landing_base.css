@@ -117,11 +117,6 @@ p{
     letter-spacing: 1px;
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
 }
-.text-center h1,h2,h3{
-    letter-spacing: 1px;
-    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif !important;
-    color:#ffffff;
-}
 #promote .btn-start{
     margin-top: 0px;
 }

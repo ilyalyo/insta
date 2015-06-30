@@ -5,13 +5,15 @@ class Instagram
     private $TASK_ID;
     // массив токенов вида : [client,token,id]
     public $TOKEN_ARRAY;
+    public $TAGS;
+    public $TAGS_ARRAY;
+    public $OPTIONS;
     public $TOKEN_INDEX;
     private $PROXY_TIME=10;
     private $ACCOUNT_ID;
     private $ACCOUNT_ID_INST;
     private $LOGIN;
     private $PASSWORD;
-    private $OPTIONS;
     private $DB_USERS;
 
     // устанавливаем соединение с БД, выгружаем все токены
@@ -219,6 +221,9 @@ class Instagram
     // начиная перебирать все места получаем недавние медиа загруженные с привязкой к ним
     public function get_followers_by_geo($lat_lng_radius_str, $count)
     {
+        if(count($this->OPTIONS['optionGeo']) > 0)
+            $this->TAGS_ARRAY = explode('#', $this->TAGS);
+
         $next="";
         $result=array();
         $index = $this->TOKEN_INDEX;
@@ -241,7 +246,8 @@ class Instagram
 
                 foreach ($data as $d) {
                     if(count($result) < $count)
-                        if ($this->checkMedia($d->id, $token) ) {
+                        if ($this->checkMedia($d->id, $token) && $this->checkUser($d->user->id, $token))
+                        {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
@@ -327,6 +333,14 @@ class Instagram
             if(in_array($username, $this->DB_USERS))
                 return false;
 
+        if(!$this->OPTIONS['optionHasAvatar'])
+            if(in_array($username, $this->DB_USERS))
+                return false;
+
+        if(!$this->OPTIONS['optionStopPhrases'])
+            if(in_array($username, $this->DB_USERS))
+                return false;
+
         // не наш браток
         if ($response->data->outgoing_status == 'none')
             return true;
@@ -334,11 +348,15 @@ class Instagram
         return false;
     }
 
-    // проверяем не лайкали ли этот объект ранее
+    // проверяем не лайкали ли этот объект ранее + разные опции
     function checkMedia($media_id, $token)
     {
         $url = "https://api.instagram.com/v1/media/$media_id?" . "access_token=$token";
         $response = $this->httpGet($url);
+
+        if(count($this->OPTIONS['optionGeo']) > 0)
+            if (count(array_intersect($response->data->tags,$this->TAGS_ARRAY)) == 0)
+                return false;
 
         if ($response->data->user_has_liked == false)
             return true;
@@ -387,7 +405,7 @@ class Instagram
             'optionAddLike' => $row['optionAddLike'],
             );
 
-
+        $this->TAGS = $row['tags'];
         $this->PROXY = $row['ip'] . ':' . $row['port'];
         $this->LOGIN = $row['instLogin'];
         $this->PASSWORD = $row['instPass'];
@@ -397,6 +415,11 @@ class Instagram
         $this->OPTIONS['optionCheckUserFromDB'] = $row['optionCheckUserFromDB'];
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionAddLike'] = $row['optionAddLike'];
+        $this->OPTIONS['optionLastActivity'] = $row['optionLastActivity'];
+        $this->OPTIONS['optionStopPhrases'] = $row['optionStopPhrases'];
+        $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
+        $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];
+        $this->OPTIONS['optionGeo'] = $row['optionGeo'];
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();

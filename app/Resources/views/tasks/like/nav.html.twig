@@ -50,6 +50,7 @@
                         $('#lng').prop('disabled', true);
                         $('#radius').prop('disabled', true);
                         map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+                        circle.setOptions({draggable: false, editable : false});
 
                     }
                     else {
@@ -58,6 +59,8 @@
                         $('#lng').prop('disabled', false);
                         $('#radius').prop('disabled', false);
                         map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false});
+                        circle.setOptions({draggable: true, editable : true});
+
                     }
                 });
             }

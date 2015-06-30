@@ -92,23 +92,10 @@
             $('#lat').prop('disabled', true);
             $('#lng').prop('disabled', true);
             $('#radius').prop('disabled', true);
-            var sw = $("[name='my-checkbox']").bootstrapSwitch('size', 'small');
-            $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                if (!state) {
-                    $('#likebygeo_tags').val('');
-                    $('#lat').prop('disabled', true);
-                    $('#lng').prop('disabled', true);
-                    $('#radius').prop('disabled', true);
-                }
-                else {
-                    $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
-                    $('#lat').prop('disabled', false);
-                    $('#lng').prop('disabled', false);
-                    $('#radius').prop('disabled', false);
-                }
-            });
-
             $(".like_by_tags").addClass('active');
+            setTimeout(function(){
+                $('input[name="my-checkbox"]').trigger('switchChange.bootstrapSwitch');
+            },900)
         });
     </script>
 {% endblock %}

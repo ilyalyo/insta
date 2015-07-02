@@ -217,10 +217,55 @@ class Instagram
     }
 
 
+    // выбираем недавно загруженное медиа по заданным тэгам
+        // тк тэгов несколько, набираем по каждому их них равно количество пользователей( примерно)
+    public function get_media_by_tags($tags_str, $count)
+    {
+        $next="";
+        $result=array();
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+
+        $tags = explode('#', $tags_str);
+        $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
+        $block = $count / 10;
+
+        foreach($tags as $index => $tag){
+            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id=$next" . "&access_token=$token";
+            do {
+                $response = $this->httpGet($url);
+
+                $data = $response->data;
+                $next = $response->pagination->next_max_tag_id;
+
+                foreach ($data as $d) {
+                    if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
+                        if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
+                            $user['username'] = $d->user->username;
+                            $user['user_id'] = $d->user->id;
+                            $user['resource_id'] = $d->id;
+                            $user['link'] = $d->link;
+                            $result[] = $user;
+                            $p_count = count($result);
+                            if ($p_count % $block == 0)
+                                $this->set_parsing_status($p_count);
+                        }
+                    }
+                    else
+                        break;
+                }
+                $url = $response->pagination->next_url;
+            }while(isset($next)  && count($result) < $part_size * ($index + 1) && count($result) < $count);
+        }
+        $this->debug('parsed: ' . count($result));
+        return $result;
+    }
+
+
     // парсим медиа загруженно в указанной области
     // по указанным координатам и радиусу получаем список мест
     // начиная перебирать все места получаем недавние медиа загруженные с привязкой к ним
-    public function get_followers_by_geo($lat_lng_radius_str, $count)
+    public function get_media_by_geo($lat_lng_radius_str, $count)
     {
         if(count($this->OPTIONS['optionGeo']) > 0)
             $this->TAGS_ARRAY = explode('#', $this->TAGS);
@@ -364,15 +409,19 @@ class Instagram
         {
             $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
             $response = $this->httpGet($url);
+            var_dump($response->data->profile_picture );
 
             if($this->OPTIONS['optionHasAvatar'])
                 if($response->data->profile_picture == 'https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg')
                     return false;
 
-            if(count($this->OPTIONS['optionStopPhrases']) > 0)
+            var_dump($response->data->bio );
+            if(count($this->OPTIONS['optionStopPhrases']) > 0){
                 foreach($this->OPTIONS['optionStopPhrases'] as $word)
-                    if(strpos([ $response->data->bio ], $word ))
+                    if(strpos($response->data->bio , $word ))
                         return false;
+            }
+
         }
         return true;
     }
@@ -647,7 +696,7 @@ class Instagram
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }
-        $select_db = mysql_select_db('symfony');
+        $select_db = mysql_select_db('instastelllar-dev');
         if (!$select_db) {
             die("Database Selection Failed" . mysql_error());
         }

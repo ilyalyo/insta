@@ -194,17 +194,18 @@ class Instagram
                 $next = $response->pagination->next_max_tag_id;
 
                 foreach ($data as $d) {
-                    if(count($result) < $part_size * ($index + 1) && count($result) < $count)
-                        if ($this->checkUser($d->user->id, $token, $d->user->username) ) {
+                    if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
+                        if ($this->checkUser($d->user->id, $token, $d->user->username)) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
                             $user['link'] = $d->link;
                             $result[] = $user;
                             $p_count = count($result);
-                            if($p_count % $block == 0)
+                            if ($p_count % $block == 0)
                                 $this->set_parsing_status($p_count);
                         }
+                    }
                     else
                         break;
                 }
@@ -245,20 +246,20 @@ class Instagram
                 $data = $response->data;
 
                 foreach ($data as $d) {
-                    if(count($result) < $count)
-                        if ($this->checkMedia($d->id, $token) && $this->checkUser($d->user->id, $token))
-                        {
+                    if(count($result) < $count) {
+                        if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
                             $user['link'] = $d->link;
                             $result[] = $user;
                             $p_count = count($result);
-                            if($p_count % $block == 0)
+                            if ($p_count % $block == 0)
                                 $this->set_parsing_status($p_count);
                         }
-                        else
-                            break;
+                    }
+                    else
+                        break;
                 }
                 $url = $response->pagination->next_url;
             }while(isset($url) && count($result) < $count);
@@ -333,14 +334,22 @@ class Instagram
             if(in_array($username, $this->DB_USERS))
                 return false;
 
-        if(!$this->OPTIONS['optionHasAvatar'])
-            if(in_array($username, $this->DB_USERS))
-                return false;
+        if($this->OPTIONS['optionHasAvatar'] || count($this->OPTIONS['optionStopPhrases']) > 0 )
+        {
+            $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
+            $response = $this->httpGet($url);
 
-        if(!$this->OPTIONS['optionStopPhrases'])
-            if(in_array($username, $this->DB_USERS))
-                return false;
+            if($this->OPTIONS['optionHasAvatar'])
+                if($response->data->profile_picture == 'https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg')
+                    return false;
 
+            if($response->data->bio)
+                    return false;
+
+            if($this->OPTIONS['optionStopPhrases'])
+                if(in_array($username, $this->DB_USERS))
+                    return false;
+        }
         // не наш браток
         if ($response->data->outgoing_status == 'none')
             return true;
@@ -348,8 +357,29 @@ class Instagram
         return false;
     }
 
+    // проверяем подходит ли заданный пользователь под наши критерии
+    function checkUserOptions($user_id, $token, $username = null)
+    {
+        if($this->OPTIONS['optionHasAvatar'] || count($this->OPTIONS['optionStopPhrases']) > 0 )
+        {
+            $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
+            $response = $this->httpGet($url);
+
+            if($this->OPTIONS['optionHasAvatar'])
+                if($response->data->profile_picture == 'https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg')
+                    return false;
+
+            if(count($this->OPTIONS['optionStopPhrases']) > 0)
+                foreach($this->OPTIONS['optionStopPhrases'] as $word)
+                    if(strpos([ $response->data->bio ], $word ))
+                        return false;
+        }
+        return true;
+    }
+
+
     // проверяем не лайкали ли этот объект ранее + разные опции
-    function checkMedia($media_id, $token)
+    function checkMediaOptions($media_id, $token)
     {
         $url = "https://api.instagram.com/v1/media/$media_id?" . "access_token=$token";
         $response = $this->httpGet($url);
@@ -416,7 +446,8 @@ class Instagram
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionAddLike'] = $row['optionAddLike'];
         $this->OPTIONS['optionLastActivity'] = $row['optionLastActivity'];
-        $this->OPTIONS['optionStopPhrases'] = $row['optionStopPhrases'];
+        $tmp = explode(',', $row['optionStopPhrases']);
+        $this->OPTIONS['optionStopPhrases'] = $tmp;
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];
         $this->OPTIONS['optionGeo'] = $row['optionGeo'];

@@ -33,15 +33,6 @@ class LikeByTagsType extends AbstractType
                 'required' => false, 'render_optional_text' => false
             ))
             ->add('optionHasAvatar', 'checkbox', array('label' => 'Наличие аватара' , 'required' => false, 'render_optional_text' => false  ))
-            ->add('optionSex', 'choice',  array(
-                'choices' => array(
-                    '0'   => 'м',
-                    '1' => 'ж',
-                ),
-                'label' => 'Пол',
-                'multiple' => false,
-                'required' => false, 'render_optional_text' => false
-            ))
             ->add('optionFollowClosed', 'checkbox', array('label' => 'Подписываться на закрытые страницы' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionStopPhrases', 'textarea', array('label' => 'Стоп слова в био', 'required' => false,
                 'attr' => array('placeholder'=>'магазин,продажа,путешествия'),

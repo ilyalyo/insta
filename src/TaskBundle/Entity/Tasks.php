@@ -132,11 +132,6 @@ class Tasks
     protected $optionHasAvatar;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $optionSex;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $optionLastActivity;

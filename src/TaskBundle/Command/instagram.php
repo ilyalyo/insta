@@ -418,14 +418,12 @@ class Instagram
             var_dump($response->data->bio );
             if(count($this->OPTIONS['optionStopPhrases']) > 0){
                 foreach($this->OPTIONS['optionStopPhrases'] as $word)
-                    if(strpos($response->data->bio , $word ))
+                    if(strpos(strtolower($response->data->bio), $word ))
                         return false;
             }
-
         }
         return true;
     }
-
 
     // проверяем не лайкали ли этот объект ранее + разные опции
     function checkMediaOptions($media_id, $token)
@@ -433,6 +431,7 @@ class Instagram
         $url = "https://api.instagram.com/v1/media/$media_id?" . "access_token=$token";
         $response = $this->httpGet($url);
 
+        // проверяем есть ли у заданного медиа интересующие нас тэги
         if(count($this->OPTIONS['optionGeo']) > 0)
             if (count(array_intersect($response->data->tags,$this->TAGS_ARRAY)) == 0)
                 return false;
@@ -442,8 +441,6 @@ class Instagram
 
         return false;
     }
-
-
 
     public function get_media(){
 
@@ -496,6 +493,7 @@ class Instagram
         $this->OPTIONS['optionAddLike'] = $row['optionAddLike'];
         $this->OPTIONS['optionLastActivity'] = $row['optionLastActivity'];
         $tmp = explode(',', $row['optionStopPhrases']);
+        $tmp = array_map('strtolower', $tmp);
         $this->OPTIONS['optionStopPhrases'] = $tmp;
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];
@@ -696,7 +694,7 @@ class Instagram
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }
-        $select_db = mysql_select_db('instastelllar-dev');
+        $select_db = mysql_select_db('instastellar-dev');
         if (!$select_db) {
             die("Database Selection Failed" . mysql_error());
         }

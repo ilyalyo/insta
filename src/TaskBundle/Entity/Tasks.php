@@ -147,6 +147,27 @@ class Tasks
     protected $optionGeo;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionFollowersFrom;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionFollowersTo;
+
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionFollowFrom;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $optionFollowTo;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -601,5 +622,97 @@ class Tasks
     public function getOptionGeo()
     {
         return $this->optionGeo;
+    }
+
+    /**
+     * Set optionFollowersFrom
+     *
+     * @param integer $optionFollowersFrom
+     * @return Tasks
+     */
+    public function setOptionFollowersFrom($optionFollowersFrom)
+    {
+        $this->optionFollowersFrom = $optionFollowersFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get optionFollowersFrom
+     *
+     * @return integer 
+     */
+    public function getOptionFollowersFrom()
+    {
+        return $this->optionFollowersFrom;
+    }
+
+    /**
+     * Set optionFollowersTo
+     *
+     * @param integer $optionFollowersTo
+     * @return Tasks
+     */
+    public function setOptionFollowersTo($optionFollowersTo)
+    {
+        $this->optionFollowersTo = $optionFollowersTo;
+
+        return $this;
+    }
+
+    /**
+     * Get optionFollowersTo
+     *
+     * @return integer 
+     */
+    public function getOptionFollowersTo()
+    {
+        return $this->optionFollowersTo;
+    }
+
+    /**
+     * Set optionFollowFrom
+     *
+     * @param integer $optionFollowFrom
+     * @return Tasks
+     */
+    public function setOptionFollowFrom($optionFollowFrom)
+    {
+        $this->optionFollowFrom = $optionFollowFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get optionFollowFrom
+     *
+     * @return integer 
+     */
+    public function getOptionFollowFrom()
+    {
+        return $this->optionFollowFrom;
+    }
+
+    /**
+     * Set optionFollowTo
+     *
+     * @param integer $optionFollowTo
+     * @return Tasks
+     */
+    public function setOptionFollowTo($optionFollowTo)
+    {
+        $this->optionFollowTo = $optionFollowTo;
+
+        return $this;
+    }
+
+    /**
+     * Get optionFollowTo
+     *
+     * @return integer 
+     */
+    public function getOptionFollowTo()
+    {
+        return $this->optionFollowTo;
     }
 }

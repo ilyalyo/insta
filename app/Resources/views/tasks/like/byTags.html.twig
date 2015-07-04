@@ -24,7 +24,49 @@
 
                     <div  id="collapse" class="panel-collapse collapse" style="width: 100%;">
                         <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписчиков
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowersFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                    <label for="likebytags_optionFollowTo" class="control-label col-sm-3 optional">
+                                        до:
+                                    </label>
+                                    {{ form_widget(form.optionFollowersTo) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписок
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        до:
+                                    </label>
+                                    {{ form_widget(form.optionFollowTo) }}
+                                </div>
+                            </div>
+
                             {{ form_row(form.optionStopPhrases) }}
+                            {{ form_widget(form.optionFollowClosed) }}
+
                             {{ form_widget(form.optionHasAvatar) }}
                             {{ form_row(form.optionGeo, {'attr': {'class': 'hidden_geo'}}) }}
 

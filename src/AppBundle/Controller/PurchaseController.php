@@ -98,6 +98,7 @@ class PurchaseController extends Controller
             $errors->setMessage($m);
             $em->persist($errors);
             $em->flush();
+            return new JsonResponse('400');
         }
     }
 

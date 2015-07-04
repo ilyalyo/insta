@@ -67,37 +67,6 @@
                             {{ form_widget(form.optionFollowClosed) }}
 
                             {{ form_widget(form.optionHasAvatar) }}
-                            {{ form_row(form.optionGeo, {'attr': {'class': 'hidden_geo'}}) }}
-
-                            <h3 style="height: 28px">ГЕО  <input type="checkbox" name="my-checkbox">
-                            </h3>
-
-                            <div id="map-canvas"></div>
-
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 required">
-                                    Lat:
-                                </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="lat" required="required" class="form-control lat-lng" value="59.94">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 required">
-                                    Lng:
-                                </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="lng" required="required" class="form-control lat-lng" value="30.34">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 required">
-                                    Радиус:
-                                </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="radius" required="required" class="form-control lat-lng" value="1000">
-                                </div>
-                            </div>
                             <p class="pull-right" style="  font-size: 13px;">*заметьте что доп.опции замедляют парсинг списка</p>
                         </div>
                     </div>
@@ -119,15 +88,6 @@
     </div>
 
     <script>
-        $( document ).ready(function() {
-            $('#lat').prop('disabled', true);
-            $('#lng').prop('disabled', true);
-            $('#radius').prop('disabled', true);
-            setTimeout(function(){
-                $('input[name="my-checkbox"]').trigger('switchChange.bootstrapSwitch');
-            },900)
-        });
-
         $(".follow_by_id").addClass('active')
     </script>
 

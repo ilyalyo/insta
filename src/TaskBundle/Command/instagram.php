@@ -368,7 +368,7 @@ class Instagram
     function checkUserOptions($user_id, $token, $username = null)
     {
 
-        if(in_array($this->OPTIONS['type'],[0,10,20,30] || !$this->OPTIONS['optionFollowClosed']))
+        if(in_array($this->OPTIONS['type'],[0,10,20,30]) || !$this->OPTIONS['optionFollowClosed'])
         {
             // добавлялся ли ранее
             if(!$this->OPTIONS['optionCheckUserFromDB'])

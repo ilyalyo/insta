@@ -28,7 +28,6 @@ class PurchaseController extends Controller
      */
     public function purchaseSuccessAction(Request $request)
     {
-        try{
         $params=[];
         $withdraw_amount = $request->get('withdraw_amount');
         $params['notification_type'] = $request->get('notification_type');
@@ -56,18 +55,13 @@ class PurchaseController extends Controller
         if(isset($user)){
             if(sha1($str) == $sha1){
 
-                $errors = new Errors();
-                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-                $errors->setTaskId($task);
-                $errors->setMessage('ok'.sha1($str) . '|' . $sha1);
-                $em->persist($errors);
-                $em->flush();
-
                 $date = $user->getValidUntil();
+
                 if($date->getTimestamp() < time())
                     $date = new \DateTime();
                 else
                     $date = new \DateTime($date->format('Y-m-d'));
+
                 switch ($withdraw_amount){
                     case 790.00:
                         $date->add(new \DateInterval('P1M'));
@@ -90,43 +84,16 @@ class PurchaseController extends Controller
 
                 $user->setValidUntil($date);
                 $user->setMaxAccounts(5);
-                $user->isPro(1);
+                $user->setIsPro(1);
                 $em->persist($user);
-
                 $em->flush();
 
                 return new JsonResponse('200 OK');
-            }
-            else{
-                $errors = new Errors();
-                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-                $errors->setTaskId($task);
-                $errors->setMessage(sha1($str) . '|' . $sha1);
-                $em->persist($errors);
-                $em->flush();
-            }
+           }
         }
-        else{
-            $errors = new Errors();
-            $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-            $errors->setTaskId($task);
-            $errors->setMessage('user not set' .$params['label'] );
-            $em->persist($errors);
-            $em->flush();
-        }
+      
         return new JsonResponse('400');
-        } catch (\Exception $e) {
-            $errors = new Errors();
-            $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-            $errors->setTaskId($task);
-            $m=substr($e->getMessage(),0,200);
-            $errors->setMessage($m);
-            $em->persist($errors);
-            $em->flush();
-            return new JsonResponse('400');
-        }
     }
-
 
     /**
      * @Route("/purchase/fail")

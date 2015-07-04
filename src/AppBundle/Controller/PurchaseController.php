@@ -72,9 +72,6 @@ class PurchaseController extends Controller
                     case 3999.00:
                         $date->add(new \DateInterval('P7M'));
                         break;
-                    case 1.00:
-                        $date->add(new \DateInterval('P7M'));
-                        break;
                 }
 
                 $purchase = new Purchase();
@@ -91,7 +88,7 @@ class PurchaseController extends Controller
                 return new JsonResponse('200 OK');
            }
         }
-      
+
         return new JsonResponse('400');
     }
 

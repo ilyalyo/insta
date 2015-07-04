@@ -88,6 +88,14 @@ class PurchaseController extends Controller
                 $em->flush();
                 return new JsonResponse('200 OK');
             }
+            else{
+                $errors = new Errors();
+                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+                $errors->setTaskId($task);
+                $errors->setMessage(sha1($str) . '|' . $sha1);
+                $em->persist($errors);
+                $em->flush();
+            }
         }
         return new JsonResponse('400');
         } catch (\Exception $e) {

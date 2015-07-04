@@ -405,7 +405,9 @@ class Instagram
     // проверяем подходит ли заданный пользователь под наши критерии
     function checkUserOptions($user_id, $token, $username = null)
     {
-        if($this->OPTIONS['optionHasAvatar'] || count($this->OPTIONS['optionStopPhrases']) > 0 )
+        if($this->OPTIONS['optionHasAvatar']               || count($this->OPTIONS['optionStopPhrases']) > 0
+        || isset($this->OPTIONS['optionFollowersFrom'])    || isset($this->OPTIONS['optionFollowersTo'])
+        || isset($this->OPTIONS['optionFollowFrom'])       || isset($this->OPTIONS['optionFollowTo']))
         {
             $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
             $response = $this->httpGet($url);
@@ -421,6 +423,22 @@ class Instagram
                     if(strpos(strtolower($response->data->bio), $word ))
                         return false;
             }
+
+            if(isset($this->OPTIONS['optionFollowersFrom']))
+                if($response->data->counts->followed_by < $this->OPTIONS['optionFollowersFrom'])
+                    return false;
+
+            if(isset($this->OPTIONS['optionFollowersTo']))
+                if($response->data->counts->followed_by > $this->OPTIONS['optionFollowersTo'])
+                    return false;
+
+            if(isset($this->OPTIONS['optionFollowFrom']))
+                if($response->data->counts->follows < $this->OPTIONS['optionFollowFrom'])
+                    return false;
+
+            if(isset($this->OPTIONS['optionFollowTo']))
+                if($response->data->counts->follows > $this->OPTIONS['optionFollowTo'])
+                    return false;
         }
         return true;
     }
@@ -498,6 +516,10 @@ class Instagram
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];
         $this->OPTIONS['optionGeo'] = $row['optionGeo'];
+        $this->OPTIONS['optionFollowersFrom'] = $row['optionFollowersFrom'];
+        $this->OPTIONS['optionFollowersTo'] = $row['optionFollowersTo'];
+        $this->OPTIONS['optionFollowFrom'] = $row['optionFollowFrom'];
+        $this->OPTIONS['optionFollowTo'] = $row['optionFollowTo'];
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();

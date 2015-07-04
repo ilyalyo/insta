@@ -59,7 +59,7 @@ class PurchaseController extends Controller
                 else
                     $date = new \DateTime($date->format('Y-m-d'));
                 switch ($withdraw_amount){
-                    case 690.00:
+                    case 790.00:
                         $date->add(new \DateInterval('P1M'));
                         break;
                     case 1999.00:

@@ -55,6 +55,14 @@ class PurchaseController extends Controller
         $user = $em->getRepository('UserBundle:User')->find($params['label']);
         if(isset($user)){
             if(sha1($str) == $sha1){
+
+                $errors = new Errors();
+                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+                $errors->setTaskId($task);
+                $errors->setMessage('ok'.sha1($str) . '|' . $sha1);
+                $em->persist($errors);
+                $em->flush();
+
                 $date = $user->getValidUntil();
                 if($date->getTimestamp() < time())
                     $date = new \DateTime();
@@ -86,12 +94,7 @@ class PurchaseController extends Controller
                 $em->persist($user);
 
                 $em->flush();
-                $errors = new Errors();
-                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-                $errors->setTaskId($task);
-                $errors->setMessage(sha1($str) . '|' . $sha1);
-                $em->persist($errors);
-                $em->flush();
+
                 return new JsonResponse('200 OK');
             }
             else{
@@ -103,14 +106,14 @@ class PurchaseController extends Controller
                 $em->flush();
             }
         }
-            else{
-                $errors = new Errors();
-                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
-                $errors->setTaskId($task);
-                $errors->setMessage('user not set' .$params['label'] );
-                $em->persist($errors);
-                $em->flush();
-            }
+        else{
+            $errors = new Errors();
+            $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+            $errors->setTaskId($task);
+            $errors->setMessage('user not set' .$params['label'] );
+            $em->persist($errors);
+            $em->flush();
+        }
         return new JsonResponse('400');
         } catch (\Exception $e) {
             $errors = new Errors();

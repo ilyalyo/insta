@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Accounts;
+use AppBundle\Entity\Purchase;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,6 +28,7 @@ class PurchaseController extends Controller
      */
     public function purchaseSuccessAction(Request $request)
     {
+        try{
         $params=[];
         $withdraw_amount = $request->get('withdraw_amount');
         $params['notification_type'] = $request->get('notification_type');
@@ -69,15 +71,31 @@ class PurchaseController extends Controller
                         $date->add(new \DateInterval('P7M'));
                         break;
                 }
+
+                $purchase = new Purchase();
+                $purchase->setUser($user);
+                $purchase->setAmount($withdraw_amount);
+                $em->persist($purchase);
+
                 $user->setValidUntil($date);
                 $user->setMaxAccounts(5);
                 $user->isPro(1);
                 $em->persist($user);
+
                 $em->flush();
                 return new JsonResponse('200 OK');
             }
         }
         return new JsonResponse('400');
+        } catch (\Exception $e) {
+            $errors = new Errors();
+            $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+            $errors->setTaskId($task);
+            $m=substr($e->getMessage(),0,200);
+            $errors->setMessage($m);
+            $em->persist($errors);
+            $em->flush();
+        }
     }
 
 

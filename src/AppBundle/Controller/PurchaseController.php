@@ -103,6 +103,14 @@ class PurchaseController extends Controller
                 $em->flush();
             }
         }
+            else{
+                $errors = new Errors();
+                $task = $em->getRepository('TaskBundle:Tasks')->find(-1);
+                $errors->setTaskId($task);
+                $errors->setMessage('user not set' .$params['label'] );
+                $em->persist($errors);
+                $em->flush();
+            }
         return new JsonResponse('400');
         } catch (\Exception $e) {
             $errors = new Errors();

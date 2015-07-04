@@ -492,8 +492,12 @@ class Instagram
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionAddLike'] = $row['optionAddLike'];
         $this->OPTIONS['optionLastActivity'] = $row['optionLastActivity'];
-        $tmp = explode(',', $row['optionStopPhrases']);
-        $tmp = array_map('strtolower', $tmp);
+        if(isset($row['optionStopPhrases'])){
+            $tmp = explode(',', $row['optionStopPhrases']);
+            $tmp = array_map('strtolower', $tmp);
+        }
+        else
+            $tmp = "";
         $this->OPTIONS['optionStopPhrases'] = $tmp;
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];

@@ -166,7 +166,7 @@ function follow_by_geo(){
         $result = $inst->follow($user['user_id']);
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
-            $inst->add_row($user['link']);
+            $inst->add_row($user['username']);
         }
         else
             $errors++;

@@ -4,41 +4,35 @@ namespace TaskBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class FollowByTagsType extends AbstractType
+class FollowByGeoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('count', 'text', array('label' => 'Количество', 'attr' => array('placeholder'=>'100')))
-            ->add('tags', 'textarea', array(
-                'label' => 'Тэги',
-                'attr' => array('placeholder'=>'#sun#love#peace')))
+            ->add('tags', 'hidden')
             ->add('speed', 'choice', array(
                 'choices' => array(
-                    '0'   => '20-30с',
-                    '1' => '30-45с',
-                    '2'   => '1м-1.5м',
+                    '0'   => '20-30 с',
+                    '1' => '30-45 с',
+                    '2'   => '1-1.5 мин',
                 ),
                 'label' => 'Скорость',
                 'multiple' => false,
             ))
-            ->add('optionAddLike', 'checkbox', array('label' => 'Ставить лайк перед подиской' , 'required' => false ))
-            ->add('optionFollowClosed', 'checkbox', array('label' => 'Подписываться на закрытые страницы' , 'required' => false ))
-            ->add('optionCheckUserFromDB', 'checkbox', array('label' => 'Подписываться на бывших подписчиков' , 'required' => false ))
             ->add('optionFollowersFrom', 'integer', array('label' => 'от' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionFollowersTo', 'integer', array('label' => 'до' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionFollowFrom', 'integer', array('label' => 'от' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionFollowTo', 'integer', array('label' => 'до' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionHasAvatar', 'checkbox', array('label' => 'Фоловить только аккаунты с аватаром' , 'required' => false, 'render_optional_text' => false  ))
+            ->add('optionFollowClosed', 'checkbox', array('label' => 'Подписываться на закрытые страницы' , 'required' => false ))
             ->add('optionStopPhrases', 'textarea', array('label' => 'Стоп слова в био', 'required' => false,
                 'attr' => array('placeholder'=>'магазин,продажа,путешествия'),
-                'render_optional_text' => false ))
-            ->add('optionGeo', 'hidden',array('required' => false));
-
+                'render_optional_text' => false ));
     }
 
     public function getName()
     {
-        return 'followbytags';
+        return 'followbygeo';
     }
 }

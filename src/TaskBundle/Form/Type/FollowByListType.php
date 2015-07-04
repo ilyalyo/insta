@@ -32,7 +32,7 @@ dima_bilan')
             ->add('optionFollowersTo', 'integer', array('label' => 'до' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionFollowFrom', 'integer', array('label' => 'от' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionFollowTo', 'integer', array('label' => 'до' , 'required' => false, 'render_optional_text' => false  ))
-            ->add('optionHasAvatar', 'checkbox', array('label' => 'Фоловить фото только аккаунты с аватаром' , 'required' => false, 'render_optional_text' => false  ))
+            ->add('optionHasAvatar', 'checkbox', array('label' => 'Фоловить только аккаунты с аватаром' , 'required' => false, 'render_optional_text' => false  ))
             ->add('optionStopPhrases', 'textarea', array('label' => 'Стоп слова в био', 'required' => false,
                 'attr' => array('placeholder'=>'магазин,продажа,путешествия'),
                 'render_optional_text' => false ))

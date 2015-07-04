@@ -84,6 +84,7 @@
         <li class="follow_by_id" role="presentation"><a href="{{ path('add_task_follow_by_id',{ 'id':  app.request.get('id') }) }}">По ID</a></li>
         <li class="follow_by_tags" role="presentation"><a href="{{ path('add_task_follow_by_tags',{ 'id':  app.request.get('id') }) }}">По тэгам</a></li>
         <li class="follow_by_list" role="presentation"><a href="{{ path('add_task_follow_by_list',{ 'id':  app.request.get('id') }) }}">По списку</a></li>
+        <li class="follow_by_geo" role="presentation"><a href="{{ path('add_task_follow_by_geo',{ 'id':  app.request.get('id') }) }}">По гео</a></li>
     </ul>
 
     {% block task %}{% endblock %}

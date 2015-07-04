@@ -103,7 +103,7 @@ class Instagram
                 if ($count - 1 < count($result))
                     return $result;
 
-                if ($this->checkUser($d->id, $token, $d->username)) {
+                if ($this->checkUserOptions($d->id, $token, $d->username)) {
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $result[] = $user;
@@ -195,7 +195,7 @@ class Instagram
 
                 foreach ($data as $d) {
                     if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
-                        if ($this->checkUser($d->user->id, $token, $d->user->username)) {
+                        if ($this->checkUserOptions($d->user->id, $token, $d->user->username)) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
@@ -314,7 +314,7 @@ class Instagram
     }
 
     //исключаем из списка загруженного пользователем
-    // всех юзеров, которые лиоб не существуют, либо не подходят под выбранные опции(см. $this->checkUser)
+    // всех юзеров, которые лиоб не существуют, либо не подходят под выбранные опции(см. $this->checkUserOptions)
     public function get_followers_by_list(){
         $result = [];
         $index = $this->TOKEN_INDEX;
@@ -326,7 +326,7 @@ class Instagram
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
             $d = $response->data[0];
-            if ($this->checkUser($d->id, $token) ) {
+            if ($this->checkUserOptions($d->id, $token, $d->username) ) {
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
                 $result[] = $user;
@@ -363,48 +363,30 @@ class Instagram
             $this->DB_USERS[] = $row['resource_id'];
     }
 
-    // проверяем подходит ли заданный пользователь под наши критерии
-    function checkUser($user_id, $token, $username = null)
-    {
-        $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-        $response = $this->httpGet($url);
-
-        // закрыта ли страница
-        if(!$this->OPTIONS['optionFollowClosed'])
-            if($response->data->target_user_is_private)
-                return false;
-
-        // добавлялся ли ранее
-        if(!$this->OPTIONS['optionCheckUserFromDB'])
-            if(in_array($username, $this->DB_USERS))
-                return false;
-
-        if($this->OPTIONS['optionHasAvatar'] || count($this->OPTIONS['optionStopPhrases']) > 0 )
-        {
-            $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
-            $response = $this->httpGet($url);
-
-            if($this->OPTIONS['optionHasAvatar'])
-                if($response->data->profile_picture == 'https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg')
-                    return false;
-
-            if($response->data->bio)
-                    return false;
-
-            if($this->OPTIONS['optionStopPhrases'])
-                if(in_array($username, $this->DB_USERS))
-                    return false;
-        }
-        // не наш браток
-        if ($response->data->outgoing_status == 'none')
-            return true;
-
-        return false;
-    }
 
     // проверяем подходит ли заданный пользователь под наши критерии
     function checkUserOptions($user_id, $token, $username = null)
     {
+
+        if(in_array($this->OPTIONS['type'],[0,10,20,30] || !$this->OPTIONS['optionFollowClosed']))
+        {
+            // добавлялся ли ранее
+            if(!$this->OPTIONS['optionCheckUserFromDB'])
+                if(in_array($username, $this->DB_USERS))
+                    return false;
+
+            $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
+            $response = $this->httpGet($url);
+
+            // закрыта ли страница
+            if(!$this->OPTIONS['optionFollowClosed'])
+                if($response->data->target_user_is_private)
+                    return false;
+
+            if (!$response->data->outgoing_status == 'none')
+                return false;
+        }
+
         if($this->OPTIONS['optionHasAvatar']               || count($this->OPTIONS['optionStopPhrases']) > 0
         || isset($this->OPTIONS['optionFollowersFrom'])    || isset($this->OPTIONS['optionFollowersTo'])
         || isset($this->OPTIONS['optionFollowFrom'])       || isset($this->OPTIONS['optionFollowTo']))
@@ -520,6 +502,7 @@ class Instagram
         $this->OPTIONS['optionFollowersTo'] = $row['optionFollowersTo'];
         $this->OPTIONS['optionFollowFrom'] = $row['optionFollowFrom'];
         $this->OPTIONS['optionFollowTo'] = $row['optionFollowTo'];
+        $this->OPTIONS['type'] = $row['type'];
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();

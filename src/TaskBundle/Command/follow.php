@@ -57,7 +57,11 @@ function follow_by_tags(){
     global $inst;
     global $task;
 
-    $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
+    if(count($inst->OPTIONS['optionGeo']) > 0)
+        $users = $inst->get_media_by_geo($inst->OPTIONS['optionGeo'],$task['count']);
+    else
+        $users = $inst->get_media_by_tags($task['tags'],$task['count']);
+   // $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
     if ($inst->get_task_status() == 3)
         exit;
     $inst->set_task_status(2);

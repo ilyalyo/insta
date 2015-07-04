@@ -33,6 +33,71 @@
             </div>
             {{ form_row(form.count) }}
             {{ form_row(form.speed) }}
+
+            <div class="panel-group" id="accordion">
+                <div class="panel">
+                    <div class="panel-heading">
+
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse" class="collapsed">
+                            Доп. опции
+                        </a>
+
+                    </div>
+
+                    <div  id="collapse" class="panel-collapse collapse" style="width: 100%;">
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписчиков
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowersFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label for="likebytags_optionFollowTo" class="control-label col-sm-3 optional">
+                                            до:
+                                        </label>
+                                        {{ form_widget(form.optionFollowersTo) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписок
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        до:
+                                    </label>
+                                    {{ form_widget(form.optionFollowTo) }}
+                                </div>
+                            </div>
+
+                            {{ form_row(form.optionStopPhrases) }}
+                            {{ form_widget(form.optionFollowClosed) }}
+
+                            {{ form_widget(form.optionHasAvatar) }}
+
+                            <p class="pull-right" style="  font-size: 13px;">*заметьте что доп.опции замедляют парсинг списка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <div class="col-sm-9 col-md-offset-3">
                     <button class="btn btn-primary pull-right">Добавить</button>

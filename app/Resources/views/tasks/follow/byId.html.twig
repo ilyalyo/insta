@@ -10,6 +10,100 @@
             {{ form_widget(form.optionAddLike) }}
             {{ form_widget(form.optionFollowClosed) }}
             {{ form_widget(form.optionCheckUserFromDB) }}
+
+            <div class="panel-group" id="accordion">
+                <div class="panel">
+                    <div class="panel-heading">
+
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse" class="collapsed">
+                            Доп. опции
+                        </a>
+
+                    </div>
+
+                    <div  id="collapse" class="panel-collapse collapse" style="width: 100%;">
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписчиков
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowersFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label for="likebytags_optionFollowTo" class="control-label col-sm-3 optional">
+                                            до:
+                                        </label>
+                                        {{ form_widget(form.optionFollowersTo) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписок
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        до:
+                                    </label>
+                                    {{ form_widget(form.optionFollowTo) }}
+                                </div>
+                            </div>
+
+                            {{ form_row(form.optionStopPhrases) }}
+                            {{ form_widget(form.optionFollowClosed) }}
+
+                            {{ form_widget(form.optionHasAvatar) }}
+                            {{ form_row(form.optionGeo, {'attr': {'class': 'hidden_geo'}}) }}
+
+                            <h3 style="height: 28px">ГЕО  <input type="checkbox" name="my-checkbox">
+                            </h3>
+
+                            <div id="map-canvas"></div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 required">
+                                    Lat:
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="lat" required="required" class="form-control lat-lng" value="59.94">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 required">
+                                    Lng:
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="lng" required="required" class="form-control lat-lng" value="30.34">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 required">
+                                    Радиус:
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="radius" required="required" class="form-control lat-lng" value="1000">
+                                </div>
+                            </div>
+                            <p class="pull-right" style="  font-size: 13px;">*заметьте что доп.опции замедляют парсинг списка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-sm-9 col-md-offset-3">
                     <button class="btn btn-primary pull-right">Добавить</button>
@@ -25,7 +119,16 @@
     </div>
 
     <script>
-        $(".follow_by_id").addClass('active');
+        $( document ).ready(function() {
+            $('#lat').prop('disabled', true);
+            $('#lng').prop('disabled', true);
+            $('#radius').prop('disabled', true);
+            setTimeout(function(){
+                $('input[name="my-checkbox"]').trigger('switchChange.bootstrapSwitch');
+            },900)
+        });
+
+        $(".follow_by_id").addClass('active')
     </script>
 
 {% endblock %}

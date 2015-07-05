@@ -29,6 +29,11 @@ class RemovedAccounts
     protected $instLogin;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $accountId;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -82,5 +87,28 @@ class RemovedAccounts
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set accountId
+     *
+     * @param string $accountId
+     * @return RemovedAccounts
+     */
+    public function setAccountId($accountId)
+    {
+        $this->accountId = $accountId;
+
+        return $this;
+    }
+
+    /**
+     * Get accountId
+     *
+     * @return string 
+     */
+    public function getAccountId()
+    {
+        return $this->accountId;
     }
 }

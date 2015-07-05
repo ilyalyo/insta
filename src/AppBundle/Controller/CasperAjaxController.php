@@ -203,6 +203,16 @@ class CasperAjaxController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $account = $em->getRepository('AppBundle:Accounts')->find($account_id);
+
+        //проверяем не добавлялся ли аккаунт до этого(с другим username)
+        $account_check = $em->getRepository('AppBundle:Accounts')->findOneBy(array('account_id' => $response->user->id));
+        $removed_account_check = $em->getRepository('AppBundle:RemovedAccounts')->findOneBy(array('accountId' => $response->user->id));
+        if(isset($account_check) || isset($removed_account_check)){
+            $em->remove($account);
+            $em->flush();
+            return new JsonResponse(0);
+        }
+
         $account->setUsername($response->user->username);
         $account->setToken($response->access_token);
         $account->setAccountId($response->user->id);

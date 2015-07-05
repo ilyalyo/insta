@@ -72,6 +72,7 @@ class DefaultController extends Controller
         if($user->getIsPro() == 0) {
             $removed_account = new RemovedAccounts();
             $removed_account->setInstLogin($account->getInstLogin());
+            $removed_account->setAccountId($account->getAccountId());
             $removed_account->setUser($user);
             $em->persist($removed_account);
         }

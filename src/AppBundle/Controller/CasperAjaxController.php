@@ -110,6 +110,10 @@ class CasperAjaxController extends Controller
             $output = new NullOutput();
             $command->run($input, $output);
 
+            $check_account = $em->getRepository('AppBundle:Accounts')->find($account->getId());
+            if(!isset($check_account))
+                return $this->redirectToRoute('accounts');
+
             $this->addProvider($account,'easytogo');
             $this->addProvider($account,'extragram');
             $this->addProvider($account,'stapico ');

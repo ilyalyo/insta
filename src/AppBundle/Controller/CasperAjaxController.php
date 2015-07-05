@@ -214,12 +214,8 @@ class CasperAjaxController extends Controller
         var_dump(2);
         $account->setProxy($proxy[$proxy_count]);
         var_dump(3);
-        try {
-            $em->persist($account);
-            $em->flush();
-        }catch(\Exception $e){
-            var_dump($e);
-        }
+        $em->persist($account);
+        $em->flush();
         var_dump(4);
 
         return new JsonResponse($account->getId());

@@ -199,6 +199,7 @@ class CasperAjaxController extends Controller
         $response = json_decode(curl_exec($ch));
         curl_close($ch);
 
+        var_dump($response);
         $em = $this->getDoctrine()->getManager();
 
         $account = $em->getRepository('AppBundle:Accounts')->find($account_id);

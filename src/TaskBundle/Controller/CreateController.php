@@ -18,6 +18,7 @@ use TaskBundle\Entity\Lists;
 use TaskBundle\Entity\Tasks;
 use Symfony\Component\HttpFoundation\Request;
 use TaskBundle\Entity\TaskType;
+use TaskBundle\Form\Type\FollowByGeoType;
 use TaskBundle\Form\Type\FollowByIdType;
 use TaskBundle\Form\Type\FollowByListType;
 use TaskBundle\Form\Type\FollowByTagsType;
@@ -203,6 +204,60 @@ class CreateController extends Controller
         }
 
         return $this->render('tasks/follow/byTags.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+    /**
+     * @Route("/tasks/add/FollowByGeo/{id}", name="add_task_follow_by_geo")
+     */
+    public function followByGeoAction(Request $request, $id)
+    {
+        $task = new Tasks();
+        $task->setType(30);
+        $form = $this->createForm(new FollowByGeoType(), $task);
+
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+        $task->setAccountId($account);
+
+        if($user->isExpired())
+            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+
+        $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
+        if($running_task > 0)
+            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+
+        if($task->getOptionAddLike() == 1 && $task->getCount() > 500)
+            $form->get('count')->addError(new FormError('При подписке с опцией лайкинг, количество должно быть менее 500'));
+
+        if ($form->isValid()) {
+
+            if($task->getOptionAddLike() == 1)
+                $task->setCount($task->getCount() * 2);
+
+            $tmp = str_replace(" ","",$task->getTags());
+            $tags=trim($tmp,"#");
+            $task->setTags($tags);
+            $em->persist($task);
+            $em->flush();
+
+            $command = new WriteCommand();
+            $command->setContainer($this->container);
+            $input = new ArrayInput(array('id' => $task->getId()));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            return  $this->redirectToRoute('accounts');
+        }
+
+        return $this->render('tasks/follow/byGeo.html.twig', array(
             'form' => $form->createView(),
             'account' =>$account
         ));

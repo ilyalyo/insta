@@ -1,6 +1,85 @@
 {% extends 'tasks/task_base.html.twig' %}
 {% block task_body %}
 
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+    <script>
+        $( document ).ready(function() {
+            $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+
+            var spb = new google.maps.LatLng(59.94, 30.34);
+            var map;
+            var circle;
+
+            function initialize() {
+                var mapOptions = {
+                    zoom: 10,
+                    center: spb
+                };
+
+                map = new google.maps.Map(document.getElementById('map-canvas'),
+                        mapOptions);
+
+                var options = {
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: spb,
+                    editable: true,
+                    draggable: true,
+                    radius: 1000
+                };
+                circle = new google.maps.Circle(options);
+                google.maps.event.addListener(circle, 'radius_changed', function () {
+                    $('#radius').val(circle.getRadius());
+                    $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                });
+                google.maps.event.addListener(circle, 'center_changed', function () {
+                    $('#lat').val(circle.getCenter()['A']);
+                    $('#lng').val(circle.getCenter()['F']);
+                    $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                });
+                var sw = $("[name='my-checkbox']").bootstrapSwitch('size', 'small');
+                $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                    if (!state) {
+                        $('.hidden_geo').val('');
+                        $('#lat').prop('disabled', true);
+                        $('#lng').prop('disabled', true);
+                        $('#radius').prop('disabled', true);
+                        map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+                        circle.setOptions({draggable: false, editable : false});
+
+                    }
+                    else {
+                        $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+                        $('#lat').prop('disabled', false);
+                        $('#lng').prop('disabled', false);
+                        $('#radius').prop('disabled', false);
+                        map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false});
+                        circle.setOptions({draggable: true, editable : true});
+
+                    }
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+            $('.lat-lng').bind("change paste keyup", function () {
+                circle.setCenter(new google.maps.LatLng($('#lat').val(), $('#lng').val()));
+                circle.setRadius(parseInt($('#radius').val()));
+                $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
+            })
+
+            $('[data-toggle="collapse"]').click('shown.bs.collapse', function() {
+                setTimeout(function(){google.maps.event.trigger(map, "resize");
+                },300)
+            });
+        })
+
+    </script>
+
     <h1>Добавление задачи  на лайкинг</h1>
     <ul class="nav nav-tabs" style="padding-top: 30px;">
         <li class="like_by_tags" role="presentation"><a href="{{ path('add_task_like_by_tags',{ 'id':  app.request.get('id') }) }}">По тэгам</a></li>
@@ -10,6 +89,16 @@
     {% block task %}{% endblock %}
 
     <style>
+        .panel-heading{
+            background-color: #F2F2F2;
+        }
+        #map-canvas {
+            height: 60%;
+            margin: 0px;
+            padding: 0px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
         .modal-error{
             margin-bottom: 0px;
             color: red;

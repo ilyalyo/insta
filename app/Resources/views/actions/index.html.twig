@@ -8,6 +8,8 @@
         <h1>Подписка по тэгам</h1>
     {% elseif task.type == 20 %}
         <h1>Подписка по списку</h1>
+    {% elseif task.type == 30 %}
+        <h1>Подписка по гео</h1>
     {% elseif task.type == 11 %}
         <h1>Лайкинг по тэгам</h1>
     {% elseif task.type == 31 %}
@@ -39,7 +41,7 @@
         </div>
     </div>
 
-    {% if task.type in [0, 10, 20] %}
+    {% if task.type in [0, 10, 20,30] %}
 
         <h3>Вы подписались на:</h3>
         {% for action in task.actions | reverse %}

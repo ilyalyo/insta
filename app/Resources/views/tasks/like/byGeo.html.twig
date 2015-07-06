@@ -5,7 +5,8 @@
         <div class="col-md-5 col-md-offset-1">
             <div id="map-canvas"></div>
             {{ form_start(form) }}
-            {{ form_row(form.tags) }}
+            {{ form_row(form.tags, {'attr': {'class': 'hidden_geo'}}) }}
+
             <div class="form-group">
                 <label class="control-label col-sm-3 required">
                     Lat:
@@ -32,6 +33,74 @@
             </div>
             {{ form_row(form.count) }}
             {{ form_row(form.speed) }}
+
+            <div class="panel-group" id="accordion">
+                <div class="panel">
+                    <div class="panel-heading">
+
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse" class="collapsed">
+                            Доп. опции
+                        </a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse" class="collapsed pull-right">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+
+                    </div>
+
+                    <div  id="collapse" class="panel-collapse collapse" style="width: 100%;">
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписчиков
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowersFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label for="likebytags_optionFollowTo" class="control-label col-sm-3 optional">
+                                            до:
+                                        </label>
+                                        {{ form_widget(form.optionFollowersTo) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 optional">
+                                    Количество подписок
+                                </label>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        от:
+                                    </label>
+                                    {{ form_widget(form.optionFollowFrom) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="likebytags_optionFollowFrom" class="control-label col-sm-3 optional">
+                                        до:
+                                    </label>
+                                    {{ form_widget(form.optionFollowTo) }}
+                                </div>
+                            </div>
+
+                            {{ form_row(form.optionStopPhrases) }}
+                            {{ form_widget(form.optionFollowClosed) }}
+
+                            {{ form_widget(form.optionHasAvatar) }}
+
+                            <p class="pull-right" style="  font-size: 13px;">*заметьте что доп.опции замедляют парсинг списка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <div class="col-sm-9 col-md-offset-3">
                     <button class="btn btn-primary pull-right">Добавить</button>
@@ -49,67 +118,7 @@
             </p>
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-s
-    <script>
-        $( document ).ready(function() {
-            $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
-
-            var spb = new google.maps.LatLng(59.94, 30.34);
-            var map;
-            var circle;
-
-            function initialize() {
-                var mapOptions = {
-                    zoom: 10,
-                    center: spb
-                };
-
-                map = new google.maps.Map(document.getElementById('map-canvas'),
-                        mapOptions);
-
-                var options = {
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: '#FF0000',
-                    fillOpacity: 0.35,
-                    map: map,
-                    center: spb,
-                    editable: true,
-                    draggable: true,
-                    radius: 1000
-                };
-                circle = new google.maps.Circle(options);
-                google.maps.event.addListener(circle, 'radius_changed', function () {
-                    $('#radius').val(circle.getRadius());
-                    $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
-                });
-                google.maps.event.addListener(circle, 'center_changed', function () {
-                    $('#lat').val(circle.getCenter()['A']);
-                    $('#lng').val(circle.getCenter()['F']);
-                    $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
-                });
-            }
-
-            google.maps.event.addDomListener(window, 'load', initialize);
-
-
-            $('.lat-lng').bind("change paste keyup", function () {
-                circle.setCenter(new google.maps.LatLng($('#lat').val(), $('#lng').val()));
-                circle.setRadius(parseInt($('#radius').val()));
-                $('#likebygeo_tags').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
-            })
-        })
-
-    </script>
     <style>
-        html, body, #map-canvas {
-            height: 80%;
-            margin: 0px;
-            padding: 0px;
-            margin-bottom: 20px;
-        }
         .modal-error{
             margin-bottom: 0px;
             color: red;

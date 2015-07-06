@@ -101,10 +101,11 @@
             <ul>
                 <li>Добавлен гео-лайкинг, теперь вы можете ставить сердечки, в зависимости
                     от территории обитания вашей Целевой Аудитории.</li>
+                <li>Добавлены различные дополнительные опции для добавления задачи</li>
             </ul>
             <h3 style="padding-left: 10px;">В ближайшее время</h3>
             <ul>
-                <li>Добавление возможности фильтрации по гео ко всему существующему функционалу.</li>
+                <li>Создание менеджера задач, с помощью которого можно будет автоматически добавлять задачи по выбранному Вами расписанию. Очень круто.</li>
             </ul>
 
             </div>
@@ -204,6 +205,8 @@
                                             <p>Подписка по тэгам</p>
                                         {% elseif (account.tasks | last).type == 20 %}
                                             <p>Подписка по списку</p>
+                                        {% elseif (account.tasks | last).type == 30 %}
+                                            <p>Подписка по гео</p>
                                         {% elseif (account.tasks | last).type == 11 %}
                                             <p>Лайкинг по тэгам</p>
                                         {% elseif (account.tasks | last).type == 31 %}
@@ -228,7 +231,7 @@
                                     {% elseif (account.tasks | last).type in [10,11] %}
                                         <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
                                         <div class="comment more">{{ (account.tasks | last).tags  }}</div>
-                                    {% elseif (account.tasks | last).type == 31 %}
+                                    {% elseif (account.tasks | last).type in [31, 30] %}
                                         <p>Lat;Lng;Радиус</p>
                                         <div class="comment more">{{ (account.tasks | last).tags  }}</div>
                                     {% endif %}
@@ -265,9 +268,13 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         {% if task.type == 0 %}
-                                        <p>Подписка по ID<p>
+                                            <p>Подписка по ID<p>
                                         {% elseif task.type == 10 %}
                                             <p>Подписка по тэгам</p>
+                                        {% elseif task.type == 20 %}
+                                            <p>Подписка по списку</p>
+                                        {% elseif task.type == 30 %}
+                                            <p>Подписка по гео</p>
                                         {% elseif task.type == 11 %}
                                             <p>Лайкинг по тэгам</p>
                                         {% elseif task.type == 31 %}

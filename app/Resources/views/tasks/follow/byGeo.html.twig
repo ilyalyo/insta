@@ -3,17 +3,39 @@
 {% block task %}
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 col-md-offset-1">
-        {{ form_start(form) }}
-            {{ form_row(form.tags) }}
+            <div id="map-canvas"></div>
+            {{ form_start(form) }}
+            {{ form_row(form.tags, {'attr': {'class': 'hidden_geo'}}) }}
+
+            <div class="form-group">
+                <label class="control-label col-sm-3 required">
+                    Lat:
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" id="lat" required="required" class="form-control lat-lng" value="59.94">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 required">
+                    Lng:
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" id="lng" required="required" class="form-control lat-lng" value="30.34">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 required">
+                    Радиус:
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" id="radius" required="required" class="form-control lat-lng" value="1000">
+                </div>
+            </div>
             {{ form_row(form.count) }}
             {{ form_row(form.speed) }}
-            {{ form_widget(form.optionAddLike) }}
-            {{ form_widget(form.optionFollowClosed) }}
-            {{ form_widget(form.optionCheckUserFromDB) }}
 
             <div class="panel-group" id="accordion">
                 <div class="panel">
-
                     <div class="panel-heading">
 
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse" class="collapsed">
@@ -71,28 +93,39 @@
                             {{ form_widget(form.optionFollowClosed) }}
 
                             {{ form_widget(form.optionHasAvatar) }}
+
                             <p class="pull-right" style="  font-size: 13px;">*заметьте что доп.опции замедляют парсинг списка</p>
                         </div>
                     </div>
                 </div>
             </div>
 
+
             <div class="form-group">
                 <div class="col-sm-9 col-md-offset-3">
                     <button class="btn btn-primary pull-right">Добавить</button>
                 </div>
             </div>
-        {{ form_end(form) }}
+            {{ form_end(form) }}
         </div>
         <div class="col-md-4 col-md-offset-1">
-           <p>
-               Для максимально эффективной работы по сбору Целевой Аудитории впишите в поле ввода ID инстаграм аккаунт, схожий по тематике с Вашим (например, ID Вашего конкурента) и Вы будете подписываться на подписчиков этого аккаунта.
-           </p>
+            <p>
+                Выберете на карте место, где обитает Ваша Целевая Аудитория.
+                instaStellar будет подписываться на этих людей.
+            </p>
+            <p>
+            Просто перетаскивайте круг и меняется его радиус при помощи мыши.
+            </p>
         </div>
     </div>
+    <style>
+        .modal-error{
+            margin-bottom: 0px;
+            color: red;
+        }
+    </style>
 
     <script>
-        $(".follow_by_id").addClass('active')
+        $(".follow_by_geo").addClass('active');
     </script>
-
 {% endblock %}

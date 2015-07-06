@@ -5,13 +5,15 @@ class Instagram
     private $TASK_ID;
     // массив токенов вида : [client,token,id]
     public $TOKEN_ARRAY;
+    public $TAGS;
+    public $TAGS_ARRAY;
+    public $OPTIONS;
     public $TOKEN_INDEX;
     private $PROXY_TIME=10;
     private $ACCOUNT_ID;
     private $ACCOUNT_ID_INST;
     private $LOGIN;
     private $PASSWORD;
-    private $OPTIONS;
     private $DB_USERS;
 
     // устанавливаем соединение с БД, выгружаем все токены
@@ -101,7 +103,7 @@ class Instagram
                 if ($count - 1 < count($result))
                     return $result;
 
-                if ($this->checkUser($d->id, $token, $d->username)) {
+                if ($this->checkUserOptions($d->id, $token, $d->username)) {
                     $user['username'] = $d->username;
                     $user['user_id'] = $d->id;
                     $result[] = $user;
@@ -192,17 +194,63 @@ class Instagram
                 $next = $response->pagination->next_max_tag_id;
 
                 foreach ($data as $d) {
-                    if(count($result) < $part_size * ($index + 1) && count($result) < $count)
-                        if ($this->checkUser($d->user->id, $token, $d->user->username) ) {
+                    if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
+                        if ($this->checkUserOptions($d->user->id, $token, $d->user->username)) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
                             $user['link'] = $d->link;
                             $result[] = $user;
                             $p_count = count($result);
-                            if($p_count % $block == 0)
+                            if ($p_count % $block == 0)
                                 $this->set_parsing_status($p_count);
                         }
+                    }
+                    else
+                        break;
+                }
+                $url = $response->pagination->next_url;
+            }while(isset($next)  && count($result) < $part_size * ($index + 1) && count($result) < $count);
+        }
+        $this->debug('parsed: ' . count($result));
+        return $result;
+    }
+
+
+    // выбираем недавно загруженное медиа по заданным тэгам
+        // тк тэгов несколько, набираем по каждому их них равно количество пользователей( примерно)
+    public function get_media_by_tags($tags_str, $count)
+    {
+        $next="";
+        $result=array();
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index]['token'];
+
+        $tags = explode('#', $tags_str);
+        $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
+        $block = $count / 10;
+
+        foreach($tags as $index => $tag){
+            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id=$next" . "&access_token=$token";
+            do {
+                $response = $this->httpGet($url);
+
+                $data = $response->data;
+                $next = $response->pagination->next_max_tag_id;
+
+                foreach ($data as $d) {
+                    if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
+                        if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
+                            $user['username'] = $d->user->username;
+                            $user['user_id'] = $d->user->id;
+                            $user['resource_id'] = $d->id;
+                            $user['link'] = $d->link;
+                            $result[] = $user;
+                            $p_count = count($result);
+                            if ($p_count % $block == 0)
+                                $this->set_parsing_status($p_count);
+                        }
+                    }
                     else
                         break;
                 }
@@ -217,8 +265,11 @@ class Instagram
     // парсим медиа загруженно в указанной области
     // по указанным координатам и радиусу получаем список мест
     // начиная перебирать все места получаем недавние медиа загруженные с привязкой к ним
-    public function get_followers_by_geo($lat_lng_radius_str, $count)
+    public function get_media_by_geo($lat_lng_radius_str, $count)
     {
+        if(count($this->OPTIONS['optionGeo']) > 0)
+            $this->TAGS_ARRAY = explode('#', $this->TAGS);
+
         $next="";
         $result=array();
         $index = $this->TOKEN_INDEX;
@@ -240,19 +291,20 @@ class Instagram
                 $data = $response->data;
 
                 foreach ($data as $d) {
-                    if(count($result) < $count)
-                        if ($this->checkMedia($d->id, $token) ) {
+                    if(count($result) < $count) {
+                        if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
                             $user['resource_id'] = $d->id;
                             $user['link'] = $d->link;
                             $result[] = $user;
                             $p_count = count($result);
-                            if($p_count % $block == 0)
+                            if ($p_count % $block == 0)
                                 $this->set_parsing_status($p_count);
                         }
-                        else
-                            break;
+                    }
+                    else
+                        break;
                 }
                 $url = $response->pagination->next_url;
             }while(isset($url) && count($result) < $count);
@@ -262,7 +314,7 @@ class Instagram
     }
 
     //исключаем из списка загруженного пользователем
-    // всех юзеров, которые лиоб не существуют, либо не подходят под выбранные опции(см. $this->checkUser)
+    // всех юзеров, которые лиоб не существуют, либо не подходят под выбранные опции(см. $this->checkUserOptions)
     public function get_followers_by_list(){
         $result = [];
         $index = $this->TOKEN_INDEX;
@@ -274,7 +326,7 @@ class Instagram
             $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
             $response = $this->httpGet($url);
             $d = $response->data[0];
-            if ($this->checkUser($d->id, $token) ) {
+            if ($this->checkUserOptions($d->id, $token, $d->username) ) {
                 $user['username'] = $d->username;
                 $user['user_id'] = $d->id;
                 $result[] = $user;
@@ -311,42 +363,84 @@ class Instagram
             $this->DB_USERS[] = $row['resource_id'];
     }
 
+
     // проверяем подходит ли заданный пользователь под наши критерии
-    function checkUser($user_id, $token, $username = null)
+    function checkUserOptions($user_id, $token, $username = null)
     {
-        $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
-        $response = $this->httpGet($url);
 
-        // закрыта ли страница
-        if(!$this->OPTIONS['optionFollowClosed'])
-            if($response->data->target_user_is_private)
+        if(in_array($this->OPTIONS['type'],[0,10,20,30]) || !$this->OPTIONS['optionFollowClosed'])
+        {
+            // добавлялся ли ранее
+            if(!$this->OPTIONS['optionCheckUserFromDB'])
+                if(in_array($username, $this->DB_USERS))
+                    return false;
+
+            $url = "https://api.instagram.com/v1/users/$user_id/relationship?" . "access_token=$token";
+            $response = $this->httpGet($url);
+
+            // закрыта ли страница
+            if(!$this->OPTIONS['optionFollowClosed'])
+                if($response->data->target_user_is_private)
+                    return false;
+
+            if (!$response->data->outgoing_status == 'none')
                 return false;
+        }
 
-        // добавлялся ли ранее
-        if(!$this->OPTIONS['optionCheckUserFromDB'])
-            if(in_array($username, $this->DB_USERS))
-                return false;
+        if($this->OPTIONS['optionHasAvatar']               || count($this->OPTIONS['optionStopPhrases']) > 0
+        || isset($this->OPTIONS['optionFollowersFrom'])    || isset($this->OPTIONS['optionFollowersTo'])
+        || isset($this->OPTIONS['optionFollowFrom'])       || isset($this->OPTIONS['optionFollowTo']))
+        {
+            $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
+            $response = $this->httpGet($url);
+            var_dump($response->data->profile_picture );
 
-        // не наш браток
-        if ($response->data->outgoing_status == 'none')
-            return true;
+            if($this->OPTIONS['optionHasAvatar'])
+                if($response->data->profile_picture == 'https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg')
+                    return false;
 
-        return false;
+            var_dump($response->data->bio );
+            if(count($this->OPTIONS['optionStopPhrases']) > 0){
+                foreach($this->OPTIONS['optionStopPhrases'] as $word)
+                    if(strpos(strtolower($response->data->bio), $word ))
+                        return false;
+            }
+
+            if(isset($this->OPTIONS['optionFollowersFrom']))
+                if($response->data->counts->followed_by < $this->OPTIONS['optionFollowersFrom'])
+                    return false;
+
+            if(isset($this->OPTIONS['optionFollowersTo']))
+                if($response->data->counts->followed_by > $this->OPTIONS['optionFollowersTo'])
+                    return false;
+
+            if(isset($this->OPTIONS['optionFollowFrom']))
+                if($response->data->counts->follows < $this->OPTIONS['optionFollowFrom'])
+                    return false;
+
+            if(isset($this->OPTIONS['optionFollowTo']))
+                if($response->data->counts->follows > $this->OPTIONS['optionFollowTo'])
+                    return false;
+        }
+        return true;
     }
 
-    // проверяем не лайкали ли этот объект ранее
-    function checkMedia($media_id, $token)
+    // проверяем не лайкали ли этот объект ранее + разные опции
+    function checkMediaOptions($media_id, $token)
     {
         $url = "https://api.instagram.com/v1/media/$media_id?" . "access_token=$token";
         $response = $this->httpGet($url);
+
+        // проверяем есть ли у заданного медиа интересующие нас тэги
+        if(count($this->OPTIONS['optionGeo']) > 0)
+            if (count(array_intersect($response->data->tags,$this->TAGS_ARRAY)) == 0)
+                return false;
 
         if ($response->data->user_has_liked == false)
             return true;
 
         return false;
     }
-
-
 
     public function get_media(){
 
@@ -387,7 +481,7 @@ class Instagram
             'optionAddLike' => $row['optionAddLike'],
             );
 
-
+        $this->TAGS = $row['tags'];
         $this->PROXY = $row['ip'] . ':' . $row['port'];
         $this->LOGIN = $row['instLogin'];
         $this->PASSWORD = $row['instPass'];
@@ -397,6 +491,22 @@ class Instagram
         $this->OPTIONS['optionCheckUserFromDB'] = $row['optionCheckUserFromDB'];
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionAddLike'] = $row['optionAddLike'];
+        $this->OPTIONS['optionLastActivity'] = $row['optionLastActivity'];
+        if(isset($row['optionStopPhrases'])){
+            $tmp = explode(',', $row['optionStopPhrases']);
+            $tmp = array_map('strtolower', $tmp);
+        }
+        else
+            $tmp = "";
+        $this->OPTIONS['optionStopPhrases'] = $tmp;
+        $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
+        $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];
+        $this->OPTIONS['optionGeo'] = $row['optionGeo'];
+        $this->OPTIONS['optionFollowersFrom'] = $row['optionFollowersFrom'];
+        $this->OPTIONS['optionFollowersTo'] = $row['optionFollowersTo'];
+        $this->OPTIONS['optionFollowFrom'] = $row['optionFollowFrom'];
+        $this->OPTIONS['optionFollowTo'] = $row['optionFollowTo'];
+        $this->OPTIONS['type'] = $row['type'];
 
         if(!$this->OPTIONS['optionCheckUserFromDB'])
            $this->load_users_from_db();
@@ -593,7 +703,7 @@ class Instagram
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }
-        $select_db = mysql_select_db('symfony');
+        $select_db = mysql_select_db('instastellar-dev');
         if (!$select_db) {
             die("Database Selection Failed" . mysql_error());
         }

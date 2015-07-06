@@ -57,7 +57,11 @@ function follow_by_tags(){
     global $inst;
     global $task;
 
-    $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
+    if(count($inst->OPTIONS['optionGeo']) > 0)
+        $users = $inst->get_media_by_geo($inst->OPTIONS['optionGeo'],$task['count']);
+    else
+        $users = $inst->get_media_by_tags($task['tags'],$task['count']);
+   // $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
     if ($inst->get_task_status() == 3)
         exit;
     $inst->set_task_status(2);
@@ -145,12 +149,52 @@ function follow_by_list(){
         $inst->set_task_status(1);
 }
 
+function follow_by_geo(){
+
+    global $inst;
+    global $task;
+
+    $users = $inst->get_media_by_geo($task['tags'],$task['count']);
+    if ($inst->get_task_status() == 3)
+        exit;
+    $inst->set_task_status(2);
+
+    $errors = 0;
+    foreach ($users as $user)
+    {
+        var_dump($user);
+        $result = $inst->follow($user['user_id']);
+        if(isset($result) && $result->meta->code == 200){
+            $errors = 0;
+            $inst->add_row($user['username']);
+        }
+        else
+            $errors++;
+
+        sleep(sleepTime($task['speed']));
+
+        if ($inst->get_task_status() == 3){
+            break;
+        }
+        if($errors > 8){
+            $inst->set_task_status(4);
+            break;
+        }
+    }
+    if ($inst->get_task_status() == 2)
+        $inst->set_task_status(1);
+}
+
 function liking_by_tags(){
 
     global $inst;
     global $task;
 
-    $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
+    if(count($inst->OPTIONS['optionGeo']) > 0)
+        $users = $inst->get_media_by_geo($inst->OPTIONS['optionGeo'],$task['count']);
+    else
+        $users = $inst->get_media_by_tags($task['tags'],$task['count']);
+
     if ($inst->get_task_status() == 3)
         exit;
     $inst->set_task_status(2);
@@ -187,7 +231,7 @@ function liking_by_geo(){
     global $inst;
     global $task;
 
-    $users = $inst->get_followers_by_geo($task['tags'],$task['count']);
+    $users = $inst->get_media_by_geo($task['tags'],$task['count']);
     if ($inst->get_task_status() == 3)
         exit;
     $inst->set_task_status(2);
@@ -279,6 +323,9 @@ try{
             break;
         case 20:
             follow_by_list();
+            break;
+        case 30:
+            follow_by_geo();
             break;
         case 1:
             liking_by_username();

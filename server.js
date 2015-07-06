@@ -19,12 +19,10 @@ var server = ws.createServer(options,function (conn) {
 
         solver.solve(str, function (err, answer) {
             if (!err)
-                if(conn.readyState == 1) {
+                if(conn.readyState == 1)
                     conn.sendText(answer);
-                }
-                else {
+                else
                     console.log('connection was closed')
-                }
             console.log(answer);
         });
     })

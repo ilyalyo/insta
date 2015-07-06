@@ -17,6 +17,8 @@ class Tasks
     const RUNNING=2;
     const DONE=1;
     const INTERRUPTED=3;
+    const SCHEDULE_STEP1=10;
+    const SCHEDULE_DONE=11;
 
     /**
      * Constructor

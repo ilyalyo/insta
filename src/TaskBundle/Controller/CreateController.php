@@ -15,6 +15,7 @@ use TaskBundle\Command\WriteCommand;
 use TaskBundle\Entity\Actions;
 use TaskBundle\Entity\Errors;
 use TaskBundle\Entity\Lists;
+use TaskBundle\Entity\ScheduleTasks;
 use TaskBundle\Entity\Tasks;
 use Symfony\Component\HttpFoundation\Request;
 use TaskBundle\Entity\TaskType;
@@ -24,6 +25,7 @@ use TaskBundle\Form\Type\FollowByListType;
 use TaskBundle\Form\Type\FollowByTagsType;
 use TaskBundle\Form\Type\LikeByGeoType;
 use TaskBundle\Form\Type\LikeByTagsType;
+use TaskBundle\Form\Type\SchedulerType;
 
 class CreateController extends Controller
 {
@@ -137,8 +139,14 @@ class CreateController extends Controller
 
             $tags=str_replace(" ","",$task->getTags());
             $task->setTags($tags);
+            if($request->get('isScheduleTask'))
+                $task->setStatus(Tasks::SCHEDULE_STEP1);
             $em->persist($task);
             $em->flush();
+
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
 
             $command = new WriteCommand();
             $command->setContainer($this->container);
@@ -410,6 +418,45 @@ class CreateController extends Controller
         }
 
         return $this->render('tasks/unfollow/unfollow.html.twig', array(
+            'form' => $form->createView(),
+            'account' =>$account
+        ));
+    }
+
+    /**
+     * @Route("/tasks/Scheduler/{id}", name="add_task_scheduler")
+     */
+    public function schedulerAction($id, Request $request)
+    {
+        $scheduler_task = new ScheduleTasks();
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $task = $em->getRepository('TaskBundle:Tasks')->find($id);
+        if (!isset($task))
+            throw new NotFoundHttpException("Page not found");
+
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $task->getAccountId()));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
+        $form = $this->createForm(new SchedulerType(), $scheduler_task);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $scheduler_task->setTaskId($task);
+            $task->setStatus(Tasks::SCHEDULE_DONE);
+            $em->persist($task);
+            $em->persist($scheduler_task);
+            $em->flush();
+
+            return $this->redirectToRoute('accounts');
+        }
+
+
+        return $this->render('tasks/scheduler.html.twig', array(
             'form' => $form->createView(),
             'account' =>$account
         ));

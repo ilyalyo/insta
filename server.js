@@ -9,6 +9,7 @@ var options = {
 
 var server = ws.createServer(options,function (conn) {
     conn.on("text", function (str) {
+        console.log('connect');
         var RuCaptcha = require('./rucaptcha/index.js');
         var solver = new RuCaptcha({
             apiKey: '9b5a393207b21e19b979059cf970639e', //required
@@ -18,7 +19,13 @@ var server = ws.createServer(options,function (conn) {
 
         solver.solve(str, function (err, answer) {
             if (!err)
-                conn.sendText(answer);
+                if(conn.readyState == 1) {
+                    conn.sendText(answer);
+                }
+                else {
+                    console.log('connection was closed')
+                }
+            console.log(answer);
         });
     })
  }).listen(8001)

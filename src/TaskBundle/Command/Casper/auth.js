@@ -57,7 +57,6 @@ casper.thenOpen(captcha,function() {
 
                 ws.onmessage = function(event) {
                     document.querySelector('#recaptcha_response_field').value = event.data;
-                    ws2.send(event.data);
                 };
             },{img: img})
 

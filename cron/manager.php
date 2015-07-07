@@ -2,7 +2,8 @@
 connect();
 
 $tasks = get_tasks();
-copy_and_run_tasks($tasks);
+if(count($tasks)>0)
+    copy_and_run_tasks($tasks);
 
 function copy_and_run_tasks($tasks_ids){
 

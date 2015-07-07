@@ -53,7 +53,7 @@ function get_tasks(){
           AND
              u.validUntil > NOW()
           AND
-             runAt > '$d1' AND runAt <= '$d2'")
+             st.runAt > '$d1' AND st.runAt <= '$d2'")
     or die(mysql_error());
 
     while ($row = mysql_fetch_array($qr_result))

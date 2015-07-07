@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="schedule_tasks")
+ * @ORM\Entity(repositoryClass="TaskBundle\Entity\ScheduleRepository")
  */
 class ScheduleTasks
 {

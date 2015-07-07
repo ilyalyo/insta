@@ -442,7 +442,7 @@ class CreateController extends Controller
 
         $form = $this->createForm(new SchedulerType(), $scheduler_task);
             //, array(       'view_timezone' => $user->getTimezone()));
-
+        $history = $em->getRepository('TaskBundle:ScheduleTasks')->getHistory($task->getAccountId()->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -464,7 +464,8 @@ class CreateController extends Controller
 
         return $this->render('tasks/scheduler.html.twig', array(
             'form' => $form->createView(),
-            'account' =>$account
+            'account' =>$account,
+            'history' => $history
         ));
     }
 }

@@ -5,6 +5,7 @@
 
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 col-md-offset-1">
+        {{ dump(history) }}
         {{ form_start(form) }}
             {{ form_row(form.runAt) }}
             {% for name in form.days %}

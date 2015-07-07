@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use TaskBundle\Command\WriteCommand;
 use TaskBundle\Entity\Actions;
@@ -440,20 +441,23 @@ class CreateController extends Controller
         if (!isset($account))
             throw new NotFoundHttpException("Page not found");
 
-        $form = $this->createForm(new SchedulerType(), $scheduler_task);
-            //, array(       'view_timezone' => $user->getTimezone()));
+        $form = $this->createForm(new SchedulerType($user->getTimezone()), $scheduler_task);
         $history = $em->getRepository('TaskBundle:ScheduleTasks')->getHistory($task->getAccountId()->getId());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 
             $task->setStatus(Tasks::SCHEDULE_DONE);
+            $start_point = (new \DateTime())->format('Y-m-d') . $scheduler_task->getRunAt()->format(' H:i');
             foreach($scheduler_task->getDays() as $day)
             {
-                $scheduler_task = new ScheduleTasks();
-                $scheduler_task->setTaskId($task);
-                $scheduler_task->setRunAt( (new \DateTime())->add(new \DateInterval("P" . $day . "D")));
-                $em->persist($scheduler_task);
+                $st = new ScheduleTasks();
+                $st->setTaskId($task);
+                $date = new \DateTime($start_point, new \DateTimeZone($user->getTimezone()));
+                $offset = $date->getOffset()/3600;
+                $date->sub(new \DateInterval('PT' . $offset. 'H'));
+                $st->setRunAt( $date->add(new \DateInterval("P" . $day . "D")));
+                $em->persist($st);
             }
             $em->persist($task);
             $em->flush();

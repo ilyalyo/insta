@@ -7,9 +7,15 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SchedulerType extends AbstractType
 {
+    private $timezone;
+
+    public function __construct($timezone) {
+        $this->timezone = $timezone;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $date = new \DateTime();
+        $date = new \DateTime('now', new \DateTimeZone($this->timezone));
         $builder
             ->add('runAt', 'time', array('label' => 'Время',))
             ->add('days', 'choice', array(
@@ -24,16 +30,8 @@ class SchedulerType extends AbstractType
                 ),
                 'label' => 'Дни',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ));
-    }
-
-    public function setDef(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class'        => 'Stuff\CoreBundle\Entity\MyEvent',
-            'view_timezone'     => 'UTC',
-        ));
     }
 
     public function getName()

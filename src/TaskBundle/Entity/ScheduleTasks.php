@@ -26,47 +26,24 @@ class ScheduleTasks
 
     /**
      * @var array
-     *
-     * @ORM\Column(type="simple_array")
      */
     protected $days;
 
+
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="datetime")
      */
     protected $runAt;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set days
-     *
-     * @param string $days
-     * @return ScheduleTasks
-     */
-    public function setDays($days)
-    {
-        $this->days = $days;
-
-        return $this;
-    }
-
-    /**
-     * Get days
-     *
-     * @return string 
-     */
-    public function getDays()
-    {
-        return $this->days;
     }
 
     /**
@@ -85,7 +62,7 @@ class ScheduleTasks
     /**
      * Get runAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getRunAt()
     {
@@ -108,10 +85,33 @@ class ScheduleTasks
     /**
      * Get task_id
      *
-     * @return \TaskBundle\Entity\Tasks 
+     * @return \TaskBundle\Entity\Tasks
      */
     public function getTaskId()
     {
         return $this->task_id;
+    }
+
+    /**
+     * Set days
+     *
+     * @param array $days
+     * @return ScheduleTasks
+     */
+    public function setDays($days)
+    {
+        $this->days = $days;
+
+        return $this;
+    }
+
+    /**
+     * Get days
+     *
+     * @return array
+     */
+    public function getDays()
+    {
+        return $this->days;
     }
 }

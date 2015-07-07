@@ -441,15 +441,21 @@ class CreateController extends Controller
             throw new NotFoundHttpException("Page not found");
 
         $form = $this->createForm(new SchedulerType(), $scheduler_task);
+            //, array(       'view_timezone' => $user->getTimezone()));
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 
-            $scheduler_task->setTaskId($task);
             $task->setStatus(Tasks::SCHEDULE_DONE);
+            foreach($scheduler_task->getDays() as $day)
+            {
+                $scheduler_task = new ScheduleTasks();
+                $scheduler_task->setTaskId($task);
+                $scheduler_task->setRunAt( (new \DateTime())->add(new \DateInterval("P" . $day . "D")));
+                $em->persist($scheduler_task);
+            }
             $em->persist($task);
-            $em->persist($scheduler_task);
             $em->flush();
 
             return $this->redirectToRoute('accounts');

@@ -712,11 +712,19 @@ class Instagram
     }
 
 
+    public function close_task(){
+        $id = $this->TASK_ID;
+        $date = new DateTime('now');
+        $d = $date->format("Y-m-d H:i:s");
+        $qr_result = mysql_query("UPDATE tasks SET closedAt = '$d' WHERE id=$id")
+            or die(mysql_error());
+    }
+
     private function debug($message)
     {
         $filename = $this->TASK_ID;
         $file = "/var/www/instastellar/tasks/$filename";
         var_dump($message);
-        //file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
+        file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
     }
 }

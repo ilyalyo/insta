@@ -102,6 +102,10 @@ class Tasks
      */
     protected $createdAt;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $closedAt;
 
     /**
      * @ORM\Column(type="integer")
@@ -716,5 +720,28 @@ class Tasks
     public function getOptionFollowTo()
     {
         return $this->optionFollowTo;
+    }
+
+    /**
+     * Set closedAt
+     *
+     * @param \DateTime $closedAt
+     * @return Tasks
+     */
+    public function setClosedAt($closedAt)
+    {
+        $this->closedAt = $closedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get closedAt
+     *
+     * @return \DateTime 
+     */
+    public function getClosedAt()
+    {
+        return $this->closedAt;
     }
 }

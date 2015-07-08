@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('UTC');
+
 function follow_by_username(){
     global $inst;
     global $task;
@@ -340,6 +342,7 @@ try{
             unfollowing();
             break;
     };
+    $inst->close_task();
 }
 catch (Exception $e){
 

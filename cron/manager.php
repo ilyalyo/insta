@@ -1,6 +1,7 @@
 <?php
-connect();
+date_default_timezone_set('UTC');
 
+connect();
 $tasks = get_tasks();
 if(count($tasks)>0)
     copy_and_run_tasks($tasks);

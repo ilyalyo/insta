@@ -57,6 +57,7 @@ function get_tasks(){
              st.runAt > '$d1' AND st.runAt <= '$d2'")
     or die(mysql_error());
 
+    $result = [];
     while ($row = mysql_fetch_array($qr_result))
         $result[]=$row['id'];
     return $result;

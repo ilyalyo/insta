@@ -5,12 +5,17 @@
 
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 col-md-offset-1">
-        {{ dump(history) }}
+            история отображается в UTC без поправки на таймзону (по сути -3 часа для нас)
+    {% for h in history %}
+        {{ h.runAt| date("H:i d/m/Y") }}
+        <br>
+    {% endfor %}
+
         {{ form_start(form) }}
             {{ form_row(form.runAt) }}
-            {% for name in form.days %}
+            {% for d in form.days %}
 <div>
-                    {{ form_row(name) }}
+                    {{ form_row(d) }}
 </div>
             {% endfor %}
 

@@ -67,10 +67,18 @@ body.modal-open{
 
 }
 */
-#brief, #conf_politics, #offer p{
+#brief p{
     color:#ffffff;
-    //Здесь выбрать нормальный шрифт
+    /*Здесь выбрать нормальный шрифт*/
     //font-family:HelveticaNeue-Light;
+}
+#conf_politics p{
+    color:#ffffff;
+    font-family:HelveticaNeue-Light;
+}
+#offer p{
+    color:#ffffff;
+    font-family:HelveticaNeue-Light;
 }
 
 #poss{
@@ -187,12 +195,23 @@ color: #ffffff;
 #poss .row,#promote .row, #why .row{
     padding-top: 50px;
 }
-#poss, #conf_politics, #offer h1{
+#poss h1{
     /*wtf?*/
     font-family: 'Lobster', cursive!important;
     color: #ffffff;
     font-size: 34pt;
 }
+#conf_politics h1{
+    font-family: 'Lobster', cursive!important;
+    color: #ffffff;
+    font-size: 34pt;
+}
+#offer h1{
+    font-family: 'Lobster', cursive!important;
+    color: #ffffff;
+    font-size: 34pt;
+}
+
 /**/
 
 .wrapper {min-width:500px;padding: 0 15px;background-color:#dddddd;}

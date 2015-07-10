@@ -39,6 +39,7 @@ security:
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
             - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY  }
+            - { path: ^/additional_info, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/get_token$, role: IS_AUTHENTICATED_ANONYMOUSLY  }
             - { path: ^/purchase/success$, role: IS_AUTHENTICATED_ANONYMOUSLY  }
             - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

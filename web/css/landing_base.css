@@ -67,7 +67,7 @@ body.modal-open{
 
 }
 */
-#brief p{
+#brief, #conf_politics, #offer p{
     color:#ffffff;
     //Здесь выбрать нормальный шрифт
     //font-family:HelveticaNeue-Light;
@@ -187,7 +187,7 @@ color: #ffffff;
 #poss .row,#promote .row, #why .row{
     padding-top: 50px;
 }
-#poss h1{
+#poss, #conf_politics, #offer h1{
     /*wtf?*/
     font-family: 'Lobster', cursive!important;
     color: #ffffff;
@@ -237,4 +237,7 @@ color: #ffffff;
     margin-top: 40px;
 }
 
+#conf_politics, #offer h3{
+    color: #ffffff;
+}
 /* slider*/

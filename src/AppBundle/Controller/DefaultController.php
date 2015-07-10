@@ -21,6 +21,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/additional_info", name="additional_info")
+     */
+    public function additional_infoAction()
+    {
+        return $this->render('offer_and_confidentiality.html.twig');
+    }
+
+    /**
      * @Route("/info", name="info")
      */
     public function infoAction()

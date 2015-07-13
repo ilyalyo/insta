@@ -227,7 +227,7 @@ class CasperAjaxController extends Controller
         var_dump(1);
 
         $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
-        $proxy_count=$account->getId() % count($proxy);
+        $proxy_count=$account->getId() % (count($proxy)-1);
         var_dump(2);
         $account->setProxy($proxy[$proxy_count]);
         var_dump(3);

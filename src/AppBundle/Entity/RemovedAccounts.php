@@ -54,7 +54,7 @@ class RemovedAccounts
      * @param \AppBundle\Entity\Accounts $id_deleted
      * @return RemovedAccounts
      */
-    public function setIdDeleted(\AppBundle\Entity\Accounts $id_deleted = null){
+    public function setIdDeleted($id_deleted = null){
         $this->id_deleted = $id_deleted;
 
         return $this;

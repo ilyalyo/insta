@@ -67,7 +67,7 @@ class CasperAjaxController extends Controller
         ));
         if(count($created_before) > 0 && $user->getIsPro() == 0)
         {
-            $ex_user = $created_before->getUser();
+            $ex_user = $created_before->getUser()->getId();
             /*При этом присваиваем старый айдишник, который был в базе, для сохранения статистики, если он сохранился(у старых акков он null):*/
             /*Пока что делаем это наивно, т.е. смотрим на логин, а не на id*/
             if($ex_user == $user->getId() && !is_null($created_before->getIdDeleted()))

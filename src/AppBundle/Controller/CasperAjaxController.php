@@ -61,13 +61,20 @@ class CasperAjaxController extends Controller
         if(count($exist) > 0)
             $form->get('instLogin')->addError(new FormError('Аккаунт с таким логином уже существует'));
 
-        $created_before = $em->getRepository('AppBundle:RemovedAccounts')->findBy(array(
-            'instLogin'=>$account->getInstLogin()
+        /*Если этот акк уже удален этим пользователем, то мы его позволяем ему обратно добавить:*/
+        $created_before = $em->getRepository('AppBundle:RemovedAccounts')->findOneBy(array(
+            'instLogin' => $account->getInstLogin()
         ));
-
         if(count($created_before) > 0 && $user->getIsPro() == 0)
-            $form->get('instLogin')->addError(new FormError('Этот аккаунт уже добавлялся, обратитесь в тех. поддержку'));
-
+        {
+            $ex_user = $created_before->getUser();
+            /*При этом присваиваем старый айдишник, который был в базе, для сохранения статистики, если он сохранился(у старых акков он null):*/
+            /*Пока что делаем это наивно, т.е. смотрим на логин, а не на id*/
+            if($ex_user == $user->getId() && !is_null($created_before->getIdDeleted()))
+            {   $account->setId($created_before->getIdDeleted());   }
+            else
+            {   $form->get('instLogin')->addError(new FormError('Этот аккаунт уже добавлялся, обратитесь в тех. поддержку'));   }
+        }
 
         if ($form->isValid()) {
 

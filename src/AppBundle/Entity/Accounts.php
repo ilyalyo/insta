@@ -78,6 +78,19 @@ class Accounts
     protected $picture;
 
     /**
+     * Set id
+     *
+     * @param integer $id_to_set
+     * @return Accounts
+     */
+    public function setId($id_to_set)
+    {
+        $this->id = $id_to_set;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

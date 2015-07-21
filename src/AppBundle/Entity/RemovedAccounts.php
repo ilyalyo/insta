@@ -21,6 +21,11 @@ class RemovedAccounts
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
+    protected $id_deleted;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     protected $user;
 
     /**
@@ -41,6 +46,27 @@ class RemovedAccounts
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id_deleted
+     *
+     * @param \AppBundle\Entity\Accounts $id_deleted
+     * @return RemovedAccounts
+     */
+    public function setIdDeleted(\AppBundle\Entity\Accounts $id_deleted = null){
+        $this->id_deleted = $id_deleted;
+
+        return $this;
+    }
+    /**
+     * Get id_deleted
+     *
+     * @return integer
+     */
+    public function getIdDeleted()
+    {
+        return $this->id_deleted;
     }
 
     /**

@@ -70,9 +70,7 @@ class CasperAjaxController extends Controller
             $ex_user = $created_before->getUser()->getId();
             /*При этом присваиваем старый айдишник, который был в базе, для сохранения статистики, если он сохранился(у старых акков он null):*/
             /*Пока что делаем это наивно, т.е. смотрим на логин, а не на id*/
-            if($ex_user == $user->getId() && !is_null($created_before->getIdDeleted()))
-            {   $account->setId($created_before->getIdDeleted());   }
-            else
+            if($ex_user != $user->getId() || !is_null($created_before->getIdDeleted()))
             {   $form->get('instLogin')->addError(new FormError('Этот аккаунт уже добавлялся, обратитесь в тех. поддержку'));   }
         }
 
@@ -105,6 +103,15 @@ class CasperAjaxController extends Controller
             $account->setUser($user);
             $em->persist($account);
             $em->flush();
+
+            /*Делаем это здесь потому, что выше автоинкремент присваивает новый ID, игнорируя подобные изменения. Поэтому нужно делать после автоинкремента.*/
+            /*Доп. проверка не нужна, т.к. она есть выше*/
+            if(count($created_before) > 0 && $user->getIsPro() == 0)
+            {
+                $account->setId($created_before->getIdDeleted());
+                $em->persist($account);
+                $em->flush();
+            }
 
             $command = new AuthCommand();
             $command->setContainer($this->container);

@@ -77,14 +77,14 @@ class DefaultController extends Controller
 
         //if user expired we save login in db to prevent him to use this
         // instagram acc with different instastellar acc
-        if($user->getIsPro() == 0) {
+        /*if($user->getIsPro() == 0) {*/
             $removed_account = new RemovedAccounts();
             $removed_account->setIdDeleted($account->getId());
             $removed_account->setInstLogin($account->getInstLogin());
             $removed_account->setAccountId($account->getAccountId());
             $removed_account->setUser($user);
             $em->persist($removed_account);
-        }
+        /*}*/
 
         $em->remove($account);
         $em->flush();

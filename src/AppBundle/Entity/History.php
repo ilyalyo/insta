@@ -19,7 +19,7 @@ class History
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Accounts")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      */
     protected $account_id;
 

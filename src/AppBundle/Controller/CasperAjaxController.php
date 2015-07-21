@@ -65,7 +65,7 @@ class CasperAjaxController extends Controller
         $created_before = $em->getRepository('AppBundle:RemovedAccounts')->findOneBy(array(
             'instLogin' => $account->getInstLogin()
         ));
-        if(count($created_before) > 0 && $user->getIsPro() == 0)
+        if(count($created_before) > 0)
         {
             $ex_user = $created_before->getUser()->getId();
             /*При этом присваиваем старый айдишник, который был в базе, для сохранения статистики, если он сохранился(у старых акков он null):*/
@@ -106,7 +106,7 @@ class CasperAjaxController extends Controller
 
             /*Делаем это здесь потому, что выше автоинкремент присваивает новый ID, игнорируя подобные изменения. Поэтому нужно делать после автоинкремента.*/
             /*Доп. проверка не нужна, т.к. она есть выше*/
-            if(isset($ex_user) && $user->getIsPro() == 0)
+            if(isset($ex_user))
             {
                 $newid = $created_before->getIdDeleted();
                 $qb = $em->createQueryBuilder();
@@ -117,6 +117,7 @@ class CasperAjaxController extends Controller
                     ->setParameter(2, $account->getId())
                     ->getQuery();
                 $p = $q->execute();
+                $em->remove($created_before);
                 $em->flush();
             }
 

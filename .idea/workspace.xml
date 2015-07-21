@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/History.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/History.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="instastellar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,21 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3076923">
-              <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.71428573">
+              <caret line="86" column="10" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CasperAjaxController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CasperAjaxController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59103644">
-              <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
+            <state vertical-scroll-proportion="-8.576923">
+              <caret line="119" column="33" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
               <folding>
                 <element signature="e#40#79#0#PHP" expanded="true" />
               </folding>
@@ -50,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/History.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-7.8461537">
-              <caret line="21" column="85" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="85" />
+              <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -94,11 +97,12 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Token.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/tasks/unfollow/unfollow.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/RemovedAccounts.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/History.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
       </list>
     </option>
   </component>
@@ -508,14 +512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3076923">
-          <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/cache/prod/doctrine/orm/Proxies/__CG__AppBundleEntityAccounts.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3557423">
@@ -543,18 +539,26 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/History.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
-          <caret line="21" column="85" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="85" />
+          <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59103644">
-          <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
+        <state vertical-scroll-proportion="-8.576923">
+          <caret line="119" column="33" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
           <folding>
             <element signature="e#40#79#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71428573">
+          <caret line="86" column="10" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>

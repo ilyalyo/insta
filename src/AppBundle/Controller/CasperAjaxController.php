@@ -106,12 +106,10 @@ class CasperAjaxController extends Controller
 
             /*Делаем это здесь потому, что выше автоинкремент присваивает новый ID, игнорируя подобные изменения. Поэтому нужно делать после автоинкремента.*/
             /*Доп. проверка не нужна, т.к. она есть выше*/
-            if(count($created_before) > 0 && $user->getIsPro() == 0)
+            if(isset($ex_user) && $user->getIsPro() == 0)
             {
-                $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array(
-                    'id' => $account->getId()
-                ));
-                $account->setId($created_before->getIdDeleted());
+                $newid = $created_before->getIdDeleted();
+                $account->setId($newid);
                 $em->persist($account);
                 $em->flush();
             }

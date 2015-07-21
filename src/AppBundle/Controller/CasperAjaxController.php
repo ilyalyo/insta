@@ -110,7 +110,7 @@ class CasperAjaxController extends Controller
             {
                 $newid = $created_before->getIdDeleted();
                 $qb = $em->createQueryBuilder();
-                $q = $qb->update('accounts', 'acc')
+                $q = $qb->update('AppBundle:Accounts', 'acc')
                     ->set('acc.id', '?1')
                     ->where('acc.id = ?2')
                     ->setParameter(1, $newid)

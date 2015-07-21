@@ -109,7 +109,7 @@ class CasperAjaxController extends Controller
             if(count($created_before) > 0 && $user->getIsPro() == 0)
             {
                 $account->setId($created_before->getIdDeleted());
-                $em->persist($account);
+                $em->merge($account);
                 $em->flush();
             }
 

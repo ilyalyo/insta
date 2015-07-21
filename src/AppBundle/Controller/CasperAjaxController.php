@@ -109,8 +109,11 @@ class CasperAjaxController extends Controller
             if(isset($ex_user) && $user->getIsPro() == 0)
             {
                 $newid = $created_before->getIdDeleted();
-                $account->setId($newid);
-                $em->persist($account);
+                Doctrine_Query::create()
+                    ->update('accounts acc')
+                    ->set('acc.id', '?', $newid)
+                    ->where('acc.id = ?', $account->getId())
+                    ->execute();
                 $em->flush();
             }
 

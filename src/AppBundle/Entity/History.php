@@ -18,8 +18,7 @@ class History
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Accounts")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+     * @ORM\Column(type="integer")
      */
     protected $account_id;
 

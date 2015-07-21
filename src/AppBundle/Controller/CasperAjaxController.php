@@ -108,8 +108,11 @@ class CasperAjaxController extends Controller
             /*Доп. проверка не нужна, т.к. она есть выше*/
             if(count($created_before) > 0 && $user->getIsPro() == 0)
             {
+                $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array(
+                    'id' => $account->getId()
+                ));
                 $account->setId($created_before->getIdDeleted());
-                $em->merge($account);
+                $em->persist($account);
                 $em->flush();
             }
 

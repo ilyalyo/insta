@@ -119,6 +119,7 @@ class CasperAjaxController extends Controller
                 $p = $q->execute();
                 $em->remove($created_before);
                 $em->flush();
+                $account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 
             $command = new AuthCommand();

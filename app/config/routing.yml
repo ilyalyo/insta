@@ -12,3 +12,6 @@ admin:
     type:     annotation
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+partnership:
+    resource: "@PartnershipBundle/Controller/"
+    type:     annotation

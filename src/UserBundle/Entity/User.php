@@ -30,6 +30,7 @@ class User extends BaseUser
         $this->validUntil = $date;
         $this->isPro = 0;
         $this->unRead = 0;
+        $this->partnerPercent = 18;
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
@@ -70,6 +71,22 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $unRead;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $refDaddy;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $yaWallet;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $partnerPercent;
+
 
     /**
      * Get id
@@ -287,5 +304,69 @@ class User extends BaseUser
     public function getUnRead()
     {
         return $this->unRead;
+    }
+
+    /**
+     * Set refDaddy
+     *
+     * @param integer $refDaddy
+     * @return User
+     */
+    public function setRefDaddy($refDaddy)
+    {
+        $this->refDaddy=$refDaddy;
+
+        return $this;
+    }
+    /**
+     * Get refDaddy
+     *
+     * @return integer
+     */
+    public function getRefDaddy()
+    {
+        return $this->refDaddy;
+    }
+
+    /**
+     * Set yaWallet
+     *
+     * @param string walletID
+     * @return User
+     */
+    public function setYaWallet($walletID)
+    {
+        $this->yaWallet = $walletID;
+        return $this;
+    }
+    /**
+     * Get yaWallet
+     *
+     * @return string
+     */
+    public function getYaWallet()
+    {
+        return $this->yaWallet;
+    }
+
+    /**
+     * set partnerPercent
+     *
+     * @param integer $partnerPercent
+     * @return User
+     */
+    public function setPartnerPercent($partnerPercent)
+    {
+        $this->partnerPercent=$partnerPercent;
+        return $this;
+    }
+    /**
+     * get partnerPercent
+     *
+     * @return integer
+     */
+    public function getPartnerPercent()
+    {
+        return $this->partnerPercent;
     }
 }

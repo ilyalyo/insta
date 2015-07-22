@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Accounts;
 use AppBundle\Entity\Purchase;
+use PartnershipBundle\Entity\PartnerPayments;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -72,6 +73,21 @@ class PurchaseController extends Controller
                     case 3999.00:
                         $date->add(new \DateInterval('P7M'));
                         break;
+                }
+
+                /*В случае, когда пользователеь приведен партнером, партнеру начисляем 18% в виртуальных деньгах*/
+                /*Добавляем 3 часа, т.к. сервер живет не по правильному времени*/
+                if(!is_null($user->getDaddy()))
+                {
+                    $pp = new PartnerPayments();
+                    $pp->setUser($user->getDaddy());
+                    $percentmult = $user->getPartnerPercent()*0.01;
+                    $pp->setAmount($withdraw_amount*$percentmult);
+                    $pp->setIsWithdraw(0);
+                    $tempdate = new \DateTime();
+                    $tempdate->add(new \DateInterval('PT3H'));
+                    $pp->setDate($tempdate);
+                    $em->persist($pp);
                 }
 
                 $purchase = new Purchase();

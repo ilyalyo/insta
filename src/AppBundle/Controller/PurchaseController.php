@@ -83,7 +83,7 @@ class PurchaseController extends Controller
                 if(!is_null($user->getRefDaddy()))
                 {
                     $pp = new PartnerPayments();
-                    $pp->setUser($user->getDaddy());
+                    $pp->setUser($user->getRefDaddy());
                     $percentmult = $user->getPartnerPercent()*0.01;
                     $pp->setAmount($withdraw_amount*$percentmult);
                     $pp->setIsWithdraw(0);

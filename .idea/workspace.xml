@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php" afterPath="$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
     </list>
     <ignored path="instastellar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,19 +28,17 @@
       <file leaf-file-name="PurchaseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.1272726">
-              <caret line="91" column="61" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="61" />
-              <folding>
-                <element signature="e#40#70#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-0.72727275">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Purchase.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Purchase.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51699466">
+            <state vertical-scroll-proportion="-11.115385">
               <caret line="17" column="77" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
               <folding />
             </state>
@@ -69,21 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PartnerPayments.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.923077">
-              <caret line="137" column="20" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="purchase.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="purchase.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769">
-              <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.4257603">
+              <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -136,10 +124,10 @@
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
         <option value="$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
       </list>
     </option>
   </component>
@@ -1001,29 +989,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.923077">
+          <caret line="137" column="20" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="17" column="77" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.8076925">
           <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
-          <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.1272726">
-          <caret line="91" column="61" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="61" />
-          <folding>
-            <element signature="e#40#70#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1037,18 +1023,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.923077">
-          <caret line="137" column="20" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="70" />
+        <state vertical-scroll-proportion="-0.72727275">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51699466">
-          <caret line="17" column="77" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.4257603">
+          <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
           <folding />
         </state>
       </provider>

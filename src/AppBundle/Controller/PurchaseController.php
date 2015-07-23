@@ -20,9 +20,8 @@ class PurchaseController extends Controller
     public function purchaseAction()
     {
         $user = $this->getUser();
-        $userid = $user->getId();
         return $this->render('app/purchase.html.twig',
-            array('user' => $user, 'userid' => $userid));
+            array('user' => $user));
     }
 
     /**
@@ -65,9 +64,6 @@ class PurchaseController extends Controller
                     $date = new \DateTime($date->format('Y-m-d'));
 
                 switch ($withdraw_amount){
-                    case 1.00:
-                        $date->add(new \DateInterval('P1M'));
-                        break;
                     case 790.00:
                         $date->add(new \DateInterval('P1M'));
                         break;

@@ -20,8 +20,9 @@ class PurchaseController extends Controller
     public function purchaseAction()
     {
         $user = $this->getUser();
+        $userid = $user->getId();
         return $this->render('app/purchase.html.twig',
-            array('user' => $user));
+            array('user' => $user, 'userid' => $userid));
     }
 
     /**

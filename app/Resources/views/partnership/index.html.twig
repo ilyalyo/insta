@@ -9,7 +9,7 @@
             {% if payment.isWithdraw == 1 %}
                 <div><p>Дата: {{ payment.date }}.  Снято: {{ payment.amount }}</p></div>
             {% else %}
-                <div><p>Дата: {{ payment.date }}.  Начислено с покупки реферала: {{ payment.amount }}</p></div>
+                <div><p>Дата: {{ payment.date|date('Y-m-d H:m:i') }}.  Начислено с покупки реферала: {{ payment.amount }}</p></div>
             {% endif %}
         {% endfor %}
     {% else %}

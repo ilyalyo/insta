@@ -44,10 +44,10 @@ class PartnerPayments
     /**
      * Set user
      *
-     * @param \UserBundle\Entity\User $user
+     * @param integer $user
      * @return PartnerPayments
      */
-    public function setUser(\UserBundle\Entity\User $user = null)
+    public function setUser($user = null)
     {
         $this->user = $user;
 

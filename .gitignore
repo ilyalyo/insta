@@ -8,6 +8,7 @@
 /bin/
 /composer.phar
 /vendor/
+vendor/
 /web/bundles/
 .idea/workspace.xml
 *.xml

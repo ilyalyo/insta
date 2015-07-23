@@ -73,12 +73,12 @@ class User extends BaseUser
     protected $unRead;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable = TRUE)
      */
     protected $refDaddy;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=20, nullable = TRUE)
      */
     protected $yaWallet;
 

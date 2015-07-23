@@ -5,6 +5,7 @@ namespace PartnershipBundle\Controller;
 /*¬от тут нужные таблицы не забыть указать:*/
 use AppBundle\Entity\Support;
 use AppBundle\Form\Type\SupportType;
+use UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -19,8 +20,12 @@ class PartnershipController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->getUser();
         return $this->render(
-            'partnership/index.html.twig'
+            'partnership/index.html.twig',
+            [
+                'percent' => $user->getPartnerPercent
+            ]
         );
     }
 }

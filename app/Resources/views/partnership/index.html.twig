@@ -5,7 +5,7 @@
     <h1>Вы привели {{ refs_count }} пользователей</h1>
     {% if payments | length > 0 %}
         {% for payment in payments %}
-            {% if payment.isWithdraw=1 %}
+            {% if payment.isWithdraw == 1 %}
                 <div><p>Снято: {{ payment.amount }}</p></div>
             {% else %}
                 <div><p>Начислено: {{ payment.amount }}</p></div>

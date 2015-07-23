@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="instastellar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +28,8 @@
       <file leaf-file-name="PurchaseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-56.23077">
-              <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
               <folding>
                 <element signature="e#40#70#0#PHP" expanded="true" />
               </folding>
@@ -40,8 +40,18 @@
       <file leaf-file-name="purchase.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45617172">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6386404">
+              <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.2">
+              <caret line="325" column="31" selection-start-line="325" selection-start-column="20" selection-end-line="325" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -85,7 +95,6 @@
         <option value="$PROJECT_DIR$/src/PartnershipBundle/DemotePartner.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
         <option value="$PROJECT_DIR$/src/PartnershipBundle/Entity/Partners.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/landing_base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
@@ -96,6 +105,7 @@
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
       </list>
     </option>
@@ -932,14 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -968,10 +970,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2">
+          <caret line="325" column="31" selection-start-line="325" selection-start-column="20" selection-end-line="325" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-56.23077">
-          <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
           <folding>
             <element signature="e#40#70#0#PHP" expanded="true" />
           </folding>
@@ -980,8 +990,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45617172">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6386404">
+          <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
           <folding />
         </state>
       </provider>

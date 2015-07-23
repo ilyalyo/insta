@@ -77,7 +77,7 @@ class PurchaseController extends Controller
 
                 /*В случае, когда пользователеь приведен партнером, партнеру начисляем 18% в виртуальных деньгах*/
                 /*Добавляем 3 часа, т.к. сервер живет не по правильному времени*/
-                if(!is_null($user->getDaddy()))
+                if(!is_null($user->getRefDaddy()))
                 {
                     $pp = new PartnerPayments();
                     $pp->setUser($user->getDaddy());

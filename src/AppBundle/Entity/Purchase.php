@@ -15,7 +15,7 @@ class Purchase
      */
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = (new \DateTime())->add(new \DateInterval('PT3H'));
     }
 
     /**

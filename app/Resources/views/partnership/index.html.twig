@@ -3,12 +3,13 @@
 {% block body %}
     <h1>Ваша ставка: <font style="color:e90a71;">{{ percent }}%</font></h1>
     <h1>Вы привели {{ refs_count }} пользователей</h1>
+    <h2>Ваша ссылка партнёра: <font style="color:e90a71;">http://instastellar.su/?ref={{ id }}</font></h2>
     {% if payments | length > 0 %}
         {% for payment in payments %}
             {% if payment.isWithdraw == 1 %}
-                <div><p>Снято: {{ payment.amount }}</p></div>
+                <div><p>Дата: {{ payment.date }}.  Снято: {{ payment.amount }}</p></div>
             {% else %}
-                <div><p>Начислено: {{ payment.amount }}</p></div>
+                <div><p>Дата: {{ payment.date }}.  Начислено с покупки реферала: {{ payment.amount }}</p></div>
             {% endif %}
         {% endfor %}
     {% else %}
@@ -16,6 +17,6 @@
     {% endif %}
 
     <h1></h1>
-    <p>Здесь скоро будет збс</p>
+    <p>Вы можете вывести деньги или потратить их на покупку тарифа на нашем сервисе.</p>
 {% endblock %}
 

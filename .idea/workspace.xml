@@ -27,8 +27,8 @@
       <file leaf-file-name="PartnershipController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.0">
-              <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+            <state vertical-scroll-proportion="-15.692307">
+              <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
               <folding>
                 <element signature="e#94#123#0#PHP" expanded="true" />
               </folding>
@@ -39,10 +39,11 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/partnership/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24329159">
-              <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.33452594">
+              <caret line="11" column="79" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
               <folding>
                 <element signature="n#style#0;n#font#0;n#h1#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#h2#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1054,8 +1055,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0">
-          <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+        <state vertical-scroll-proportion="-15.692307">
+          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding>
             <element signature="e#94#123#0#PHP" expanded="true" />
           </folding>
@@ -1064,10 +1065,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/partnership/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24329159">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.33452594">
+          <caret line="11" column="79" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
           <folding>
             <element signature="n#style#0;n#font#0;n#h1#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#h2#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

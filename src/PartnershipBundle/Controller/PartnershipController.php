@@ -21,10 +21,16 @@ class PartnershipController extends Controller
     public function indexAction()
     {
         $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $refs = $em->getRepository('UserBundle:User')->findBy(array('refDaddy' => $user->getId()));
+        $payments = $em->getRepository('PartnershipBundle:PartnerPayments')->findBy(array('user'=>$user->getID()));
         return $this->render(
             'partnership/index.html.twig',
             [
-                'percent' => $user->getPartnerPercent()
+                'percent' => $user->getPartnerPercent(),
+                'id' => $user->getId(),
+                'refs_count' => count($refs),
+                'payments' => $payments
             ]
         );
     }

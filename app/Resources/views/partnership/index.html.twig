@@ -2,6 +2,20 @@
 
 {% block body %}
     <h1>Ваша ставка: <font style="color:e90a71;">{{ percent }}%</font></h1>
+    <h1>Вы привели {{ refs_count }} пользователей</h1>
+    {% if payments | length > 0 %}
+        {% for payment in payments %}
+            {% if payment.isWithdraw=1 %}
+                <div><p>Снято: {{ payment.amount }}</p></div>
+            {% else %}
+                <div><p>Начислено: {{ payment.amount }}</p></div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div><p>Ваши рефералы пока не делали покупок :(</p></div>
+    {% endif %}
+
+    <h1></h1>
     <p>Здесь скоро будет збс</p>
 {% endblock %}
 

@@ -77,10 +77,10 @@ class PurchaseController extends Controller
 
                 /*В случае, когда пользователеь приведен партнером, партнеру начисляем 18% в виртуальных деньгах*/
                 /*Добавляем 3 часа, т.к. сервер живет не по правильному времени*/
-                if(!is_null($user->getDaddy()))
+                if(!is_null($user->getRefDaddy()))
                 {
                     $pp = new PartnerPayments();
-                    $pp->setUser($user->getDaddy());
+                    $pp->setUser($em->getRepository('UserBundle:User')->findOneBy(array('id' => $user->getRefDaddy())));
                     $percentmult = $user->getPartnerPercent()*0.01;
                     $pp->setAmount($withdraw_amount*$percentmult);
                     $pp->setIsWithdraw(0);

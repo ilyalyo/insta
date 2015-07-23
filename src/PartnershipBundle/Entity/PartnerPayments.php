@@ -135,6 +135,7 @@ class PartnerPayments
 
     public function __construct()
     {
+        $this->date=(new \DateTime())->add(new \DateInterval('PT3H'));
        // $this->$tasks = new ArrayCollection();
     }
 

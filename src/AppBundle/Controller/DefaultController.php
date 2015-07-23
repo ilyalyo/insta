@@ -23,8 +23,8 @@ class DefaultController extends Controller
         if(preg_match("/\?ref=[0-9]+$/", $this_url) && preg_match("/[0-9]+$/", $this_url, $matches))
         {
             $ref = $matches[0];
+            setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days'));
         }
-        setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days'));
         return $this->render('landing.html.twig');
     }
 

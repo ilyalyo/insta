@@ -17,12 +17,19 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $ref = 0;
+        if(is_null($_COOKIE['instastellar_ref_cookie']))
+        {
+            $ref = 0;
+        }
         $this_url = basename($_SERVER['REQUEST_URI']);
         $matches = array();
+        $em = $this->getDoctrine()->getManager();
         if(preg_match("/\?ref=[0-9]+$/", $this_url) && preg_match("/[0-9]+$/", $this_url, $matches))
         {
-            $ref = $matches[0];
+            if($em->getRepository('UserBundle:User')->findOneBy(array('id' => $matches[0])))
+            { $ref = $matches[0]; }
+            else
+            { $ref = 0; }
         }
         setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days'));
         return $this->render('landing.html.twig');

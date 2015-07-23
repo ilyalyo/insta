@@ -17,7 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $ref=null;
+        $ref = 0;
         $this_url = basename($_SERVER['REQUEST_URI']);
         $matches = array();
         if(preg_match("/\?ref=[0-9]+$/", $this_url) && preg_match("/[0-9]+$/", $this_url, $matches))

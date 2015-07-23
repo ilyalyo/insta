@@ -17,7 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        if(is_null($_COOKIE['instastellar_ref_cookie']))
+        if(!isset($_COOKIE['instastellar_ref_cookie']))
         {
             $ref = 0;
         }

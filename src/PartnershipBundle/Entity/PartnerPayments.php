@@ -21,7 +21,6 @@ class PartnerPayments
     protected $id;
 
     /**
-     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
@@ -45,10 +44,10 @@ class PartnerPayments
     /**
      * Set user
      *
-     * @param integer $user
+     * @param \UserBundle\Entity\User $user
      * @return PartnerPayments
      */
-    public function setUser($user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 

@@ -21,6 +21,7 @@ class PartnerPayments
     protected $id;
 
     /**
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */

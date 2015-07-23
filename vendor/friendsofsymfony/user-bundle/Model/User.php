@@ -135,6 +135,7 @@ abstract class User implements UserInterface, GroupableInterface
         $this->locked = false;
         $this->expired = false;
         $this->roles = array();
+        $this->refDaddy = 0;
         $this->credentialsExpired = false;
     }
 

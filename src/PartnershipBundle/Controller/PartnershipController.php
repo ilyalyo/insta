@@ -24,7 +24,7 @@ class PartnershipController extends Controller
         return $this->render(
             'partnership/index.html.twig',
             [
-                'percent' => $user->getPartnerPercent
+                'percent' => $user->getPartnerPercent()
             ]
         );
     }

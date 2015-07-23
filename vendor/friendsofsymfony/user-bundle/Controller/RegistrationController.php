@@ -43,6 +43,7 @@ class RegistrationController extends Controller
         $user->setEnabled(true);
         $user->setRefDaddy($_COOKIE["instastellar_ref_cookie"]);
 
+
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
 

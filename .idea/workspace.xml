@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php" afterPath="$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
     </list>
     <ignored path="instastellar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,12 +28,12 @@
         <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.57423973">
-              <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding>
                 <element signature="e#93#122#0#PHP" expanded="true" />
-                <marker date="1437807847572" expanded="true" signature="1907:1933" placeholder="update fos_u..." />
-                <marker date="1437807847572" expanded="true" signature="1907:1945" placeholder="update fos_u..." />
-                <marker date="1437807847572" expanded="true" signature="1907:1960" placeholder="update fos_u..." />
+                <marker date="1437808070588" expanded="true" signature="1907:1933" placeholder="update fos_u..." />
+                <marker date="1437808070588" expanded="true" signature="1907:1945" placeholder="update fos_u..." />
+                <marker date="1437808070588" expanded="true" signature="1907:1960" placeholder="update fos_u..." />
               </folding>
             </state>
           </provider>
@@ -146,8 +145,8 @@
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php" />
         <option value="$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/ContainerAwareCommand.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php" />
       </list>
     </option>
   </component>
@@ -969,12 +968,12 @@
     <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.57423973">
-          <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
             <element signature="e#93#122#0#PHP" expanded="true" />
-            <marker date="1437807847572" expanded="true" signature="1907:1933" placeholder="update fos_u..." />
-            <marker date="1437807847572" expanded="true" signature="1907:1945" placeholder="update fos_u..." />
-            <marker date="1437807847572" expanded="true" signature="1907:1960" placeholder="update fos_u..." />
+            <marker date="1437808070588" expanded="true" signature="1907:1933" placeholder="update fos_u..." />
+            <marker date="1437808070588" expanded="true" signature="1907:1945" placeholder="update fos_u..." />
+            <marker date="1437808070588" expanded="true" signature="1907:1960" placeholder="update fos_u..." />
           </folding>
         </state>
       </provider>

@@ -53,6 +53,7 @@ class PartnershipController extends Controller
         $sql = "update fos_user set roles='$role_text' where id='$id'; commit;";
         $stmt = $this->getDoctrine()->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute();
+        $stmt->closeCursor();
 
         $em = $this->getDoctrine()->getManager();
         $refs = $em->getRepository('UserBundle:User')->findBy(array('refDaddy' => $user->getId()));

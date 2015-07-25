@@ -250,10 +250,9 @@ class CasperAjaxController extends Controller
         var_dump(1);
         /*Это свершилось 25.07.2015:*/
         $user = $this->getUser();
-        $proxy = $em->getRepository('AppBundle:Proxy')->findBy(
-            array('country' => $user->getCountry())
-        );
-        $proxy_count=$account->getId() % count($proxy);
+        $country = $user->getCountry();
+        $proxy = $em->getRepository('AppBundle:Proxy')->findAll(array('country' => $country));
+        $proxy_count = $account->getId() % count($proxy);
         var_dump(2);
         $account->setProxy($proxy[$proxy_count]);
         var_dump(3);

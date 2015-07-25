@@ -56,9 +56,13 @@
                         <li id="info">    <a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
                         <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span> Покупка</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('admin') }}"> Админка</a></li>
+                            <li><a href="{{ path('admin') }}"> Админка</a></li>
                         {% endif %}
-                        <li><a href="{{ path('partnership') }}"> Партнёрам</a></li>
+                        {% if is_granted('ROLE_PARTNER') %}
+                            <li><a href="{{ path('partnership') }}"> Партнёрам</a></li>
+                        {% else %}
+                            <li><a href="{{ path('become_partner') }}">Стать партнёром</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="navigation" style="bottom: 20px">

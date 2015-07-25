@@ -1,7 +1,6 @@
 <?php
 
 namespace PartnershipBundle\Controller;
-
 /*¬от тут нужные таблицы не забыть указать:*/
 use AppBundle\Entity\Support;
 use AppBundle\Form\Type\SupportType;
@@ -11,6 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Util\UserManipulator;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class PartnershipController extends Controller
 {
@@ -34,4 +39,16 @@ class PartnershipController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/become_partner", name="become_partner")
+     */
+    public function selfPromoteToPartner()
+    {
+        $user = $this->getUser();
+        $manipulator = $this->getContainer()->get('fos_user.util.user_manipulator');
+        $manipulator->addRole($user->getId(),"ROLE_PARTNER");
+
+    }
+
 }

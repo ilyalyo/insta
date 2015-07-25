@@ -381,6 +381,9 @@ class User extends BaseUser
     public function addRole($role)
     {
         parent::addRole($role);
+        $kek = parent;
+        $em = $this->getDoctrine()->getManager();
+        $em->persist(parent);
         return $this;
     }
 }

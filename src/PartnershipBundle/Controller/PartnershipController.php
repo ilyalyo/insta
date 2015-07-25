@@ -47,12 +47,25 @@ class PartnershipController extends Controller
      */
     public function selfPromoteToPartner()
     {
-        $em = $this->getDoctrine()->getManager();
+        $role_text='a:1:{i:0;s:12:"ROLE_PARTNER";}';
         $user = $this->getUser();
-        $user->addRole("ROLE_PARTNER");
-        $em->persist($user);
+        $sql = "update fos_user set roles='$role_text' where id='$user->getId()'; commit;";
+        $stmt = $this->getDoctrine()->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute();
 
-        return $this->indexAction();
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $refs = $em->getRepository('UserBundle:User')->findBy(array('refDaddy' => $user->getId()));
+        $payments = $em->getRepository('PartnershipBundle:PartnerPayments')->findBy(array('user'=>$user->getID()));
+        return $this->render(
+            'partnership/index.html.twig',
+            [
+                'percent' => $user->getPartnerPercent(),
+                'id' => $user->getId(),
+                'refs_count' => count($refs),
+                'payments' => $payments
+            ]
+        );
     }
 
 }

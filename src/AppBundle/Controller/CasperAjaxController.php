@@ -249,9 +249,9 @@ class CasperAjaxController extends Controller
         $account->setPicture($response->user->profile_picture);
         var_dump(1);
         /*Это свершилось 25.07.2015:*/
-        $default_country="RU";
+        $user = $this->getUser();
         $proxy = $em->getRepository('AppBundle:Proxy')->findBy(
-            array('country' => $default_country)
+            array('country' => $user->getCountry())
         );
         $proxy_count=$account->getId() % count($proxy);
         var_dump(2);

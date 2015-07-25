@@ -28,7 +28,7 @@ class Proxy
     protected $port;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=3)
      */
     protected $country;
 
@@ -92,7 +92,7 @@ class Proxy
      * Set country
      *
      * @param string $country
-     * @return $this
+     * @return Proxy
      */
     public function setCountry($country)
     {

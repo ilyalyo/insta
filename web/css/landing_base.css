@@ -76,11 +76,11 @@ body.modal-open{
     color:#ffffff;
     font-family:HelveticaNeue-Light;
 }
-#partnership p{
+#offer p{
     color:#ffffff;
     font-family:HelveticaNeue-Light;
 }
-#offer p{
+#partnership p{
     color:#ffffff;
     font-family:HelveticaNeue-Light;
 }
@@ -210,17 +210,17 @@ color: #ffffff;
     color: #ffffff;
     font-size: 34pt;
 }
-#partnership h1{
-    font-family: 'Lobster', cursive!important;
-    color: #ffffff;
-    font-size: 34pt;
-}
+
 #offer h1{
     font-family: 'Lobster', cursive!important;
     color: #ffffff;
     font-size: 34pt;
 }
-
+#partnership h1{
+    font-family: 'Lobster', cursive!important;
+    color: #ffffff;
+    font-size: 34pt;
+}
 /**/
 
 .wrapper {min-width:500px;padding: 0 15px;background-color:#dddddd;}
@@ -265,7 +265,7 @@ color: #ffffff;
     margin-top: 40px;
 }
 
-#conf_politics, #offer h3{
+#conf_politics, #offer, #partnership h3{
     color: #ffffff;
 }
 /* slider*/

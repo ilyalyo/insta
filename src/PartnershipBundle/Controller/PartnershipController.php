@@ -55,7 +55,12 @@ class PartnershipController extends Controller
     public function selfPromoteToPartner()
     {
         $user = $this->getUser();
-        $userfos = $this->userManager->findUserByUsername($user->getUsername());
+        $id=$user->getId();
+        $sql="SELECT username FROM fos_user WHERE id='$id'";
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute();
+        $username=$stmt->fetchAll();
+        $userfos = $this->userManager->findUserByUsername($username);
         $userfos->addRole("ROLE_PARTNER");
         $this->userManager->updateUser($userfos);
 

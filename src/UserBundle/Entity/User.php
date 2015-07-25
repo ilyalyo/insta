@@ -18,11 +18,6 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $username;
-
     public function __construct()
     {
         parent::__construct();
@@ -103,15 +98,6 @@ class User extends BaseUser
         return $this->id;
     }
 
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
 
     /**
      * Add accounts

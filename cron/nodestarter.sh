@@ -7,7 +7,7 @@ done
 if [ ${#PIDS[@]} == 0 ];
 then
     cd /var/www/instastellar
-    node server.js &
+    node server.js 
     #adding 3 hours, cuz we're in the MSK timezone
     curdate=`date +"%d.%m.%Y %T" -d "+ 3 hours"`
     echo $curdate>>/var/log/nodestarter.log

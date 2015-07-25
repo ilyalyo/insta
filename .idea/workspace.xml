@@ -27,17 +27,49 @@
       <file leaf-file-name="PartnershipController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54382825">
-              <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.45617172">
+              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
               <folding>
                 <element signature="e#93#122#0#PHP" expanded="true" />
-                <marker date="1437802027871" expanded="true" signature="2076:2111" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437802027871" expanded="true" signature="2076:2115" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437802027871" expanded="true" signature="2076:2117" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437802027871" expanded="true" signature="2076:2119" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437802027871" expanded="true" signature="2076:2120" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437802027871" expanded="true" signature="2076:2341" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437803070892" expanded="true" signature="2066:2101" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437803070892" expanded="true" signature="2066:2105" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437803070892" expanded="true" signature="2066:2107" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437803070892" expanded="true" signature="2066:2109" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437803070892" expanded="true" signature="2066:2110" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437803070892" expanded="true" signature="2066:2331" placeholder="SELECT usern..fos_user..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserManagerInterface.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769">
+              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+              <folding>
+                <element signature="e#7#259#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChangePasswordController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/ChangePasswordController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.0">
+              <caret line="61" column="63" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.5">
+              <caret line="340" column="20" selection-start-line="340" selection-start-column="20" selection-end-line="340" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -746,20 +778,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24329159">
-          <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminBundle/AdminBundle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07692308">
@@ -1097,16 +1115,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33273703">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-          <folding>
-            <element signature="e#7#259#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Console/Command/Command.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27191412">
@@ -1163,6 +1171,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="e#7#259#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Util/UserManipulator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.3818183">
@@ -1174,18 +1192,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5">
+          <caret line="340" column="20" selection-start-line="340" selection-start-column="20" selection-end-line="340" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/ChangePasswordController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.0">
+          <caret line="61" column="63" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54382825">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.45617172">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding>
             <element signature="e#93#122#0#PHP" expanded="true" />
-            <marker date="1437802027871" expanded="true" signature="2076:2111" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437802027871" expanded="true" signature="2076:2115" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437802027871" expanded="true" signature="2076:2117" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437802027871" expanded="true" signature="2076:2119" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437802027871" expanded="true" signature="2076:2120" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437802027871" expanded="true" signature="2076:2341" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437803070892" expanded="true" signature="2066:2101" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437803070892" expanded="true" signature="2066:2105" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437803070892" expanded="true" signature="2066:2107" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437803070892" expanded="true" signature="2066:2109" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437803070892" expanded="true" signature="2066:2110" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437803070892" expanded="true" signature="2066:2331" placeholder="SELECT usern..fos_user..." />
           </folding>
         </state>
       </provider>

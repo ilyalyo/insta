@@ -49,9 +49,9 @@ class PartnershipController extends Controller
      */
     private $userManager;
 
-    public function __construct(UserManagerInterface $userManager)
+    public function __construct()
     {
-        $this->userManager = $userManager;
+        $this->userManager = $this->get('fos_user.user_manager');
     }
 
     /**

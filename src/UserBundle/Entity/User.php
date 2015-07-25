@@ -18,6 +18,11 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     */
+    protected $username;
+
     public function __construct()
     {
         parent::__construct();
@@ -96,6 +101,16 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**

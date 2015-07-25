@@ -49,6 +49,11 @@ class PartnershipController extends Controller
      */
     private $userManager;
 
+    public function __construct(UserManagerInterface $userManager)
+    {
+        $this->userManager = $userManager;
+    }
+
     /**
      * @Route("/become_partner", name="become_partner")
      */

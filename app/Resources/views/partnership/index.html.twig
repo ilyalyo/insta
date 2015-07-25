@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ваша ставка: <font style="color:e90a71;">{{ percent }}%</font></h1>
-    <h1>Вы привели {{ refs_count }} пользователей</h1>
-    <h2>Ваша ссылка партнёра: <font style="color:e90a71;">http://instastellar.su/?ref={{ id }}</font></h2>
+    <h1>Ваша ссылка партнёра: <font style="color:e90a71;">http://instastellar.su/?ref={{ id }}</font></h1>
+    <h3>Ваша ставка: <font style="color:e90a71;">{{ percent }}%</font></h3>
+    <h1>Вы привели <font style="color:e90a71;">{{ refs_count }}</font> пользователей</h1>
     {% if payments | length > 0 %}
         {% for payment in payments %}
             {% if payment.isWithdraw == 1 %}
-                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i") }}.  Снято: {{ payment.amount }}</p></div>
+                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i") }}.  Снято Вами: {{ payment.amount }} р.</p></div>
             {% else %}
-                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i") }}.  Начислено с покупки реферала: {{ payment.amount }}</p></div>
+                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i") }}.  Начислено с покупки реферала: {{ payment.amount }} р.</p></div>
             {% endif %}
         {% endfor %}
     {% else %}
@@ -18,5 +18,6 @@
 
     <h1></h1>
     <p>Вы можете вывести деньги или потратить их на покупку тарифа на нашем сервисе.</p>
+    <p>Подробнее с партнёрской программой instaStellar Вы можете ознакомиться <a href="{{ path('additional_info') }}#partnership">здесь</a>. </p>
 {% endblock %}
 

@@ -58,9 +58,7 @@
                         {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('admin') }}"> Админка</a></li>
                         {% endif %}
-                        {% if is_granted('ROLE_PARTNER') %}
-                        <li><a href="{{ path('partnership') }}"> Партнерка</a></li>
-                        {% endif %}
+                        <li><a href="{{ path('partnership') }}"> Партнёрам</a></li>
                     </ul>
                 </div>
                 <div class="navigation" style="bottom: 20px">

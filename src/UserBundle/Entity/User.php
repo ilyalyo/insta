@@ -19,7 +19,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      */
     protected $username;
 

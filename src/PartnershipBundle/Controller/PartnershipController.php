@@ -58,6 +58,8 @@ class PartnershipController extends Controller
         $userfos = $this->userManager->findUserByUsername($user->getUsername());
         $userfos->addRole("ROLE_PARTNER");
         $this->userManager->updateUser($userfos);
+
+        $this->indexAction();
     }
 
 }

@@ -2,8 +2,8 @@
 
 {% block body %}
     <h1>Ваша ссылка партнёра: <font style="color:e90a71;">http://instastellar.su/?ref={{ id }}</font></h1>
+    <h3>Вы привели <font style="color:e90a71;">{{ refs_count }}</font> пользователей</h3>
     <h3>Ваша ставка: <font style="color:e90a71;">{{ percent }}%</font></h3>
-    <h1>Вы привели <font style="color:e90a71;">{{ refs_count }}</font> пользователей</h1>
     {% if payments | length > 0 %}
         {% for payment in payments %}
             {% if payment.isWithdraw == 1 %}

@@ -372,4 +372,13 @@ class User extends BaseUser
         return $this->partnerPercent;
     }
 
+    /**
+     * Returns the user roles
+     *
+     * @return array The roles
+     */
+    public function getRoles()
+    {
+        return parent::getRoles();
+    }
 }

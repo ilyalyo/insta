@@ -55,6 +55,14 @@ class PartnershipController extends Controller
         $stmt->execute();
         $stmt->closeCursor();
 
+        $user = $this->getUser();
+        $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+            $user,
+            null,
+            'main',
+            $user->getRoles()
+        );
+        $this->container->get('security.context')->setToken($token);
         $em = $this->getDoctrine()->getManager();
         $refs = $em->getRepository('UserBundle:User')->findBy(array('refDaddy' => $user->getId()));
         $payments = $em->getRepository('PartnershipBundle:PartnerPayments')->findBy(array('user'=>$user->getId()));

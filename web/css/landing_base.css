@@ -76,6 +76,10 @@ body.modal-open{
     color:#ffffff;
     font-family:HelveticaNeue-Light;
 }
+#partnership p{
+    color:#ffffff;
+    font-family:HelveticaNeue-Light;
+}
 #offer p{
     color:#ffffff;
     font-family:HelveticaNeue-Light;
@@ -202,6 +206,11 @@ color: #ffffff;
     font-size: 34pt;
 }
 #conf_politics h1{
+    font-family: 'Lobster', cursive!important;
+    color: #ffffff;
+    font-size: 34pt;
+}
+#partnership h1{
     font-family: 'Lobster', cursive!important;
     color: #ffffff;
     font-size: 34pt;

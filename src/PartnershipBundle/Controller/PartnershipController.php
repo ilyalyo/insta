@@ -59,7 +59,8 @@ class PartnershipController extends Controller
         $sql="SELECT username FROM fos_user WHERE id='$id'";
         $stmt = $this->getDoctrine()->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute();
-        $username=$stmt->fetchAll();
+        $username=$stmt->fetch();
+        $this->userManager->findUserByUsername($username);
         $userfos = $this->userManager->findUserByUsername($username);
         $userfos->addRole("ROLE_PARTNER");
         $this->userManager->updateUser($userfos);

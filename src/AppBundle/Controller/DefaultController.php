@@ -28,8 +28,6 @@ class DefaultController extends Controller
         {
             if($em->getRepository('UserBundle:User')->findOneBy(array('id' => $matches[0])))
             { $ref = $matches[0]; }
-            else
-            { $ref = 0; }
         }
         setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days'));
         return $this->render('landing.html.twig');

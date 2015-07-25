@@ -28,6 +28,11 @@ class Proxy
     protected $port;
 
     /**
+     * @ORM\Column(type="string", length=2)
+     */
+    protected $country;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -82,4 +87,27 @@ class Proxy
     {
         return $this->port;
     }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return $this
+     */
+    public function setCountry($country)
+    {
+        $this->country=$country;
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
 }

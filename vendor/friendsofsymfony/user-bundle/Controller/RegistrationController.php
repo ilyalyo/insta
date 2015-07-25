@@ -41,7 +41,10 @@ class RegistrationController extends Controller
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
-        if($_COOKIE["instastellar_ref_cookie"]>0)
+
+        $em = $this->getDoctrine()->getManager();
+        /*Additional check so that they can't exploit it by editing the cookie:*/
+        if($em->getRepository('UserBundle:User')->findOneBy(array('id' => $_COOKIE["instastellar_ref_cookie"])))
         {
             $user->setRefDaddy($_COOKIE["instastellar_ref_cookie"]);
         }

@@ -88,6 +88,10 @@ class User extends BaseUser
      */
     protected $partnerPercent;
 
+    /**
+     * @ORM\Column(type="string", length=3)
+     */
+    protected $country;
 
     /**
      * Get id
@@ -370,6 +374,28 @@ class User extends BaseUser
     public function getPartnerPercent()
     {
         return $this->partnerPercent;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country=$country;
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**

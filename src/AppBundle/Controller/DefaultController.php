@@ -20,16 +20,25 @@ class DefaultController extends Controller
         if(!isset($_COOKIE['instastellar_ref_cookie']))
         {
             $ref = 0;
+            setcookie("instastellar_ref_cookie", $ref, strtotime('+60 days'));
         }
-        $this_url = basename($_SERVER['REQUEST_URI']);
-        $matches = array();
-        $em = $this->getDoctrine()->getManager();
-        if(preg_match("/\?ref=[0-9]+$/", $this_url) && preg_match("/[0-9]+$/", $this_url, $matches))
+        else
         {
+<<<<<<< HEAD
             if($em->getRepository('UserBundle:User')->findOneBy(array('id' => $matches[0])))
             { $ref = $matches[0]; }
+=======
+            $this_url = basename($_SERVER['REQUEST_URI']);
+            $matches = array();
+            $em = $this->getDoctrine()->getManager();
+            if (preg_match("/\?ref=[0-9]+$/", $this_url) && preg_match("/[0-9]+$/", $this_url, $matches)) {
+                if ($em->getRepository('UserBundle:User')->findOneBy(array('id' => $matches[0]))) {
+                    $ref = $matches[0];
+                    setcookie("instastellar_ref_cookie", $ref, strtotime('+60 days'));
+                }
+            }
+>>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
         }
-        setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days'));
         return $this->render('landing.html.twig');
     }
 

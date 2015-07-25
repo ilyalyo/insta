@@ -32,6 +32,11 @@ class User extends BaseUser
         $this->unRead = 0;
         $this->partnerPercent = 18;
     }
+
+    public function addRole($role)
+    {
+        parent::addRole($role);
+    }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
      */

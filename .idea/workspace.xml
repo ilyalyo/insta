@@ -27,16 +27,16 @@
       <file leaf-file-name="PartnershipController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8175313">
-              <caret line="65" column="49" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.72629696">
+              <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
               <folding>
                 <element signature="e#93#122#0#PHP" expanded="true" />
-                <marker date="1437801759330" expanded="true" signature="1953:1988" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437801759330" expanded="true" signature="1953:1992" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437801759330" expanded="true" signature="1953:1994" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437801759330" expanded="true" signature="1953:1996" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437801759330" expanded="true" signature="1953:1997" placeholder="SELECT usern..fos_user..." />
-                <marker date="1437801759330" expanded="true" signature="1953:2277" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437801881502" expanded="true" signature="1953:1988" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437801881502" expanded="true" signature="1953:1992" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437801881502" expanded="true" signature="1953:1994" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437801881502" expanded="true" signature="1953:1996" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437801881502" expanded="true" signature="1953:1997" placeholder="SELECT usern..fos_user..." />
+                <marker date="1437801881502" expanded="true" signature="1953:2218" placeholder="SELECT usern..fos_user..." />
               </folding>
             </state>
           </provider>
@@ -1179,16 +1179,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8175313">
-          <caret line="65" column="49" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.72629696">
+          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
           <folding>
             <element signature="e#93#122#0#PHP" expanded="true" />
-            <marker date="1437801759330" expanded="true" signature="1953:1988" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437801759330" expanded="true" signature="1953:1992" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437801759330" expanded="true" signature="1953:1994" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437801759330" expanded="true" signature="1953:1996" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437801759330" expanded="true" signature="1953:1997" placeholder="SELECT usern..fos_user..." />
-            <marker date="1437801759330" expanded="true" signature="1953:2277" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437801881502" expanded="true" signature="1953:1988" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437801881502" expanded="true" signature="1953:1992" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437801881502" expanded="true" signature="1953:1994" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437801881502" expanded="true" signature="1953:1996" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437801881502" expanded="true" signature="1953:1997" placeholder="SELECT usern..fos_user..." />
+            <marker date="1437801881502" expanded="true" signature="1953:2218" placeholder="SELECT usern..fos_user..." />
           </folding>
         </state>
       </provider>

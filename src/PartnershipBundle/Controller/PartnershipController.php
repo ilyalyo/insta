@@ -52,7 +52,7 @@ class PartnershipController extends Controller
         $user->addRole("ROLE_PARTNER");
         $em->persist($user);
 
-        $this->indexAction();
+        return $this->indexAction();
     }
 
 }

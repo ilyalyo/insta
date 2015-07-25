@@ -33,11 +33,6 @@ class User extends BaseUser
         $this->partnerPercent = 18;
     }
 
-    public function addRole($role)
-    {
-        parent::addRole($role);
-        return $this;
-    }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")
      */
@@ -375,5 +370,17 @@ class User extends BaseUser
     public function getPartnerPercent()
     {
         return $this->partnerPercent;
+    }
+
+    /**
+     * Add new role
+     *
+     * @param string $role
+     * @return User
+     */
+    public function addRole($role)
+    {
+        parent::addRole($role);
+        return $this;
     }
 }

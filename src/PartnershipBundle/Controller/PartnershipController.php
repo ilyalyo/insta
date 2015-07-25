@@ -43,18 +43,6 @@ class PartnershipController extends Controller
     }
 
     /**
-     * User manager
-     *
-     * @var UserManagerInterface
-     */
-    private $userManager;
-
-    public function __construct()
-    {
-        $this->userManager = $this->get('fos_user.user_manager');
-    }
-
-    /**
      * @Route("/become_partner", name="become_partner")
      */
     public function selfPromoteToPartner()

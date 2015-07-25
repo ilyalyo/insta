@@ -57,7 +57,7 @@ class PartnershipController extends Controller
         $user = $this->getUser();
         $id=$user->getId();
         $sql="SELECT username FROM fos_user WHERE id='$id'";
-        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt = $this->getDoctrine()->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute();
         $username=$stmt->fetchAll();
         $userfos = $this->userManager->findUserByUsername($username);

@@ -47,8 +47,10 @@ class PartnershipController extends Controller
      */
     public function selfPromoteToPartner()
     {
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $user->addRole("ROLE_PARTNER");
+        $em->persist($user);
 
         $this->indexAction();
     }

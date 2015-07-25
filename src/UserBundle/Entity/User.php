@@ -36,6 +36,7 @@ class User extends BaseUser
     public function addRole($role)
     {
         parent::addRole($role);
+        return $this;
     }
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Accounts", mappedBy="id")

@@ -372,18 +372,4 @@ class User extends BaseUser
         return $this->partnerPercent;
     }
 
-    /**
-     * Add new role
-     *
-     * @param string $role
-     * @return User
-     */
-    public function addRole($role)
-    {
-        parent::addRole($role);
-        $kek = parent;
-        $em = $this->getDoctrine()->getManager();
-        $em->persist(parent);
-        return $this;
-    }
 }

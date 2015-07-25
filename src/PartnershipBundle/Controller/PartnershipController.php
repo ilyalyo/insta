@@ -49,14 +49,14 @@ class PartnershipController extends Controller
     {
         $role_text='a:1:{i:0;s:12:"ROLE_PARTNER";}';
         $user = $this->getUser();
-        $sql = "update fos_user set roles='$role_text' where id='$user->getId()'; commit;";
+        $id = $user->getId();
+        $sql = "update fos_user set roles='$role_text' where id='$id'; commit;";
         $stmt = $this->getDoctrine()->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute();
 
-        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $refs = $em->getRepository('UserBundle:User')->findBy(array('refDaddy' => $user->getId()));
-        $payments = $em->getRepository('PartnershipBundle:PartnerPayments')->findBy(array('user'=>$user->getID()));
+        $payments = $em->getRepository('PartnershipBundle:PartnerPayments')->findBy(array('user'=>$user->getId()));
         return $this->render(
             'partnership/index.html.twig',
             [

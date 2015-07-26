@@ -45,7 +45,7 @@ class RegistrationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user->setRefDaddy(null);
-        if(!isset($_COOKIE['instastellar_ref_cookie']))
+        if(isset($_COOKIE['instastellar_ref_cookie']))
         {
             /*Additional check so that they can't exploit it by editing the cookie:*/
             if($em->getRepository('UserBundle:User')->findOneBy(array('id' => $_COOKIE["instastellar_ref_cookie"])))
@@ -53,7 +53,6 @@ class RegistrationController extends Controller
                 $user->setRefDaddy($_COOKIE["instastellar_ref_cookie"]);
             }
         }
-
         else
         {
             $user->setRefDaddy(null);

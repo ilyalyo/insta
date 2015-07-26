@@ -590,12 +590,12 @@ class Instagram
             $this->debug($output);
             $json = json_decode($output);
             if(!isset($json)){
-                $this->debug('json is null');
+                $this->debug('json is null - httpPost');
                 $this->debug($params['url']);
                 return null;
             }
             if($output === FALSE){
-                $this->debug('json is false');
+                $this->debug('json is false - httpPost');
                 return null;
             }
             if($json->meta->code == 200)
@@ -620,11 +620,11 @@ class Instagram
             $output = $this->httpGetReal($url);
             $json = json_decode($output);
             if(!isset($json)){
-                $this->debug('json is null');
+                $this->debug('json is null - httpGet');
                 return null;
             }
             if($output === FALSE){
-                $this->debug('json is false');
+                $this->debug('json is false -httpGet');
                 return null;
             }
             if($json->meta->code == 200)

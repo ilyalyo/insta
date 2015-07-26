@@ -31,7 +31,9 @@ class DefaultController extends Controller
             else
             { $ref = 0; }
         }
-        setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days'));
+        if(isset($ref))
+        { setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days')); }
+
         return $this->render('landing.html.twig');
     }
 

@@ -67,3 +67,6 @@ DirectoryIndex app.php
 <FilesMatch "\.(jpg|jpeg|png|gif|swf|css)$">
 Header set Cache-Control "max-age=604800, public"
 </FilesMatch>
+<FilesMatch "\.(js)$">
+Header set Cache-Control "max-age=172800, public"
+</FilesMatch>

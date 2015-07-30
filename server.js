@@ -4,8 +4,8 @@ var fs = require("fs")
 var options = {
     secure: true,
     key: fs.readFileSync('/etc/ssl/private/server.key'),
-    cert: fs.readFileSync('/etc/ssl/certs/server.pem')/*,
-    passphrase: 'qwaszx4041'*/
+    cert: fs.readFileSync('/etc/ssl/certs/server.pem'),
+    passphrase: 'qwaszx4041'
 };
 
 var server = ws.createServer(options,function (conn) {

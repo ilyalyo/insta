@@ -38,8 +38,8 @@
                     $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
                 });
                 google.maps.event.addListener(circle, 'center_changed', function () {
-                    $('#lat').val(circle.getCenter()['A']);
-                    $('#lng').val(circle.getCenter()['F']);
+                    $('#lat').val(circle.getCenter().lat());
+                    $('#lng').val(circle.getCenter().lng());
                     $('.hidden_geo').val($('#lat').val() + ';' + $('#lng').val() + ';' + $('#radius').val());
                 });
                 var sw = $("[name='my-checkbox']").bootstrapSwitch('size', 'small');

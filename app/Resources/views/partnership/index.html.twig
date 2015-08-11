@@ -7,9 +7,9 @@
     {% if payments | length > 0 %}
         {% for payment in payments %}
             {% if payment.isWithdraw == 1 %}
-                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i") }}.  Снято Вами: {{ payment.amount }} р.</p></div>
+                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i", user.timezone) }}.  Снято Вами: {{ payment.amount }} р.</p></div>
             {% else %}
-                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i") }}.  Начислено с покупки реферала: {{ payment.amount }} р.</p></div>
+                <div><p>Дата: {{ payment.date|date("Y-m-d H:m:i", user.timezone) }}.  Начислено с покупки реферала: {{ payment.amount }} р.</p></div>
             {% endif %}
         {% endfor %}
     {% else %}

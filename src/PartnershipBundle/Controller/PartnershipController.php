@@ -1,7 +1,7 @@
 <?php
 
 namespace PartnershipBundle\Controller;
-/*Вот тут нужные таблицы не забыть указать:*/
+/*пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:*/
 use AppBundle\Entity\Support;
 use AppBundle\Form\Type\SupportType;
 use UserBundle\Entity\User;
@@ -34,6 +34,7 @@ class PartnershipController extends Controller
         return $this->render(
             'partnership/index.html.twig',
             [
+                'user' => $user,
                 'percent' => $user->getPartnerPercent(),
                 'id' => $user->getId(),
                 'refs_count' => count($refs),
@@ -47,15 +48,13 @@ class PartnershipController extends Controller
      */
     public function selfPromoteToPartner()
     {
-        $role_text='a:1:{i:0;s:12:"ROLE_PARTNER";}';
         $user = $this->getUser();
-        $id = $user->getId();
-        $sql = "update fos_user set roles='$role_text' where id='$id'; commit;";
-        $stmt = $this->getDoctrine()->getEntityManager()->getConnection()->prepare($sql);
-        $stmt->execute();
-        $stmt->closeCursor();
+        $userManager = $this->get('fos_user.user_manager');
+        $user->addRole('ROLE_PARTNER');
+        $userManager->updateUser($user);
 
         $user = $this->getUser();
+        /*Resetting token to reresh the privileges*/
         $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
             $user,
             null,

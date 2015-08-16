@@ -86,8 +86,8 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($account)
             ->setAction($this->generateUrl('accounts_edit',array('id' => $id )))
             ->add('instLogin', 'text', array('label' => 'Логин'))
-            //->add('instPass', 'password', array(
-              //  'label' => 'Пароль', 'required' => false))
+            ->add('instPass', 'password', array(
+                'label' => 'Пароль', 'required' => false))
             ->add('country', 'entity', array(
                 'class' => 'AppBundle:Countries',
                 'property' => 'country_name',
@@ -101,9 +101,19 @@ class DefaultController extends Controller
             $uow->computeChangeSets();
             $changes = $uow->getEntityChangeSet($account);
 
+
             //необходимо из за использования computeChangeSets
             $em->persist($account);
             $em->flush();
+
+            //в массиве changes в 0 лежит старое значение, в 1 новое,
+            //если не проверять что новое значение нул, то при изменении каких либо
+            //параметров, пароль будет скидываться на нул,
+            //то есть если пользователь не вводил ничего в поле пароля, то пароль останется прежним
+            if(array_key_exists ('instPass', $changes)) {
+                if(!isset($changes['instPass'][1]))
+                    $account->setInstPass($changes['instPass'][0]);
+            }
 
             if(array_key_exists ('country', $changes)){
 

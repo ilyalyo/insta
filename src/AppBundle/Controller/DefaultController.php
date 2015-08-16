@@ -86,8 +86,8 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($account)
             ->setAction($this->generateUrl('accounts_edit',array('id' => $id )))
             ->add('instLogin', 'text', array('label' => 'Логин'))
-            ->add('instPass', 'password', array(
-                'label' => 'Пароль', 'required' => false))
+            //->add('instPass', 'password', array(
+              //  'label' => 'Пароль', 'required' => false))
             ->add('country', 'entity', array(
                 'class' => 'AppBundle:Countries',
                 'property' => 'country_name',

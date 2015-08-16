@@ -240,7 +240,7 @@ class Instagram
 
                 foreach ($data as $d) {
                     //если идет сбор людей на фоловинг, и мы находим человека, которого уже добавляли в ходе поиска в массив, пропускаем его
-                    if(array_search($d->user->id, array_column($result, 'user_id')) && in_array($this->OPTIONS['type'],[0,10,20,30]))
+                    if($this->searchForId($d->user->id, $result) && in_array($this->OPTIONS['type'],[0,10,20,30]))
                         continue;
                     if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
                         if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
@@ -264,6 +264,14 @@ class Instagram
         return $result;
     }
 
+    private function searchForId($id, $array) {
+        foreach ($array as $key => $val) {
+            if ($val['user_id'] === $id) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // парсим медиа загруженно в указанной области
     // по указанным координатам и радиусу получаем список мест
@@ -296,18 +304,18 @@ class Instagram
                 foreach ($data as $d) {
                     if(count($result) < $count) {
                         //если идет сбор людей на фоловинг, и мы находим человека, которого уже добавляли в ходе поиска в массив, пропускаем его
-                            if(array_search($d->user->id, array_column($result, 'user_id')) && in_array($this->OPTIONS['type'],[0,10,20,30]))
-                                continue;
-                            if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
-                            $user['username'] = $d->user->username;
-                            $user['user_id'] = $d->user->id;
-                            $user['resource_id'] = $d->id;
-                            $user['link'] = $d->link;
-                            $result[] = $user;
-                            $p_count = count($result);
-                            if ($p_count % $block == 0)
-                                $this->set_parsing_status($p_count);
-                            }
+                        if($this->searchForId($d->user->id, $result) && in_array($this->OPTIONS['type'],[0,10,20,30]))
+                            continue;
+                        if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
+                        $user['username'] = $d->user->username;
+                        $user['user_id'] = $d->user->id;
+                        $user['resource_id'] = $d->id;
+                        $user['link'] = $d->link;
+                        $result[] = $user;
+                        $p_count = count($result);
+                        if ($p_count % $block == 0)
+                            $this->set_parsing_status($p_count);
+                        }
                     }
                     else
                         break;

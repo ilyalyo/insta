@@ -28,6 +28,12 @@ class Proxy
     protected $port;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Countries")
+     * @ORM\JoinColumn(name="country", referencedColumnName="country_code")
+     */
+    protected $country;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -81,5 +87,28 @@ class Proxy
     public function getPort()
     {
         return $this->port;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \AppBundle\Entity\Countries $country
+     * @return Proxy
+     */
+    public function setCountry(\AppBundle\Entity\Countries $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \AppBundle\Entity\Countries
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

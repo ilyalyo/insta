@@ -13,6 +13,9 @@ class AuthCheckCommand extends ContainerAwareCommand
         $this
             ->setName('casper:checkauth')
             ->addArgument(
+                'proxy'
+            )
+            ->addArgument(
                 'username'
             )
             ->addArgument(
@@ -26,8 +29,9 @@ class AuthCheckCommand extends ContainerAwareCommand
     {
         $username = $input->getArgument('username');
         $password = $input->getArgument('password');
+        $proxy = $input->getArgument('proxy');
         $file = __DIR__ . "/Casper/check_auth.js";
-        $text = shell_exec("casperjs --web-security=no $file '" . $username . "' '" . $password ."' ");
+        $text = shell_exec("casperjs --web-security=no $file '" . $username . "' '" . $password ."' --proxy=" . $proxy . " --proxy-type=socks5");
         $output->writeln($text);;
     }
 }

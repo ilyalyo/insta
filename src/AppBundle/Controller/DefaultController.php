@@ -72,6 +72,67 @@ class DefaultController extends Controller
             ]
         );
     }
+    /**
+     * @Route("/accounts/edit/{id}", name="accounts_edit")
+     */
+    public function accounts_editAction(Request $request, $id)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $id));
+        if (!isset($account))
+            throw new NotFoundHttpException("Page not found");
+
+        $form = $this->createFormBuilder($account)
+            ->setAction($this->generateUrl('accounts_edit',array('id' => $id )))
+            ->add('instLogin', 'text', array('label' => 'Логин'))
+            ->add('instPass', 'password', array(
+                'label' => 'Пароль', 'required' => false))
+            ->add('country', 'entity', array(
+                'class' => 'AppBundle:Countries',
+                'property' => 'country_name',
+                'label' => 'Страна'))
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            //если изменилась страна привязки, то меняем и прокси
+            $uow = $em->getUnitOfWork();
+            $uow->computeChangeSets();
+            $changes = $uow->getEntityChangeSet($account);
+
+            //необходимо из за использования computeChangeSets
+            $em->persist($account);
+            $em->flush();
+
+            if(array_key_exists ('country', $changes)){
+
+                //все прокси выбранной страны
+                $proxy = $em->getRepository('AppBundle:Proxy')->findBy(
+                    array('country' => $account->getCountry())
+                );
+
+                //все аккаунты использующие прокси выбранной страны
+                $all_proxy_by_country = $em->getRepository('AppBundle:Accounts')->findBy(array('country' => $account->getCountry()));
+
+                $proxy_count = (count($all_proxy_by_country) + (count($proxy))) % (count($proxy));
+
+                $account->setProxy($proxy[$proxy_count]);
+            }
+
+            $em->persist($account);
+            $em->flush();
+            return  $this->redirectToRoute('accounts');
+        }
+        return $this->render(
+            'accounts/edit.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+
 
     /**
      * @Route("/account/add", name="add_account")

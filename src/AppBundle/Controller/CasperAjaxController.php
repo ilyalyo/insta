@@ -40,6 +40,10 @@ class CasperAjaxController extends Controller
             ->add('instLogin', 'text', array('label' => 'Логин'))
             ->add('instPass', 'password', array(
                 'label' => 'Пароль'))
+            ->add('country', 'entity', array(
+                'class' => 'AppBundle:Countries',
+                'property' => 'country_name',
+                'label' => 'Страна'))
             ->getForm();
 
         $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
@@ -76,9 +80,19 @@ class CasperAjaxController extends Controller
 
         if ($form->isValid()) {
 
+            $proxy = $em->getRepository('AppBundle:Proxy')->findBy(
+                array('country' => $account->getCountry())
+            );
+
+            $all_proxy_by_country = $em->getRepository('AppBundle:Accounts')->findBy(array('country' => $account->getCountry()));
+
+            $proxy_count = count($all_proxy_by_country) % (count($proxy));
+            $account->setProxy($proxy[$proxy_count]);
+
             $command = new AuthCheckCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array(
+                'proxy'=>$account->getProxy(),
                 'username'=>$account->getInstLogin(),
                 'password' =>$account->getInstPass()
             ));
@@ -102,6 +116,7 @@ class CasperAjaxController extends Controller
 
             $account->setUser($user);
             $em->persist($account);
+
             $em->flush();
 
             /*Делаем это здесь потому, что выше автоинкремент присваивает новый ID, игнорируя подобные изменения. Поэтому нужно делать после автоинкремента.*/
@@ -259,33 +274,5 @@ class CasperAjaxController extends Controller
         var_dump(4);
 
         return new JsonResponse($account->getId());
-    }
-
-    /**
-     * @Route("/accounts/set/{account}/{result}", name="set_login_result")
-     */
-    public function setLoginResultAction($account,$result)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $account = $em->getRepository('AppBundle:Accounts')->find($account);
-        $account->setIsTrue($result);
-        $em->persist($account);
-        $em->flush();
-        return new JsonResponse('1');
-    }
-
-    /**
-     * @Route("/accounts/is_exist", name="is_account_exist")
-     */
-    public function loginResultAction(Request $request)
-    {
-        $account = $request->get('account');
-        $em = $this->getDoctrine()->getManager();
-        $account = $em->getRepository('AppBundle:Accounts')->find($account);
-        $token=$account->getToken();
-        if(isset($token))
-            return new JsonResponse(1);
-        else
-            return new JsonResponse(0);
     }
 }

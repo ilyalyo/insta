@@ -5,7 +5,7 @@
         $( document ).ready(function(){
                 $('[data-toggle="popover"]').popover({
                     trigger: 'click'
-                    , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner" style="min-width: 150px"><h3 class="popover-title"></h3><div class="popover-content  text-center"><p></p></div></div></div>'
+                    , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner" style="min-width: 200px"><h3 class="popover-title"></h3><div class="popover-content  text-center"><p></p></div></div></div>'
                 });
 
 
@@ -133,6 +133,24 @@
 
 <div class="panel-group" id="accordion">
     {% for account in accounts %}
+
+        <!-- start modal-->
+        <div class="modal fade" id="account_setting{{ account.id }}">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ account.instLogin }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ render(controller('AppBundle:Default:accounts_edit', {'id': account.id })) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- end modal-->
         <div class="panel panel-default">
           <div class="panel-heading">
 
@@ -161,6 +179,7 @@
                     {% else %}
                         <a disabled type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
                     {% endif %}
+                    <a type="button" class="btn btn-default" data-toggle="modal" data-target="#account_setting{{ account.id }}" title="Настройки"><span class="glyphicon glyphicon-cog"></span></a>
                     <button title="<p>Удалить аккаунт?</p>" data-content="<a href='{{ path('delete_account', {'id': account.id }) }}' type='button' class='btn btn-danger text-center'>Удалить</a>" data-placement="bottom" data-container="body" data-html="true"  data-toggle="popover" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
                 </div>
 

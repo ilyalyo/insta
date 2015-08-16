@@ -1,0 +1,29 @@
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(form) }}
+
+            <div classs="form-group" style="padding-top: 15px;">
+                <label for="timezone">Логин:</label>
+                {{ form_widget(form.instLogin) }}
+                {{ form_errors(form) }}
+            </div>
+            <div classs="form-group" style="padding-top: 15px;">
+                <label for="timezone">Пароль:</label>
+                {{ form_widget(form.instPass) }}
+                {{ form_errors(form) }}
+            </div>
+            <div classs="form-group" style="padding-top: 15px;">
+                <label for="timezone">Страна:</label>
+                {{ form_widget(form.country) }}
+                {{ form_errors(form) }}
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-success" type="submit" value="Изменить" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+

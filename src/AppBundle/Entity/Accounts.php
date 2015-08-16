@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="accounts")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\AccountsRepository")
  */
 class Accounts
 {
@@ -41,6 +42,12 @@ class Accounts
      * @ORM\JoinColumn(name="proxy", referencedColumnName="id")
      */
     protected $proxy;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Countries")
+     * @ORM\JoinColumn(name="country", referencedColumnName="country_code")
+     */
+    protected $country;
 
     public function __construct()
     {
@@ -371,5 +378,29 @@ class Accounts
     public function getPicture()
     {
         return $this->picture;
+    }
+
+
+    /**
+     * Set country
+     *
+     * @param \AppBundle\Entity\Countries $country
+     * @return Accounts
+     */
+    public function setCountry(\AppBundle\Entity\Countries $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \AppBundle\Entity\Countries
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

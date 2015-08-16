@@ -570,7 +570,7 @@ class Instagram
         $file = __DIR__ . "/Casper/auth.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
         shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . "= --proxy-type=socks5");
-        $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . "= --proxy-type=socks5");
+        $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
         $output = trim($output);
         $this->debug($token['client']);
         $this->debug($output);

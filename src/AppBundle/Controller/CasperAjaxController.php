@@ -92,7 +92,7 @@ class CasperAjaxController extends Controller
             $command = new AuthCheckCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array(
-                'proxy'=>$account->getProxy(),
+                'proxy'=>$account->getProxy()->getIp() . ':' . $account->getProxy()->getPort(),
                 'username'=>$account->getInstLogin(),
                 'password' =>$account->getInstPass()
             ));

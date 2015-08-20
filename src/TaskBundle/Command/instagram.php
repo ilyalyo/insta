@@ -29,7 +29,7 @@ class Instagram
         while ($row = mysql_fetch_array($qr_result))
             $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token'], 'id' => $row['id']);
         $this->TOKEN_INDEX = 0;
-
+        $this->get_task();
         for($i = 0; $i<7;$i++) {
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
@@ -619,6 +619,7 @@ class Instagram
                 return null;
             }
             if($json->meta->code == 400){
+                $this->debug('code 400 - httpPost');
                 if($json->meta->error_type == '"APINotAllowedError')
                     return null;
                 if(!$this->update_token())
@@ -648,6 +649,7 @@ class Instagram
                 return null;
             }
             if($json->meta->code == 400){
+                $this->debug('code 400 -httpGet');
                 if($json->meta->error_type == '"APINotAllowedError')
                     return null;
                 if(!$this->update_token())

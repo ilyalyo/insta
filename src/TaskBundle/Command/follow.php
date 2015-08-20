@@ -307,7 +307,6 @@ include_once("instagram.php");
 $TASK_ID = $_SERVER['argv'][1];
 
 $inst = new Instagram($TASK_ID);
-$task = $inst->get_task();
 
 try{
 //0 - following by username

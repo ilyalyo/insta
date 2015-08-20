@@ -5,6 +5,7 @@ class Instagram
     private $TASK_ID;
     // массив токенов вида : [client,token,id]
     public $TOKEN_ARRAY;
+    public $TASK_INFO;
     public $TAGS;
     public $TAGS_ARRAY;
     public $OPTIONS;
@@ -528,7 +529,7 @@ class Instagram
         if($this->OPTIONS['optionAddLike'])
             $result['count'] = $result['count'] / 2;
 
-        return $result;
+        $this->TASK_INFO = $result;
     }
 
     private function check_token($account_id, $token){

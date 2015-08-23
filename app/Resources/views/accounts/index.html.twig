@@ -230,6 +230,12 @@
                                         {% elseif (account.tasks | last).status == 0 %}
                                             Парсинг списка {{ (account.tasks | last).parsingStatus / (account.tasks | last).count * 100 }}%
                                         {% endif %}
+                                            {% if (account.tasks | last).errorId  %}
+                                                <a data-container="body" data-toggle="popover" data-placement="right" data-content="{{ (account.tasks | last).errorId.message }}">
+                                                    <span class="glyphicon glyphicon-exclamation-sign" style="color: crimson;cursor: pointer" ></span>
+                                                </a>
+                                            {% endif %}
+
                                         </p>
                                     </div>
                                     <div class="col-xs-4">

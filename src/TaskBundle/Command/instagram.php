@@ -560,6 +560,12 @@ class Instagram
         return $row['status'];
     }
 
+    public function stop_task_and_set_error_status($status){
+        $id = $this->TASK_ID;
+        $qr_result = mysql_query("UPDATE tasks SET status=4, error_id=$status WHERE id=$id")
+        or die(mysql_error());
+    }
+
     public function set_task_status($status){
         $id = $this->TASK_ID;
         $qr_result = mysql_query("UPDATE tasks SET status=$status WHERE id=$id")
@@ -582,8 +588,18 @@ class Instagram
     public function update_token(){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
+        $file0 = __DIR__ . "/Casper/check_auth.js";
         $file = __DIR__ . "/Casper/auth.js";
         $file2 = __DIR__ . "/Casper/get_token.js";
+
+        //проверяем не скинул ли инст пароль
+        $output0 = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+        if(strpos($output0, '0')){
+            $this->stop_task_and_set_error_status(2);
+            return false;
+        }
+
+
         shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . "= --proxy-type=socks5");
         $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
         $output = trim($output);
@@ -599,7 +615,7 @@ class Instagram
         }
         return false;
     }
-    
+
     function httpPost($url, $params){
             $output = $this->httpPostReal($url, $params);
             $this->debug($output);
@@ -620,11 +636,18 @@ class Instagram
                 return null;
             }
             if($json->meta->code == 400){
-                $this->debug('code 400 - httpPost');
-                if($json->meta->error_type == '"APINotAllowedError')
+                $this->debug('code 400 - httpPost: ' . $json->meta->error_message);
+                if($json->meta->error_type == 'APINotAllowedError')
                     return null;
-                if(!$this->update_token())
-                    $this->change_token();
+                if(strpos($json->meta->error_message, 'The access_token provided is invalid')){
+                    if(!$this->update_token())
+                        $this->change_token();
+                    return null;
+                }
+                if(strpos($json->meta->error_message, 'following the max limit of accounts'))
+                    $this->stop_task_and_set_error_status(1);
+
+                $this->change_token();
                 return null;
             }
             $this->debug('un tracked error');
@@ -640,7 +663,7 @@ class Instagram
                 return null;
             }
             if($output === FALSE){
-                $this->debug('json is false -httpGet');
+                $this->debug('json is false - httpGet');
                 return null;
             }
             if($json->meta->code == 200)
@@ -650,11 +673,16 @@ class Instagram
                 return null;
             }
             if($json->meta->code == 400){
-                $this->debug('code 400 -httpGet');
-                if($json->meta->error_type == '"APINotAllowedError')
+                $this->debug('code 400 - httpGet: ' . $json->meta->error_message);
+                if($json->meta->error_type == 'APINotAllowedError')
                     return null;
-                if(!$this->update_token())
-                    $this->change_token();
+                if(strpos($json->meta->error_message, 'The access_token provided is invalid')){
+                    if(!$this->update_token())
+                        $this->change_token();
+                    return null;
+                }
+
+                $this->change_token();
                 return null;
             }
             $this->debug('un tracked error');

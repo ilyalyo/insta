@@ -71,6 +71,12 @@ class Tasks
     protected $tmp_tags;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TaskBundle\Entity\ErrorsInstagram")
+     * @ORM\JoinColumn(name="error_id", referencedColumnName="id")
+     */
+    protected $error_id;
+
+    /**
      * @ORM\Column(type="integer")
      */
     protected $status;
@@ -743,5 +749,28 @@ class Tasks
     public function getClosedAt()
     {
         return $this->closedAt;
+    }
+
+    /**
+     * Set error_id
+     *
+     * @param \TaskBundle\Entity\Errors_Instagram $errorId
+     * @return Tasks
+     */
+    public function setErrorId(\TaskBundle\Entity\Errors_Instagram $errorId = null)
+    {
+        $this->error_id = $errorId;
+
+        return $this;
+    }
+
+    /**
+     * Get error_id
+     *
+     * @return \TaskBundle\Entity\Errors_Instagram 
+     */
+    public function getErrorId()
+    {
+        return $this->error_id;
     }
 }

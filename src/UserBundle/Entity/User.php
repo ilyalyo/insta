@@ -26,7 +26,7 @@ class User extends BaseUser
         $this->timezone = 'Europe/Moscow';
         $this->createdAt = new \DateTime();
         $date = new \DateTime();
-        $date->add(new \DateInterval('P3D'));
+        //$date->add(new \DateInterval('P3D'));
         $this->validUntil = $date;
         $this->isPro = 0;
         $this->unRead = 0;

@@ -754,10 +754,10 @@ class Tasks
     /**
      * Set error_id
      *
-     * @param \TaskBundle\Entity\Errors_Instagram $errorId
+     * @param \TaskBundle\Entity\ErrorsInstagram $errorId
      * @return Tasks
      */
-    public function setErrorId(\TaskBundle\Entity\Errors_Instagram $errorId = null)
+    public function setErrorId(\TaskBundle\Entity\ErrorsInstagram $errorId = null)
     {
         $this->error_id = $errorId;
 
@@ -767,7 +767,7 @@ class Tasks
     /**
      * Get error_id
      *
-     * @return \TaskBundle\Entity\Errors_Instagram 
+     * @return \TaskBundle\Entity\ErrorsInstagram 
      */
     public function getErrorId()
     {

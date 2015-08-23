@@ -183,6 +183,7 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $tags = explode('#', $tags_str);
+        $tags = array_map('rawurlencode', $tags);
         $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
         $block = $count / 10;
 
@@ -228,6 +229,7 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $tags = explode('#', $tags_str);
+        $tags = array_map('rawurlencode', $tags);
         $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
         $block = $count / 10;
 

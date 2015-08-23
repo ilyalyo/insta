@@ -6,7 +6,7 @@ function follow_by_username(){
     global $task;
     var_dump('start searching');
     $users = $inst->get_followers($task['tags'], $task['count'] );
-    if ($inst->get_task_status() == 3){
+    if (in_array($inst->get_task_status(),[3,4])){
         exit;
     }
     $inst->set_task_status(2);
@@ -42,7 +42,7 @@ function follow_by_username(){
             }
         }
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){
@@ -64,7 +64,7 @@ function follow_by_tags(){
     else
         $users = $inst->get_media_by_tags($task['tags'],$task['count']);
    // $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
-    if ($inst->get_task_status() == 3)
+    if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
@@ -92,7 +92,7 @@ function follow_by_tags(){
             }
         }
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){
@@ -111,7 +111,7 @@ function follow_by_list(){
     global $task;
 
     $users = $inst->get_followers_by_list();
-    if ($inst->get_task_status() == 3)
+    if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
@@ -139,7 +139,7 @@ function follow_by_list(){
             }
         }
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){
@@ -157,7 +157,7 @@ function follow_by_geo(){
     global $task;
 
     $users = $inst->get_media_by_geo($task['tags'],$task['count']);
-    if ($inst->get_task_status() == 3)
+    if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
@@ -175,7 +175,7 @@ function follow_by_geo(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){
@@ -197,7 +197,7 @@ function liking_by_tags(){
     else
         $users = $inst->get_media_by_tags($task['tags'],$task['count']);
 
-    if ($inst->get_task_status() == 3)
+    if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
@@ -215,7 +215,7 @@ function liking_by_tags(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){
@@ -234,7 +234,7 @@ function liking_by_geo(){
     global $task;
 
     $users = $inst->get_media_by_geo($task['tags'],$task['count']);
-    if ($inst->get_task_status() == 3)
+    if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
@@ -252,7 +252,7 @@ function liking_by_geo(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){
@@ -269,7 +269,7 @@ function unfollowing(){
     global $task;
     var_dump('start unfollowing');
     $users = $inst->get_followers_revers($task['count'] );
-    if ($inst->get_task_status() == 3)
+    if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
@@ -287,7 +287,7 @@ function unfollowing(){
 
         sleep(sleepTime($task['speed']));
 
-        if ($inst->get_task_status() == 3){
+        if (in_array($inst->get_task_status(),[3,4])){
             break;
         }
         if($errors > 8){

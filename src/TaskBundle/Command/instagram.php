@@ -514,7 +514,7 @@ class Instagram
             $tmp = array_map('strtolower', $tmp);
         }
         else
-            $tmp = "";
+            $tmp = null;
         $this->OPTIONS['optionStopPhrases'] = $tmp;
         $this->OPTIONS['optionFollowClosed'] = $row['optionFollowClosed'];
         $this->OPTIONS['optionHasAvatar'] = $row['optionHasAvatar'];

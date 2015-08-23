@@ -419,7 +419,7 @@ class Instagram
             var_dump($response->data->bio );
             if(count($this->OPTIONS['optionStopPhrases']) > 0){
                 foreach($this->OPTIONS['optionStopPhrases'] as $word)
-                    if(strpos(strtolower($response->data->bio), $word ))
+                    if(strpos(strtolower($response->data->bio), $word ) !== FALSE )
                         return false;
             }
 
@@ -596,7 +596,7 @@ class Instagram
 
         //проверяем не скинул ли инст пароль
         $output0 = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
-        if(strpos($output0, '0')){
+        if(strpos($output0, '0') !== FALSE ){
             $this->stop_task_and_set_error_status(2);
             return false;
         }
@@ -607,7 +607,7 @@ class Instagram
         $output = trim($output);
         $this->debug($token['client']);
         $this->debug($output);
-        if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== false && $output != $token['token']){
+        if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== FALSE && $output != $token['token']){
             $this->debug('success update');
             $this->TOKEN_ARRAY[$index]['token']=$output;
             $token_id=$token['id'];
@@ -641,12 +641,12 @@ class Instagram
                 $this->debug('code 400 - httpPost: ' . $json->meta->error_message);
                 if($json->meta->error_type == 'APINotAllowedError')
                     return null;
-                if(strpos($json->meta->error_message, 'The access_token provided is invalid')){
+                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){
                     if(!$this->update_token())
                         $this->change_token();
                     return null;
                 }
-                if(strpos($json->meta->error_message, 'following the max limit of accounts'))
+                if(strpos($json->meta->error_message, 'following the max limit of accounts') !== FALSE)
                     $this->stop_task_and_set_error_status(1);
 
                 $this->change_token();
@@ -678,7 +678,7 @@ class Instagram
                 $this->debug('code 400 - httpGet: ' . $json->meta->error_message);
                 if($json->meta->error_type == 'APINotAllowedError')
                     return null;
-                if(strpos($json->meta->error_message, 'The access_token provided is invalid')){
+                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){
                     if(!$this->update_token())
                         $this->change_token();
                     return null;

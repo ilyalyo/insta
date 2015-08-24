@@ -133,7 +133,7 @@ class Instagram
         $error_counter = 0;
         $chunk_size = 50;
         $block = $count / 10;
-        $about_count = $count / $chunk_size;
+        $about_count = ceil($count / $chunk_size);
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $account_id = $this->ACCOUNT_ID_INST;
@@ -146,7 +146,7 @@ class Instagram
             return null;
         }
 
-        $all = $followers / $chunk_size;
+        $all = floor($followers / $chunk_size);
 
         do {
             $url = "https://api.instagram.com/v1/users/$account_id/follows?count=$chunk_size" . "&cursor=$next" . "&access_token=$token" ;
@@ -154,6 +154,7 @@ class Instagram
 
             if($response != null){
                 $counter++;
+                $error_counter = 0;
                 $data = $response->data;
                 $next = $response->pagination->next_cursor;
                 $this->debug($next);

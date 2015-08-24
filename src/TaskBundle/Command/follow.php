@@ -22,17 +22,9 @@ function follow_by_username(){
         else
             $errors++;
 
-        if($task['optionAddLike'] == 1) {
-            $media = $inst->get_last_user_media($user['user_id']);
-            if (isset($media)) {
-                $result = $inst->like($media->data[0]->id);
-                if (isset($result) && $result->meta->code == 200)
-                    $inst->add_row($media->data[0]->link);
-            }
-        }
         sleep(sleepTime($task['speed']));
 
-        if($task['optionAddLike']) {
+        if($task['optionAddLike'] == 1) {
             $media = $inst->get_last_user_media($user['user_id']);
             if (isset($media)) {
                 $result = $inst->like($media->data[0]->id);

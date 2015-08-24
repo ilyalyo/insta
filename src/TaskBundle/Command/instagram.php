@@ -79,13 +79,21 @@ class Instagram
 
     // получаем подписчиков указанного пользователя
     public function get_followers($username, $count){
+        $this->debug('get_followers');
+
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
-
+        $error_counter = 0;
         $url = "https://api.instagram.com/v1/users/search?q=$username" . "&access_token=$token";
 
         // находим пользователя, подписчиков которого нужно спарсить
         $response = $this->httpGet($url);
+
+        if($response == null){
+            $this->stop_task_and_set_error_status(3);
+            return null;
+        }
+
         $user_id = $response->data[0]->id;
 
         // вычисляем количество юзеров, после нахождения которого надо будет обновить статус парсинга( каждые 10%)
@@ -95,23 +103,33 @@ class Instagram
         do {
             // на каждом шаге получаем новый блок подписчиков
             $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" .  "cursor=$next" . "&access_token=$token";
-            $response = ($this->httpGet($url));
+            $response = $this->httpGet($url);
 
-            $data = $response->data;
-            $next = $response->pagination->next_cursor;
-            $this->debug($next);
-            foreach ($data as $d) {
-                if ($count - 1 < count($result))
-                    return $result;
+            if($response != null) {
+                $data = $response->data;
+                $next = $response->pagination->next_cursor;
+                $this->debug($next);
+                foreach ($data as $d) {
+                    if ($count - 1 < count($result))
+                        return $result;
 
-                if ($this->checkUserOptions($d->id, $token, $d->username)) {
-                    $user['username'] = $d->username;
-                    $user['user_id'] = $d->id;
-                    $result[] = $user;
-                    // каждые 10% обновляем парсинг статус в базе
-                    $p_count = count($result);
-                    if($p_count % $block == 0)
-                        $this->set_parsing_status($p_count);
+                    if ($this->checkUserOptions($d->id, $token, $d->username)) {
+                        $user['username'] = $d->username;
+                        $user['user_id'] = $d->id;
+                        $result[] = $user;
+                        // каждые 10% обновляем парсинг статус в базе
+                        $p_count = count($result);
+                        if ($p_count % $block == 0)
+                            $this->set_parsing_status($p_count);
+                    }
+                }
+            }
+            else
+            {
+                if($error_counter++ > 10){
+                    // $this->stop_task_and_set_error_status(3);
+                    $this->debug('parsed: ' . count($result));
+                    return array_slice($result, 0,  $count);
                 }
             }
             // работаем до тех пор пока у пользователя есть подписчики и количество спарсенных подписчиков меньше необходимого
@@ -127,6 +145,7 @@ class Instagram
     // с этого момента начинаем запоминать подписчиков и дойдя до конца округляем их количество до заданного
     // и возвращаем массив с этими пользователями
     public function get_followers_revers($count){
+        $this->debug('get_followers_revers');
         $next="";
         $result = array();
         $counter = 0;
@@ -172,8 +191,9 @@ class Instagram
             else
             {
                 if($error_counter++ > 10){
-                    $this->stop_task_and_set_error_status(3);
-                    return null;
+                   // $this->stop_task_and_set_error_status(3);
+                    $this->debug('parsed: ' . count($result));
+                    return array_slice($result, 0,  $count);
                 }
             }
         } while(isset($next));
@@ -183,6 +203,7 @@ class Instagram
 
     // вытаскиваем количество подписчиков
     function  get_followed_by($id){
+        $this->debug('get_followed_by');
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
@@ -197,6 +218,8 @@ class Instagram
     // тк тэгов несколько, набираем по каждому их них равно количество пользователей( примерно)
     public function get_followers_by_tags($tags_str, $count)
     {
+        $this->debug('get_followers_by_tags');
+
         $next="";
         $result=array();
         $index = $this->TOKEN_INDEX;
@@ -243,6 +266,7 @@ class Instagram
         // тк тэгов несколько, набираем по каждому их них равно количество пользователей( примерно)
     public function get_media_by_tags($tags_str, $count)
     {
+        $this->debug('get_media_by_tags');
         $next="";
         $result=array();
         $index = $this->TOKEN_INDEX;
@@ -301,6 +325,8 @@ class Instagram
     // начиная перебирать все места получаем недавние медиа загруженные с привязкой к ним
     public function get_media_by_geo($lat_lng_radius_str, $count)
     {
+        $this->debug('get_media_by_geo');
+
         if(count($this->OPTIONS['optionGeo']) > 0)
             $this->TAGS_ARRAY = explode('#', $this->TAGS);
 
@@ -310,7 +336,6 @@ class Instagram
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
         $lat_lng_radius = explode(';', $lat_lng_radius_str);
-        var_dump('start get media');
 
         $locations_url = "https://api.instagram.com/v1/locations/search?lat=" . $lat_lng_radius[0] . "&lng=" . $lat_lng_radius[1] . "&DISTANCE=" . $lat_lng_radius[2] . "&access_token=$token";
         $response = $this->httpGet($locations_url);
@@ -353,6 +378,7 @@ class Instagram
     //исключаем из списка загруженного пользователем
     // всех юзеров, которые лиоб не существуют, либо не подходят под выбранные опции(см. $this->checkUserOptions)
     public function get_followers_by_list(){
+        $this->debug('get_followers_by_list');
         $result = [];
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];

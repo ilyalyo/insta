@@ -51,7 +51,8 @@ class Accounts
 
     public function __construct()
     {
-       // $this->$tasks = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        // $this->$tasks = new ArrayCollection();
     }
 
     /**
@@ -78,6 +79,11 @@ class Accounts
      * @ORM\Column(type="string", length=100)
      */
     protected $instPass;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $createdAt;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
@@ -402,5 +408,28 @@ class Accounts
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Accounts
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

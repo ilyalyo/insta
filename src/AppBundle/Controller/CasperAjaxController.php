@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Command\AuthCheckCommand;
+use AppBundle\Entity\AccountsLog;
 use Symfony\Component\ExpressionLanguage\Token;
 use Symfony\Component\Form\FormError;
 use AppBundle\Command\AuthCommand;
@@ -34,6 +35,7 @@ class CasperAjaxController extends Controller
 
         $account = new Accounts();
         $user = $this->getUser();
+        $account->setUser($user);
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder($account)
@@ -101,6 +103,10 @@ class CasperAjaxController extends Controller
             $output2=  new BufferedOutput();
             $command->run($input,$output1);
             if($output1->fetch() != 1 ) {
+                $accountsLog = new AccountsLog($account);
+                $accountsLog->setTry(1);
+                $em->persist($accountsLog);
+                $em->flush();
                 $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
                 return $this->render('accounts/login_password.html.twig',
                     array('form' => $form->createView()));
@@ -109,12 +115,15 @@ class CasperAjaxController extends Controller
             $command->run($input,$output2);
 
             if($output2->fetch() != 1) {
+                $accountsLog = new AccountsLog($account);
+                $accountsLog->setTry(2);
+                $em->persist($accountsLog);
+                $em->flush();
                 $form->get('instLogin')->addError(new FormError('Проблема авторизации обратитесь в тех. поддержку'));
                 return $this->render('accounts/login_password.html.twig',
                     array('form' => $form->createView()));
             }
 
-            $account->setUser($user);
             $em->persist($account);
 
             $em->flush();
@@ -153,7 +162,7 @@ class CasperAjaxController extends Controller
                 return $this->redirectToRoute('accounts');
 
             $this->addProvider($account,'easytogo');
-            $this->addProvider($account,'stapico ');
+            $this->addProvider($account,'stapico');
             $this->addProvider($account,'collecto');
             $this->addProvider($account,'test-socialhammer-app');
 

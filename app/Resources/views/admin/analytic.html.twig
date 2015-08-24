@@ -14,7 +14,7 @@
        $(function () {
             $('#container').highcharts({
                 title: {
-                    text: 'Кумулятивный график регистраций'
+                    text: 'Кумулятивный график всего на свете'
                 },
                 xAxis: {
                     type: 'datetime',
@@ -42,7 +42,21 @@
                         },
                     name: 'Регистрации',
                     data: [{{ usersCount | join(', ') }}]
-                }]
+                },
+                    {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                        name: 'Аккаунты',
+                        data: [{{ usersCount_a | join(', ') }}]
+                    },
+                    {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                        name: 'Неудачные опытки добавить аккаунт',
+                        data: [{{ usersCount_f | join(', ') }}]
+                    }]
             });
         });
     </script>

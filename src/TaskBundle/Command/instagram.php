@@ -128,36 +128,53 @@ class Instagram
     // и возвращаем массив с этими пользователями
     public function get_followers_revers($count){
         $next="";
-        $result=array();
-        $counter=0;
+        $result = array();
+        $counter = 0;
+        $error_counter = 0;
+        $chunk_size = 50;
         $block = $count / 10;
-        $about_count=$count/50;
+        $about_count = $count / $chunk_size;
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
         $account_id = $this->ACCOUNT_ID_INST;
 
         // количество подписчиков
-        $all = $this->get_followed_by($account_id)/50;
+        $followers = $this->get_followed_by($account_id);
+
+        if($followers == null){
+            $this->stop_task_and_set_error_status(3);
+            return null;
+        }
+
+        $all = $followers / $chunk_size;
 
         do {
-            $counter++;
-            $url = "https://api.instagram.com/v1/users/$account_id/follows?count=50" . "&cursor=$next" . "&access_token=$token" ;
-            $response = ($this->httpGet($url));
+            $url = "https://api.instagram.com/v1/users/$account_id/follows?count=$chunk_size" . "&cursor=$next" . "&access_token=$token" ;
+            $response = $this->httpGet($url);
 
-            $data = $response->data;
-            $next = $response->pagination->next_cursor;
-            $this->debug($next);
-            if($all-$counter<=$about_count)
-                foreach ($data as $d) {
-                    $user['username'] = $d->username;
-                    $user['user_id'] = $d->id;
-                    $result[] = $user;
-                    $p_count = count($result);
-                    if($p_count % $block == 0)
-                        $this->set_parsing_status($p_count);
+            if($response != null){
+                $counter++;
+                $data = $response->data;
+                $next = $response->pagination->next_cursor;
+                $this->debug($next);
+                if($all - $counter <= $about_count)
+                    foreach ($data as $d) {
+                        $user['username'] = $d->username;
+                        $user['user_id'] = $d->id;
+                        $result[] = $user;
+                        $p_count = count($result);
+                        if($p_count % $block == 0)
+                            $this->set_parsing_status($p_count);
+                    }
+            }
+            else
+            {
+                if($error_counter++ > 10){
+                    $this->stop_task_and_set_error_status(3);
+                    return null;
                 }
-
-        }while(isset($next));
+            }
+        } while(isset($next));
         $this->debug('parsed: ' . count($result));
         return array_slice($result, 0,  $count);
     }
@@ -169,6 +186,7 @@ class Instagram
         $url = "https://api.instagram.com/v1/users/$id?access_token=$token";
 
         $response = $this->httpGet($url);
+
         return $response->data->counts->follows;
     }
 

@@ -641,6 +641,9 @@ class Instagram
                 $this->debug('code 400 - httpPost: ' . $json->meta->error_message);
                 if($json->meta->error_type == 'APINotAllowedError')
                     return null;
+                if(strpos($json->meta->error_message, 'invalid media id') !== FALSE ){
+                    return null;
+                }
                 if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){
                     if(!$this->update_token())
                         $this->change_token();
@@ -678,6 +681,9 @@ class Instagram
                 $this->debug('code 400 - httpGet: ' . $json->meta->error_message);
                 if($json->meta->error_type == 'APINotAllowedError')
                     return null;
+                if(strpos($json->meta->error_message, 'invalid media id') !== FALSE ){
+                    return null;
+                }
                 if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){
                     if(!$this->update_token())
                         $this->change_token();

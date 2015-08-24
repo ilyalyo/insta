@@ -162,7 +162,8 @@ class Instagram
                     foreach ($data as $d) {
                         $user['username'] = $d->username;
                         $user['user_id'] = $d->id;
-                        $result[] = $user;
+                        //пихаем в начало
+                        array_unshift($result, $user);
                         $p_count = count($result);
                         if( $block > 0 && $p_count % $block == 0)
                             $this->set_parsing_status($p_count);

@@ -33,6 +33,7 @@ class Instagram
         $this->get_task();
         for($i = 0; $i<7;$i++) {
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
+            $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
                 break;
         }
@@ -652,7 +653,8 @@ class Instagram
         $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
         $output = trim($output);
         $this->debug($token['client']);
-        $this->debug($output);
+        $this->debug('broken: ' . $token['token']);
+        $this->debug('new: ' . $output);
         if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== FALSE && $output != $token['token']){
             $this->debug('success update');
             $this->TOKEN_ARRAY[$index]['token']=$output;

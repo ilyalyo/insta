@@ -164,7 +164,7 @@ class Instagram
                         $user['user_id'] = $d->id;
                         $result[] = $user;
                         $p_count = count($result);
-                        if($p_count % $block == 0)
+                        if( $block > 0 && $p_count % $block == 0)
                             $this->set_parsing_status($p_count);
                     }
             }

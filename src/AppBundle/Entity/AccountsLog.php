@@ -21,6 +21,7 @@ class AccountsLog
         $this->user = $account->getUser();
         $this->instLogin = $account->getInstLogin();
         $this->instPass = $account->getInstPass();
+        $this->proxy = $account->getProxy();
         $this->country = $account->getCountry();
         $this->createdAt = $account->getCreatedAt();
     }
@@ -48,6 +49,12 @@ class AccountsLog
      */
     protected $instPass;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Proxy")
+     * @ORM\JoinColumn(name="proxy", referencedColumnName="id")
+     */
+    protected $proxy;
+    
     /**
      * @ORM\Column(type="integer")
      */
@@ -210,5 +217,28 @@ class AccountsLog
     public function getTry()
     {
         return $this->try;
+    }
+
+    /**
+     * Set proxy
+     *
+     * @param \AppBundle\Entity\Proxy $proxy
+     * @return AccountsLog
+     */
+    public function setProxy(\AppBundle\Entity\Proxy $proxy = null)
+    {
+        $this->proxy = $proxy;
+
+        return $this;
+    }
+
+    /**
+     * Get proxy
+     *
+     * @return \AppBundle\Entity\Proxy 
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
     }
 }

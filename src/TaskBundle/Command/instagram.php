@@ -650,19 +650,22 @@ class Instagram
         $file2 = __DIR__ . "/Casper/get_token.js";
 
         //проверяем не скинул ли инст пароль
-        $output0 = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
-        if(strpos($output0, '0') !== FALSE ){
+        $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+        if(strpos($output, '0') !== FALSE ){
             $this->stop_task_and_set_error_status(2);
             return false;
         }
 
+        $output = shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+        $this->debug('auth output: ' . $output);
 
-        shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
         $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
         $output = trim($output);
+
         $this->debug($token['client']);
         $this->debug('broken: ' . $token['token']);
         $this->debug('new: ' . $output);
+
         if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== FALSE && $output != $token['token']){
             $this->debug('success update');
             $this->TOKEN_ARRAY[$index]['token']=$output;

@@ -97,6 +97,14 @@ class Instagram
 
         $user_id = $response->data[0]->id;
 
+        $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
+        $response = $this->httpGet($url);
+
+        if($response == null){
+            $this->stop_task_and_set_error_status(4);
+            return null;
+        }
+
         // вычисляем количество юзеров, после нахождения которого надо будет обновить статус парсинга( каждые 10%)
         $block = $count / 10;
         $next = "";
@@ -730,6 +738,9 @@ class Instagram
                 if($json->meta->error_type == 'APINotAllowedError')
                     return null;
                 if(strpos($json->meta->error_message, 'invalid media id') !== FALSE ){
+                    return null;
+                }
+                if(strpos($json->meta->error_message, 'you cannot view this resource') !== FALSE ){
                     return null;
                 }
                 if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){

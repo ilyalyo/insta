@@ -3,6 +3,7 @@ class Instagram
 {
     public $PROXY;
     private $TASK_ID;
+    private $TASK_STATUS;
     // массив токенов вида : [client,token,id]
     public $TOKEN_ARRAY;
     public $TASK_INFO;
@@ -21,6 +22,7 @@ class Instagram
     // находим рабочий токен
     public function __construct ($task_id){
         $this->TASK_ID = $task_id;
+        $this->TASK_STATUS = null;
         $this->connect();
 
         $qr_result = mysql_query("
@@ -618,9 +620,12 @@ class Instagram
     }
 
     public function stop_task_and_set_error_status($status){
-        $id = $this->TASK_ID;
-        $qr_result = mysql_query("UPDATE tasks SET status=4, error_id=$status WHERE id=$id")
-        or die(mysql_error());
+        if($this->TASK_STATUS == null) {
+            $this->TASK_STATUS = $status;
+            $id = $this->TASK_ID;
+            $qr_result = mysql_query("UPDATE tasks SET status=4, error_id=$status WHERE id=$id")
+            or die(mysql_error());
+        }
     }
 
     public function set_task_status($status){

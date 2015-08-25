@@ -50,4 +50,61 @@ class AnalyticController extends Controller
             ]
         );
     }
+
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/admin/tasks-analytic", name="admin_analytic_tasks")
+     */
+    public function tasksAnalyticAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("
+SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM tasks t
+WHERE status = 4 AND error_id is null
+GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y')
+ORDER BY 2 DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u) {
+            $tasks_failed[] = '[' . $u['date']*1000   . ',' . $u['sum'] . ']';
+        }
+        $statement = $connection->prepare("
+SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM tasks t
+WHERE status = 3
+GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y')
+ORDER BY 2 DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u) {
+            $tasks_stopped[] = '[' . $u['date']*1000   . ',' . $u['sum'] . ']';
+        }
+        $statement = $connection->prepare("
+SELECT count(*) sum,UNIX_TIMESTAMP(sub.sdate) as date FROM
+(
+SELECT count(t.id) as actions, t.count, t.createdAt as sdate
+FROM tasks t
+LEFT JOIN
+actions a
+ON t.id =a.task_id
+WHERE status = 1
+GROUP BY  t.id
+HAVING actions >= t.count
+) as sub
+GROUP BY  DATE_FORMAT(sub.sdate ,'%d-%m-%y')
+ORDER BY UNIX_TIMESTAMP(sub.sdate )  DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u) {
+            $tasks_done[] = '[' . $u['date']*1000   . ',' . $u['sum'] . ']';
+        }
+        return $this->render(
+            'admin/task_analytic.html.twig',
+            [
+                'tasks_failed' => $tasks_failed,
+                'tasks_stopped' => $tasks_stopped,
+                'tasks_done' => $tasks_done,
+            ]
+        );
+    }
 }

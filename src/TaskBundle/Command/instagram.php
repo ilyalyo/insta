@@ -193,7 +193,7 @@ class Instagram
             {
                 if($error_counter++ > 10){
                    // $this->stop_task_and_set_error_status(3);
-                    $this->debug('parsed: ' . count($result));
+                    $this->debug('parsed with errors: ' . count($result));
                     return array_slice($result, 0,  $count);
                 }
             }

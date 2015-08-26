@@ -21,7 +21,12 @@ class AnalyticController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('UserBundle:User')->findAll();
         $accounts = $em->getRepository('AppBundle:Accounts')->findAll();
-        $failed_accounts = $em->getRepository('AppBundle:AccountsLog')->findAll();
+        $failed_accounts = $em->createQuery(
+            'SELECT a
+    FROM AppBundle:AccountsLog a
+    GROUP BY a.instLogin'
+        )->getResult();
+        //$failed_accounts = $em->getRepository('AppBundle:AccountsLog')->findAll();
         $index = 0;
         foreach ($users as $u) {
             $userDates[] = $u->getCreatedAt();

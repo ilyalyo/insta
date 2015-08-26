@@ -8,9 +8,10 @@
         <div class="col-md-10 col-md-offset-1">
             <h1>Аналитика</h1>
             <div id="container" style="padding-top: 30px"></div>
+            <div id="container_proxy" style="padding-top: 30px"></div>
         </div>
     </div>
-    <script>
+        <script>
        $(function () {
             $('#container').highcharts({
                 title: {
@@ -58,6 +59,42 @@
                         data: [{{ tasks_done | join(', ') }}]
                     }]
             });
+
+           $('#container_proxy').highcharts({
+               title: {
+                   text: 'Нагрузка на прокси за неделю'
+               },
+               xAxis: {
+                   type: 'datetime',
+                   dateTimeLabelFormats: { // don't display the dummy year
+                       month: '%e. %b',
+                       year: '%b'
+                   },
+                   title: {
+                       text: 'Date'
+                   }
+               },
+               chart: {
+                   type: 'spline',
+                   zoomType: 'x',
+               },
+               plotOptions: {
+                   series: {
+                       cursor: 'Dot',
+                   },
+               },
+               series: [
+                   {% for k,p in proxy %}
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name:  '{{ k }}',
+                       data: [{{ p | join(', ') }}]
+                   },
+                   {% endfor %}
+               ]
+           });
         });
     </script>
 {% endblock %}

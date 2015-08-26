@@ -98,12 +98,46 @@ ORDER BY UNIX_TIMESTAMP(sub.sdate )  DESC");
         foreach ($results as $u) {
             $tasks_done[] = '[' . $u['date']*1000   . ',' . $u['sum'] . ']';
         }
+        $statement = $connection->prepare("
+SELECT sub.proxy,SUM(sub.actions) sum,UNIX_TIMESTAMP(sub.sdate) as date
+FROM
+(
+SELECT ac.proxy,count(t.id) as actions,t.createdAt as sdate
+FROM tasks t
+LEFT JOIN
+actions a
+ON t.id =a.task_id
+INNER JOIN
+accounts ac
+ON t.account_id =ac.id
+WHERE t.createdAt > NOW() - INTERVAL 7 DAY
+GROUP BY  t.id
+) as sub
+GROUP BY  DATE_FORMAT(sub.sdate ,'%d-%m-%y'),sub.proxy
+ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
+        $statement->execute();
+        $all_proxy = $em->getRepository('AppBundle:Proxy')->findAll(['id' => 'proxy']);
+        foreach ($all_proxy as $p) {
+            $proxy[$p->getId()] = [];
+        }
+        $results = $statement->fetchAll();
+        foreach ($results as $u) {
+            foreach ($all_proxy as $p) {
+                if($u['proxy'] == $p->getId()){
+                    $proxy[$p->getId()][] = '['.  $u['date']*1000 .','. $u['sum'] . ']';
+                    //array_push($proxy[$p->getId()],'['.  $u['date']*1000 .','. $u['sum'] . ']') ;
+                    break;
+                }
+            }
+        }
+
         return $this->render(
             'admin/task_analytic.html.twig',
             [
                 'tasks_failed' => $tasks_failed,
                 'tasks_stopped' => $tasks_stopped,
                 'tasks_done' => $tasks_done,
+                'proxy' => $proxy,
             ]
         );
     }

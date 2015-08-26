@@ -45,6 +45,7 @@
                             symbol: 'circle'
                         },
                     name: 'С ошибкой',
+                    color: '#F7695E',
                     data: [{{ tasks_failed | join(', ') }}]
                 },
                     {
@@ -52,14 +53,24 @@
                             symbol: 'circle'
                         },
                         name: 'Остановленнные',
+                        color: '#434348',
                         data: [{{ tasks_stopped | join(', ') }}]
                     },
                     {
                         marker: {
                             symbol: 'circle'
                         },
-                        name: 'Выполненные & перевыпо-ые ',
+                        name: 'Выполненные & перевыполненные ',
+                        color: '#90ED7D',
                         data: [{{ tasks_done | join(', ') }}]
+                    },
+                    {
+                        marker: {
+                            symbol: 'circle'
+                        },
+                        name: 'Всего',
+                        color: '#7CB5EC',
+                        data: [{{ tasks_all | join(', ') }}]
                     }]
             });
 

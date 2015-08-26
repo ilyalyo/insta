@@ -147,10 +147,19 @@ ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
             foreach ($all_proxy as $p) {
                 if($u['proxy'] == $p->getId()){
                     $proxy[$p->getId()][] = '['.  $u['date']*1000 .','. $u['sum'] . ']';
-                    //array_push($proxy[$p->getId()],'['.  $u['date']*1000 .','. $u['sum'] . ']') ;
                     break;
                 }
             }
+        }
+
+        $statement = $connection->prepare("
+SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM tasks t
+GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y')
+ORDER BY 2 DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u) {
+            $tasks_all[] = '[' . $u['date']*1000   . ',' . $u['sum'] . ']';
         }
 
         $tasks = $em->getRepository('TaskBundle:Tasks')->findBy(['status' => 2]);
@@ -171,6 +180,7 @@ ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
                 'tasks_failed' => $tasks_failed,
                 'tasks_stopped' => $tasks_stopped,
                 'tasks_done' => $tasks_done,
+                'tasks_all' => $tasks_all,
                 'proxy' => $proxy,
                 'tasks' => count($tasks),
                 'acc_pro' =>  $acc_pro->getSingleScalarResult(),

@@ -59,19 +59,21 @@ function follow_by_tags(){
     if(count($inst->OPTIONS['optionGeo']) > 0)
         $users = $inst->get_media_by_geo($inst->OPTIONS['optionGeo'],$task['count']);
     else
-        $users = $inst->get_media_by_tags($task['tags'],$task['count']);
+        $users = $inst->get_media_by_tags($task['tags'],$task['count'] + 20);
    // $users = $inst->get_followers_by_tags($task['tags'],$task['count']);
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
     $errors = 0;
+    $success = 0;
     foreach ($users as $user)
     {
         var_dump($user);
         $result = $inst->follow($user['user_id']);
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
+            $success++;
             $inst->add_row($user['username']);
         }
         else
@@ -94,6 +96,9 @@ function follow_by_tags(){
         }
         if($errors > 8){
             $inst->set_task_status(4);
+            break;
+        }
+        if(count($success) == $task['count'] ){
             break;
         }
     }

@@ -54,6 +54,11 @@ class AccountsLog
      * @ORM\JoinColumn(name="proxy", referencedColumnName="id")
      */
     protected $proxy;
+
+    /**
+     * @ORM\Column(type="string", length=40)
+     */
+    protected $ip;
     
     /**
      * @ORM\Column(type="integer")
@@ -240,5 +245,28 @@ class AccountsLog
     public function getProxy()
     {
         return $this->proxy;
+    }
+
+    /**
+     * Set ip
+     *
+     * @param string $ip
+     * @return AccountsLog
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
+     * Get ip
+     *
+     * @return string 
+     */
+    public function getIp()
+    {
+        return $this->ip;
     }
 }

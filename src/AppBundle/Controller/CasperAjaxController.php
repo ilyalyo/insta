@@ -105,6 +105,7 @@ class CasperAjaxController extends Controller
             if($output1->fetch() != 1 ) {
                 $accountsLog = new AccountsLog($account);
                 $accountsLog->setTry(1);
+                $accountsLog->setIp($request->getClientIp());
                 $em->persist($accountsLog);
                 $em->flush();
                 $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
@@ -117,6 +118,7 @@ class CasperAjaxController extends Controller
             if($output2->fetch() != 1) {
                 $accountsLog = new AccountsLog($account);
                 $accountsLog->setTry(2);
+                $accountsLog->setIp($request->getClientIp());
                 $em->persist($accountsLog);
                 $em->flush();
                 $form->get('instLogin')->addError(new FormError('Проблема авторизации обратитесь в тех. поддержку'));

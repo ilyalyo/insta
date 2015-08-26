@@ -131,6 +131,18 @@ ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
             }
         }
 
+        $tasks = $em->getRepository('TaskBundle:Tasks')->findBy(['status' => 2]);
+        $acc_pro = $em->createQuery(
+            'SELECT COUNT(u)
+    FROM UserBundle:User u
+    WHERE u.isPro = 1 AND u.validUntil > CURRENT_TIMESTAMP()'
+        );
+        $acc_free  = $em->createQuery(
+            'SELECT COUNT(u)
+    FROM UserBundle:User u
+    WHERE u.isPro = 0 AND u.validUntil > CURRENT_TIMESTAMP()'
+        );
+
         return $this->render(
             'admin/task_analytic.html.twig',
             [
@@ -138,6 +150,9 @@ ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
                 'tasks_stopped' => $tasks_stopped,
                 'tasks_done' => $tasks_done,
                 'proxy' => $proxy,
+                'tasks' => count($tasks),
+                'acc_pro' =>  $acc_pro->getSingleScalarResult(),
+                'acc_free' => $acc_free->getSingleScalarResult(),
             ]
         );
     }

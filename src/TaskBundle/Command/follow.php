@@ -211,9 +211,10 @@ function liking_by_tags(){
         $result = $inst->like($user['resource_id']);
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
-            $success++;
             $inst->add_row($user['link']);
-        }
+            if(++$success == $task['count'] )
+                break;
+            }
         else
             $errors++;
 
@@ -224,9 +225,6 @@ function liking_by_tags(){
         }
         if($errors > 8){
             $inst->set_task_status(4);
-            break;
-        }
-        if($success == $task['count'] ){
             break;
         }
     }

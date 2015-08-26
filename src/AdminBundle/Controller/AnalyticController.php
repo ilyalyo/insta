@@ -24,7 +24,8 @@ class AnalyticController extends Controller
         $failed_accounts = $em->createQuery(
             'SELECT a
     FROM AppBundle:AccountsLog a
-    GROUP BY a.instLogin'
+    GROUP BY a.instLogin
+    ORDER BY a.createdAt'
         )->getResult();
         //$failed_accounts = $em->getRepository('AppBundle:AccountsLog')->findAll();
         $index = 0;

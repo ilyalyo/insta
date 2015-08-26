@@ -43,7 +43,7 @@ function follow_by_username(){
             $inst->set_task_status(4);
             break;
         }
-        if(count($success) == $task['count'] ){
+        if($success == $task['count'] ){
             break;
         }
     }
@@ -98,7 +98,7 @@ function follow_by_tags(){
             $inst->set_task_status(4);
             break;
         }
-        if(count($success) == $task['count'] ){
+        if($success == $task['count'] ){
             break;
         }
     }
@@ -298,7 +298,7 @@ function unfollowing(){
             $inst->set_task_status(4);
             break;
         }
-        if(count($success) == $task['count'] ){
+        if($success == $task['count'] ){
             break;
         }
     }

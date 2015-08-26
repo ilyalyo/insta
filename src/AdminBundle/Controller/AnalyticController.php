@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class AnalyticController extends Controller
 {
@@ -18,9 +19,18 @@ class AnalyticController extends Controller
      */
     public function indexAction()
     {
+        //var_dump(\DateTime::createFromFormat('Y-m-d','2015-08-25'));
+        //var_dump(new DateTime('2012-02-01'));
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('UserBundle:User')->findAll();
-        $accounts = $em->getRepository('AppBundle:Accounts')->findAll();
+        $accounts = $em->createQuery(
+            'SELECT a
+    FROM AppBundle:Accounts a
+    WHERE a.createdAt > :date
+    ORDER BY a.createdAt'
+        )->setParameter('date',   \DateTime::createFromFormat('Y-m-d H:i','2015-08-25 02:30'),\Doctrine\DBAL\Types\Type::DATETIME)
+        ->getResult();
+        //$em->getRepository('AppBundle:Accounts')->findby();
         $failed_accounts = $em->createQuery(
             'SELECT a
     FROM AppBundle:AccountsLog a
@@ -33,7 +43,13 @@ class AnalyticController extends Controller
             $userDates[] = $u->getCreatedAt();
             $usersCount[] = '[' . $u->getCreatedAt()->getTimestamp() *1000   . ',' . $index++ . ']';
         }
-        $index = 0;
+        $index = $em->createQuery(
+            'SELECT COUNT(a)
+    FROM AppBundle:Accounts a
+    WHERE a.createdAt <= :date
+    ORDER BY a.createdAt'
+        )->setParameter('date',   \DateTime::createFromFormat('Y-m-d H:i','2015-08-25 02:30'),\Doctrine\DBAL\Types\Type::DATETIME)
+            ->getSingleScalarResult();;
         foreach ($accounts as $u) {
             $userDates_a[] = $u->getCreatedAt();
             $usersCount_a[] = '[' . $u->getCreatedAt()->getTimestamp() *1000   . ',' . $index++ . ']';

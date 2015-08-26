@@ -83,7 +83,7 @@ class AnalyticController extends Controller
         $connection = $em->getConnection();
         $statement = $connection->prepare("
 SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM tasks t
-WHERE status = 4 AND error_id is null
+WHERE status = 4 AND error_id is null or error_id=3
 GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y')
 ORDER BY 2 DESC");
         $statement->execute();

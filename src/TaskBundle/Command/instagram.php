@@ -283,29 +283,33 @@ class Instagram
     public function get_media_by_tags($tags_str, $count)
     {
         $this->debug('get_media_by_tags');
-        $next="";
         $result=array();
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index]['token'];
 
+        $tags_info=[];
         $tags = explode('#', $tags_str);
         $tags = array_map('rawurlencode', $tags);
-        $part_size = round($count / count($tags), 0, PHP_ROUND_HALF_UP);
         $block = $count / 10;
 
-        foreach($tags as $index => $tag){
-            $url = "https://api.instagram.com/v1/tags/$tag/media/recent?count=50" . "&next_max_tag_id=$next" . "&access_token=$token";
-            do {
-                $response = $this->httpGet($url);
+        do{
+            $key = array_rand($tags);
+            $next = isset($tags_info[$key]) ? $tags_info[$key] : '';
+            $url = "https://api.instagram.com/v1/tags/$tags[$key]/media/recent?count=50" . "&next_max_tag_id=$next&access_token=$token";
 
-                $data = $response->data;
-                $next = $response->pagination->next_max_tag_id;
+            $response = $this->httpGet($url);
 
+            $data = $response->data;
+            $next = $response->pagination->next_max_tag_id;
+            $tags_info[$key] = $next;
+
+            if(!isset($next))
+                unset($tags[$key]);
+            if(isset($data))
                 foreach ($data as $d) {
                     //если идет сбор людей на фоловинг, и мы находим человека, которого уже добавляли в ходе поиска в массив, пропускаем его
                     if($this->searchForId($d->user->id, $result) && in_array($this->OPTIONS['type'],[0,10,20,30]))
                         continue;
-                    if(count($result) < $part_size * ($index + 1) && count($result) < $count) {
                         if ($this->checkMediaOptions($d->id, $token) && $this->checkUserOptions($d->user->id, $token, $d->user->username)) {
                             $user['username'] = $d->user->username;
                             $user['user_id'] = $d->user->id;
@@ -316,13 +320,9 @@ class Instagram
                             if ($p_count % $block == 0)
                                 $this->set_parsing_status($p_count);
                         }
-                    }
-                    else
-                        break;
                 }
-                $url = $response->pagination->next_url;
-            }while(isset($next)  && count($result) < $part_size * ($index + 1) && count($result) < $count);
-        }
+        } while(count($tags) > 0  && count($result) < $count);
+
         $this->debug('parsed: ' . count($result));
         return $result;
     }

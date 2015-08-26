@@ -113,7 +113,7 @@ class Instagram
         $result = array();
         do {
             // на каждом шаге получаем новый блок подписчиков
-            $url = "https://api.instagram.com/v1/users/$user_id/follows?" .  "cursor=$next" . "&access_token=$token";
+            $url = "https://api.instagram.com/v1/users/$user_id/followed-by?" .  "cursor=$next" . "&access_token=$token";
             $response = $this->httpGet($url);
 
             if($response != null) {

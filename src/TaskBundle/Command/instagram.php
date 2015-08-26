@@ -99,6 +99,11 @@ class Instagram
 
         $user_id = $response->data[0]->id;
 
+        if($response == null){
+            $this->stop_task_and_set_error_status(5);
+            return null;
+        }
+
         $url = "https://api.instagram.com/v1/users/$user_id?" . "access_token=$token";
         $response = $this->httpGet($url);
 
@@ -139,8 +144,8 @@ class Instagram
             {
                 if($error_counter++ > 10){
                     // $this->stop_task_and_set_error_status(3);
-                    $this->debug('parsed: ' . count($result));
-                    return array_slice($result, 0,  $count);
+                    $this->debug('parsed with errors: ' . count($result));
+                    return $result;
                 }
             }
             // работаем до тех пор пока у пользователя есть подписчики и количество спарсенных подписчиков меньше необходимого
@@ -204,12 +209,12 @@ class Instagram
                 if($error_counter++ > 10){
                    // $this->stop_task_and_set_error_status(3);
                     $this->debug('parsed with errors: ' . count($result));
-                    return array_slice($result, 0,  $count);
+                    return $result;
                 }
             }
         } while(isset($next));
         $this->debug('parsed: ' . count($result));
-        return array_slice($result, 0,  $count);
+        return $result;
     }
 
     // вытаскиваем количество подписчиков

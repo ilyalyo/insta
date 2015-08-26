@@ -5,18 +5,20 @@ function follow_by_username(){
     global $inst;
     global $task;
     var_dump('start searching');
-    $users = $inst->get_followers($task['tags'], $task['count'] );
+    $users = $inst->get_followers($task['tags'], $task['count'] + 20 );
     if (in_array($inst->get_task_status(),[3,4])){
         exit;
     }
     $inst->set_task_status(2);
     $errors = 0;
+    $success = 0;
     foreach ($users as $user)
     {
         var_dump($user);
         $result = $inst->follow($user['user_id']);
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
+            $success++;
             $inst->add_row($user['username']);
         }
         else
@@ -39,6 +41,9 @@ function follow_by_username(){
         }
         if($errors > 8){
             $inst->set_task_status(4);
+            break;
+        }
+        if(count($success) == $task['count'] ){
             break;
         }
     }
@@ -260,18 +265,20 @@ function unfollowing(){
     global $inst;
     global $task;
     var_dump('start unfollowing');
-    $users = $inst->get_followers_revers($task['count'] );
+    $users = $inst->get_followers_revers($task['count'] + 20 );
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
 
     $errors = 0;
+    $success = 0;
     foreach ($users as $user)
     {
         var_dump($user);
         $result = $inst->unfollow($user['user_id']);
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
+            $success++;
             $inst->add_row($user['username']);
         }
         else
@@ -286,8 +293,9 @@ function unfollowing(){
             $inst->set_task_status(4);
             break;
         }
-
-
+        if(count($success) == $task['count'] ){
+            break;
+        }
     }
     if ($inst->get_task_status() == 2)
         $inst->set_task_status(1);

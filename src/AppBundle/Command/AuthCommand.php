@@ -19,18 +19,16 @@ class AuthCommand extends ContainerAwareCommand
                 'password'
             )
             ->addArgument(
-                'account_id'
-            )
-
-        ;
+                'proxy'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $username = $input->getArgument('username');
         $password = $input->getArgument('password');
-        $account_id = $input->getArgument('account_id');
+        $proxy = $input->getArgument('proxy');
         $file = __DIR__ . "/Casper/auth.js";
-        shell_exec("casperjs $file '" . $username . "' '" . $password ."' '" . $account_id . "' > /dev/null");
+        shell_exec("casperjs --web-security=no $file '" . $username . "' '" . $password ."' --proxy=" . $proxy . " --proxy-type=socks5 > /dev/null");
     }
 }

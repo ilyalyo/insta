@@ -24,7 +24,7 @@ class CasperAjaxController extends Controller
     const CLIENT_ID='6e336200a7f446a78b125602b90989cc';
     const CLIENT_SECRET='5e9449ed34a141d3925c852a4f6baa7e';
     const RESPONSE_TYPE='code';
-    const REDIRECT_URL='http://instastellar.su/get_token?account_id=';
+    const REDIRECT_URL='http://instastellar.su/get_token';
     const SCOPE='likes+comments+relationships';
 
     /**
@@ -52,25 +52,23 @@ class CasperAjaxController extends Controller
             'user'=>$user->getId()
         ));
 
-        if(count($accounts) >= $user->getMaxAccounts()){
-            $form->get('instLogin')->addError(new FormError('Превышен лимит числа аккаунтов'));
-            return $this->render('accounts/login_password.html.twig',
-                array('form' => $form->createView()));
-        }
-
         $form->handleRequest($request);
 
-        $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
+        if(count($accounts) >= $user->getMaxAccounts())
+            $form->get('instLogin')->addError(new FormError('Превышен лимит числа аккаунтов'));
+
+        $exist = $em->getRepository('AppBundle:Accounts')->findOneBy(array(
             'instLogin'=>$account->getInstLogin()
         ));
 
-        if(count($exist) > 0)
+        if(isset($exist))
             $form->get('instLogin')->addError(new FormError('Аккаунт с таким логином уже существует'));
 
         /*Если этот акк уже удален этим пользователем, то мы его позволяем ему обратно добавить:*/
         $created_before = $em->getRepository('AppBundle:RemovedAccounts')->findOneBy(array(
             'instLogin' => $account->getInstLogin()
         ));
+
         if(count($created_before) > 0)
         {
             $ex_user = $created_before->getUser()->getId();
@@ -82,66 +80,39 @@ class CasperAjaxController extends Controller
 
         if ($form->isValid()) {
 
-            $proxy = $em->getRepository('AppBundle:Proxy')->findBy(
-                array('country' => $account->getCountry())
-            );
+            $proxy = $this->chooseProxy($account->getCountry());
 
-            $all_proxy_by_country = $em->getRepository('AppBundle:Accounts')->findBy(array('country' => $account->getCountry()));
-
-            $proxy_count = count($all_proxy_by_country) % (count($proxy));
-            $account->setProxy($proxy[$proxy_count]);
-
-            $command = new AuthCheckCommand();
+            $command = new AuthCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array(
-                'proxy'=>$account->getProxy()->getIp() . ':' . $account->getProxy()->getPort(),
                 'username'=>$account->getInstLogin(),
-                'password' =>$account->getInstPass()
+                'password' =>$account->getInstPass(),
+                'proxy' => $proxy->getIp() . ':' . $proxy->getPort()
             ));
 
-            $output1 =  new BufferedOutput();
-            $output2=  new BufferedOutput();
-            $output_f = '';
-            for($i = 0 ; $i < 3; $i++){
-                $command->run($input,$output1);
-                $output_f = $output1->fetch();
-                //ошибка подключения к инсту у инста
-                if($output_f != 2)
-                    break;
-            }
-            if($output_f != 1 ) {
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            $new_account = $em->getRepository('AppBundle:Accounts')->findOneBy(array(
+                'instLogin' => $account->getInstLogin(),
+                'user' => null));
+
+            if(!isset($new_account)){
                 $accountsLog = new AccountsLog($account);
                 $accountsLog->setTry(1);
                 $accountsLog->setIp($request->getClientIp());
                 $em->persist($accountsLog);
                 $em->flush();
-                $form->get('instLogin')->addError(new FormError('Неправильная пара логин пароль'));
+                $form->get('instLogin')->addError(new FormError('Возможно неправильная пара логин и пароль'));
                 return $this->render('accounts/login_password.html.twig',
                     array('form' => $form->createView()));
             }
-/*
-            $output_f = '';
-            for($i = 0 ; $i < 3; $i++){
-                $command->run($input,$output1);
-                $output_f = $output2->fetch();
-                //ошибка подключения к инсту у инста
-                if($output_f != 2)
-                    break;
-            }
 
-            if($output_f != 1) {
-                $accountsLog = new AccountsLog($account);
-                $accountsLog->setTry(2);
-                $accountsLog->setIp($request->getClientIp());
-                $em->persist($accountsLog);
-                $em->flush();
-                $form->get('instLogin')->addError(new FormError('Проблема авторизации обратитесь в тех. поддержку'));
-                return $this->render('accounts/login_password.html.twig',
-                    array('form' => $form->createView()));
-            }
-*/
-            $em->persist($account);
-
+            $new_account->setUser($this->getUser());
+            $new_account->setInstPass($account->getInstPass());
+            $new_account->setCountry($account->getCountry());
+            $new_account->setProxy($proxy);
+            $em->persist($new_account);
             $em->flush();
 
             /*Делаем это здесь потому, что выше автоинкремент присваивает новый ID, игнорируя подобные изменения. Поэтому нужно делать после автоинкремента.*/
@@ -156,28 +127,12 @@ class CasperAjaxController extends Controller
                     ->setParameter(1, $newid)
                     ->setParameter(2, $account->getId())
                     ->getQuery();
-                $p = $q->execute();
+                $q->execute();
                 $em->remove($created_before);
                 $em->flush();
                 $account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 
-            $command = new AuthCommand();
-            $command->setContainer($this->container);
-            $input = new ArrayInput(array(
-                'username'=>$account->getInstLogin(),
-                'password' =>$account->getInstPass(),
-                'account_id' => $account->getId()
-            ));
-
-            $output = new NullOutput();
-            $command->run($input, $output);
-
-            $check_account = $em->getRepository('AppBundle:Accounts')->find($account->getId());
-            if(!isset($check_account))
-                return $this->redirectToRoute('accounts');
-
-            $this->addProvider($account,'easytogo');
             $this->addProvider($account,'stapico');
             $this->addProvider($account,'collecto');
             $this->addProvider($account,'test-socialhammer-app');
@@ -190,56 +145,26 @@ class CasperAjaxController extends Controller
     }
 
     private function addProvider($account, $client){
-        $command = new GetTokenCommand();
-        $command->setContainer($this->container);
-        $input = new ArrayInput(array(
-            'username'=>$account->getInstLogin(),
-            'password' =>$account->getInstPass(),
-            'client' => $client
-        ));
-
-        $output =  new BufferedOutput();
-        $command->run($input, $output);
-
         $token = new \AppBundle\Entity\Token();
         $token->setClient($client);
         $token->setAccount($account);
-        $app_token = trim($output->fetch());
-        $token->setToken($app_token);
+        $token->setToken('null');
         $em = $this->getDoctrine()->getManager();
         $em->persist($token);
         $em->flush();
     }
 
-    /**
-     * @Route("/account/check_login_password", name="check_login_password_account")
-     */
-    public function checkLoginPasswordAction(Request $request)
-    {
-        $login = $request->get('login');
-        $password = $request->get('password');
-
+    private function chooseProxy($country){
         $em = $this->getDoctrine()->getManager();
-        $exist = $em->getRepository('AppBundle:Accounts')->findBy(array(
-            'instLogin'=>$login
-        ));
-        if(count($exist) > 0)
-            return new JsonResponse(-1);
+        $proxy = $em->getRepository('AppBundle:Proxy')->findBy(
+            array('country' => $country)
+        );
+        $all_proxy_by_country = $em->getRepository('AppBundle:Accounts')->findBy(array('country' => $country));
+        $proxy_count = count($all_proxy_by_country) % (count($proxy));
 
-        $command = new AuthCheckCommand();
-        $command->setContainer($this->container);
-        $input = new ArrayInput(array(
-            'username'=>$login,
-            'password' =>$password
-        ));
-
-        $output =  new BufferedOutput();
-        $command->run($input,$output);
-        if($output->fetch() == 1)
-            return new JsonResponse(1);
-        else
-            return new JsonResponse(0);
+        return $proxy[$proxy_count];
     }
+
 
     /**
      * @Route("/get_token", name="get_token")
@@ -248,15 +173,14 @@ class CasperAjaxController extends Controller
     {
         $url = 'https://api.instagram.com/oauth/access_token';
         $code = $request->get('code');
-        $account_id = $request->get('account_id');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         $params=array(
             'client_id'=>self::CLIENT_ID,
             'client_secret'=>self::CLIENT_SECRET,
             'grant_type'=>'authorization_code',
-            'redirect_uri'=>self::REDIRECT_URL . $account_id,
-            'code'=>$code);
+            'redirect_uri'=>self::REDIRECT_URL,
+            'code'=> $code);
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -265,37 +189,24 @@ class CasperAjaxController extends Controller
         $response = json_decode(curl_exec($ch));
         curl_close($ch);
 
-        var_dump($response);
         $em = $this->getDoctrine()->getManager();
 
-        $account = $em->getRepository('AppBundle:Accounts')->find($account_id);
-
-        //проверяем не добавлялся ли аккаунт до этого(с другим username)
-      /*  $account_check = $em->getRepository('AppBundle:Accounts')->findOneBy(array('account_id' => $response->user->id));
-        var_dump(1);
-        $removed_account_check = $em->getRepository('AppBundle:RemovedAccounts')->findOneBy(array('accountId' => $response->user->id));
-        var_dump(2);
-        if(isset($account_check) || isset($removed_account_check)){
-            var_dump(3);
-            $em->remove($account);
+        $account = $em->getRepository('AppBundle:Accounts')->findOneBy(['account_id' => $response->user->id ]);
+        if(isset($account)){
+            $account->setToken($response->access_token);
+            $em->persist($account);
             $em->flush();
-            return new JsonResponse(0);
+            return new JsonResponse($account->getId());
         }
-*/
+
+        $account = new Accounts();
         $account->setUsername($response->user->username);
+        $account->setInstLogin($response->user->username);
         $account->setToken($response->access_token);
         $account->setAccountId($response->user->id);
         $account->setPicture($response->user->profile_picture);
-        var_dump(1);
-
-        $proxy = $em->getRepository('AppBundle:Proxy')->findAll();
-        $proxy_count=$account->getId() % (count($proxy)-1);
-        var_dump(2);
-        $account->setProxy($proxy[$proxy_count]);
-        var_dump(3);
         $em->persist($account);
         $em->flush();
-        var_dump(4);
 
         return new JsonResponse($account->getId());
     }

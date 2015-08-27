@@ -161,6 +161,95 @@ ORDER BY 2 DESC");
         foreach ($results as $u) {
             $tasks_all[] = '[' . $u['date']*1000   . ',' . $u['sum'] . ']';
         }
+$tasks_0=[];
+$tasks_10=[];
+$tasks_20=[];
+$tasks_30=[];
+$tasks_1=[];
+$tasks_11=[];
+$tasks_31=[];
+$tasks_0=[];
+$tasks_3=[];
+       $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 0
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_0[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 10
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_10[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 20
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_20[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 30
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_30[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 1
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_1[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 11
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_11[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 31
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_31[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
+        $statement = $connection->prepare("
+SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
+    FROM tasks t
+    WHERE t.type = 3
+    GROUP BY  DATE_FORMAT( t.createdAt,'%d-%m-%y')
+    ORDER BY  t.createdAt DESC");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        foreach ($results as $u)
+            $tasks_3[] = '[' . ($u['date']) * 1000   . ',' . $u['sum'] . ']';
 
         $tasks = $em->getRepository('TaskBundle:Tasks')->findBy(['status' => 2]);
         $acc_pro = $em->createQuery(
@@ -182,6 +271,9 @@ ORDER BY 2 DESC");
                 'tasks_done' => $tasks_done,
                 'tasks_all' => $tasks_all,
                 'proxy' => $proxy,
+                'tasks_0' => $tasks_0,
+                'tasks_10' => $tasks_10,
+                'tasks_3' => $tasks_3,
                 'tasks' => count($tasks),
                 'acc_pro' =>  $acc_pro->getSingleScalarResult(),
                 'acc_free' => $acc_free->getSingleScalarResult(),

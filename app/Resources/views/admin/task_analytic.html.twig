@@ -11,6 +11,7 @@
             <p>Про аккаунтов: {{ acc_pro }}</p>
             <p>Бесплатных аккаунтов: {{ acc_free }}</p>
             <div id="container" style="padding-top: 30px"></div>
+            <div id="container_tasks" style="padding-top: 30px"></div>
             <div id="container_proxy" style="padding-top: 30px"></div>
         </div>
     </div>
@@ -73,6 +74,89 @@
                         data: [{{ tasks_all | join(', ') }}]
                     }]
             });
+
+           $('#container_tasks').highcharts({
+               title: {
+                   text: 'Типы задач'
+               },
+               xAxis: {
+                   type: 'datetime',
+                   dateTimeLabelFormats: { // don't display the dummy year
+                       month: '%e. %b',
+                       year: '%b'
+                   },
+                   title: {
+                       text: 'Date'
+                   }
+               },
+               chart: {
+                   type: 'spline',
+                   zoomType: 'x',
+               },
+               plotOptions: {
+                   series: {
+                       cursor: 'Dot',
+                   },
+               },
+               series: [
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'По ID',
+                       data: [{{ tasks_0 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Фоловинг по тегам',
+                       data: [{{ tasks_10 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Фоловинг по списку',
+                       data: [{{ tasks_10 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Фоловинг по гео',
+                       data: [{{ tasks_10 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Лайкинг по id',
+                       data: [{{ tasks_10 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Лайкинг по тегам',
+                       data: [{{ tasks_10 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Лайкинг по гео',
+                       data: [{{ tasks_10 | join(', ') }}]
+                   },
+                   {
+                       marker: {
+                           symbol: 'circle'
+                       },
+                       name: 'Отписка',
+                       data: [{{ tasks_3 | join(', ') }}]
+                   },
+                   ]
+           });
 
            $('#container_proxy').highcharts({
                title: {

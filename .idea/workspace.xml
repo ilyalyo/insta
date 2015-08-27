@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
-<<<<<<< HEAD
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
-=======
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
+    <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="laiking">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php" afterPath="$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/instastellar.iml" afterPath="$PROJECT_DIR$/.idea/instastellar.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/admin/task_analytic.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/admin/task_analytic.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="instastellar.iws" />
@@ -24,6 +21,9 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
   <component name="DatabaseView">
     <option name="FLATTEN" value="false" />
     <option name="GROUP_BY_TYPE" value="true" />
@@ -36,133 +36,105 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RegistrationController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php">
+      <file leaf-file-name="AnalyticController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state vertical-scroll-proportion="-15.692307">
-              <caret line="46" column="79" selection-start-line="46" selection-start-column="79" selection-end-line="46" selection-end-column="79" />
-=======
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
+            <state vertical-scroll-proportion="-2.6181817" vertical-offset="3851" max-vertical-offset="4794">
+              <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
               <folding>
-                <element signature="e#299#332#0#PHP" expanded="true" />
+                <marker date="1440633955330" expanded="true" signature="914:976" placeholder="SELECT a FRO..AppBundle..." />
+                <marker date="1440633955330" expanded="true" signature="914:1007" placeholder="SELECT a FRO..AppBundle..." />
+                <marker date="1440633955330" expanded="true" signature="1283:1374" placeholder="SELECT a FRO..AppBundle..." />
+                <marker date="1440633955330" expanded="true" signature="1744:1845" placeholder="SELECT COUNT..AppBundle..." />
+                <marker date="1440633955330" expanded="true" signature="3151:3336" placeholder="SELECT count..." />
+                <marker date="1440633955330" expanded="true" signature="3582:3732" placeholder="SELECT count..." />
+                <marker date="1440633955330" expanded="true" signature="3979:4306" placeholder="SELECT count..." />
+                <marker date="1440633955330" expanded="true" signature="4550:4986" placeholder="SELECT sub.p..." />
+                <marker date="1440633955330" expanded="true" signature="5564:5697" placeholder="SELECT count..." />
+                <marker date="1440633955330" expanded="true" signature="6061:6240" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="6473:6653" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="6887:7067" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="7301:7481" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="7715:7894" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="8127:8307" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="8541:8721" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="8955:9134" placeholder="SELECT COUNT..." />
+                <marker date="1440633955330" expanded="true" signature="9456:9559" placeholder="SELECT COUNT..UserBundle..." />
+                <marker date="1440633955330" expanded="true" signature="9624:9727" placeholder="SELECT COUNT..UserBundle..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file leaf-file-name="Proxy.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php">
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-44.807693">
-              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="110" selection-end-column="5" />
-=======
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/Casper/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.384615">
-              <caret line="387" column="21" selection-start-line="387" selection-start-column="21" selection-end-line="387" selection-end-column="21" />
-=======
-      <file leaf-file-name="get_token.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/Casper/get_token.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="CasperAjaxController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44265231">
-              <caret line="253" column="46" selection-start-line="253" selection-start-column="46" selection-end-line="253" selection-end-column="46" />
+            <state vertical-scroll-proportion="-12.310345" vertical-offset="748" max-vertical-offset="1564">
+              <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
               <folding>
-                <element signature="e#40#79#0#PHP" expanded="true" />
+                <marker date="1440634164390" expanded="true" signature="1648:1932" placeholder="default:" />
+                <marker date="1440634164390" expanded="true" signature="1780:1932" placeholder="dql:" />
+                <marker date="1440634164390" expanded="true" signature="1818:1932" placeholder="datetime_functions:" />
               </folding>
-=======
-      <file leaf-file-name="login_password.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/login_password.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-              <folding />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
+      <file leaf-file-name="task_analytic.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/task_analytic.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.35628226" vertical-offset="2173" max-vertical-offset="3451">
+              <caret line="140" column="43" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+              <folding>
+                <element signature="e#483#508#0#HTML" expanded="true" />
+                <element signature="e#554#579#0#HTML" expanded="true" />
+                <element signature="e#625#650#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="187">
+              <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="follow.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/follow.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.9272728" vertical-offset="5500" max-vertical-offset="6664">
+              <caret line="333" column="15" selection-start-line="333" selection-start-column="13" selection-end-line="333" selection-end-column="15" />
+              <folding>
+                <marker date="1440604768275" expanded="true" signature="8865:8921" placeholder="INSERT INTO ..." />
+                <marker date="1440604768275" expanded="true" signature="8981:9016" placeholder="UPDATE tasks..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="instagram.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/instagram.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8846154">
-              <caret line="112" column="32" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="32" />
+            <state vertical-scroll-proportion="-5.418182" vertical-offset="5125" max-vertical-offset="14620">
+              <caret line="319" column="40" selection-start-line="319" selection-start-column="32" selection-end-line="319" selection-end-column="40" />
               <folding>
-                <marker date="1436372164453" expanded="true" signature="614:726" placeholder="SELECT token..tokens..." />
-                <marker date="1436372164453" expanded="true" signature="678:717" placeholder="SELECT accou..tasks..." />
-                <marker date="1436372164453" expanded="true" signature="13753:13787" placeholder="SELECT list ..lists..." />
-                <marker date="1436372164453" expanded="true" signature="14250:14425" placeholder="SELECT disti..actions..." />
-                <marker date="1436372164453" expanded="true" signature="18362:18635" placeholder="SELECT t.*,a..tasks..." />
-                <marker date="1436372164453" expanded="true" signature="21090:21164" placeholder="INSERT INTO ..." />
-                <marker date="1436372164453" expanded="true" signature="21342:21376" placeholder="SELECT statu..tasks..." />
-                <marker date="1436372164453" expanded="true" signature="21672:21713" placeholder="UPDATE tasks..." />
-                <marker date="1436372164453" expanded="true" signature="21874:21922" placeholder="UPDATE tasks..." />
-                <marker date="1436372164453" expanded="true" signature="23275:23318" placeholder="UPDATE token..." />
-                <marker date="1436372164453" expanded="true" signature="27581:27623" placeholder="UPDATE tasks..." />
-              </folding>
-=======
-      <file leaf-file-name="ObjectRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/doctrine/common/lib/Doctrine/Common/Persistence/ObjectRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
-              <folding />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state vertical-scroll-proportion="-3.2">
-              <caret line="28" column="88" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
-=======
-            <state vertical-scroll-proportion="-7.8461537">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CasperAjaxController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5125448">
-              <caret line="253" column="60" selection-start-line="253" selection-start-column="60" selection-end-line="253" selection-end-column="60" />
-              <folding>
-                <element signature="e#40#79#0#PHP" expanded="true" />
+                <marker date="1440602991951" expanded="true" signature="698:810" placeholder="SELECT token..tokens..." />
+                <marker date="1440602991951" expanded="true" signature="762:801" placeholder="SELECT accou..tasks..." />
+                <marker date="1440602991951" expanded="true" signature="16582:16616" placeholder="SELECT list ..lists..." />
+                <marker date="1440602991951" expanded="true" signature="17079:17254" placeholder="SELECT disti..actions..." />
+                <marker date="1440602991951" expanded="true" signature="21202:21475" placeholder="SELECT t.*,a..tasks..." />
+                <marker date="1440602991951" expanded="true" signature="23944:24018" placeholder="INSERT INTO ..." />
+                <marker date="1440602991951" expanded="true" signature="24196:24230" placeholder="SELECT statu..tasks..." />
+                <marker date="1440602991951" expanded="true" signature="24632:24685" placeholder="UPDATE tasks..." />
+                <marker date="1440602991951" expanded="true" signature="24853:24894" placeholder="UPDATE tasks..." />
+                <marker date="1440602991951" expanded="true" signature="25055:25103" placeholder="UPDATE tasks..." />
+                <marker date="1440602991951" expanded="true" signature="26976:27019" placeholder="UPDATE token..." />
+                <marker date="1440602991951" expanded="true" signature="32490:32532" placeholder="UPDATE tasks..." />
               </folding>
             </state>
           </provider>
@@ -181,72 +153,63 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/web/css/navbar_hider.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/navbar_hider.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/additional_info/index.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/additional_info/offer_and_confidentiality.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Token.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/unfollow/unfollow.html.twig" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/RemovedAccounts.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/History.php" />
-        <option value="$PROJECT_DIR$/app/config/routing.yml" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/PartnershipBundle.php" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/Command/PromoteToPartner.php" />
-        <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserInterface.php" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/DemotePartner.php" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/Entity/Partners.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/Entity/PartnerPayments.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
-        <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/cron/nodestarter.sh" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Util/UserManipulator.php" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Command/CreateUserCommand.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php" />
         <option value="$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/ContainerAwareCommand.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
-        <option value="$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig" />
         <option value="$PROJECT_DIR$/web/css/landing_base.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/partnership/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/offer_and_confidentiality.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/landing_base.html.twig" />
+        <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/tasks/follow/nav.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/tasks/like/nav.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/settings/accounts.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SettingsController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/ChangePassword/changePassword_content.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Form/Type/RegistrationFormType.php" />
+        <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/accounts/login_password.html.twig" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Command/AuthCheckCommand.php" />
+        <option value="$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Countries.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/AccountsRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
-=======
-        <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AccountSettingsController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Controller/ChangePasswordController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/settings/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AccountsSettingsController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/accounts/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/Errors_Instagram.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/ErrorsInstagram.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Command/Casper/check_auth.js" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/Tasks.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/admin/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/TasksRepository.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Command/instagram.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/admin/analytic.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/AccountsLog.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/admin/task_analytic.html.twig" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-  </component>
-  <component name="NamedScopeManager">
-    <order />
-  </component>
-  <component name="PhpServers">
-    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -293,7 +256,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
+              <option name="myItemId" value="instastellar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -303,21 +266,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -331,378 +280,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="friendsofsymfony" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user-bundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="friendsofsymfony" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user-bundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="friendsofsymfony" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user-bundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-<<<<<<< HEAD
-=======
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Casper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PartnershipBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PartnershipBundle" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-<<<<<<< HEAD
-=======
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Casper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -716,29 +294,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -746,36 +302,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="accounts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
           </PATH>
         </subPane>
       </pane>
@@ -789,14 +318,30 @@
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="140" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="169" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="170" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="844" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="162" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="161" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="163" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="837" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Roman\Documents\GitHub\insta\src\PartnershipBundle\Entity" />
-      <recent name="C:\Users\Roman\Documents\GitHub\insta\app\Resources\views\partnership" />
-      <recent name="C:\Users\Roman\Documents\GitHub\insta\src\PartnershipBundle" />
-      <recent name="C:\Users\Roman\Documents\GitHub\insta\app\Resources\views\additional_info" />
-      <recent name="C:\Users\Roman\Documents\GitHub\insta\web\css" />
+      <recent name="C:\Users\Ilya\instastellar\app\Resources\views\admin" />
+      <recent name="C:\Users\Ilya\instastellar\src\AppBundle\Entity" />
+      <recent name="C:\Users\Ilya\instastellar\src\TaskBundle\Command\Casper" />
+      <recent name="C:\Users\Ilya\instastellar\src\TaskBundle\Entity" />
+      <recent name="C:\Users\Ilya\instastellar\app\Resources\views\accounts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Roman\Documents\GitHub\insta\app\Resources\views" />
@@ -805,29 +350,18 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <module name="" />
-      <envs />
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
@@ -842,6 +376,7 @@
       <envs />
       <method />
     </configuration>
+    <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -854,13 +389,301 @@
       <option name="number" value="Default" />
       <updated>1434380993099</updated>
     </task>
-    <task id="LOCAL-00001" summary="добавил комментарий list glist))000000))000000))00)00)0">
-      <created>1434382825150</created>
-      <option name="number" value="00001" />
+    <task id="LOCAL-00005" summary="twig for new settings">
+      <created>1439726457646</created>
+      <option name="number" value="00005" />
       <option name="project" value="LOCAL" />
-      <updated>1434382825150</updated>
+      <updated>1439726457646</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00006" summary="add proxy settings">
+      <created>1439733195106</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1439733195106</updated>
+    </task>
+    <task id="LOCAL-00007" summary="quick fix, need to go">
+      <created>1439733874345</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1439733874345</updated>
+    </task>
+    <task id="LOCAL-00008" summary="opportunity to change pass">
+      <created>1439754335841</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1439754335841</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix adding duplicates, while follow by tags">
+      <created>1439755750237</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1439755750237</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix foll">
+      <created>1439756204421</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1439756204422</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix proxy">
+      <created>1439933741018</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1439933741018</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix logic">
+      <created>1440085022048</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1440085022048</updated>
+    </task>
+    <task id="LOCAL-00013" summary="hmm">
+      <created>1440085312795</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1440085312795</updated>
+    </task>
+    <task id="LOCAL-00014" summary="optimization">
+      <created>1440087673162</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1440087673162</updated>
+    </task>
+    <task id="LOCAL-00015" summary="no free accounts matherfuckers">
+      <created>1440332554824</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1440332554824</updated>
+    </task>
+    <task id="LOCAL-00016" summary="and msg in accounts">
+      <created>1440332840276</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1440332840276</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add instagram_errrors&#10;less use phantom&#10;check credentials&#10;remove extragram">
+      <created>1440362790765</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1440362790765</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fast fix">
+      <created>1440362975191</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1440362975191</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix typo">
+      <created>1440363558080</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1440363558080</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix rus tags">
+      <created>1440371640869</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1440371640869</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix small mistake">
+      <created>1440372313276</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1440372313276</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix comparing">
+      <created>1440373220133</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1440373220133</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix manual stopping task">
+      <created>1440373624302</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1440373624302</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update">
+      <created>1440382889173</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1440382889173</updated>
+    </task>
+    <task id="LOCAL-00025" summary="lets try new unfollowing">
+      <created>1440426235051</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1440426235051</updated>
+    </task>
+    <task id="LOCAL-00026" summary="last fix unfollowing">
+      <created>1440428106917</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1440428106917</updated>
+    </task>
+    <task id="LOCAL-00027" summary="unfollowing as a charm">
+      <created>1440428312585</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1440428312586</updated>
+    </task>
+    <task id="LOCAL-00028" summary="and finally absolutely beautiful unfollowing">
+      <created>1440426399497</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1440426399497</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add xome debug &amp; remove very strng piece of shit with foll + liking">
+      <created>1440430045904</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1440430045904</updated>
+    </task>
+    <task id="LOCAL-00030" summary="double power!!">
+      <created>1440456975212</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1440456975212</updated>
+    </task>
+    <task id="LOCAL-00031" summary="analytic failed accounts + log time account was created">
+      <created>1440459810879</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1440459810879</updated>
+    </task>
+    <task id="LOCAL-00032" summary="+debug">
+      <created>1440476808850</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1440476808850</updated>
+    </task>
+    <task id="LOCAL-00033" summary="add error msg for following close acc">
+      <created>1440477347718</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1440477347718</updated>
+    </task>
+    <task id="LOCAL-00034" summary="tasks analutic">
+      <created>1440481781163</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1440481781163</updated>
+    </task>
+    <task id="LOCAL-00035" summary="strange casper auth behavior, try to fix">
+      <created>1440507593757</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1440507593757</updated>
+    </task>
+    <task id="LOCAL-00036" summary="add proxy logging">
+      <created>1440512947293</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1440512947293</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix statuses">
+      <created>1440546818359</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1440546818359</updated>
+    </task>
+    <task id="LOCAL-00038" summary="megakek (c)">
+      <created>1440595249430</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1440595249430</updated>
+    </task>
+    <task id="LOCAL-00039" summary="revert">
+      <created>1440595818054</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1440595818054</updated>
+    </task>
+    <task id="LOCAL-00040" summary="proxy analytic">
+      <created>1440601111697</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1440601111697</updated>
+    </task>
+    <task id="LOCAL-00041" summary="improve byid &amp; unf">
+      <created>1440601785997</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1440601785997</updated>
+    </task>
+    <task id="LOCAL-00042" summary="new foll by tags alg">
+      <created>1440603010411</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1440603010411</updated>
+    </task>
+    <task id="LOCAL-00043" summary="add bourder">
+      <created>1440603255686</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1440603255686</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fiiiix">
+      <created>1440603625564</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1440603625564</updated>
+    </task>
+    <task id="LOCAL-00045" summary="open for free again">
+      <created>1440603967005</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1440603967005</updated>
+    </task>
+    <task id="LOCAL-00046" summary="liking fix">
+      <created>1440604360200</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1440604360200</updated>
+    </task>
+    <task id="LOCAL-00047" summary="add analytic and upg liking">
+      <created>1440624498644</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1440624498644</updated>
+    </task>
+    <task id="LOCAL-00048" summary="grouping">
+      <created>1440625353864</created>
+      <option name="number" value="00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1440625353864</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix">
+      <created>1440625696193</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1440625696193</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix">
+      <created>1440627439591</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1440627439592</updated>
+    </task>
+    <task id="LOCAL-00051" summary="add ip logging">
+      <created>1440627742761</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1440627742761</updated>
+    </task>
+    <task id="LOCAL-00052" summary="impr">
+      <created>1440627938931</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1440627938931</updated>
+    </task>
+    <task id="LOCAL-00053" summary="add all tasks count">
+      <created>1440628775832</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1440628775832</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TodoView">
@@ -876,32 +699,28 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-<<<<<<< HEAD
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28517398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28971255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-=======
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4274062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32440946" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25475842" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42677164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -916,550 +735,471 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="добавил комментарий list glist))000000))000000))00)00)0" />
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="add xome debug &amp; remove very strng piece of shit with foll + liking" />
+    <MESSAGE value="double power!!" />
+    <MESSAGE value="analytic failed accounts + log time account was created" />
+    <MESSAGE value="+debug" />
+    <MESSAGE value="opportunity to change pass" />
+    <MESSAGE value="add error msg for following close acc" />
+    <MESSAGE value="tasks analutic" />
+    <MESSAGE value="strange casper auth behavior, try to fix" />
+    <MESSAGE value="add proxy logging" />
+    <MESSAGE value="fix statuses" />
+    <MESSAGE value="megakek (c)" />
+    <MESSAGE value="revert" />
+    <MESSAGE value="proxy analytic" />
+    <MESSAGE value="improve byid &amp; unf" />
+    <MESSAGE value="new foll by tags alg" />
+    <MESSAGE value="add bourder" />
+    <MESSAGE value="fiiiix" />
+    <MESSAGE value="open for free again" />
+    <MESSAGE value="liking fix" />
+    <MESSAGE value="add analytic and upg liking" />
+    <MESSAGE value="grouping" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add ip logging" />
+    <MESSAGE value="impr" />
+    <MESSAGE value="add all tasks count" />
+    <option name="LAST_COMMIT_MESSAGE" value="add all tasks count" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="NONE" type="javascript">
+          <url>file://$PROJECT_DIR$/src/TaskBundle/Command/Casper/check_auth.js</url>
+          <log-expression expression="var casper = require('casper').create();&#10;&#10;var uname=casper.cli.get(0).toString();&#10;var pass=casper.cli.get(1).toString();&#10;&#10;var inst_auth_url='https://instagram.com/accounts/login/';&#10;&#10;casper.start().thenOpen(inst_auth_url, function() {&#10;    this.wait(2000, function() {&#10;        this.fillSelectors('form', {&#10;            'input[name=&quot;username&quot;]':  uname,&#10;            'input[name=&quot;password&quot;]':  pass&#10;        }, true);&#10;    });&#10;    &#10;    this.wait(1000, function() {&#10;        if (this.exists('#errorAlert'))&#10;            casper.echo(0);&#10;        else&#10;            casper.echo(1);&#10;    });&#10;});&#10;&#10;casper.run();" language="JavaScript" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/login_password.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0991453">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        <state vertical-scroll-proportion="1.2394366" vertical-offset="27" max-vertical-offset="901">
+          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cron/nodestarter.sh">
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/ChangePassword/changePassword_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3046595">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.20481928" vertical-offset="0" max-vertical-offset="799">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/ResettingController.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SettingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3041145">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.5" vertical-offset="102" max-vertical-offset="986">
+          <caret line="19" column="23" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Propel/UserManager.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/settings/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6762075">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.32702237" vertical-offset="48" max-vertical-offset="833">
+          <caret line="14" column="34" selection-start-line="6" selection-start-column="12" selection-end-line="14" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Doctrine/UserManager.php">
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByIdType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36026937">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/ProfileController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5545617">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Command/PromoteUserCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39177102">
-          <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/ActionsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/AjaxController.php">
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.09481216">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="607">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AnalyticController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.5765921" vertical-offset="277" max-vertical-offset="935">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/SupportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.346153" vertical-offset="306" max-vertical-offset="1819">
+          <caret line="49" column="41" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/PlayerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="607">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Command/CreateUserCommand.php">
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Form/Type/LikeByTagsType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0983899">
-          <caret line="76" column="12" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6386404">
-          <caret line="63" column="86" selection-start-line="63" selection-start-column="86" selection-end-line="63" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine-mapping/User.mongodb.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine-mapping/User.orm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/cache/prod/doctrine/orm/Proxies/__CG__UserBundleEntityUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5313059">
-          <caret line="413" column="26" selection-start-line="413" selection-start-column="26" selection-end-line="413" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ContainerInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5">
-          <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/ContainerAwareCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21288015">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Command/DemoteUserCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154">
-          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/ChangePasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08944544">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/GroupableInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33452594">
-          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Tests/Util/UserManipulatorTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3488372">
-          <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7942755">
-          <caret line="70" column="26" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Command/RoleCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4597496">
-          <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Security/UserProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Util/UserManipulator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.169946">
-          <caret line="170" column="35" selection-start-line="170" selection-start-column="35" selection-end-line="170" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5245283">
-          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/partnership/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="155" selection-start-line="20" selection-start-column="155" selection-end-line="20" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/landing_base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="94" column="28" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/offer_and_confidentiality.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="158" column="76" selection-start-line="158" selection-start-column="76" selection-end-line="158" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8545455">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2">
-          <caret line="56" column="28" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PartnershipBundle/Controller/PartnershipController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48658317">
-          <caret line="64" column="68" selection-start-line="64" selection-start-column="68" selection-end-line="64" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="185" column="26" selection-start-line="185" selection-start-column="20" selection-end-line="185" selection-end-column="26" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#294#341#0#PHP" expanded="false" />
-          </folding>
-=======
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3488372">
-          <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/login_password.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3046595">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
-<<<<<<< HEAD
-          <folding />
-=======
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5125448">
-          <caret line="268" column="66" selection-start-line="268" selection-start-column="66" selection-end-line="268" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-=======
-    <entry file="file://$PROJECT_DIR$/app/cache/prod/doctrine/orm/Proxies/__CG__AppBundleEntityAccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7365592">
-          <caret line="330" column="23" selection-start-line="330" selection-start-column="23" selection-end-line="330" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/instagram.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8846154">
-          <caret line="112" column="32" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.327957">
-          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34767026">
-          <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/AuthCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.12724014">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.6584507" vertical-offset="255" max-vertical-offset="986">
+          <caret line="38" column="90" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="90" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-44.807693">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="110" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Console/Command/Command.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34767026">
-          <caret line="218" column="20" selection-start-line="218" selection-start-column="20" selection-end-line="218" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5501792">
-          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.384615">
-          <caret line="387" column="21" selection-start-line="387" selection-start-column="21" selection-end-line="387" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/doctrine/common/lib/Doctrine/Common/Persistence/ObjectRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/AuthCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.12724014">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/AuthCheckCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.035842296">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/cache/prod/doctrine/orm/Proxies/__CG__AppBundleEntityAccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7365592">
-          <caret line="330" column="23" selection-start-line="330" selection-start-column="23" selection-end-line="330" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4615383">
-          <caret line="233" column="26" selection-start-line="233" selection-start-column="26" selection-end-line="233" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/instagram.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8846154">
-          <caret line="112" column="32" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="32" />
-          <folding>
-            <marker date="1436372164453" expanded="true" signature="614:726" placeholder="SELECT token..tokens..." />
-            <marker date="1436372164453" expanded="true" signature="678:717" placeholder="SELECT accou..tasks..." />
-            <marker date="1436372164453" expanded="true" signature="13753:13787" placeholder="SELECT list ..lists..." />
-            <marker date="1436372164453" expanded="true" signature="14250:14425" placeholder="SELECT disti..actions..." />
-            <marker date="1436372164453" expanded="true" signature="18362:18635" placeholder="SELECT t.*,a..tasks..." />
-            <marker date="1436372164453" expanded="true" signature="21090:21164" placeholder="INSERT INTO ..." />
-            <marker date="1436372164453" expanded="true" signature="21342:21376" placeholder="SELECT statu..tasks..." />
-            <marker date="1436372164453" expanded="true" signature="21672:21713" placeholder="UPDATE tasks..." />
-            <marker date="1436372164453" expanded="true" signature="21874:21922" placeholder="UPDATE tasks..." />
-            <marker date="1436372164453" expanded="true" signature="23275:23318" placeholder="UPDATE token..." />
-            <marker date="1436372164453" expanded="true" signature="27581:27623" placeholder="UPDATE tasks..." />
-          </folding>
+        <state vertical-scroll-proportion="0.31903484" vertical-offset="408" max-vertical-offset="2040">
+          <caret line="31" column="74" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state vertical-scroll-proportion="-3.2">
-          <caret line="28" column="88" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
-=======
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-          <folding />
+        <state vertical-scroll-proportion="0.40140846" vertical-offset="1557" max-vertical-offset="3111">
+          <caret line="111" column="52" selection-start-line="111" selection-start-column="52" selection-end-line="111" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307">
-          <caret line="46" column="79" selection-start-line="46" selection-start-column="79" selection-end-line="46" selection-end-column="79" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/AuthCheckCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.029259896" vertical-offset="0" max-vertical-offset="612">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/Casper/check_auth.js">
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/ActionsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/Casper/get_token.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
+        <state vertical-scroll-proportion="0.4831261" vertical-offset="0" max-vertical-offset="563">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/Casper/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+        <state vertical-scroll-proportion="-1.2725694" vertical-offset="733" max-vertical-offset="1309">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0834813" vertical-offset="1173" max-vertical-offset="10166">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Entity/ScheduleRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/AjaxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321492" vertical-offset="0" max-vertical-offset="612">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Entity/Tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.309091" vertical-offset="12760" max-vertical-offset="13294">
+          <caret line="771" column="11" selection-start-line="771" selection-start-column="11" selection-end-line="771" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Entity/ErrorsInstagram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.9615383" vertical-offset="15" max-vertical-offset="1088">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="979" max-vertical-offset="2669">
+          <caret line="71" column="99" selection-start-line="71" selection-start-column="93" selection-end-line="71" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/AuthCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/AuthCheckCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3274648" vertical-offset="52" max-vertical-offset="646">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/RemovedAccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2482">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Countries.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="34" max-vertical-offset="1275">
+          <caret line="21" column="28" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Purchase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="187" max-vertical-offset="2176">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Entity/TasksRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7605634" vertical-offset="44" max-vertical-offset="612">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14629948" vertical-offset="0" max-vertical-offset="581">
+          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/Casper/check_auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0416666" vertical-offset="2400" max-vertical-offset="7769">
+          <caret line="199" column="25" selection-start-line="199" selection-start-column="25" selection-end-line="199" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/Casper/check_auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6721582" vertical-offset="0" max-vertical-offset="607">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/Casper/get_token.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/Casper/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.494863">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1683">
+          <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
+        <state vertical-scroll-proportion="-5.8076925" vertical-offset="1889" max-vertical-offset="6647">
+          <caret line="120" column="22" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
           <folding>
-            <element signature="e#299#332#0#PHP" expanded="true" />
+            <marker date="1440603927507" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Proxy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-44.807693">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="110" selection-end-column="5" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8461537">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.384615">
-          <caret line="387" column="21" selection-start-line="387" selection-start-column="21" selection-end-line="387" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.46815833" vertical-offset="136" max-vertical-offset="6596">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.8727272" vertical-offset="110" max-vertical-offset="4828">
+          <caret line="19" column="128" selection-start-line="19" selection-start-column="128" selection-end-line="19" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="187">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/instagram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.418182" vertical-offset="5125" max-vertical-offset="14620">
+          <caret line="319" column="40" selection-start-line="319" selection-start-column="32" selection-end-line="319" selection-end-column="40" />
+          <folding>
+            <marker date="1440602991951" expanded="true" signature="698:810" placeholder="SELECT token..tokens..." />
+            <marker date="1440602991951" expanded="true" signature="762:801" placeholder="SELECT accou..tasks..." />
+            <marker date="1440602991951" expanded="true" signature="16582:16616" placeholder="SELECT list ..lists..." />
+            <marker date="1440602991951" expanded="true" signature="17079:17254" placeholder="SELECT disti..actions..." />
+            <marker date="1440602991951" expanded="true" signature="21202:21475" placeholder="SELECT t.*,a..tasks..." />
+            <marker date="1440602991951" expanded="true" signature="23944:24018" placeholder="INSERT INTO ..." />
+            <marker date="1440602991951" expanded="true" signature="24196:24230" placeholder="SELECT statu..tasks..." />
+            <marker date="1440602991951" expanded="true" signature="24632:24685" placeholder="UPDATE tasks..." />
+            <marker date="1440602991951" expanded="true" signature="24853:24894" placeholder="UPDATE tasks..." />
+            <marker date="1440602991951" expanded="true" signature="25055:25103" placeholder="UPDATE tasks..." />
+            <marker date="1440602991951" expanded="true" signature="26976:27019" placeholder="UPDATE token..." />
+            <marker date="1440602991951" expanded="true" signature="32490:32532" placeholder="UPDATE tasks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7314974" vertical-offset="408" max-vertical-offset="7429">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/DateTime.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4595525" vertical-offset="5" max-vertical-offset="612">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44265231">
-          <caret line="253" column="46" selection-start-line="253" selection-start-column="46" selection-end-line="253" selection-end-column="46" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
+        <state vertical-scroll-proportion="0.99119717" vertical-offset="1222" max-vertical-offset="4743">
+          <caret line="120" column="61" selection-start-line="120" selection-start-column="61" selection-end-line="120" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/analytic.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5125448">
-          <caret line="253" column="60" selection-start-line="253" selection-start-column="60" selection-end-line="253" selection-end-column="60" />
->>>>>>> 7f2aca591dd862b27dda9845a2f8c6616c24e070
+        <state vertical-scroll-proportion="0.46815833" vertical-offset="510" max-vertical-offset="1156">
+          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/AccountsLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.615385" vertical-offset="904" max-vertical-offset="4658">
+          <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/ob/highcharts-bundle/Ob/HighchartsBundle/Highcharts/AbstractChart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4845">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.52667814" vertical-offset="102" max-vertical-offset="816">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.310345" vertical-offset="748" max-vertical-offset="1564">
+          <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
           <folding>
-            <element signature="e#40#79#0#PHP" expanded="true" />
+            <marker date="1440634164390" expanded="true" signature="1648:1932" placeholder="default:" />
+            <marker date="1440634164390" expanded="true" signature="1780:1932" placeholder="dql:" />
+            <marker date="1440634164390" expanded="true" signature="1818:1932" placeholder="datetime_functions:" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6181817" vertical-offset="3851" max-vertical-offset="4794">
+          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding>
+            <marker date="1440633955330" expanded="true" signature="914:976" placeholder="SELECT a FRO..AppBundle..." />
+            <marker date="1440633955330" expanded="true" signature="914:1007" placeholder="SELECT a FRO..AppBundle..." />
+            <marker date="1440633955330" expanded="true" signature="1283:1374" placeholder="SELECT a FRO..AppBundle..." />
+            <marker date="1440633955330" expanded="true" signature="1744:1845" placeholder="SELECT COUNT..AppBundle..." />
+            <marker date="1440633955330" expanded="true" signature="3151:3336" placeholder="SELECT count..." />
+            <marker date="1440633955330" expanded="true" signature="3582:3732" placeholder="SELECT count..." />
+            <marker date="1440633955330" expanded="true" signature="3979:4306" placeholder="SELECT count..." />
+            <marker date="1440633955330" expanded="true" signature="4550:4986" placeholder="SELECT sub.p..." />
+            <marker date="1440633955330" expanded="true" signature="5564:5697" placeholder="SELECT count..." />
+            <marker date="1440633955330" expanded="true" signature="6061:6240" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="6473:6653" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="6887:7067" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="7301:7481" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="7715:7894" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="8127:8307" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="8541:8721" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="8955:9134" placeholder="SELECT COUNT..." />
+            <marker date="1440633955330" expanded="true" signature="9456:9559" placeholder="SELECT COUNT..UserBundle..." />
+            <marker date="1440633955330" expanded="true" signature="9624:9727" placeholder="SELECT COUNT..UserBundle..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/follow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9272728" vertical-offset="5500" max-vertical-offset="6664">
+          <caret line="333" column="15" selection-start-line="333" selection-start-column="13" selection-end-line="333" selection-end-column="15" />
+          <folding>
+            <marker date="1440604768275" expanded="true" signature="8865:8921" placeholder="INSERT INTO ..." />
+            <marker date="1440604768275" expanded="true" signature="8981:9016" placeholder="UPDATE tasks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/task_analytic.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35628226" vertical-offset="2173" max-vertical-offset="3451">
+          <caret line="140" column="43" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+          <folding>
+            <element signature="e#483#508#0#HTML" expanded="true" />
+            <element signature="e#554#579#0#HTML" expanded="true" />
+            <element signature="e#625#650#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

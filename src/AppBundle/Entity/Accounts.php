@@ -76,7 +76,7 @@ class Accounts
     protected $instLogin;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $instPass;
 

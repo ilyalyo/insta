@@ -119,7 +119,7 @@ class CasperAjaxController extends Controller
                 return $this->render('accounts/login_password.html.twig',
                     array('form' => $form->createView()));
             }
-
+/*
             $output_f = '';
             for($i = 0 ; $i < 3; $i++){
                 $command->run($input,$output1);
@@ -139,7 +139,7 @@ class CasperAjaxController extends Controller
                 return $this->render('accounts/login_password.html.twig',
                     array('form' => $form->createView()));
             }
-
+*/
             $em->persist($account);
 
             $em->flush();

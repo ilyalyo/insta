@@ -715,7 +715,8 @@ class Instagram
                 if(strpos($json->meta->error_message, 'invalid media id') !== FALSE ){
                     return null;
                 }
-                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){
+                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ||
+                    strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE){
                     if(!$this->update_token())
                         $this->change_token();
                     return null;
@@ -758,7 +759,8 @@ class Instagram
                 if(strpos($json->meta->error_message, 'you cannot view this resource') !== FALSE ){
                     return null;
                 }
-                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ){
+                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ||
+                    strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE){
                     if(!$this->update_token())
                         $this->change_token();
                     return null;

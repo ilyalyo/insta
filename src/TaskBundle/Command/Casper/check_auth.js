@@ -13,7 +13,7 @@ casper.start().thenOpen(auth_url, function() {
         }, true);
      });
 
-     this.wait(1000, function() { });
+     this.wait(5000, function() { });
 });
 
 casper.then(function() {

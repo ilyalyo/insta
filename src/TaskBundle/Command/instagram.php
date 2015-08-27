@@ -660,10 +660,14 @@ class Instagram
         $file2 = __DIR__ . "/Casper/get_token.js";
 
         //проверяем не скинул ли инст пароль
-        $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
-        if(strpos($output, '0') !== FALSE ){
-            $this->stop_task_and_set_error_status(2);
-            return false;
+        for($i = 0 ; $i < 3; $i++){
+            $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+            if(strpos($output, '0') !== FALSE ){
+                $this->stop_task_and_set_error_status(2);
+                return false;
+            }
+            elseif(strpos($output, '1') !== FALSE )
+                break;
         }
 
         $output = shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . " --proxy-type=socks5");

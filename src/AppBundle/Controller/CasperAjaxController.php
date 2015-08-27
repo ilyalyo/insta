@@ -101,8 +101,15 @@ class CasperAjaxController extends Controller
 
             $output1 =  new BufferedOutput();
             $output2=  new BufferedOutput();
-            $command->run($input,$output1);
-            if($output1->fetch() != 1 ) {
+            $output_f = '';
+            for($i = 0 ; $i < 3; $i++){
+                $command->run($input,$output1);
+                $output_f = $output1->fetch();
+                //ошибка подключения к инсту у инста
+                if($output_f != 2)
+                    break;
+            }
+            if($output_f != 1 ) {
                 $accountsLog = new AccountsLog($account);
                 $accountsLog->setTry(1);
                 $accountsLog->setIp($request->getClientIp());
@@ -113,9 +120,16 @@ class CasperAjaxController extends Controller
                     array('form' => $form->createView()));
             }
 
-            $command->run($input,$output2);
+            $output_f = '';
+            for($i = 0 ; $i < 3; $i++){
+                $command->run($input,$output1);
+                $output_f = $output2->fetch();
+                //ошибка подключения к инсту у инста
+                if($output_f != 2)
+                    break;
+            }
 
-            if($output2->fetch() != 1) {
+            if($output_f != 1) {
                 $accountsLog = new AccountsLog($account);
                 $accountsLog->setTry(2);
                 $accountsLog->setIp($request->getClientIp());

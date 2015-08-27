@@ -19,6 +19,8 @@ casper.start().thenOpen(auth_url, function() {
 casper.then(function() {
     if(this.exists('.-cx-PRIVATE-Navigation__menuItems'))
         this.echo(1);
+    else if (this.getPageContent().search('connected to the internet and try again.') > 0)
+        this.echo(2);
     else
         this.echo(0);
 });

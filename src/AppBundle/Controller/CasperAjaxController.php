@@ -125,14 +125,15 @@ class CasperAjaxController extends Controller
                     ->set('acc.id', '?1')
                     ->where('acc.id = ?2')
                     ->setParameter(1, $newid)
-                    ->setParameter(2, $account->getId())
+                    ->setParameter(2, $new_account->getId())
                     ->getQuery();
                 $q->execute();
                 $em->remove($created_before);
                 $em->flush();
-                $account = $em->getRepository('AppBundle:Accounts')->find($newid);
+                //$new_account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 
+            $this->addProvider($new_account,'easytogo');
             $this->addProvider($new_account,'stapico');
             $this->addProvider($new_account,'collecto');
             $this->addProvider($new_account,'test-socialhammer-app');

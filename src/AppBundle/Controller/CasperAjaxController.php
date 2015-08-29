@@ -133,9 +133,9 @@ class CasperAjaxController extends Controller
                 $account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 
-            $this->addProvider($account,'stapico');
-            $this->addProvider($account,'collecto');
-            $this->addProvider($account,'test-socialhammer-app');
+            $this->addProvider($new_account,'stapico');
+            $this->addProvider($new_account,'collecto');
+            $this->addProvider($new_account,'test-socialhammer-app');
 
             return $this->redirectToRoute('accounts');
         }

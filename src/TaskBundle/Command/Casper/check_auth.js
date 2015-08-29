@@ -17,7 +17,7 @@ casper.start().thenOpen(auth_url, function() {
 });
 
 casper.then(function() {
-    if(this.exists('.-cx-PRIVATE-Navigation__menuItems'))
+    if(this.exists('.-cx-PRIVATE-Navigation__menuItems') || this.exists('#recaptcha_challenge_image'))
         this.echo(1);
     else if (this.getPageContent().search('connected to the internet and try again.') > 0)
         this.echo(2);

@@ -133,7 +133,13 @@ class CasperAjaxController extends Controller
                 //$new_account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 
-            $this->addProvider($new_account,'easytogo');
+            $token = new \AppBundle\Entity\Token();
+            $token->setClient('easytogo');
+            $token->setAccount($new_account);
+            $token->setToken($new_account->getToken());
+            $em->persist($token);
+            $em->flush();
+
             $this->addProvider($new_account,'stapico');
             $this->addProvider($new_account,'collecto');
             $this->addProvider($new_account,'test-socialhammer-app');

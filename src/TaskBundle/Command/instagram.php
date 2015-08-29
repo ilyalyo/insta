@@ -4,6 +4,7 @@ class Instagram
     public $PROXY;
     private $TASK_ID;
     private $TASK_STATUS;
+    private $WRONG_PASS_METRICA;
     // массив токенов вида : [client,token,id]
     public $TOKEN_ARRAY;
     public $TASK_INFO;
@@ -23,6 +24,7 @@ class Instagram
     public function __construct ($task_id){
         $this->TASK_ID = $task_id;
         $this->TASK_STATUS = null;
+        $this->WRONG_PASS_METRICA = 0;
         $this->connect();
 
         $qr_result = mysql_query("
@@ -625,12 +627,19 @@ class Instagram
     }
 
     public function stop_task_and_set_error_status($status){
-        if($this->TASK_STATUS == null) {
+        if($this->TASK_STATUS == null || $this->TASK_STATUS == 3) {
             $this->TASK_STATUS = $status;
             $id = $this->TASK_ID;
             $qr_result = mysql_query("UPDATE tasks SET status=4, error_id=$status WHERE id=$id")
             or die(mysql_error());
         }
+    }
+
+    public function set_error_status($status){
+            $this->TASK_STATUS = $status;
+            $id = $this->TASK_ID;
+            $qr_result = mysql_query("UPDATE tasks SET error_id=$status WHERE id=$id")
+            or die(mysql_error());
     }
 
     public function set_task_status($status){
@@ -662,9 +671,13 @@ class Instagram
         //проверяем не скинул ли инст пароль
         $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
         if(strpos($output, '0') !== FALSE ){
-            $this->stop_task_and_set_error_status(2);
-            return false;
+            $this->debug('WRONG_PASS_METRICA' . ++$this->WRONG_PASS_METRICA );
+            if($this->WRONG_PASS_METRICA > 3){
+                $this->stop_task_and_set_error_status(2);
+                return false;
+            }
         }
+
         if(strpos($output, '2') !== FALSE )
             $this->debug('instagrams problems');
 
@@ -680,6 +693,7 @@ class Instagram
 
         if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== FALSE && $output != $token['token']){
             $this->debug('success update');
+            $this->WRONG_PASS_METRICA=0;
             $this->TOKEN_ARRAY[$index]['token']=$output;
             $token_id=$token['id'];
             $qr_result = mysql_query("UPDATE tokens SET token='$output' WHERE id=$token_id")

@@ -44,6 +44,7 @@ function follow_by_username(){
             break;
         }
         if($success == $task['count'] ){
+            $inst->set_error_status(null);
             break;
         }
     }
@@ -99,6 +100,7 @@ function follow_by_tags(){
             break;
         }
         if($success == $task['count'] ){
+            $inst->set_error_status(null);
             break;
         }
     }
@@ -212,10 +214,11 @@ function liking_by_tags(){
         if(isset($result) && $result->meta->code == 200){
             $errors = 0;
             $inst->add_row($user['link']);
-            if(++$success == $task['count'] )
+            if(++$success == $task['count'] ){
+                $inst->set_error_status(null);
                 break;
             }
-        else
+        }else
             $errors++;
 
         sleep(sleepTime($task['speed']));
@@ -302,6 +305,7 @@ function unfollowing(){
             break;
         }
         if($success == $task['count'] ){
+            $inst->set_error_status(null);
             break;
         }
     }

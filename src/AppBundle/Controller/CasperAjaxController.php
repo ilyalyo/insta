@@ -130,10 +130,8 @@ class CasperAjaxController extends Controller
                 $q->execute();*/
                 $em->remove($created_before);
                 $new_account->setId($newid);
-                $em->persist($new_account);
                 $em->flush();
-var_dump($new_account->getId());
-                //$new_account = $em->getRepository('AppBundle:Accounts')->find($newid);
+                $new_account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 
             $token = new \AppBundle\Entity\Token();

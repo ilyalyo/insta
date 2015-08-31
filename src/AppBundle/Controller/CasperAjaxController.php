@@ -120,19 +120,19 @@ class CasperAjaxController extends Controller
             if(isset($ex_user))
             {
                 $newid = $created_before->getIdDeleted();
-                $qb = $em->createQueryBuilder();
-                $q = $qb->update('AppBundle:Accounts', 'acc')
+                //$qb = $em->createQueryBuilder();
+                /*$q = $qb->update('AppBundle:Accounts', 'acc')
                     ->set('acc.id', '?1')
                     ->where('acc.id = ?2')
                     ->setParameter(1, $newid)
                     ->setParameter(2, $new_account->getId())
                     ->getQuery();
-                $q->execute();
+                $q->execute();*/
                 $em->remove($created_before);
                 $new_account->setId($newid);
                 $em->persist($new_account);
                 $em->flush();
-
+var_dump($new_account->getId());
                 //$new_account = $em->getRepository('AppBundle:Accounts')->find($newid);
             }
 

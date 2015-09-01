@@ -59,11 +59,11 @@ class AccountsLog
      * @ORM\Column(type="string", length=40)
      */
     protected $ip;
-    
+
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=3)
      */
-    protected $try;
+    protected $countryFrom;
 
     /**
      * @ORM\Column(type="datetime")
@@ -202,29 +202,6 @@ class AccountsLog
     }
 
     /**
-     * Set try
-     *
-     * @param integer $try
-     * @return AccountsLog
-     */
-    public function setTry($try)
-    {
-        $this->try = $try;
-
-        return $this;
-    }
-
-    /**
-     * Get try
-     *
-     * @return integer 
-     */
-    public function getTry()
-    {
-        return $this->try;
-    }
-
-    /**
      * Set proxy
      *
      * @param \AppBundle\Entity\Proxy $proxy
@@ -268,5 +245,28 @@ class AccountsLog
     public function getIp()
     {
         return $this->ip;
+    }
+
+    /**
+     * Set countryFrom
+     *
+     * @param string $countryFrom
+     * @return AccountsLog
+     */
+    public function setCountryFrom($countryFrom)
+    {
+        $this->countryFrom = $countryFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get countryFrom
+     *
+     * @return string 
+     */
+    public function getCountryFrom()
+    {
+        return $this->countryFrom;
     }
 }

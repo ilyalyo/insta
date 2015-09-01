@@ -99,8 +99,10 @@ class CasperAjaxController extends Controller
 
             if(!isset($new_account)){
                 $accountsLog = new AccountsLog($account);
-                $accountsLog->setTry(1);
                 $accountsLog->setIp($request->getClientIp());
+                $xml = simplexml_load_file("http://www.geoplugin.net/xml.gp?ip=" . $request->getClientIp());
+                $accountsLog->setIp($request->getClientIp());
+                $accountsLog->setCountryFrom($xml->geoplugin_countryCode);
                 $em->persist($accountsLog);
                 $em->flush();
                 $form->get('instLogin')->addError(new FormError('Возможно неправильная пара логин и пароль'));

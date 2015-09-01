@@ -669,7 +669,7 @@ class Instagram
         $file2 = __DIR__ . "/Casper/get_token.js";
 
         //проверяем не скинул ли инст пароль
-        $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+        $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
         if(strpos($output, '0') !== FALSE ){
             $this->debug('WRONG_PASS_METRICA' . ++$this->WRONG_PASS_METRICA );
             if($this->WRONG_PASS_METRICA > 3){
@@ -681,10 +681,10 @@ class Instagram
         if(strpos($output, '2') !== FALSE )
             $this->debug('instagrams problems');
 
-        $output = shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+        $output = shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
         $this->debug('auth output: ' . $output);
 
-        $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy" . $this->PROXY . " --proxy-type=socks5");
+        $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
         $output = trim($output);
 
         $this->debug($token['client']);

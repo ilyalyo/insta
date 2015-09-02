@@ -669,6 +669,7 @@ class Instagram
         $file2 = __DIR__ . "/Casper/get_token.js";
 
         //проверяем не скинул ли инст пароль
+        $this->debug('start casper');
         $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
         if(strpos($output, '0') !== FALSE ){
             $this->debug('WRONG_PASS_METRICA' . ++$this->WRONG_PASS_METRICA );

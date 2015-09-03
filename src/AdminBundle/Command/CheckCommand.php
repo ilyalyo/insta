@@ -14,7 +14,7 @@ class CheckCommand extends ContainerAwareCommand
         $this->setName('task:get_list');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute( OutputInterface $output)
     {
         $text = shell_exec("ps -aux 2>/dev/null | grep follow.php |  awk '{print $13}' | grep -v ps | sort");
         $output->writeln($text);

@@ -89,7 +89,8 @@ class AnalyticController extends Controller
         $input = new ArrayInput([]);
         $output =  new BufferedOutput();
         $command->run($input, $output);
-      var_dump($output->fetch() );
+        $ids = explode(' ', $output->fetch());
+        var_dump($ids);
         die();
 
 

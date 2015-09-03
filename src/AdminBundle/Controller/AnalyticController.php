@@ -83,14 +83,28 @@ class AnalyticController extends Controller
     public function tasksAnalyticAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $command = new CheckCommand();
         $command->setContainer($this->container);
         $input = new ArrayInput([]);
         $output =  new BufferedOutput();
         $command->run($input, $output);
-        $ids = explode('\r\n', $output->fetch());
-        var_dump($ids);
+        $o = $output->fetch();
+        $d = substr($o,0,1);
+        $o = trim($o,$d);
+        $ids = explode($d, $o);
+        $ready_tasks = $em->getRepository('TaskBundle:Tasks')->findBy(['status' => [0,2]]);
+        foreach ($ready_tasks as $t) {
+            if(in_array($t->getId(),$ids))
+                unset($ids[$t->getId()]);
+            else
+                $forgotten_task[] = $t->getId();
+        }
+        if (isset($forgotten_task) || count($ids) > 0)
+        {
+            var_dump($forgotten_task);
+            var_dump($ids);
+        }
+
         die();
 
 
@@ -153,7 +167,7 @@ GROUP BY  t.id
 GROUP BY  DATE_FORMAT(sub.sdate ,'%d-%m-%y'),sub.proxy
 ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
         $statement->execute();
-        $all_proxy = $em->getRepository('AppBundle:Proxy')->findAll(['id' => 'proxy']);
+        $all_proxy = $em->getRepository('AppBundle:Proxy')->findBy(['id' => 'proxy']);
         foreach ($all_proxy as $p) {
             $proxy[$p->getId()] = [];
         }

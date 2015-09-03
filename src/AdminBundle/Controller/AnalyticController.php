@@ -86,8 +86,9 @@ class AnalyticController extends Controller
 
         $command = new CheckCommand();
         $command->setContainer($this->container);
+        $input = new ArrayInput([]);
         $output =  new BufferedOutput();
-        $command->run(null,$output);
+        $command->run($input, $output);
       var_dump($output->fetch() );
         die();
 

@@ -2,12 +2,15 @@
 
 namespace AdminBundle\Controller;
 
+use AdminBundle\Command\CheckCommand;
 use AppBundle\Entity\Support;
 use AppBundle\Form\Type\SupportType;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -80,6 +83,17 @@ class AnalyticController extends Controller
     public function tasksAnalyticAction()
     {
         $em = $this->getDoctrine()->getManager();
+
+        $command = new CheckCommand();
+        $command->setContainer($this->container);
+
+        $output =  new BufferedOutput();
+        $command->run(null,$output);
+      var_dump($output->fetch() );
+        die();
+
+
+
         $connection = $em->getConnection();
         $statement = $connection->prepare("
 SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM tasks t

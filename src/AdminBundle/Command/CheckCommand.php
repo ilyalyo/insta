@@ -16,7 +16,7 @@ class CheckCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $text = shell_exec("ps -aux | grep follow.php |  awk '{print $13}' | grep -v ps | sort");
+        $text = shell_exec("ps -aux 2>/dev/null | grep follow.php |  awk '{print $13}' | grep -v ps | sort");
         $output->writeln($text);
     }
 }

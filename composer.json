@@ -24,7 +24,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "mopa/bootstrap-bundle": "dev-master",
         "twbs/bootstrap": "dev-master",
-        "ob/highcharts-bundle": "~1.2"
+        "ob/highcharts-bundle": "~1.2",
+        "paquettg/php-html-parser": "^1.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

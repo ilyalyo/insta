@@ -1,4 +1,5 @@
 <?php
+use AppBundle\Utils\InstWorker;
 class Instagram
 {
     public $PROXY;
@@ -35,12 +36,12 @@ class Instagram
             $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token'], 'id' => $row['id']);
         $this->TOKEN_INDEX = 0;
         $this->get_task();
-        for($i = 0; $i<7;$i++) {
+       /* for($i = 0; $i<7;$i++) {
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
                 break;
-        }
+        }*/
     }
 
     // фоловим указанного юзера
@@ -664,29 +665,21 @@ class Instagram
     public function update_token(){
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
-        $file0 = __DIR__ . "/Casper/check_auth.js";
-        $file = __DIR__ . "/Casper/auth.js";
-        $file2 = __DIR__ . "/Casper/get_token.js";
+        $iw = new InstWorker(
+            $this->LOGIN,
+            $this->PASSWORD,
+            $this->ACCOUNT_ID,
+            $this->PROXY
+            );
 
-        //проверяем не скинул ли инст пароль
-        $this->debug('start casper');
-        $output = shell_exec("casperjs --web-security=no $file0 '" . $this->LOGIN . "' '" . $this->PASSWORD . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
-        if(strpos($output, '0') !== FALSE ){
-            $this->debug('WRONG_PASS_METRICA' . ++$this->WRONG_PASS_METRICA );
-            if($this->WRONG_PASS_METRICA > 3){
-                $this->stop_task_and_set_error_status(2);
-                return false;
-            }
+        if($iw->login() != true){
+            $this->stop_task_and_set_error_status(2);
+            return false;
         }
 
-        if(strpos($output, '2') !== FALSE )
-            $this->debug('instagrams problems');
+        $iw->InstallApp($token['client']);
 
-        $output = shell_exec("casperjs --web-security=no $file '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" .  $token['client'] ."' '" .  $this->ACCOUNT_ID . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
-        $this->debug('auth output: ' . $output);
-
-        $output = shell_exec("casperjs --web-security=no $file2 '" . $this->LOGIN . "' '" . $this->PASSWORD ."' '" . $token['client'] . "' --proxy=" . $this->PROXY . " --proxy-type=socks5");
-        $output = trim($output);
+        $output = $iw->GetToken($token['client']);
 
         $this->debug($token['client']);
         $this->debug('broken: ' . $token['token']);
@@ -694,9 +687,8 @@ class Instagram
 
         if( isset($output) && strpos($output, $this->ACCOUNT_ID_INST) !== FALSE && $output != $token['token']){
             $this->debug('success update');
-            $this->WRONG_PASS_METRICA=0;
             $this->TOKEN_ARRAY[$index]['token']=$output;
-            $token_id=$token['id'];
+            $token_id = $token['id'];
             $qr_result = mysql_query("UPDATE tokens SET token='$output' WHERE id=$token_id")
                 or die(mysql_error());
             return true;

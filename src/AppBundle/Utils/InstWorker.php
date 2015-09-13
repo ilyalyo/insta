@@ -13,6 +13,7 @@ class InstWorker {
     const cookie_folder = '/var/www/instastellar/tasks/';
     private $login;
     private $pass;
+    private $proxy;
     private $cookie_file;
     private $last_csrf;
     public $apps = array(
@@ -23,9 +24,10 @@ class InstWorker {
         );
 
     //account_id нужен для именования файлов, тк может случиться что юзер изменит логин
-    public function __construct($login, $pass, $account_id){
+    public function __construct($login, $pass, $account_id, $proxy){
         $this->login = $login;
         $this->pass = $pass;
+        $this->proxy = $proxy;
         $this->cookie_file = self::cookie_folder . $account_id . ".txt";
     }
 
@@ -39,6 +41,8 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         $result = curl_exec($ch);
         $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
         curl_close ($ch);
@@ -62,6 +66,8 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_REFERER, 'https://instagram.com/accounts/login/');
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "username=" . $this->login . "&password=" . $this->pass );
 
@@ -91,6 +97,8 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_REFERER, $url);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=" . $this->last_csrf . "&allow=Authorize");
         $result = curl_exec($ch);
@@ -113,6 +121,8 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         $result = curl_exec($ch);
         curl_close ($ch);
         $dom = new Dom;

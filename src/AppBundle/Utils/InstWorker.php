@@ -117,8 +117,10 @@ class InstWorker {
         curl_close ($ch);
         $dom = new Dom;
         $dom->load($result);
-        $a = $dom->find('#client_' . $app_name)->find('form')->find('input');
-        return $a->value;
+        $a = $dom->find('#client_' . $app_name);
+        $a = count($a) > 0 ? $a->find('form')->find('input')->value :  null;
+        return $a;
+
     }
 
 }

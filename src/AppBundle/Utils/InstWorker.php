@@ -5,9 +5,9 @@
  * Date: 12.09.2015
  * Time: 20:51
  */
-//require __DIR__ . '\..\..\..\vendor\autoload.php';
-use PHPHtmlParser\Dom;
+namespace AppBundle\Utils;
 
+use PHPHtmlParser\Dom;
 class InstWorker {
 
     const cookie_folder = '/var/www/instastellar/tasks/';
@@ -22,10 +22,11 @@ class InstWorker {
         'test-socialhammer-app' => array('id' => '6976c26a83f44047b339578982f7eb30', 'redirect_uri' => 'http%3A%2F%2Fsocialhammer.com%2Fajax.php%3Fdo%3Dinstagram_callback%26accsID%3D22725%26apiID%3D2%26groupID%3D-1'),
         );
 
-    public function __construct($login, $pass){
+    //account_id нужен для именования файлов, тк может случиться что юзер изменит логин
+    public function __construct($login, $pass, $account_id){
         $this->login = $login;
         $this->pass = $pass;
-        $this->cookie_file = self::cookie_folder . $this->login . '_' . $this->pass . ".txt";
+        $this->cookie_file = self::cookie_folder . $account_id . ".txt";
     }
 
     public function Login(){
@@ -39,15 +40,13 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
         $result = curl_exec($ch);
-        $header = substr($result, 0, curl_getinfo($ch,CURLINFO_HEADER_SIZE));
+        $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
         curl_close ($ch);
 
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
 
-        foreach ($res[1] as $key => $value) {
-            $this->last_csrf.= $res[2][$key];
-        };
+        $this->last_csrf.= $res[2][0];
 
         //получаем кукисы сессии
         $login_url = 'https://instagram.com/accounts/login/ajax/';
@@ -72,8 +71,10 @@ class InstWorker {
         $json = json_decode($result);
         if($json !== FALSE && isset($json->authenticated) && $json->authenticated == 'true')
             return true;
-        else
+        else{
             return false;
+            unlink($this->cookie_file);
+        }
     }
 
     public function InstallApp($app_name){

@@ -743,7 +743,7 @@ class Instagram
                 return null;
             }
             $this->debug('un tracked error');
-           // $this->change_token();
+            $this->change_token();
         return null;
     }
 

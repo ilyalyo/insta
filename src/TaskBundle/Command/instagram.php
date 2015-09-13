@@ -37,12 +37,13 @@ class Instagram
             $this->TOKEN_ARRAY[] = array('client' => $row['client'], 'token' => $row['token'], 'id' => $row['id']);
         $this->TOKEN_INDEX = 0;
         $this->get_task();
-       /* for($i = 0; $i<7;$i++) {
+        //ищем рабочий токен
+        for($i = 0; $i<3;$i++) {
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
                 break;
-        }*/
+        }
     }
 
     // фоловим указанного юзера

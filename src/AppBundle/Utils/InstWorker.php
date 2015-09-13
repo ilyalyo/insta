@@ -6,12 +6,15 @@
  * Time: 20:51
  */
 namespace AppBundle\Utils;
+require __DIR__ . '/RuCaptcha.php';
 
 use PHPHtmlParser\Dom;
 class InstWorker {
 
+    const api_key = '9b5a393207b21e19b979059cf970639e';
     const cookie_folder = '/var/www/instastellar/tasks/';
     const connection_max_time = 30;
+
     private $login;
     private $pass;
     private $proxy;
@@ -104,10 +107,8 @@ class InstWorker {
         $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
-var_dump($this->last_csrf);
 
         $this->last_csrf = $res[2][0];
-        var_dump($this->last_csrf);
 
         curl_close ($ch);
 
@@ -158,6 +159,48 @@ var_dump($this->last_csrf);
         $a = $dom->find('#client_' . $app_name);
         $a = count($a) > 0 ? $a->find('form')->find('input')->value :  null;
         return $a;
+    }
+
+    public function CheckCaptcha(){
+        //берем капчу
+        $url = 'https://instagram.com/integrity/checkpoint/';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
+        curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        $result = curl_exec($ch);
+        curl_close ($ch);
+
+        $dom = new Dom;
+        $dom->load($result);
+        $a = $dom->find('#recaptcha_challenge_image');
+        $a = count($a) > 0 ? $a->src : null;
+
+        if($a !== null){
+            $text = recognize($a, self::api_key, 3, 100);
+
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
+            curl_setopt($ch, CURLOPT_NOBODY, true);
+            curl_setopt($ch, CURLOPT_REFERER, $url);
+            curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
+            curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+            curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+            curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "recaptcha_response_field=" . $text);
+            $result = curl_exec($ch);
+            curl_close ($ch);
+        }
+
+        return $result;
     }
 
     public function removeCookie(){

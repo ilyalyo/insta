@@ -94,17 +94,6 @@ class CasperAjaxController extends Controller
             $iw->InstallApp('easytogo');
             $iw->removeCookie();
 
-            /* $command = new AuthCommand();
-             $command->setContainer($this->container);
-             $input = new ArrayInput(array(
-                 'username'=>$account->getInstLogin(),
-                 'password' =>$account->getInstPass(),
-                 'proxy' => $proxy->getIp() . ':' . $proxy->getPort()
-             ));
-
-             $output = new NullOutput();
-             $command->run($input, $output);
- */
             $new_account = $em->getRepository('AppBundle:Accounts')->findOneBy(array(
                 'instLogin' => $account->getInstLogin(),
                 'user' => null));

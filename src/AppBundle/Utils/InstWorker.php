@@ -113,6 +113,7 @@ class InstWorker {
         //отправляем код
         $ch = curl_init($location);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
+        curl_exec($ch);
         curl_close ($ch);
     }
 

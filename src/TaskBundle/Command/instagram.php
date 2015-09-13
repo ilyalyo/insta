@@ -1,4 +1,5 @@
 <?php
+require '/var/www/instastellar/vendor/autoload.php';
 use AppBundle\Utils\InstWorker;
 class Instagram
 {
@@ -663,8 +664,10 @@ class Instagram
 
     // если выпала капча, или токен просто устарел, обновляем его через каспер
     public function update_token(){
+
         $index = $this->TOKEN_INDEX;
         $token = $this->TOKEN_ARRAY[$index];
+
         $iw = new InstWorker(
             $this->LOGIN,
             $this->PASSWORD,

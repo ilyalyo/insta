@@ -52,7 +52,7 @@ class InstWorker {
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
 
-        $this->last_csrf.= $res[2][0];
+        $this->last_csrf = $res[2][0];
 
         //получаем кукисы сессии
         $login_url = 'https://instagram.com/accounts/login/ajax/';
@@ -90,6 +90,28 @@ class InstWorker {
         $redirect_uri = $this->apps[$app_name]['redirect_uri'];
         $url = "https://instagram.com/oauth/authorize/?client_id=$client_id&redirect_uri=$redirect_uri&response_type=code&scope=likes+comments+relationships";
 
+        //обновляем кукисы
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
+        curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        $result = curl_exec($ch);
+        $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        //вытаскиваем кукисы из хеадера
+        preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
+var_dump($this->last_csrf);
+
+        $this->last_csrf = $res[2][0];
+        var_dump($this->last_csrf);
+
+        curl_close ($ch);
+
+
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, true);
@@ -106,6 +128,8 @@ class InstWorker {
         $result = curl_exec($ch);
         $header = substr($result, 0, curl_getinfo($ch,CURLINFO_HEADER_SIZE));
         curl_close ($ch);
+
+        var_dump($header);
 
         preg_match('/Location: .*/',$header,$matches);
         $location= substr($matches[0], 10);

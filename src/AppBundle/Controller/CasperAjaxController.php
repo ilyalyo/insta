@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Command\AuthCheckCommand;
 use AppBundle\Entity\AccountsLog;
+use AppBundle\Utils\InstWorker;
 use Symfony\Component\ExpressionLanguage\Token;
 use Symfony\Component\Form\FormError;
 use AppBundle\Command\AuthCommand;
@@ -82,17 +83,28 @@ class CasperAjaxController extends Controller
 
             $proxy = $this->chooseProxy($account->getCountry());
 
-            $command = new AuthCommand();
-            $command->setContainer($this->container);
-            $input = new ArrayInput(array(
-                'username'=>$account->getInstLogin(),
-                'password' =>$account->getInstPass(),
-                'proxy' => $proxy->getIp() . ':' . $proxy->getPort()
-            ));
+            $iw = new InstWorker(
+                $account->getInstLogin(),
+                $account->getInstPass(),
+                $user->getId(),//используем id юзера, а не акка, тк у акка еще нет ид, удаляем его сразу же
+                $proxy->getIp() . ':' . $proxy->getPort()
+                );
 
-            $output = new NullOutput();
-            $command->run($input, $output);
+            $iw->Login();
+            $iw->InstallApp('easytogo');
+            $iw->removeCookie();
 
+            /* $command = new AuthCommand();
+             $command->setContainer($this->container);
+             $input = new ArrayInput(array(
+                 'username'=>$account->getInstLogin(),
+                 'password' =>$account->getInstPass(),
+                 'proxy' => $proxy->getIp() . ':' . $proxy->getPort()
+             ));
+
+             $output = new NullOutput();
+             $command->run($input, $output);
+ */
             $new_account = $em->getRepository('AppBundle:Accounts')->findOneBy(array(
                 'instLogin' => $account->getInstLogin(),
                 'user' => null));

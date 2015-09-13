@@ -11,6 +11,7 @@ use PHPHtmlParser\Dom;
 class InstWorker {
 
     const cookie_folder = '/var/www/instastellar/tasks/';
+    const connection_max_time = 30;
     private $login;
     private $pass;
     private $proxy;
@@ -36,8 +37,9 @@ class InstWorker {
         $login_url = 'https://instagram.com/accounts/login/';
 
         $ch = curl_init($login_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
@@ -57,6 +59,7 @@ class InstWorker {
 
         $ch = curl_init($login_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'X-Instagram-AJAX: 1',
@@ -77,10 +80,8 @@ class InstWorker {
         $json = json_decode($result);
         if($json !== FALSE && isset($json->authenticated) && $json->authenticated == 'true')
             return true;
-        else{
+        else
             return false;
-            unlink($this->cookie_file);
-        }
     }
 
     public function InstallApp($app_name){
@@ -92,6 +93,7 @@ class InstWorker {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_NOBODY, true);
         curl_setopt($ch, CURLOPT_REFERER, $url);
@@ -118,6 +120,7 @@ class InstWorker {
         $url = 'https://instagram.com/accounts/manage_access/';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
@@ -130,7 +133,10 @@ class InstWorker {
         $a = $dom->find('#client_' . $app_name);
         $a = count($a) > 0 ? $a->find('form')->find('input')->value :  null;
         return $a;
+    }
 
+    public function removeCookie(){
+        unlink($this->cookie_file);
     }
 
 }

@@ -145,7 +145,9 @@ class CasperAjaxController extends Controller
 
             $this->addProvider($new_account,'stapico');
             $this->addProvider($new_account,'collecto');
-            $this->addProvider($new_account,'test-socialhammer-app');
+            $this->addProvider($new_account,'ink361');
+            $this->addProvider($new_account,'pictacular');
+            $this->addProvider($new_account,'websta');
 
             return $this->redirectToRoute('accounts');
         }

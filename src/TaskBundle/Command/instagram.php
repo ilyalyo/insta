@@ -704,47 +704,53 @@ class Instagram
     }
 
     function httpPost($url, $params){
-            $output = $this->httpPostReal($url, $params);
-            $this->debug($output);
-            $json = json_decode($output);
-            if(!isset($json)){
-                $this->debug('json is null - httpPost');
-                $this->debug($params['url']);
-                return null;
-            }
-            if($output === FALSE){
-                $this->debug('json is false - httpPost');
-                return null;
-            }
-            if($json->meta->code == 200)
-                return $json;
-            if($json->meta->code == 429){
-                $this->change_token();
-                return null;
-            }
-            if($json->meta->code == 400){
-                $this->debug('code 400 - httpPost: ' . $json->meta->error_message);
-                if($json->meta->error_type == 'APINotAllowedError')
-                    return null;
-                if(strpos($json->meta->error_message, 'invalid media id') !== FALSE ){
-                    return null;
-                }
-                if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ||
-                    strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE){
-                    if(!$this->update_token())
-                        $this->change_token();
-                    return null;
-                }
-                if(strpos($json->meta->error_message, 'following the max limit of accounts') !== FALSE)
-                    $this->stop_task_and_set_error_status(1);
-                if(strpos($json->meta->error_message, 'you cannot view this resource') !== FALSE)
-                    return null;
-
-                $this->change_token();
-                return null;
-            }
-            $this->debug('un tracked error');
+        //easytogo only basic scope
+        $index = $this->TOKEN_INDEX;
+        $token = $this->TOKEN_ARRAY[$index];
+        if($token['client'] == 'easytogo')
             $this->change_token();
+
+        $output = $this->httpPostReal($url, $params);
+        $this->debug($output);
+        $json = json_decode($output);
+        if(!isset($json)){
+            $this->debug('json is null - httpPost');
+            $this->debug($params['url']);
+            return null;
+        }
+        if($output === FALSE){
+            $this->debug('json is false - httpPost');
+            return null;
+        }
+        if($json->meta->code == 200)
+            return $json;
+        if($json->meta->code == 429){
+            $this->change_token();
+            return null;
+        }
+        if($json->meta->code == 400){
+            $this->debug('code 400 - httpPost: ' . $json->meta->error_message);
+            if($json->meta->error_type == 'APINotAllowedError')
+                return null;
+            if(strpos($json->meta->error_message, 'invalid media id') !== FALSE ){
+                return null;
+            }
+            if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ||
+                strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE){
+                if(!$this->update_token())
+                    $this->change_token();
+                return null;
+            }
+            if(strpos($json->meta->error_message, 'following the max limit of accounts') !== FALSE)
+                $this->stop_task_and_set_error_status(1);
+            if(strpos($json->meta->error_message, 'you cannot view this resource') !== FALSE)
+                return null;
+
+            $this->change_token();
+            return null;
+        }
+        $this->debug('un tracked error');
+        $this->change_token();
         return null;
     }
 

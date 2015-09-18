@@ -10,6 +10,9 @@
             <p>Работающих задач: {{ tasks }}</p>
             <p>Про аккаунтов: {{ acc_pro }}</p>
             <p>Бесплатных аккаунтов: {{ acc_free }}</p>
+
+            {{ dump(forgotten_task) }}
+            {{ dump(ids) }}
             <div id="container" style="padding-top: 30px"></div>
             <div id="container_tasks" style="padding-top: 30px"></div>
             <div id="container_proxy" style="padding-top: 30px"></div>

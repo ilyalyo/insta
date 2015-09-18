@@ -93,21 +93,13 @@ class AnalyticController extends Controller
         $o = trim($o,$d);
         $ids = explode($d, $o);
         $ready_tasks = $em->getRepository('TaskBundle:Tasks')->findBy(['status' => [0,2]]);
+        $forgotten_task = [];
         foreach ($ready_tasks as $t) {
             if(in_array($t->getId(),$ids))
                 unset($ids[$t->getId()]);
             else
                 $forgotten_task[] = $t->getId();
         }
-        if (isset($forgotten_task) || count($ids) > 0)
-        {
-            var_dump($forgotten_task);
-            var_dump($ids);
-        }
-
-        die();
-
-
 
         $connection = $em->getConnection();
         $statement = $connection->prepare("
@@ -311,6 +303,8 @@ SELECT COUNT(*) as sum, UNIX_TIMESTAMP(t.createdAt) as date
                 'tasks' => count($tasks),
                 'acc_pro' =>  $acc_pro->getSingleScalarResult(),
                 'acc_free' => $acc_free->getSingleScalarResult(),
+                'forgotten_task' => $forgotten_task,
+                'ids' => $ids,
             ]
         );
     }

@@ -101,6 +101,11 @@ class AnalyticController extends Controller
                 $forgotten_task[] = $t->getId();
         }
 
+        $tasks_failed = [];
+        $tasks_stopped = [];
+        $proxy = [];
+        $tasks_all = [];
+        $tasks_done = [];
         $connection = $em->getConnection();
         $statement = $connection->prepare("
 SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM tasks t

@@ -24,7 +24,7 @@ class InstWorker {
         'easytogo' => array('id' => '6e336200a7f446a78b125602b90989cc', 'redirect_uri' => 'http://instastellar.su/get_token'),
         'stapico' => array('id' =>  'e77306665eb54866ae0a8185c4028604', 'redirect_uri' => 'http://stapico.ru/accounts/auth/complete'),
         'collecto' => array('id' => '2b5a0c10371c4784935b03e5619e94ca', 'redirect_uri' => 'http://collec.to/login'),
-        'ink361' => array('id' =>   '2e7067c2b22a4cbdb6b2e0e89cbd6537', 'redirect_uri' => 'https://instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/%3Fclient_id%3D2e7067c2b22a4cbdb6b2e0e89cbd6537%26response_type%3Dcode%26redirect_uri%3Dhttp%3A//data.ink361.com/v1/auth%3Finstagram%3D1%26scope%3Dbasic%2Bcomments%2Brelationships%2Blikes'),
+        'ink361' => array('id' =>   '2e7067c2b22a4cbdb6b2e0e89cbd6537', 'redirect_uri' => 'https://instagram.com/oauth/authorize/?client_id=2e7067c2b22a4cbdb6b2e0e89cbd6537&response_type=code&redirect_uri=http://data.ink361.com/v1/auth?instagram=1&scope=basic+comments+relationships+likes'),
         'pictacular' => array('id' =>   'b7b6584eadc84911b211d3e9045ed917', 'redirect_uri' => 'https://instagram.com/oauth/authorize/?client_id=b7b6584eadc84911b211d3e9045ed917&redirect_uri=http://www.pictacular.co/&scope=comments+likes+relationships&response_type=token'),
         'websta' => array('id' =>   '9d836570317f4c18bca0db6d2ac38e29', 'redirect_uri' => 'https://instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes'),
         );

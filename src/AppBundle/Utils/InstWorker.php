@@ -20,6 +20,8 @@ class InstWorker {
     private $proxy;
     private $cookie_file;
     private $last_csrf;
+    private $captcha_img;
+
     public $apps = array(
         'easytogo' => array('id' => '6e336200a7f446a78b125602b90989cc', 'redirect_uri' => 'http://instastellar.su/get_token'),
         'stapico' => array('id' =>  'e77306665eb54866ae0a8185c4028604', 'redirect_uri' => 'http://stapico.ru/accounts/auth/complete'),
@@ -35,6 +37,7 @@ class InstWorker {
         $this->pass = $pass;
         $this->proxy = $proxy;
         $this->cookie_file = self::cookie_folder . $account_id . ".txt";
+        $this->captcha_img = self::cookie_folder . $account_id . ".gif";
     }
 
     public function Login(){
@@ -175,16 +178,47 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         $result = curl_exec($ch);
+
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        //вытаскиваем кукисы из хеадера
+        preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
+
+        $this->last_csrf = $res[2][0];
         curl_close ($ch);
 
-        $dom = new Dom;
-        $dom->load($result);
-        $a = $dom->find('#recaptcha_challenge_image');
-        $a = count($a) > 0 ? $a->src : null;
+        if($http_code == '200') {
+            $this->debug('start' . $header);
+            //берем адрес капчи
+            $url = ' https://www.google.com/recaptcha/api/challenge?k=6Ld8RcESAAAAAEo6_M9BjluesU7nWtdKmhIeU-jD';
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
+            curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
+            curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+            curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+            curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+            $result = curl_exec($ch);
 
-        if($a !== null){
-            $text = recognize($a, self::api_key, 3, 100);
+            //вытаскиваем ключ
+            $first = strpos($result, "'");
+            $second = strpos($result, "'", ++$first);
+            $captcha_id = substr($result, $first, $second - $first);
 
+            $this->debug($captcha_id);
+
+            //скачиваем картинку
+            $captcha_url = "https://www.google.com/recaptcha/api/image?c=$captcha_id";
+            file_put_contents($this->captcha_img, file_get_contents($captcha_url));
+
+            //распознаем
+            $text = recognize($this->captcha_img, self::api_key, 3, 100);
+
+            $this->debug($text);
+            unlink($this->captcha_img);
+
+            //отправляем результат
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HEADER, true);
@@ -197,12 +231,26 @@ class InstWorker {
             curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
             curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "recaptcha_response_field=" . $text);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=" . $this->last_csrf .
+                "&recaptcha_challenge_field=$captcha_id" . "&recaptcha_response_field=$text");
             $result = curl_exec($ch);
-            curl_close ($ch);
-        }
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+            curl_close($ch);
 
-        return $result;
+            $this->debug($header . 'end');
+
+            return $http_code;
+        }
+        return 0;
+    }
+
+    private function debug($message)
+    {
+        $filename = 'captcha_log.txt';
+        $file = "/var/www/instastellar/tasks/$filename";
+        var_dump($message);
+        file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
     }
 
     public function removeCookie(){

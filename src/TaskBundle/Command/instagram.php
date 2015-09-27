@@ -743,6 +743,8 @@ class Instagram
             }
             if(strpos($json->meta->error_message, 'following the max limit of accounts') !== FALSE)
                 $this->stop_task_and_set_error_status(1);
+            if(strpos($json->meta->error_message, ' you were misusing this feature by going too fast') !== FALSE)
+                $this->stop_task_and_set_error_status(6);
             if(strpos($json->meta->error_message, 'you cannot view this resource') !== FALSE)
                 return null;
 

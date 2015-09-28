@@ -186,6 +186,7 @@ class InstWorker {
 
         $this->last_csrf = $res[2][0];
         curl_close ($ch);
+        $this->debug('code: ' . $http_code);
 
         if($http_code == '200') {
             $this->debug('start' . $header);

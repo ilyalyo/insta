@@ -170,6 +170,7 @@ class InstWorker {
         //берем капчу
         $url = 'https://instagram.com/integrity/checkpoint/';
         $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
@@ -186,12 +187,10 @@ class InstWorker {
 
         $this->last_csrf = $res[2][0];
         curl_close ($ch);
-        $this->debug('code: ' . $http_code);
 
         if($http_code == '200') {
-            $this->debug('start' . $header);
             //берем адрес капчи
-            $url = ' https://www.google.com/recaptcha/api/challenge?k=6Ld8RcESAAAAAEo6_M9BjluesU7nWtdKmhIeU-jD';
+            $url = 'https://www.google.com/recaptcha/api/challenge?k=6Ld8RcESAAAAAEo6_M9BjluesU7nWtdKmhIeU-jD';
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
@@ -201,22 +200,39 @@ class InstWorker {
             curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
             curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
             $result = curl_exec($ch);
+            curl_close($ch);
 
             //вытаскиваем ключ
             $first = strpos($result, "'");
             $second = strpos($result, "'", ++$first);
             $captcha_id = substr($result, $first, $second - $first);
 
-            $this->debug($captcha_id);
+            //обновляем
+            $url = "https://www.google.com/recaptcha/api/reload?c=$captcha_id&k=6Ld8RcESAAAAAEo6_M9BjluesU7nWtdKmhIeU-jD&reason=i&type=image&lang=ru";
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
+            curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
+            curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
+            curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+            curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+            //вытаскиваем ключ
+            $first = strpos($result, "'");
+            $second = strpos($result, "'", ++$first);
+            $captcha_id = substr($result, $first, $second - $first);
 
             //скачиваем картинку
             $captcha_url = "https://www.google.com/recaptcha/api/image?c=$captcha_id";
             file_put_contents($this->captcha_img, file_get_contents($captcha_url));
 
             //распознаем
-            $text = recognize($this->captcha_img, self::api_key, 3, 100);
+            $text = recognize($this->captcha_img, self::api_key);
 
-            $this->debug($text);
             unlink($this->captcha_img);
 
             //отправляем результат
@@ -236,10 +252,8 @@ class InstWorker {
                 "&recaptcha_challenge_field=$captcha_id" . "&recaptcha_response_field=$text");
             $result = curl_exec($ch);
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+//            $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
             curl_close($ch);
-
-            $this->debug($header . 'end');
 
             return $http_code;
         }

@@ -1,279 +1,77 @@
 {% extends 'landing_base.html.twig' %}
 {% block content %}
 <body>
-<div style="background-image: url('/img/background_space.jpg'); background-size: cover; padding-bottom: 30px;">
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            {{ form_start(form) }}
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Обратная связь</h4>
+            </div>
+    {% if is_sent == 1 %}
+        <script>
+            $( document ).ready(function() {
+                $('#myModal').modal('show')
+            });
+        </script>
+            <div class="modal-body" style="padding: 30px;">
+                <div class="form-group" style="padding-top: 15px;">
+                    <label for="timezone">Спасибо! <br/>Мы свяжемся с Вами в ближайшее время.</label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+    {% else %}
+
+        {{ form_start(form) }}
+
+            <div class="modal-body" style="padding: 30px;">
+
+                <div class="form-group" style="padding-top: 15px;">
+                    <label for="timezone">Имя:</label>
+                    {{ form_widget(form.message) }}
+                </div>
+                <div class="form-group" style="padding-top: 15px;">
+                    <label for="timezone">Email:</label>
+                    {{ form_widget(form.tmp) }}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+
+            {{ form_end(form) }}
+    {% endif %}
+
+
+        </div>
+    </div>
+</div>
+<div style="background-image: url('/img/background_space.jpg'); background-size: cover;">
 <section id="main">
-    <div class="container" id="brief" style="padding-bottom: 150px;">
+    <div class="container" id="brief">
         <div class="row" style="padding-top: 100px">
             <div class="col-lg-6">
                 <a><img  class="rocket img-responsive" src="img/main.png"/></a>
             </div>
             <div class="col-lg-6">
                 <a><img  class="logo img-responsive " src="img/instastellar_header.png"/></a>
-                <p style="font-size: 24px;padding-top: 32px; color:#ffffff">Сервис для продвижения в Instagram</p>
+                <p style="font-size: 24px;padding-top: 32px; color:#ffffff">Сервис для персональной поддержки в Instagram</p>
                 <p>Вы SMM специалист и занимаетесь раскруткой в instagram?</p>
-                <p>У Вас свой интернет магазин в
-                    Instagram и Вы не хотите переплачивать фирмам-раскрутчикам?</p>
+                <p>Недавно зарегистрировались и не знаете что к чему?</p>
                 <p>Вы ведете Instagram-блог и хотите больше подписчиков?</p>
-                <p>Зарегистрируйтесь и получите возможность 3 дня <font style="color: #e90a71;">бесплатно</font> <font style="font-size:12pt;">(с момента регистрации)</font> использовать наш сервис!</p>
-                <form action="{{ path("fos_user_registration_register") }}">
-                    <button type="submit" class="btn btn-default btn-start"><p style="padding-top:5px;">РЕГИСТРАЦИЯ</p></button>
-                </form>
+                <p>Свяжитесь с нами, и получите консультацию от нашего специалиста. Первая косультация бесплатно!</p>
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-start"><p style="padding-top:5px;">Обратная связь</p></button>
             </div>
         </div>
-    </div>
-</section>
-<section id="poss">
-    <div class="container">
-        <div class="row">
-
-        </div>
-        <h1 class="row" style="padding-top:0;">
-            <div class="col-xs-3 col-xs-offset-9 col-sm-3 col-sm-offset-9 col-md-6 col-md-offset-7 col-lg-6 col-lg-offset-6">
-                <img class="img-responsive" src = "img/yellow_rocket.png"/>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: right;">Возможности</div>
-            <div class="col-xs-5 col-xs-offset-1 xs-noleftpadding col-sm-5 col-md-3 col-lg-3" style="margin-left:0;">
-                <img class="img-responsive" src="img/instastellar_header.png" style="padding-top: 5px;"/>
-            </div>
-        </h1>
-        <!-- <div class="row text-center"> -->
-        <div class="row container2 col-lg-12">
-            <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/virtual_server.png"/>
-            </div>
-            <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="/img/mass_following.png"/>
-            </div>
-            <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/5accounts.png"/>
-            </div>
-        </div>
-        <!-- </div> -->
-        <!-- <div class="row text-center"> -->
-        <div class="row container2">
-            <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/liking_heart.png"/>
-            </div>
-            <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/analytics.png"/>
-            </div>
-            <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/unfollowing.png"/>
-            </div>
-        </div>
-        <!-- </div> -->
-
     </div>
 </section>
 </div>
-    <div class="container" style="width:100%; background-color: #333333;">
-        <div class="row text-center" style="padding-bottom: 10px;">
-            <div class="col-lg-12">
-                <h2 style="color:#ffffff;">Подробнее о возможностях instaStellar</h2>
-            </div>
-        </div>
-    </div>
-<section id="promote" style="padding-bottom:20px;">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-12 text-center">
-                <h1>Как начать раскрутку</h1>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-lg-12 text-center">
-                <form action="{{ path("fos_user_registration_register") }}">
-                    <button type="submit" class="btn btn-default btn-start"><p style="padding-top:5px;">НАЧАТЬ РАСКРУТКУ</p></button>
-                </form>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-lg-3 text-center">
-            </div>
-            <div class="col-lg-6 text-center">
-              <h3>Все просто! нажмите на кнопку начать раскрутку и получите доступ к <font style="color: #e90a71;">бесплатной</font> пробной версии. (3 дня - режим полного функционала)</h3>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="why" style="padding-bottom: 0;">
-    <div class="container">
-            <h1 class="row col-lg-12">
-                <div class="col-xs-8 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3" style="text-align: right;">
-                    <img class="img-responsive" src="img/instastellar_header.png" style="margin-right:0; padding-top: 8px;"/>
-                </div>
-                <div class="col-xs-4 col-md-4 col-lg-4" style="padding-left: 0;">- это:</div>
-            </h1>
-        <div class="row">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1" style="padding-top:30px;">
-                <img src="img/plus_square.png"/>
-            </div>
-            <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Массфоловинг по тегам, спискам и по конкурентам </h3>
-                <p>Подписывайтесь на Вашу Целевую Аудиторию по хэштегам или по подписчикам конкурентов.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1" style="padding-top:30px;">
-                <img src="img/liking_square.png"/>
-            </div>
-            <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Масслайкинг по тегам, спискам и по конкурентам </h3>
-                <p>instaStellar ставит отметки Мне нравится для привлечения внимания и увеличении лояльности потенциальных клиентов.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1" style="padding-top:30px; padding-right:20px;">
-                <img src="img/unfollowing_square.png"/>
-            </div>
-            <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Массовая отписка</h3>
-                <p>Легко и удобно отписывайтесь от тех, кто уже подписался на Вас.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1" style="padding-top:30px; padding-right:20px;">
-                <img src="img/analytics_square.png"/>
-            </div>
-            <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Аналитика</h3>
-                <p>Полная аналитика Ваших аккаунтов в Instagram</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1" style="padding-top:30px; padding-right:20px;">
-                <img src="img/virtual_server_square.png"/>
-            </div>
-            <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Виртуальный сервер с поддержкой прокси</h3>
-                <p>Работа ведется на виртуальном сервере - Вам нужно только заходить в аккаунт со смартфона или компьютера и и ставить необходимые задачи - остальное сделает
-                    instaStellar.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1" style="padding-top:30px; padding-right:20px;">
-                <img src="img/multitask_square.png"/>
-            </div>
-            <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Мультизадачность</h3>
-                <p>Возможность параллельного ведения нескольких аккаунтов (поддержка мультизадачности).</p>
-            </div>
-        </div>
-    </div>
-    <section id="contacts">
-        <div class="container" style="width: 100%; background-size: cover; background-color:rgba(0,0,0,0.7); padding-bottom: 0;">
-            <div class="row" style="padding-top: 40px;">
-                <div class="col-lg-1" style="margin-right: 91.66666667%;"><!--это оффсет справа-->
-                    <h3>Контакты</h3>
-                </div>
-                <div class="col-sm-6 col-md-7 col-lg-7">
-                    <div class="col-xs-12 col-sm-11 col-md-7 col-md-offset-2 col-lg-5 col-lg-offset-2" style="padding-left:10px; margin-right: 50%;">
-                        <p>Техническая поддержка:</p>
-                    </div>
-                    <div class="row" style="padding-top: 5px;">
-                        <div class="col-xs-3 col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-2" style="text-align:right; padding-right: 20px;">
-                            <a href="mailto:support@instastellar.su?subject=Вопрос по поводу сервиса">
-                                <img src="img/email_small.png"/>
-                            </a>
-                        </div>
-                        <div class="col-xs-8 col-sm-3 col-md-3 col-lg-3">
-                            <a href="mailto:support@instastellar.su?subject=Вопрос по поводу сервиса">
-                                <p style="padding-left:5px; padding-top: 10px">support@instastellar.su</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 5px;">
-                        <div class="col-xs-3 col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-2" style="text-align:right; padding-right: 20px;">
-                            <a href="skype:insta_stellar?call">
-                                <img src="img/skype_small.png"/>
-                            </a>
-                        </div>
-                        <div class="col-xs-9 col-sm-3 col-md-4 col-lg-3">
-                            <a href="skype:insta_stellar?call">
-                                <p style="padding-left:5px; padding-top: 10px">insta_stellar</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 5px;">
-                        <div class="col-xs-3 col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-2" style="text-align:right; padding-right: 20px;">
-                            <a href="http://vk.com/id71510298">
-                                <img src="img/vk_small.png"/>
-                            </a>
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-right: 50%;">
-                            <p style="padding-left:5px; padding-top: 10px;">
-                                <a href="http://vk.com/id71510298">vk.com/id71510298</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="padding-bottom: 70px;">
-                    <div class="col-xs-12 col-sm-9 col-md-11 col-lg-9" style="padding-left: 0; margin-right: 25%">
-                        <p>Подписывайтесь на нас:</p>
-                    </div>
-                    <div class="row" style="padding-top: 5px;">
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2" style="text-align:right; padding-right: 20px;">
-                            <a href="https://instagram.com/p/i_stellar/">
-                                <img src="img/instagram_small.png"/>
-                            </a>
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2" style="margin-right: 50%;">
-                            <p style="padding-left:5px; padding-top: 10px;">
-                                <a href="http://i.instagram.com/i_stellar/">instagram.com/i_stellar</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 5px;">
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2" style="text-align:right; padding-right: 20px;">
-                            <a href="http://vk.com/instastellar">
-                                <img src="img/vk_small.png"/>
-                            </a>
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2" style="margin-right: 50%;">
-                            <p style="padding-left:5px; padding-top: 10px;">
-                                <a href="http://vk.com/instastellar">vk.com/instastellar</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-</section>
-
-</body>
-
-<footer class="text-center" style="margin-top: 0;">
-    <div class="footer-below ">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    Copyright © instastellar 2015
-                </div>
-                <div class="col-lg-12">
-                    <a href="{{ path('additional_info') }}#conf_politics" style="color: #d8c9b5; font-size:9pt;">Политика конфиденциальности</a>
-                </div>
-                <div class="col-lg-12">
-                    <a href="{{ path('additional_info') }}#offer" style="color: #d8c9b5; font-size:9pt;">Публичная оферта</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 
 {% endblock %}

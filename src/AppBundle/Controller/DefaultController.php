@@ -4,18 +4,20 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Accounts;
 use AppBundle\Entity\RemovedAccounts;
+use Proxies\__CG__\AppBundle\Entity\AccountsLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use TaskBundle\Entity\Errors;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         if(!isset($_COOKIE['instastellar_ref_cookie']))
         {
@@ -33,7 +35,28 @@ class DefaultController extends Controller
         }
         if(isset($ref))
         { setcookie("instastellar_ref_cookie",$ref, strtotime('+60 days')); }
+        $is_sent=0;
+        $error= new Errors();
+        $form = $this->createFormBuilder($error)
+            ->add('message', 'text')
+            ->add('tmp', 'text')
+            ->getForm();
+        $form->handleRequest($request);
 
+        if ($form->isValid()) {
+            $is_sent=1;
+            $em->persist($error);
+            $em->flush();
+        }
+            return $this->render(
+            'landing.html.twig',
+            [
+                'is_sent' => $is_sent,
+                'error' => $error,
+                'form' => $form->createView(),
+
+            ]
+        );
         return $this->render('landing.html.twig');
     }
 

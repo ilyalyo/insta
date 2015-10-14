@@ -3,9 +3,15 @@
     <link rel="stylesheet" href="/css/roboto-condensed.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/landing_base.css?ver2">
+    <link rel="stylesheet" href="/css/base.css">
+    <!--slider-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/transition.js"></script>
-    <script src="/js/collapse.js"></script>
+    <link rel="stylesheet" href="/css/roboto-condensed.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/bootstrap_switch/css/bootstrap-switch.min.css">
+    <script src="/bootstrap_switch/js/bootstrap-switch.min.js"></script>
 {% endblock head_style %}
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -14,46 +20,7 @@
 </head>
 
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top" style="border: none;">
-          <!--
-        <div class="container" style="border: none; padding-left:0">
-        -->
-        <div class="col-xs-9 col-sm-12 col-md-3 col-lg-2">
-            <a href="{{ path('homepage') }}#main" style="padding-right: 0;"><img class="logo" src="/img/instastellar_header.png"/></a>
-        </div>
 
-        <div class="nav navbar-nav col-sm-12 col-md-9 col-lg-10" style="padding-right: 0;">
-            <div style="padding-right:15px;">
-                <button type="button" class="navbar-toggle collapsed col-xs-3" style="width:auto; margin-top:0;" data-toggle="collapse" data-target="#collapsive-nav">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-                <div class="collapse navbar-collapse col-xs-12 col-lg-12" style="width:100% " id="collapsive-nav">
-                    <ul class="nav navbar-nav" style="border:none;">
-                        <li><a href="{{ path('homepage') }}#main"><p>Главная</p></a></li>
-                        <li><a href="{{ path('homepage') }}#poss"><p>Возможности</p></a></li>
-                        <li><a href="{{ path('homepage') }}#promote"><p>Как раскрутить</p></a></li>
-                        <li><a href="{{ path('homepage') }}#why"><p>Почему мы?</p></a></li>
-                        <li><a href="{{ path('homepage') }}#contacts"><p>Контакты</p></a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right" style="border:none; padding-right: 20px;">
-                        <li>
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <a href="{{ path('accounts') }}"><p style="font-size: 11pt;">Кабинет</p></a>
-                        {% else %}
-                            <a href="{{ path("fos_user_security_login")}}"><p>Войти</p></a>
-                        {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        <!--
-        </div>
-        -->
-    </nav>
 </header>
 {% block content %}
 {% endblock %}

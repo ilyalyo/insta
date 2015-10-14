@@ -29,6 +29,10 @@ class Errors
      * @ORM\Column(type="string", length=250)
      */
     protected $message;
+    /**
+     * @ORM\Column(type="string", length=250)
+     */
+    protected $tmp;
 
     /**
      * Get id
@@ -84,5 +88,28 @@ class Errors
     public function getTaskId()
     {
         return $this->task_id;
+    }
+
+    /**
+     * Set tmp
+     *
+     * @param string $tmp
+     * @return Errors
+     */
+    public function setTmp($tmp)
+    {
+        $this->tmp = $tmp;
+
+        return $this;
+    }
+
+    /**
+     * Get tmp
+     *
+     * @return string 
+     */
+    public function getTmp()
+    {
+        return $this->tmp;
     }
 }

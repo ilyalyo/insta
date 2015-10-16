@@ -736,7 +736,8 @@ class Instagram
                 return null;
             }
             if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ||
-                strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE){
+                strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE ||
+                strpos($json->meta->error_message, 'The client_id provided is invalid') !== FALSE){
                 if(!$this->update_token())
                     $this->change_token();
                 return null;
@@ -784,7 +785,8 @@ class Instagram
                     return null;
                 }
                 if(strpos($json->meta->error_message, 'The access_token provided is invalid') !== FALSE ||
-                    strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE){
+                    strpos($json->meta->error_message, 'Missing client_id or access_token') !== FALSE ||
+                    strpos($json->meta->error_message, 'The client_id provided is invalid') !== FALSE){
                     if(!$this->update_token())
                         $this->change_token();
                     return null;

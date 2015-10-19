@@ -22,55 +22,47 @@ class AnalyticController extends Controller
      */
     public function indexAction()
     {
-        //var_dump(\DateTime::createFromFormat('Y-m-d','2015-08-25'));
-        //var_dump(new DateTime('2012-02-01'));
         $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('UserBundle:User')->findAll();
-        $accounts = $em->createQuery(
-            'SELECT a
-    FROM AppBundle:Accounts a
-    WHERE a.createdAt > :date
-    ORDER BY a.createdAt'
-        )->setParameter('date',   \DateTime::createFromFormat('Y-m-d H:i','2015-08-25 02:30'),\Doctrine\DBAL\Types\Type::DATETIME)
-        ->getResult();
-        //$em->getRepository('AppBundle:Accounts')->findby();
-        $failed_accounts = $em->createQuery(
-            'SELECT a
-    FROM AppBundle:AccountsLog a
-    GROUP BY a.instLogin
-    ORDER BY a.createdAt'
-        )->getResult();
-        //$failed_accounts = $em->getRepository('AppBundle:AccountsLog')->findAll();
-        $index = 0;
+        $connection = $em->getConnection();
+
+        $statement = $connection->prepare("
+SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM fos_user t
+WHERE t.createdAt > '2015-08-25 02:30'
+GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y')
+ORDER BY 2 DESC");
+        $statement->execute();
+        $users = $statement->fetchAll();
+
+        $statement = $connection->prepare("
+SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM accounts t
+WHERE t.createdAt > '2015-08-25 02:30'
+GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y')
+ORDER BY 2 DESC");
+        $statement->execute();
+        $accounts = $statement->fetchAll();
+
+        $statement = $connection->prepare("
+SELECT count(*) as sum,UNIX_TIMESTAMP(t.createdAt)  as date FROM accounts_log t
+GROUP BY DATE_FORMAT(t.createdAt,'%d-%m-%y'), t.instLogin
+ORDER BY 2 DESC");
+        $statement->execute();
+        $failed_accounts = $statement->fetchAll();
+
         foreach ($users as $u) {
-            $userDates[] = $u->getCreatedAt();
-            $usersCount[] = '[' . $u->getCreatedAt()->getTimestamp() *1000   . ',' . $index++ . ']';
+            $usersCount[] = '[' . $u['date'] *1000   . ',' . $u['sum'] . ']';
         }
-        $index = $em->createQuery(
-            'SELECT COUNT(a)
-    FROM AppBundle:Accounts a
-    WHERE a.createdAt <= :date
-    ORDER BY a.createdAt'
-        )->setParameter('date',   \DateTime::createFromFormat('Y-m-d H:i','2015-08-25 02:30'),\Doctrine\DBAL\Types\Type::DATETIME)
-            ->getSingleScalarResult();;
         foreach ($accounts as $u) {
-            $userDates_a[] = $u->getCreatedAt();
-            $usersCount_a[] = '[' . $u->getCreatedAt()->getTimestamp() *1000   . ',' . $index++ . ']';
+            $usersCount_a[] = '[' . $u['date'] *1000   . ',' . $u['sum'] . ']';
         }
-        $index = 0;
         foreach ($failed_accounts as $u) {
-            $userDates_f[] = $u->getCreatedAt();
-            $usersCount_f[] = '[' . $u->getCreatedAt()->getTimestamp() *1000   . ',' . $index++ . ']';
+            $usersCount_f[] = '[' . $u['date'] *1000   . ',' . $u['sum'] . ']';
         }
 
         return $this->render(
             'admin/analytic.html.twig',
             [
-                'userDates' => $userDates,
                 'usersCount' => $usersCount,
-                'userDates_a' => $userDates_a,
                 'usersCount_a' => $usersCount_a,
-                'userDates_f' => $userDates_f,
                 'usersCount_f' => $usersCount_f,
             ]
         );

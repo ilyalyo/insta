@@ -83,7 +83,7 @@ ORDER BY 2 DESC");
         $o = $output->fetch();
         $d = substr($o,0,1);
         $o = trim($o,$d);
-        $ids = explode($d, $o);
+        $ids = explode($d!=null ? $o : '|', $o!=null ? $o : '|');
         $ready_tasks = $em->getRepository('TaskBundle:Tasks')->findBy(['status' => [0,2]]);
         $forgotten_task = [];
         foreach ($ready_tasks as $t) {
@@ -156,7 +156,7 @@ GROUP BY  t.id
 GROUP BY  DATE_FORMAT(sub.sdate ,'%d-%m-%y'),sub.proxy
 ORDER BY UNIX_TIMESTAMP( DATE_FORMAT(sub.sdate ,'%d-%m-%y') ) DESC, sub.proxy");
         $statement->execute();
-        $all_proxy = $em->getRepository('AppBundle:Proxy')->findBy(['id' => 'proxy']);
+        $all_proxy = $em->getRepository('AppBundle:Proxy')->findAll();
         foreach ($all_proxy as $p) {
             $proxy[$p->getId()] = [];
         }

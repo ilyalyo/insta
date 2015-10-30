@@ -331,7 +331,7 @@ try{
         case 10:
             follow_by_tags();
             break;
-        case 20:
+                                case 20:
             follow_by_list();
             break;
         case 30:
@@ -370,17 +370,17 @@ function liking_by_username(){}
 function sleepTime($interval_id){
     switch ($interval_id) {
         case 0:
-            return rand(14, 35);
+            return rand(55, 75);
         case 1:
-            return rand(30, 45);
+            return rand(75, 95);
         case 2:
-            return rand(60, 90);
+            return rand(100, 120);
         case 3:
-            return rand(35, 50);
+            return rand(50, 65);
         case 4:
-            return rand(50, 80);
+            return rand(65, 80);
         default:
-            return rand(70, 100);
+            return rand(80, 100);
     }
 }
 

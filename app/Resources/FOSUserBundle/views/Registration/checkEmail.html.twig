@@ -1,4 +1,5 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
 
@@ -7,10 +8,7 @@
             <div class="col-lg-4">
             </div>
             <div class="col-lg-4">
-                <p style="font-size: 24px;padding-top: 32px;">Поздравляю с успешной регистрацией!</p>
-
-                <p>На указанную Вами почту было выслано письмо с ссылкой для подтверждения.</p>
-
+                <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
             </div>
         </div>
     </div>

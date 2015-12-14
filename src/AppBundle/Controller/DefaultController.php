@@ -54,6 +54,19 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/change_locale", name="change_locale")
+     */
+    public function changeLocaleAction(Request $request)
+    {
+
+        $locale = $request->getLocale();
+        $locale = $locale != 'ru' ? 'ru' : 'en';
+        $request->getSession()->set('_locale', $locale);
+
+        return  $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
      * @Route("/accounts", name="accounts")
      */
     public function accountsAction()

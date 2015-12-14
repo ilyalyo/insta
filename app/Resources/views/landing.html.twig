@@ -1,4 +1,6 @@
 {% extends 'landing_base.html.twig' %}
+{% trans_default_domain 'landing' %}
+
 {% block content %}
 <body>
 <div style="background-image: url('/img/background_space.jpg'); background-size: cover; padding-bottom: 30px;">
@@ -10,14 +12,17 @@
             </div>
             <div class="col-lg-6">
                 <a><img  class="logo img-responsive " src="img/instastellar_header.png"/></a>
-                <p style="font-size: 24px;padding-top: 32px; color:#ffffff">Сервис для продвижения в Instagram</p>
-                <p>Вы SMM специалист и занимаетесь раскруткой в instagram?</p>
-                <p>У Вас свой интернет магазин в
-                    Instagram и Вы не хотите переплачивать фирмам-раскрутчикам?</p>
-                <p>Вы ведете Instagram-блог и хотите больше подписчиков?</p>
-                <p>Зарегистрируйтесь и получите возможность 3 дня <font style="color: #e90a71;">бесплатно</font> <font style="font-size:12pt;">(с момента регистрации)</font> использовать наш сервис!</p>
+                <p style="font-size: 24px;padding-top: 32px; color:#ffffff">{{ 'part1.one'|trans }}</p>
+                <p>{{ 'part1.two'|trans }}</p>
+                <p>{{ 'part1.three'|trans }}</p>
+                <p>{{ 'part1.four'|trans }}</p>
+                <p>{{ 'part1.reg1'|trans }}
+                    <font style="color: #e90a71;">{{ 'part1.reg2'|trans }}</font>
+                    <font style="font-size:12pt;">{{ 'part1.reg3'|trans }}</font>
+                    {{ 'part1.reg4'|trans }}
+                </p>
                 <form action="{{ path("fos_user_registration_register") }}">
-                    <button type="submit" class="btn btn-default btn-start"><p style="padding-top:5px;">РЕГИСТРАЦИЯ</p></button>
+                    <button type="submit" class="btn btn-default btn-start"><p style="padding-top:5px;">{{ 'part1.register'|trans }}</p></button>
                 </form>
             </div>
         </div>
@@ -32,7 +37,7 @@
             <div class="col-xs-3 col-xs-offset-9 col-sm-3 col-sm-offset-9 col-md-6 col-md-offset-7 col-lg-6 col-lg-offset-6">
                 <img class="img-responsive" src = "img/yellow_rocket.png"/>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: right;">Возможности</div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: right;">{{ 'part2.head'|trans }}</div>
             <div class="col-xs-5 col-xs-offset-1 xs-noleftpadding col-sm-5 col-md-3 col-lg-3" style="margin-left:0;">
                 <img class="img-responsive" src="img/instastellar_header.png" style="padding-top: 5px;"/>
             </div>
@@ -40,26 +45,50 @@
         <!-- <div class="row text-center"> -->
         <div class="row container2 col-lg-12">
             <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/virtual_server.png"/>
+                {% if app.request.getLocale() == 'en' %}
+                    <img class="img-responsive" src="img/eng_virtual_server.png"/>
+                {% else %}
+                    <img class="img-responsive" src="img/virtual_server.png"/>
+                {% endif %}
             </div>
             <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="/img/mass_following.png"/>
+                {% if app.request.getLocale() == 'en' %}
+                    <img class="img-responsive" src="img/eng_massfollow.png"/>
+                {% else %}
+                    <img class="img-responsive" src="/img/mass_following.png"/>
+                {% endif %}
             </div>
             <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/5accounts.png"/>
+                {% if app.request.getLocale() == 'en' %}
+                    <img class="img-responsive" src="img/eng_5accounts.png"/>
+                {% else %}
+                    <img class="img-responsive" src="img/5accounts.png"/>
+                {% endif %}
             </div>
         </div>
         <!-- </div> -->
         <!-- <div class="row text-center"> -->
         <div class="row container2">
             <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/liking_heart.png"/>
+                {% if app.request.getLocale() == 'en' %}
+                    <img class="img-responsive" src="img/eng_liking_heart.png"/>
+                {% else %}
+                    <img class="img-responsive" src="img/liking_heart.png"/>
+                {% endif %}
             </div>
             <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/analytics.png"/>
+                {% if app.request.getLocale() == 'en' %}
+                    <img class="img-responsive" src="img/eng_analytics.png"/>
+                {% else %}
+                    <img class="img-responsive" src="img/analytics.png"/>
+                {% endif %}
             </div>
             <div class="imgholder col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <img class="img-responsive" src="img/unfollowing.png"/>
+                {% if app.request.getLocale() == 'en' %}
+                    <img class="img-responsive" src="img/eng_unfollowing.png"/>
+                {% else %}
+                    <img class="img-responsive" src="img/unfollowing.png"/>
+                {% endif %}
             </div>
         </div>
         <!-- </div> -->
@@ -70,7 +99,7 @@
     <div class="container" style="width:100%; background-color: #333333;">
         <div class="row text-center" style="padding-bottom: 10px;">
             <div class="col-lg-12">
-                <h2 style="color:#ffffff;">Подробнее о возможностях instaStellar</h2>
+                <h2 style="color:#ffffff;">{{ 'part3.head'|trans }}</h2>
             </div>
         </div>
     </div>
@@ -78,13 +107,13 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 text-center">
-                <h1>Как начать раскрутку</h1>
+                <h1>{{ 'part3.one'|trans }}</h1>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-lg-12 text-center">
                 <form action="{{ path("fos_user_registration_register") }}">
-                    <button type="submit" class="btn btn-default btn-start"><p style="padding-top:5px;">НАЧАТЬ РАСКРУТКУ</p></button>
+                    <button type="submit" class="btn btn-default btn-start"><p style="padding-top:5px;">{{ 'part3.two'|trans }}</p></button>
                 </form>
             </div>
         </div>
@@ -92,7 +121,7 @@
             <div class="col-lg-3 text-center">
             </div>
             <div class="col-lg-6 text-center">
-              <h3>Все просто! нажмите на кнопку начать раскрутку и получите доступ к <font style="color: #e90a71;">бесплатной</font> пробной версии. (3 дня - режим полного функционала)</h3>
+              <h3>{{ 'part3.reg1'|trans }} <font style="color: #e90a71;">{{ 'part3.reg2'|trans }}</font> {{ 'part3.reg3'|trans }}</h3>
             </div>
         </div>
     </div>
@@ -103,7 +132,7 @@
                 <div class="col-xs-8 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3" style="text-align: right;">
                     <img class="img-responsive" src="img/instastellar_header.png" style="margin-right:0; padding-top: 8px;"/>
                 </div>
-                <div class="col-xs-4 col-md-4 col-lg-4" style="padding-left: 0;">- это:</div>
+                <div class="col-xs-4 col-md-4 col-lg-4" style="padding-left: 0;">- {{ 'part4.one'|trans }}:</div>
             </h1>
         <div class="row">
             <div class="col-lg-1">
@@ -112,8 +141,8 @@
                 <img src="img/plus_square.png"/>
             </div>
             <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Массфоловинг по тегам, спискам и по конкурентам </h3>
-                <p>Подписывайтесь на Вашу Целевую Аудиторию по хэштегам или по подписчикам конкурентов.</p>
+                <h3>{{ 'part4.massfollow1'|trans }}</h3>
+                <p>{{ 'part4.massfollow2'|trans }}</p>
             </div>
         </div>
         <div class="row">
@@ -123,8 +152,8 @@
                 <img src="img/liking_square.png"/>
             </div>
             <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Масслайкинг по тегам, спискам и по конкурентам </h3>
-                <p>instaStellar ставит отметки Мне нравится для привлечения внимания и увеличении лояльности потенциальных клиентов.</p>
+                <h3>{{ 'part4.liking1'|trans }}</h3>
+                <p>{{ 'part4.liking2'|trans }}</p>
             </div>
         </div>
         <div class="row">
@@ -134,8 +163,8 @@
                 <img src="img/unfollowing_square.png"/>
             </div>
             <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Массовая отписка</h3>
-                <p>Легко и удобно отписывайтесь от тех, кто уже подписался на Вас.</p>
+                <h3>{{ 'part4.unfollowing1'|trans }}</h3>
+                <p>{{ 'part4.unfollowing2'|trans }}</p>
             </div>
         </div>
         <div class="row">
@@ -145,8 +174,8 @@
                 <img src="img/analytics_square.png"/>
             </div>
             <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Аналитика</h3>
-                <p>Полная аналитика Ваших аккаунтов в Instagram</p>
+                <h3>{{ 'part4.analytic1'|trans }}</h3>
+                <p>{{ 'part4.analytic2'|trans }}</p>
             </div>
         </div>
         <div class="row">
@@ -156,9 +185,8 @@
                 <img src="img/virtual_server_square.png"/>
             </div>
             <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Виртуальный сервер с поддержкой прокси</h3>
-                <p>Работа ведется на виртуальном сервере - Вам нужно только заходить в аккаунт со смартфона или компьютера и и ставить необходимые задачи - остальное сделает
-                    instaStellar.</p>
+                <h3>{{ 'part4.vps1'|trans }}</h3>
+                <p>{{ 'part4.vps2'|trans }}</p>
             </div>
         </div>
         <div class="row">
@@ -168,8 +196,8 @@
                 <img src="img/multitask_square.png"/>
             </div>
             <div class="col-lg-8" style="padding-left:30px;">
-                <h3>Мультизадачность</h3>
-                <p>Возможность параллельного ведения нескольких аккаунтов (поддержка мультизадачности).</p>
+                <h3>{{ 'part4.multitasks1'|trans }}</h3>
+                <p>{{ 'part4.multitasks2'|trans }}</p>
             </div>
         </div>
     </div>
@@ -177,11 +205,11 @@
         <div class="container" style="width: 100%; background-size: cover; background-color:rgba(0,0,0,0.7); padding-bottom: 0;">
             <div class="row" style="padding-top: 40px;">
                 <div class="col-lg-1" style="margin-right: 91.66666667%;"><!--это оффсет справа-->
-                    <h3>Контакты</h3>
+                    <h3>{{ 'part5.contacts'|trans }}</h3>
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-7">
                     <div class="col-xs-12 col-sm-11 col-md-7 col-md-offset-2 col-lg-5 col-lg-offset-2" style="padding-left:10px; margin-right: 50%;">
-                        <p>Техническая поддержка:</p>
+                        <p>{{ 'part5.support'|trans }}</p>
                     </div>
                     <div class="row" style="padding-top: 5px;">
                         <div class="col-xs-3 col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-2" style="text-align:right; padding-right: 20px;">
@@ -222,7 +250,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="padding-bottom: 70px;">
                     <div class="col-xs-12 col-sm-9 col-md-11 col-lg-9" style="padding-left: 0; margin-right: 25%">
-                        <p>Подписывайтесь на нас:</p>
+                        <p>{{ 'part5.subscribe'|trans }}</p>
                     </div>
                     <div class="row" style="padding-top: 5px;">
                         <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2" style="text-align:right; padding-right: 20px;">

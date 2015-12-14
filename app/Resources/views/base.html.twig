@@ -40,6 +40,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ path('info') }}"><p>Руководство пользователя</p></a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}"><p>Выход</p></a></li>
+                <li><a href="{{ path("change_locale") }}">
+                        {% if app.request.locale != 'ru' %}
+                            <img class="flag" src="img/flag_ru.png">
+                        {% else %}
+                            <img class="flag" src="img/flag_uk.png">
+                        {% endif %}
+                    </a></li>
             </ul>
         </div>
     </nav>

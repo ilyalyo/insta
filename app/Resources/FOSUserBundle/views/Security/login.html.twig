@@ -1,12 +1,12 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-
 <div class="modal-dialog" style="padding-top: 100px;
   max-width: 400px;">
     <div class="modal-content">
         <div class="modal-header text-center">
-            <h1>Вход</h1>
+            <h1>{{ 'layout.login'|trans }}</h1>
         </div>
         <div class="modal-body">
 
@@ -18,21 +18,21 @@
               -->
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                 <div style="padding-top: 15px;">
-                    <label for="username">Имя пользователя:</label>
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
                     <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
                 </div>
                 <div style="padding-top: 15px;">
-                    <label for="password">Пароль:</label>
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
                     <input class="form-control" type="password" id="password" name="_password" required="required" />
                 </div>
                 <div style="padding-top: 15px;">
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                    <label for="remember_me">Запомнить меня</label>
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </div>
-                <input style="margin-top: 15px;" class="btn btn-success" type="submit" id="_submit" name="_submit" value="Войти" />
+                <input style="margin-top: 15px;" class="btn btn-success" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
             </form>
-            <a href="{{ path('fos_user_registration_register') }}">Регистрация</a>
-            <a class="pull-right" href="{{ path('fos_user_resetting_request') }}">Забыли пароль ?</a>
+            <a href="{{ path('fos_user_registration_register') }}">{{ 'registration.submit'|trans }}</a>
+            <a class="pull-right" href="{{ path('fos_user_resetting_request') }}">{{ 'resetting.reset.submit'|trans }}</a>
 
         </div>
 

@@ -31,6 +31,7 @@ class User extends BaseUser
         $this->isPro = 0;
         $this->unRead = 0;
         $this->partnerPercent = 18;
+        $this->locale = 'ru';
     }
 
     /**
@@ -87,6 +88,11 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $partnerPercent;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $locale;
 
 
     /**
@@ -380,5 +386,28 @@ class User extends BaseUser
     public function getRoles()
     {
         return parent::getRoles();
+    }
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     * @return User
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string 
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

@@ -455,7 +455,7 @@ class Instagram
         if(in_array($this->OPTIONS['type'],[0,10,20,30]) || !$this->OPTIONS['optionFollowClosed'])
         {
             // добавлялся ли ранее
-            if(!$this->OPTIONS['optionCheckUserFromDB'])
+            if(!empty($this->DB_USERS) &&  !$this->OPTIONS['optionCheckUserFromDB'])
                 if(in_array($username, $this->DB_USERS))
                     return false;
 

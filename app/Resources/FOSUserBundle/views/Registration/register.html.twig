@@ -1,10 +1,12 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block fos_user_content %}
 <div class="modal-dialog" style="padding-top: 60px;
   max-width: 400px;">
     <div class="modal-content">
         <div class="modal-header text-center">
-            <h1>Регистрация</h1>
+            <h1>{{ 'layout.register'|trans }}</h1>
         </div>
     <div class="modal-body">
         <form class="form-horizontal text-center" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
@@ -16,20 +18,20 @@
             </div>
             <div style="padding-top: 15px;">
                 {{ form_errors(form.username) }}
-                <label for="username">Имя пользователя:</label>
+                <label for="username">{{ 'form.username'|trans }}</label>
                 {{ form_widget(form.username) }}
             </div>
             <div style="padding-top: 15px;">
                 {{ form_errors(form.plainPassword.first) }}
-                <label for="email">Пароль:</label>
+                <label for="email">{{ 'form.password'|trans }}</label>
                 {{ form_widget(form.plainPassword.first) }}
             </div>
             <div style="padding-top: 15px;">
                 {{ form_errors(form.plainPassword.second) }}
-                <label for="email">Повторите пароль:</label>
+                <label for="email">{{ 'form.password_confirmation'|trans }}</label>
                 {{ form_widget(form.plainPassword.second) }}
             </div>
-            <input style="margin-top: 15px;" class="btn btn-success" type="submit" id="_submit" name="_submit" value="Зарегистрироваться" />
+            <input style="margin-top: 15px;" class="btn btn-success" type="submit" id="_submit" name="_submit" value="{{ 'registration.submit'|trans }}" />
             {{ form_end(form) }}
 
         </form>

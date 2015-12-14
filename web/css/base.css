@@ -1,4 +1,7 @@
 /*head*/
+.flag{
+    height: 20px;
+}
 header .navbar-default{
     background-color: #000000;
     border-bottom: 0px;

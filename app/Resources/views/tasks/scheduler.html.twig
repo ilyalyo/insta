@@ -5,10 +5,7 @@
 
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 col-md-offset-1">
-            история отображается в UTC без поправки на таймзону (по сути -3 часа для нас)
     {% for h in history %}
-        {{ h.runAt| date("H:i d/m/Y") }}
-        <br>
     {% endfor %}
 
         {{ form_start(form) }}

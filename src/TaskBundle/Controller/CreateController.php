@@ -448,7 +448,7 @@ class CreateController extends Controller
         if ($form->isValid()) {
 
             $task->setStatus(Tasks::SCHEDULE_DONE);
-            $start_point = (new \DateTime())->format('Y-m-d') . $scheduler_task->getRunAt()->format(' H:i');
+            $start_point = (new \DateTime($user->getTimezone()))->format('Y-m-d') . $scheduler_task->getRunAt()->format(' H:i');
             foreach($scheduler_task->getDays() as $day)
             {
                 $st = new ScheduleTasks();
@@ -469,6 +469,7 @@ class CreateController extends Controller
         return $this->render('tasks/scheduler.html.twig', array(
             'form' => $form->createView(),
             'account' =>$account,
+            'user' =>$user,
             'history' => $history
         ));
     }

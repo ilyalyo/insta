@@ -10,30 +10,32 @@
     <script src="/bootstrap_switch/js/bootstrap-switch.min.js"></script>
 {% endblock head_style %}
 <script>
-    $( document ).ready(function(){
-        $('.wrapper').css('min-height',$(window).height());
+    $(document).ready(function () {
+        $('.wrapper').css('min-height', $(window).height());
         {% set _route =  app.request.get('_route') %}
         {% if _route == 'accounts' %}
-            $('#accounts').addClass('active');
+        $('#accounts').addClass('active');
+        {% elseif _route == 'manager' %}
+        $('#manager').addClass('active');
         {% elseif _route == 'analytic' %}
-            $('#analytic').addClass('active');
+        $('#analytic').addClass('active');
         {% elseif _route == 'fos_user_change_password' %}
-            $('#info').addClass('active');
+        $('#info').addClass('active');
         {% elseif _route == 'purchase' %}
-            $('#purchase').addClass('active');
+        $('#purchase').addClass('active');
         {% endif %}
-        $('.content').css('min-height',$(window).height() - 51 )
+        $('.content').css('min-height', $(window).height() - 51)
     })
 </script>
 <head>
     <title>Instastellar</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/img/title.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/title.ico"/>
     <script type="text/javascript" src="http://www.walletone.com/merchant/widget/1.0.0/script.js"></script>
 </head>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
         <div class="col-xs-2 left">
-            <a href="{{ path('homepage') }}"><img  class="logo" src="/img/instastellar_header.png"/></a>
+            <a href="{{ path('homepage') }}"><img class="logo" src="/img/instastellar_header.png"/></a>
         </div>
 
         <div class="container">
@@ -53,80 +55,94 @@
 </header>
 
 <body>
-    <div class="wrapper">
-        <div class="row">
-            <div class="col-xs-2 left">
-                <div class="navigation">
-                    <ul class="nav left-menu text-center">
-                        <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span> Аккаунты</a></li>
-                        <li id="analytic"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span> Аналитика</a></li>
-                        <li id="info">    <a href="{{ path('settings') }}"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
-                        <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span> Покупка</a></li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('admin') }}"> Админка</a></li>
-                        {% endif %}
-                        {% if is_granted('ROLE_PARTNER') %}
-                            <li><a href="{{ path('partnership') }}"> Партнёрам</a></li>
-                        {% else %}
-                            <li><a href="{{ path('become_partner') }}">Стать партнёром</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <div class="navigation" style="bottom: 20px">
-                    <ul class="nav left-menu text-center">
-                        <li id="support"><a href="{{ path('support') }}"><span class="glyphicon glyphicon-pencil"></span> Поддержка
-                                {% if app.security.getToken().getUser().unRead > 0 %}
-                                    <span class="badge">{{ app.security.getToken().getUser().unRead  }}</span>
-                                {% endif %}
-                            </a></li>
-                    </ul>
-                </div>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-xs-2 left">
+            <div class="navigation">
+                <ul class="nav left-menu text-center">
+                    <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span>
+                            Аккаунты</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li id="manager"><a href="{{ path('manager') }}"><span
+                                        class="glyphicon glyphicon-dashboard"></span> Менеджер</a></li>
+                    {% endif %}
+                    <li id="analytic"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span>
+                            Аналитика</a></li>
+                    <li id="info"><a href="{{ path('settings') }}"><span class="glyphicon glyphicon-cog"></span>
+                            Настройки</a></li>
+                    <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span>
+                            Покупка</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin') }}"> Админка</a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_PARTNER') %}
+                        <li><a href="{{ path('partnership') }}"> Партнёрам</a></li>
+                    {% else %}
+                        <li><a href="{{ path('become_partner') }}">Стать партнёром</a></li>
+                    {% endif %}
+                </ul>
             </div>
-            {% if app.security.getToken().getUser().unRead > 0 %}
+            <div class="navigation" style="bottom: 20px">
+                <ul class="nav left-menu text-center">
+                    <li id="support"><a href="{{ path('support') }}"><span class="glyphicon glyphicon-pencil"></span>
+                            Поддержка
+                            {% if app.security.getToken().getUser().unRead > 0 %}
+                                <span class="badge">{{ app.security.getToken().getUser().unRead }}</span>
+                            {% endif %}
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+        {% if app.security.getToken().getUser().unRead > 0 %}
             <script>
                 $(function () {
-                    var flag = false;$('#support').find('a').css("background-color", "F2F2F2");
+                    var flag = false;
+                    $('#support').find('a').css("background-color", "F2F2F2");
                     setTimeout(function () {
                         $('#support').find('a').css("background-color", "F2F2F2");
                         setInterval(function () {
-                            $('#support').find('a').css("background-color", flag? "F2F2F2":"white");
+                            $('#support').find('a').css("background-color", flag ? "F2F2F2" : "white");
                             flag = !flag;
                         }, 500)
                     }, 3000);
                 });
             </script>
-            {% endif %}
+        {% endif %}
 
-            <div class="col-xs-8 col-md-10 content" style="min-height: 500px;">
-                {% block body %}{% endblock %}
+        <div class="col-xs-8 col-md-10 content" style="min-height: 500px;">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id='flash_modal' tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Новое сообщение<a class="anchorjs-link"
+                                                                                 href="#mySmallModalLabel"><span
+                                class="anchorjs-icon"></span></a></h4>
+            </div>
+            <div class="modal-body text-center">
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        <p>{{ flashMessage }}</p>
+                    </div>
+                    {% if loop.last %}
+                    <script>
+                        $(document).ready(function () {
+                            $('#flash_modal').modal('show');
+                        })
+                    </script>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
-
-    <div class="modal fade bs-example-modal-sm" id='flash_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title" id="mySmallModalLabel">Новое сообщение<a class="anchorjs-link" href="#mySmallModalLabel"><span class="anchorjs-icon"></span></a></h4>
-                </div>
-                <div class="modal-body text-center">
-                    {% for flashMessage in app.session.flashbag.get('notice') %}
-                        <div class="flash-notice">
-                            <p>{{ flashMessage }}</p>
-                        </div>
-                        {% if loop.last %}
-                        <script>
-                            $( document ).ready(function(){
-                                $('#flash_modal').modal('show');
-                            })
-                        </script>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
 
 </body>
@@ -134,25 +150,34 @@
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
+        (w[c] = w[c] || []).push(function () {
             try {
-                w.yaCounter29905164 = new Ya.Metrika({id:29905164,
-                    webvisor:true});
-            } catch(e) { }
+                w.yaCounter29905164 = new Ya.Metrika({
+                    id: 29905164,
+                    webvisor: true
+                });
+            } catch (e) {
+            }
         });
 
         var n = d.getElementsByTagName("script")[0],
                 s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
+                f = function () {
+                    n.parentNode.insertBefore(s, n);
+                };
         s.type = "text/javascript";
         s.async = true;
         s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
         if (w.opera == "[object Opera]") {
             d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
+        } else {
+            f();
+        }
     })(document, window, "yandex_metrika_callbacks");
 </script>
-<noscript><div><img src="//mc.yandex.ru/watch/29905164" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript>
+    <div><img src="//mc.yandex.ru/watch/29905164" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
 <!-- /Yandex.Metrika counter -->
 {% block javascripts %}{% endblock %}

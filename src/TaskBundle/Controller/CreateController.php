@@ -450,7 +450,7 @@ class CreateController extends Controller
         {
             $sh['runAt']->setTimezone(new DateTimeZone($user->getTimezone()));
             $intervalD = $sh['runAt']->format('d') - $now->format('d');
-            $startPoint = $intervalD * 24 + $sh['runAt']->format('H') + 1;
+            $startPoint = $intervalD * 24 + $sh['runAt']->format('H');
             $allPoints = ceil($sh['count'] / 100);
             for ($i = $startPoint; $i < $startPoint + $allPoints; $i++){
                 $history[$i] = $sh['type'];

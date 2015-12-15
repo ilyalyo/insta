@@ -16,11 +16,11 @@
                 <td>{{ oneday| date("d.m", user.timezone) }}</td>
                 {% for h in 0..23 %}
                     {% if history[d][h].type is defined %}
-                        {% if history[d][h]['type'] in [0, 10, 30] %}
+                        {% if history[d][h]['type'] in [0, 10, 20, 30] %}
                             <td class="follow id{{ history[d][h].id }}">
                                 <a data-toggle="tooltip" data-placement="bottom" title="Фоловинг">0</a>
                             </td>
-                        {% elseif history[d][h]['type'] in [1,11,31] %}
+                        {% elseif history[d][h]['type'] in [1,11, 21, 31] %}
                             <td class="liking id{{ history[d][h].id }}">
                                 <a data-toggle="tooltip" data-placement="bottom" title="Лайкинг">0</a>
                             </td>
@@ -45,7 +45,7 @@
                     <td>
                         Фоловинг
                     </td>
-                {% elseif h.type in [1,11,31] %}
+                {% elseif h.type in [1,11, 21, 31] %}
                     {% set color = '#2ECC40' %}
                     <td class="">
                         Лайкинг

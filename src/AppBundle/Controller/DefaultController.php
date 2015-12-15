@@ -196,7 +196,7 @@ class DefaultController extends Controller
     /**
      * @Route("/manager", name="manager")
      */
-    public function managerAction()
+    public function managerAction(Request $request)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -204,7 +204,30 @@ class DefaultController extends Controller
                 'user' => $user->getId())
         );
 
-        $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getSchedulerHistory($accounts[0]->getId());
+        $id = $request->get('id');
+
+        if(isset($id)){
+            $account_check = $em->getRepository('AppBundle:Accounts')->find($id);
+
+            if( isset($account_check) && $account_check->getUser()->getId() != $user->getId())
+                throw new NotFoundHttpException("Page not found");
+        }
+
+        if(!isset($id) && isset($accounts)  && isset($accounts[0]))
+            $id = $accounts[0]->getId();
+        else
+            return $this->render(
+                'manager/scheduler.html.twig',
+                [
+                    'user' => $user,
+                    'accounts' => null,
+                    'history' => null,
+                    'schedulerHistory' => null
+                ]
+            );
+
+
+        $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getSchedulerHistory($id);
         $history = array_fill_keys(range(-24,24 * 7), []);
         $now = (new \DateTime('now'))->setTimezone(new DateTimeZone($user->getTimezone()));;
         foreach($schedulerHistory as $sh)
@@ -223,6 +246,7 @@ class DefaultController extends Controller
         return $this->render(
             'manager/scheduler.html.twig',
             [
+                'accounts' => $accounts,
                 'user' => $user,
                 'history' => $history,
                 'schedulerHistory' => $schedulerHistory

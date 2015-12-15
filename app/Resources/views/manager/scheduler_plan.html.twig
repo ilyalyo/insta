@@ -40,7 +40,7 @@
     <table class="actionTable">
         {% for h in schedulerHistory %}
             <tr class="pid{{ h.id }}">
-                {% if h.type in [0, 10, 30] %}
+                {% if h.type in [0, 10, 20, 30] %}
                     {% set color = '#0C7ADA' %}
                     <td>
                         Фоловинг

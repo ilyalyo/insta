@@ -220,7 +220,7 @@ class DefaultController extends Controller
                 'manager/scheduler.html.twig',
                 [
                     'user' => $user,
-                    'accounts' => null,
+                    'accounts' => $accounts,
                     'history' => null,
                     'schedulerHistory' => null
                 ]

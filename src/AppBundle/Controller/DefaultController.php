@@ -215,7 +215,7 @@ class DefaultController extends Controller
 
         if(!isset($id) && isset($accounts)  && isset($accounts[0]))
             $id = $accounts[0]->getId();
-        else
+        else if (!isset($id))
             return $this->render(
                 'manager/scheduler.html.twig',
                 [

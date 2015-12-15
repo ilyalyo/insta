@@ -4,30 +4,116 @@
     <h1>Добавление задачи по расписанию</h1>
 
     <div class="row" style="padding-top: 50px;">
-        <div class="col-md-5 col-md-offset-1">
-    {% for h in history %}
-    {% endfor %}
+    <div class="col-md-5">
+        {% for h in history %}
+        {% endfor %}
 
         {{ form_start(form) }}
-            {{ form_row(form.runAt) }}
-            {% for d in form.days %}
-<div>
-                    {{ form_row(d) }}
-</div>
-            {% endfor %}
+        {{ form_row(form.runAt) }}
+        <div class="row">
 
-            <div class="form-group">
-                <div class="col-sm-9 col-md-offset-3">
-                    <button class="btn btn-primary pull-right">Добавить</button>
+            <div class="col-md-offset-4">
+                <div class="scheduler">
+                    {% for d in form.days %}
+                        <div class="row">
+                            <div class="item">
+                                {{ form_widget(d) }}
+                                {{ "now" |date_modify(("+" ~ loop.index0 ~ " day"))| date("d.m.Y", user.timezone) }}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+
+                <div class="form-group" style="padding-top: 20px">
+                    <div class="col-sm-8">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button class="btn btn-default" onclick="goBack()">Назад</button>
+                            <button class="btn btn-primary pull-right">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
             </div>
-        {{ form_end(form) }}
         </div>
-        <div class="col-md-4 col-md-offset-1">
-            <p>
-               Блаблабла
-            </p>
-        </div>
+
+
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+        <p>
+            Блаблабла
+        </p>
+        <table style="width:100%">
+            <tr>
+                <th>День</th>
+                {% for d in 0..23 %}
+                    <th>
+                        {% if d % 3 == 0  %}
+                            {{ d }}
+                        {% endif %}
+                    </th>
+                {% endfor %}
+            </tr>
+            {% for d in 0..6 %}
+            <tr>
+                {% set oneday = "now" |date_modify(("+" ~ d ~ " day")) %}
+                <td>{{ oneday| date("d.m", user.timezone) }}</td>
+                {% for h in 0..23 %}
+                    {% if history[d][h] != -1  %}
+                        <td class ="unfollow">
+                            <a data-toggle="tooltip" data-placement="bottom" title="Отписка">0</a></td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     </div>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <style>
+        .unfollow a:hover{
+            color: #0C7ADA;
+        }
+        .unfollow a{
+            color: #0C7ADA;
+            cursor: default;
+        }
+        .unfollow{
+            background-color: #0C7ADA;
+        }
+        .td{
+            background-color: beige;
+        }
+        tr{
+            border: solid;
+        }
+        .form-control{
+            width: 60%;
+        }
+        .form-group .btn-primary {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .item{
+            background-color: bisque;
+            width: 120px;
+            height: 30px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        input[type=checkbox] {
+            margin-top: 8px;
+            margin-left: 14px;
+        }
+    </style>
 {% endblock %}

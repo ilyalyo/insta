@@ -2,6 +2,7 @@
 
 namespace TaskBundle\Controller;
 
+use DateTimeZone;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -442,7 +443,21 @@ class CreateController extends Controller
             throw new NotFoundHttpException("Page not found");
 
         $form = $this->createForm(new SchedulerType($user->getTimezone()), $scheduler_task);
-        $history = $em->getRepository('TaskBundle:ScheduleTasks')->getHistory($task->getAccountId()->getId());
+        $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getSchedulerHistory($task->getAccountId()->getId());
+        $history = array_fill_keys(range(-24,24 * 7), -1);
+        $now = (new \DateTime('now'))->setTimezone(new DateTimeZone($user->getTimezone()));;
+        foreach($schedulerHistory as $sh)
+        {
+            $sh['runAt']->setTimezone(new DateTimeZone($user->getTimezone()));
+            $intervalD = $sh['runAt']->format('d') - $now->format('d');
+            $startPoint = $intervalD * 24 + $sh['runAt']->format('H') + 1;
+            $allPoints = ceil($sh['count'] / 100);
+            for ($i = $startPoint; $i < $startPoint + $allPoints; $i++){
+                $history[$i] = $sh['type'];
+            }
+        }
+        $history = array_slice($history, 24);
+        $history = array_chunk ($history, 24);
         $form->handleRequest($request);
 
         if ($form->isValid()) {

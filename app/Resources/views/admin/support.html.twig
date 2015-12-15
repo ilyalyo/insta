@@ -11,4 +11,13 @@
                 <span class="badge">{{ u.new_msgs  }}</span>
             </a>
     {% endfor %}
+
+    <p>Последние активные:</p>
+    {% for u in top10Users  %}
+        <br/>
+        <a href="{{ path('admin_support_msg', { 'id': u.id }) }}">
+            {{ u.username }}
+        </a>
+
+    {% endfor %}
 {% endblock %}

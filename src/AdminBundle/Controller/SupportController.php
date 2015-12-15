@@ -40,6 +40,7 @@ class SupportController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $users_with_new_msg = $em->getRepository('AppBundle:Support')->getUsersWithNewMessages();
+        $top10Users = $em->getRepository('AppBundle:Support')->getTop10Users();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -48,7 +49,8 @@ class SupportController extends Controller
 
         return $this->render('admin/support.html.twig', array(
             'form' => $form->createView(),
-            'users_with_new_msg' => $users_with_new_msg
+            'users_with_new_msg' => $users_with_new_msg,
+            'top10Users' => $top10Users
         ));
     }
 

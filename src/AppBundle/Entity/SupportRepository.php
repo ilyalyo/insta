@@ -19,4 +19,14 @@ class SupportRepository extends EntityRepository
             )
             ->getResult();
     }
+
+    public function getTop10Users(){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT  u.id, u.username, MAX(s.createdAt)  FROM AppBundle:Support s INNER JOIN UserBundle:User u WITH s.user = u.id GROUP BY u.id ORDER BY s.createdAt DESC"
+            )
+            ->setMaxResults(10)
+            ->getResult();
+    }
+
 }

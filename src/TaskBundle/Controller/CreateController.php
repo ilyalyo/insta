@@ -500,6 +500,7 @@ class CreateController extends Controller
             return $this->redirectToRoute('accounts');
         }
 
+        $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getActualSchedulerHistory($id);
 
         return $this->render('tasks/scheduler.html.twig', array(
             'form' => $form->createView(),

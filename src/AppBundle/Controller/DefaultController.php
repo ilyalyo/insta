@@ -243,6 +243,8 @@ class DefaultController extends Controller
         $history = array_slice($history, 24);
         $history = array_chunk ($history, 24);
 
+        $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getActualSchedulerHistory($id);
+
         return $this->render(
             'manager/scheduler.html.twig',
             [

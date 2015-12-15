@@ -7,11 +7,16 @@
             {{ form_row(form.tags) }}
             {{ form_row(form.count) }}
             {{ form_row(form.speed) }}
-            <div class="row">
-                <div class="col-sm-6 col-lg-4">
 
+            {% if is_granted('ROLE_ADMIN') %}
+                ЭТО ВИДНО ТОЛЬКО АДМИНАМ, КОГДА БУДЕТ ВСЕ ГОТОВО УДАЛИТЕ
+                <div class="checkbox">
+                    <label><input type="checkbox" id="isScheduleTask" name="isScheduleTask">
+                        Задание по расписанию( при выборе этой опции вы попадете
+                        на новую страницу где выберете время и дни когда будет создаваться задача)
+                    </label>
                 </div>
-            </div>
+            {% endif %}
             <div class="panel-group" id="accordion">
                 <div class="panel">
                     <div class="panel-heading">

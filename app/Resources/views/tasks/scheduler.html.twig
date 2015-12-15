@@ -40,9 +40,8 @@
     </div>
     <div class="col-md-5 col-md-offset-1">
         <p>
-            Блаблабла
         </p>
-        <table style="width:100%">
+        <table style="width:100%" class="genView">
             <tr>
                 <th>День</th>
                 {% for d in 0..23 %}
@@ -58,16 +57,64 @@
                 {% set oneday = "now" |date_modify(("+" ~ d ~ " day")) %}
                 <td>{{ oneday| date("d.m", user.timezone) }}</td>
                 {% for h in 0..23 %}
-                    {% if history[d][h] != -1  %}
-                        <td class ="unfollow">
-                            <a data-toggle="tooltip" data-placement="bottom" title="Отписка">0</a></td>
-                    {% else %}
+                {% if history[d][h].type is defined %}
+                    {% if history[d][h]['type'] in [0, 10, 30] %}
+                            <td class ="follow id{{ history[d][h].id }}" >
+                                <a data-toggle="tooltip" data-placement="bottom" title="Фоловинг">0</a>
+                            </td>
+                        {% elseif history[d][h]['type'] in [1,11,31] %}
+                            <td class ="liking id{{ history[d][h].id }}">
+                                <a data-toggle="tooltip" data-placement="bottom" title="Лайкинг">0</a>
+                            </td>
+                        {% elseif history[d][h]['type'] == 3 %}
+                            <td class ="unfollow id{{ history[d][h].id }}">
+                                <a data-toggle="tooltip" data-placement="bottom" title="Отписка">0</a>
+                            </td>
+                        {% endif %}
+                {% else %}
                         <td></td>
-                    {% endif %}
+                {% endif %}
                 {% endfor %}
             </tr>
             {% endfor %}
         </table>
+
+        <table class="actionTable">
+        {% for h in schedulerHistory %}
+                <tr class ="pid{{ h.id }}">
+            {% if h.type in [0, 10, 30] %}
+                {% set color = '#0C7ADA' %}
+                <td>
+                    Фоловинг
+                </td>
+            {% elseif h.type in [1,11,31] %}
+                {% set color = '#2ECC40' %}
+                <td class ="">
+                    Лайкинг
+                </td>
+            {% elseif h.type == 3 %}
+                {% set color = '#a94442' %}
+                <td class ="">
+                    Отписка
+                </td>
+            {% endif %}
+                    <td class ="">
+                        <a href="{{ path('delete_scheduler_tasks', { id: h.id }) }}" class="btn btn-danger pull-right">-</a>
+                    </td>
+                </tr>
+            <script>
+                $(".pid{{ h.id }}").mouseover(function(){
+                    $('.id{{ h.id }}').find('a').css('color','red')
+                    $('.id{{ h.id }}').css('background-color','red')
+                })
+                $(".pid{{ h.id }}").mouseout(function(){
+                    $('.id{{ h.id }}').find('a').css('color','{{ color }}')
+                    $('.id{{ h.id }}').css('background-color','{{ color }}')
+                })
+            </script>
+        {% endfor %}
+        </table>
+
     </div>
     </div>
 
@@ -80,21 +127,54 @@
         })
     </script>
     <style>
+        .actionTable{
+            margin-top: 20px;
+        }
+        .actionTable tr{
+            background-color: whitesmoke;
+            border-bottom-width: 10px;
+            border-bottom-style: solid;
+            border-bottom-color: white;
+        }
+        .actionTable .btn{
+        }
+
         .unfollow a:hover{
-            color: #0C7ADA;
+            color: #a94442;
         }
         .unfollow a{
-            color: #0C7ADA;
+            color: #a94442;
             cursor: default;
         }
         .unfollow{
+            background-color: #a94442;
+        }
+        .follow a:hover{
+            color: #0C7ADA;
+        }
+        .follow a{
+            color: #0C7ADA;
+            cursor: default;
+        }
+        .follow{
             background-color: #0C7ADA;
         }
-        .td{
+        .liking a:hover{
+            color: #2ECC40;
+        }
+        .liking a{
+            color: #2ECC40;
+            cursor: default;
+        }
+        .liking{
+            background-color: #2ECC40;
+        }
+        .genView .td{
             background-color: beige;
         }
-        tr{
+        .genView tr{
             border: solid;
+            border-color: whitesmoke;
         }
         .form-control{
             width: 60%;
@@ -114,6 +194,9 @@
         input[type=checkbox] {
             margin-top: 8px;
             margin-left: 14px;
+        }
+        .row{
+            margin-left: 0;
         }
     </style>
 {% endblock %}

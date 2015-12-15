@@ -30,7 +30,7 @@ class TasksRepository extends EntityRepository
     public function getSchedulerHistory($id){
         return $this->getEntityManager()
             ->createQuery(
-                "SELECT t.type, DATE_DIFF(st.runAt, CURRENT_TIMESTAMP()) as  runAtDiff, st.runAt, t.count
+                "SELECT st.id,t.type, DATE_DIFF(st.runAt, CURRENT_TIMESTAMP()) as  runAtDiff, st.runAt, t.count
                 FROM
                 TaskBundle:ScheduleTasks st
                 INNER JOIN

@@ -7,6 +7,15 @@
         <div class="col-md-5 col-md-offset-1">
             {{ form_start(form) }}
             {{ form_row(form.count) }}
+            {% if is_granted('ROLE_ADMIN') %}
+                ЭТО ВИДНО ТОЛЬКО АДМИНАМ, КОГДА БУДЕТ ВСЕ ГОТОВО УДАЛИТЕ
+                <div class="checkbox">
+                    <label><input type="checkbox" id="isScheduleTask" name="isScheduleTask">
+                        Задание по расписанию( при выборе этой опции вы попадете
+                        на новую страницу где выберете время и дни когда будет создаваться задача)
+                    </label>
+                </div>
+            {% endif %}
             <div class="form-group">
                 <div class="col-sm-9 col-md-offset-3">
                     <button class="btn btn-primary pull-right">Добавить</button>

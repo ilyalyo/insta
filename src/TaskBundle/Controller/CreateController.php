@@ -82,6 +82,9 @@ class CreateController extends Controller
             $em->persist($list);
             $em->flush();
 
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
@@ -204,6 +207,9 @@ class CreateController extends Controller
             $em->persist($task);
             $em->flush();
 
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
@@ -258,6 +264,9 @@ class CreateController extends Controller
             $em->persist($task);
             $em->flush();
 
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
@@ -307,6 +316,9 @@ class CreateController extends Controller
             $em->persist($task);
             $em->flush();
 
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
@@ -356,6 +368,11 @@ class CreateController extends Controller
             $em->persist($task);
             $em->flush();
 
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
+            var_dump($request->get('isScheduleTask'));
+            die();
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
@@ -410,6 +427,9 @@ class CreateController extends Controller
             $em->persist($task);
             $em->flush();
 
+            if($request->get('isScheduleTask')){
+                return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
+            }
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));
@@ -426,7 +446,7 @@ class CreateController extends Controller
     }
 
     /**
-     * @Route("/tasks/Scheduler/{id}", name="add_task_scheduler")
+     * @Route("/tasks/scheduler/{id}", name="add_task_scheduler")
      */
     public function schedulerAction($id, Request $request)
     {
@@ -444,7 +464,7 @@ class CreateController extends Controller
 
         $form = $this->createForm(new SchedulerType($user->getTimezone()), $scheduler_task);
         $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getSchedulerHistory($task->getAccountId()->getId());
-        $history = array_fill_keys(range(-24,24 * 7), -1);
+        $history = array_fill_keys(range(-24,24 * 7), []);
         $now = (new \DateTime('now'))->setTimezone(new DateTimeZone($user->getTimezone()));;
         foreach($schedulerHistory as $sh)
         {
@@ -453,7 +473,7 @@ class CreateController extends Controller
             $startPoint = $intervalD * 24 + $sh['runAt']->format('H');
             $allPoints = ceil($sh['count'] / 100);
             for ($i = $startPoint; $i < $startPoint + $allPoints; $i++){
-                $history[$i] = $sh['type'];
+                $history[$i] = [ 'type' => $sh['type'], 'id' => $sh['id']];
             }
         }
         $history = array_slice($history, 24);
@@ -485,7 +505,32 @@ class CreateController extends Controller
             'form' => $form->createView(),
             'account' =>$account,
             'user' =>$user,
-            'history' => $history
+            'history' => $history,
+            'schedulerHistory' => $schedulerHistory
         ));
+    }
+    /**
+     * @Route("/tasks/scheduler/delete/{id}", name="delete_scheduler_tasks")
+     */
+    public function stopAction(Request $request, $id)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $sTask = $em->getRepository('TaskBundle:ScheduleTasks')->find($id);
+        $user_id = $em->getRepository('TaskBundle:Tasks')->getUserId($sTask->getTaskId()->getId());
+
+        if (!isset($user_id) || $user->getId() != $user_id)
+            throw new NotFoundHttpException("Page not found");
+
+        $em->remove($sTask);
+        $em->flush();
+
+        $referer = $this->getRequest()->headers->get('referer');
+        if ($referer == NULL) {
+            $url = $this->router->generate('fallback_url');
+        } else {
+            $url = $referer;
+        }
+        return $this->redirect($url);
     }
 }

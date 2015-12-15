@@ -26,4 +26,5 @@ class ScheduleRepository extends EntityRepository
             )
             ->getResult();
     }
+
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Accounts;
 use AppBundle\Entity\RemovedAccounts;
+use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -191,6 +192,42 @@ class DefaultController extends Controller
         $em->flush();
 
         return  $this->redirectToRoute('accounts');
+    }
+    /**
+     * @Route("/manager", name="manager")
+     */
+    public function managerAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $accounts = $em->getRepository('AppBundle:Accounts')->findBy(array(
+                'user' => $user->getId())
+        );
+
+        $schedulerHistory = $em->getRepository('TaskBundle:Tasks')->getSchedulerHistory($accounts[0]->getId());
+        $history = array_fill_keys(range(-24,24 * 7), []);
+        $now = (new \DateTime('now'))->setTimezone(new DateTimeZone($user->getTimezone()));;
+        foreach($schedulerHistory as $sh)
+        {
+            $sh['runAt']->setTimezone(new DateTimeZone($user->getTimezone()));
+            $intervalD = $sh['runAt']->format('d') - $now->format('d');
+            $startPoint = $intervalD * 24 + $sh['runAt']->format('H');
+            $allPoints = ceil($sh['count'] / 100);
+            for ($i = $startPoint; $i < $startPoint + $allPoints; $i++){
+                $history[$i] = [ 'type' => $sh['type'], 'id' => $sh['id']];
+            }
+        }
+        $history = array_slice($history, 24);
+        $history = array_chunk ($history, 24);
+
+        return $this->render(
+            'manager/scheduler.html.twig',
+            [
+                'user' => $user,
+                'history' => $history,
+                'schedulerHistory' => $schedulerHistory
+            ]
+        );
     }
 
 }

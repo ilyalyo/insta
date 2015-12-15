@@ -4,118 +4,43 @@
     <h1>Добавление задачи по расписанию</h1>
 
     <div class="row" style="padding-top: 50px;">
-    <div class="col-md-5">
-        {% for h in history %}
-        {% endfor %}
+        <div class="col-md-5">
+            {% for h in history %}
+            {% endfor %}
 
-        {{ form_start(form) }}
-        {{ form_row(form.runAt) }}
-        <div class="row">
+            {{ form_start(form) }}
+            {{ form_row(form.runAt) }}
+            <div class="row">
 
-            <div class="col-md-offset-4">
-                <div class="scheduler">
-                    {% for d in form.days %}
-                        <div class="row">
-                            <div class="item">
-                                {{ form_widget(d) }}
-                                {{ "now" |date_modify(("+" ~ loop.index0 ~ " day"))| date("d.m.Y", user.timezone) }}
+                <div class="col-md-offset-4">
+                    <div class="scheduler">
+                        {% for d in form.days %}
+                            <div class="row">
+                                <div class="item">
+                                    {{ form_widget(d) }}
+                                    {{ "now" |date_modify(("+" ~ loop.index0 ~ " day"))| date("d.m.Y", user.timezone) }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group" style="padding-top: 20px">
+                        <div class="col-sm-8">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button class="btn btn-default" onclick="goBack()">Назад</button>
+                                <button class="btn btn-primary pull-right">Добавить</button>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group" style="padding-top: 20px">
-                    <div class="col-sm-8">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button class="btn btn-default" onclick="goBack()">Назад</button>
-                            <button class="btn btn-primary pull-right">Добавить</button>
-                        </div>
                     </div>
+                    {{ form_end(form) }}
                 </div>
-                {{ form_end(form) }}
             </div>
+
+
         </div>
-
-
-    </div>
-    <div class="col-md-5 col-md-offset-1">
-        <p>
-        </p>
-        <table style="width:100%" class="genView">
-            <tr>
-                <th>День</th>
-                {% for d in 0..23 %}
-                    <th>
-                        {% if d % 3 == 0  %}
-                            {{ d }}
-                        {% endif %}
-                    </th>
-                {% endfor %}
-            </tr>
-            {% for d in 0..6 %}
-            <tr>
-                {% set oneday = "now" |date_modify(("+" ~ d ~ " day")) %}
-                <td>{{ oneday| date("d.m", user.timezone) }}</td>
-                {% for h in 0..23 %}
-                {% if history[d][h].type is defined %}
-                    {% if history[d][h]['type'] in [0, 10, 30] %}
-                            <td class ="follow id{{ history[d][h].id }}" >
-                                <a data-toggle="tooltip" data-placement="bottom" title="Фоловинг">0</a>
-                            </td>
-                        {% elseif history[d][h]['type'] in [1,11,31] %}
-                            <td class ="liking id{{ history[d][h].id }}">
-                                <a data-toggle="tooltip" data-placement="bottom" title="Лайкинг">0</a>
-                            </td>
-                        {% elseif history[d][h]['type'] == 3 %}
-                            <td class ="unfollow id{{ history[d][h].id }}">
-                                <a data-toggle="tooltip" data-placement="bottom" title="Отписка">0</a>
-                            </td>
-                        {% endif %}
-                {% else %}
-                        <td></td>
-                {% endif %}
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </table>
-
-        <table class="actionTable">
-        {% for h in schedulerHistory %}
-                <tr class ="pid{{ h.id }}">
-            {% if h.type in [0, 10, 30] %}
-                {% set color = '#0C7ADA' %}
-                <td>
-                    Фоловинг
-                </td>
-            {% elseif h.type in [1,11,31] %}
-                {% set color = '#2ECC40' %}
-                <td class ="">
-                    Лайкинг
-                </td>
-            {% elseif h.type == 3 %}
-                {% set color = '#a94442' %}
-                <td class ="">
-                    Отписка
-                </td>
-            {% endif %}
-                    <td class ="">
-                        <a href="{{ path('delete_scheduler_tasks', { id: h.id }) }}" class="btn btn-danger pull-right">-</a>
-                    </td>
-                </tr>
-            <script>
-                $(".pid{{ h.id }}").mouseover(function(){
-                    $('.id{{ h.id }}').find('a').css('color','red')
-                    $('.id{{ h.id }}').css('background-color','red')
-                })
-                $(".pid{{ h.id }}").mouseout(function(){
-                    $('.id{{ h.id }}').find('a').css('color','{{ color }}')
-                    $('.id{{ h.id }}').css('background-color','{{ color }}')
-                })
-            </script>
-        {% endfor %}
-        </table>
-
-    </div>
+        <div class="col-md-5 col-md-offset-1">
+            {% include "/manager/scheduler_plan.html.twig" %}
+        </div>
     </div>
 
     <script>
@@ -127,63 +52,16 @@
         })
     </script>
     <style>
-        .actionTable{
-            margin-top: 20px;
-        }
-        .actionTable tr{
-            background-color: whitesmoke;
-            border-bottom-width: 10px;
-            border-bottom-style: solid;
-            border-bottom-color: white;
-        }
-        .actionTable .btn{
-        }
-
-        .unfollow a:hover{
-            color: #a94442;
-        }
-        .unfollow a{
-            color: #a94442;
-            cursor: default;
-        }
-        .unfollow{
-            background-color: #a94442;
-        }
-        .follow a:hover{
-            color: #0C7ADA;
-        }
-        .follow a{
-            color: #0C7ADA;
-            cursor: default;
-        }
-        .follow{
-            background-color: #0C7ADA;
-        }
-        .liking a:hover{
-            color: #2ECC40;
-        }
-        .liking a{
-            color: #2ECC40;
-            cursor: default;
-        }
-        .liking{
-            background-color: #2ECC40;
-        }
-        .genView .td{
-            background-color: beige;
-        }
-        .genView tr{
-            border: solid;
-            border-color: whitesmoke;
-        }
-        .form-control{
+        .form-control {
             width: 60%;
         }
+
         .form-group .btn-primary {
             margin-top: 0px;
             margin-bottom: 0px;
         }
-        .item{
+
+        .item {
             background-color: bisque;
             width: 120px;
             height: 30px;
@@ -195,7 +73,8 @@
             margin-top: 8px;
             margin-left: 14px;
         }
-        .row{
+
+        .row {
             margin-left: 0;
         }
     </style>

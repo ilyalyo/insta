@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Менеджер</h1>
+    <div class="col-md-6 col-md-offset-1" style="padding-top: 20px">
+{% include "/manager/scheduler_plan.html.twig" %}
+    </div>
+     <div class="col-md-4 col-md-offset-1">
+            <p>
+                По достижении количества подписок 7000-7500 Вы больше не сможете подписываться на людей(Инстаграм блокирует подписку), необходимо осуществлять отписку.
+            </p>
+            <p>
+                Мы советуем чередовать подписку и отписку для того, чтобы продвижение аккаунта осуществлялось непрерывно.
+            </p>
+
+        </div>
+    </div>
+{% endblock %}

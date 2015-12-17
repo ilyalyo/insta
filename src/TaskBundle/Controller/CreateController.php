@@ -105,6 +105,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/follow/byList.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -164,6 +165,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/follow/byId.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -221,6 +223,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/follow/byTags.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -278,6 +281,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/follow/byGeo.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -330,6 +334,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/like/byGeo.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -384,6 +389,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/like/byTags.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -441,6 +447,7 @@ class CreateController extends Controller
 
         return $this->render('tasks/unfollow/unfollow.html.twig', array(
             'form' => $form->createView(),
+            'user' =>$user,
             'account' =>$account
         ));
     }
@@ -459,7 +466,7 @@ class CreateController extends Controller
             throw new NotFoundHttpException("Page not found");
 
         $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id' => $task->getAccountId()));
-        if (!isset($account))
+        if (!isset($account) || !$user->getIsPro())
             throw new NotFoundHttpException("Page not found");
 
         $form = $this->createForm(new SchedulerType($user->getTimezone()), $scheduler_task);

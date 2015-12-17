@@ -62,10 +62,8 @@
                 <ul class="nav left-menu text-center">
                     <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span>
                             Аккаунты</a></li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li id="manager"><a href="{{ path('manager') }}"><span
-                                        class="glyphicon glyphicon-dashboard"></span> Менеджер</a></li>
-                    {% endif %}
+                    <li id="manager"><a href="{{ path('manager') }}"><span class="glyphicon glyphicon-dashboard">
+                            </span> Менеджер</a></li>
                     <li id="analytic"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span>
                             Аналитика</a></li>
                     <li id="info"><a href="{{ path('settings') }}"><span class="glyphicon glyphicon-cog"></span>

@@ -10,15 +10,21 @@
             {{ form_widget(form.optionAddLike) }}
             {{ form_widget(form.optionFollowClosed) }}
             {{ form_widget(form.optionCheckUserFromDB) }}
-            {% if is_granted('ROLE_ADMIN') %}
-                ЭТО ВИДНО ТОЛЬКО АДМИНАМ, КОГДА БУДЕТ ВСЕ ГОТОВО УДАЛИТЕ
-                <div class="checkbox">
-                    <label><input type="checkbox" id="isScheduleTask" name="isScheduleTask">
-                        Задание по расписанию( при выборе этой опции вы попадете
-                        на новую страницу где выберете время и дни когда будет создаваться задача)
-                    </label>
-                </div>
-            {% endif %}
+            <div class="checkbox">
+                <label>
+                    {% if user.isPro == false %}
+                        <input type="checkbox" disabled id="isScheduleTask" name="isScheduleTask">
+                    {% else %}
+                        <input type="checkbox" id="isScheduleTask" name="isScheduleTask">
+                    {% endif %}
+                    Задание по расписанию( при выборе этой опции вы попадете
+                    на новую страницу где выберете время и дни когда будет создаваться задача)
+                    {% if user.isPro == false %}
+                        [только для платных аккаунтов]
+                    {% endif %}
+                </label>
+            </div>
+
             <div class="panel-group" id="accordion">
                 <div class="panel">
                     <div class="panel-heading">

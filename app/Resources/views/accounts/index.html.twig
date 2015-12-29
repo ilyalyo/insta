@@ -96,6 +96,29 @@
 
     <div class="row">
         <div class="col-xs-12" >
+            {% if user.isPro %}
+            <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
+                <img src="/img/adv2015.png"/>
+                <select class="payment-option" name="paymentType" >
+                    <option value="AC">Банковской картой</option>
+                    <option value="PC">Яндекс.Деньгами</option>
+                </select>
+                <input class="btn-purchase" type="submit" name="submit-button" value="Купить" style="    background-color: red;
+    border-color: red;
+    color: white;
+    border-radius: 5px;">
+
+                <input type="hidden" name="receiver" value="410013172566531">
+                <input type="hidden" name="formcomment" value="Подписка instastellar 4 мес">
+                <input type="hidden" name="short-dest" value="Подписка instastellar 4 мес">
+                <input type="hidden" name="quickpay-form" value="shop">
+                <input type="hidden" name="label" value="{{ user.id }}">
+                <input type="hidden" name="targets" value="instastellar">
+                <input type="hidden" name="sum" value="1580.00" data-type="number" >
+            </form>
+            <h4 style="padding-left:10px;">29.12 сервис был не доступен в связи с проблемами на хостинге, приносим свои извинения, всем будут добавлены бесплатные дни в подарок.</h4>
+
+            {% else %}
             <div style="margin-top: 5px;border: 2px dashed  #0C7ADA;border-radius: 10px;">
             <h2 style="padding-left: 10px;">Текущие обновления</h2>
             <ul>
@@ -111,10 +134,12 @@
                 <li>Функция "снимок подписок". Мы запомним ваши подписки на случай, если Вы отпишетесь от своих друзей, и предоставим возможность подписаться на них обратно.</li>
                 <li>Парсинг из <font style="color:428BCA;">Vk</font></li>
             </ul>
+                <h4 style="padding-left:10px;">29.12 сервис был не доступен в связи с проблемами на хостинге, приносим свои извинения, всем будут добавлены бесплатные дни в подарок.</h4>
 
             <h4 style="padding-left:10px;">Спасибо за то, что Вы с нами!</h4>
 
             </div>
+            {% endif %}
         </div>
     </div>
 

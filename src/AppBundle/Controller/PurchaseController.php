@@ -70,6 +70,9 @@ class PurchaseController extends Controller
                     case 1999.00:
                         $date->add(new \DateInterval('P3M'));
                         break;
+                    case 1580.00:
+                        $date->add(new \DateInterval('P4M'));
+                        break;
                     case 3999.00:
                         $date->add(new \DateInterval('P7M'));
                         break;

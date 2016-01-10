@@ -376,8 +376,7 @@ class CreateController extends Controller
             if($request->get('isScheduleTask')){
                 return  $this->redirectToRoute('add_task_scheduler', array('id' => $task->getId()));
             }
-            var_dump($request->get('isScheduleTask'));
-            die();
+
             $command = new WriteCommand();
             $command->setContainer($this->container);
             $input = new ArrayInput(array('id' => $task->getId()));

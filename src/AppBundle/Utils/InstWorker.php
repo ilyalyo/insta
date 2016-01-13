@@ -26,9 +26,9 @@ class InstWorker {
         'easytogo' => array('id' => '6e336200a7f446a78b125602b90989cc', 'redirect_uri' => 'http://instastellar.su/get_token'),
         'stapico' => array('id' =>  'e77306665eb54866ae0a8185c4028604', 'redirect_uri' => 'http://stapico.ru/accounts/auth/complete'),
         'collecto' => array('id' => '2b5a0c10371c4784935b03e5619e94ca', 'redirect_uri' => 'http://collec.to/login'),
-        'ink361' => array('id' =>   '2e7067c2b22a4cbdb6b2e0e89cbd6537', 'redirect_uri' => 'https://instagram.com/oauth/authorize/?client_id=2e7067c2b22a4cbdb6b2e0e89cbd6537&response_type=code&redirect_uri=http://data.ink361.com/v1/auth?instagram=1&scope=basic+comments+relationships+likes'),
-        'pictacular' => array('id' =>   'b7b6584eadc84911b211d3e9045ed917', 'redirect_uri' => 'https://instagram.com/oauth/authorize/?client_id=b7b6584eadc84911b211d3e9045ed917&redirect_uri=http://www.pictacular.co/&scope=comments+likes+relationships&response_type=token'),
-        'websta' => array('id' =>   '9d836570317f4c18bca0db6d2ac38e29', 'redirect_uri' => 'https://instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes'),
+        'ink361' => array('id' =>   '2e7067c2b22a4cbdb6b2e0e89cbd6537', 'redirect_uri' => 'https://www.instagram.com/oauth/authorize/?client_id=2e7067c2b22a4cbdb6b2e0e89cbd6537&response_type=code&redirect_uri=http://data.ink361.com/v1/auth?instagram=1&scope=basic+comments+relationships+likes'),
+        'pictacular' => array('id' =>   'b7b6584eadc84911b211d3e9045ed917', 'redirect_uri' => 'https://www.instagram.com/oauth/authorize/?client_id=b7b6584eadc84911b211d3e9045ed917&redirect_uri=http://www.pictacular.co/&scope=comments+likes+relationships&response_type=token'),
+        'websta' => array('id' =>   '9d836570317f4c18bca0db6d2ac38e29', 'redirect_uri' => 'https://www.instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes'),
         );
 
     //account_id нужен для именования файлов, тк может случиться что юзер изменит логин
@@ -42,7 +42,7 @@ class InstWorker {
 
     public function Login(){
         //получаем кукисы на странице логина
-        $login_url = 'https://instagram.com/accounts/login/';
+        $login_url = 'https://www.instagram.com/accounts/login/';
 
         $ch = curl_init($login_url);
         curl_setopt($ch, CURLOPT_HEADER, true);
@@ -53,17 +53,25 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
         curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Host: www.instagram.com',
+        ));
         $result = curl_exec($ch);
         $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
         curl_close ($ch);
 
+
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
+		
+		if(count($res[2]) > 1)
+			$this->last_csrf = $res[2][1];
+		else
+			$this->last_csrf = $res[2][0];
 
-        $this->last_csrf = $res[2][0];
-
+	
         //получаем кукисы сессии
-        $login_url = 'https://instagram.com/accounts/login/ajax/';
+        $login_url = 'https://www.instagram.com/accounts/login/ajax/';
 
         $ch = curl_init($login_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -71,10 +79,11 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'X-Instagram-AJAX: 1',
-            "X-CSRFToken: " . $this->last_csrf,
+			"X-CSRFToken: " . $this->last_csrf,
+            'Host: www.instagram.com',
             'X-Requested-With: XMLHttpRequest'
         ));
-        curl_setopt($ch, CURLOPT_REFERER, 'https://instagram.com/accounts/login/');
+        curl_setopt($ch, CURLOPT_REFERER, 'https://www.instagram.com/accounts/login/');
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
         curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
@@ -85,8 +94,10 @@ class InstWorker {
         $result = curl_exec($ch);
         curl_close ($ch);
 
-        $json = json_decode($result);
-        if($json !== FALSE && isset($json->authenticated) && $json->authenticated == 'true')
+		$json = json_decode($result);
+
+
+        if($json !== NULL && $json !== FALSE && isset($json->authenticated) && $json->authenticated == 'true')
             return true;
         else
             return false;
@@ -96,7 +107,7 @@ class InstWorker {
         //получаем код для регистрации приложения
         $client_id = $this->apps[$app_name]['id'];
         $redirect_uri = $this->apps[$app_name]['redirect_uri'];
-        $url = "https://instagram.com/oauth/authorize/?client_id=$client_id&redirect_uri=$redirect_uri&response_type=code&scope=likes+comments+relationships";
+        $url = "https://www.instagram.com/oauth/authorize/?client_id=$client_id&redirect_uri=$redirect_uri&response_type=code&scope=likes+comments+relationships";
 
         //обновляем кукисы
         $ch = curl_init($url);
@@ -108,13 +119,18 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
         curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-        $result = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Host: www.instagram.com',
+        ));
+		$result = curl_exec($ch);
         $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
 
         $this->last_csrf = $res[2][0];
 
+
+        //var_dump($res[2][0]);
         curl_close ($ch);
 
 
@@ -131,20 +147,26 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=" . $this->last_csrf . "&allow=Authorize");
-        $result = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Host: www.instagram.com',
+        ));
+	
+		$result = curl_exec($ch);
         $header = substr($result, 0, curl_getinfo($ch,CURLINFO_HEADER_SIZE));
         curl_close ($ch);
 
-        var_dump($header);
+
 
         preg_match('/Location: .*/',$header,$matches);
         $location= substr($matches[0], 10);
-
         //отправляем код
-        $ch = curl_init($location);
+		
+      // var_dump($result);
+		$ch = curl_init($location);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_exec($ch);
-        curl_close ($ch);
+		curl_close ($ch);
+
     }
 
     public function GetToken($app_name){
@@ -156,7 +178,11 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
         curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
-        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+		curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Host: www.instagram.com',
+        ));
+
         $result = curl_exec($ch);
         curl_close ($ch);
         $dom = new Dom;
@@ -233,7 +259,7 @@ class InstWorker {
             //распознаем
             $text = recognize($this->captcha_img, self::api_key);
 
-            unlink($this->captcha_img);
+//            unlink($this->captcha_img);
 
             //отправляем результат
             $ch = curl_init($url);
@@ -264,7 +290,7 @@ class InstWorker {
     {
         $filename = 'captcha_log.txt';
         $file = "/var/www/instastellar/tasks/$filename";
-        var_dump($message);
+        //var_dump($message);
         file_put_contents("$file", "|" . json_encode($message) . "\n", FILE_APPEND);
     }
 

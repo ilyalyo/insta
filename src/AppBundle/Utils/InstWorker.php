@@ -41,6 +41,7 @@ class InstWorker {
     }
 
     public function Login(){
+        $this->removeCookie();
         //получаем кукисы на странице логина
         $login_url = 'https://www.instagram.com/accounts/login/';
 

@@ -70,9 +70,6 @@ class PurchaseController extends Controller
                     case 1999.00:
                         $date->add(new \DateInterval('P3M'));
                         break;
-                    case 1580.00:
-                        $date->add(new \DateInterval('P4M'));
-                        break;
                     case 3999.00:
                         $date->add(new \DateInterval('P7M'));
                         break;
@@ -97,9 +94,17 @@ class PurchaseController extends Controller
                 $purchase->setAmount($withdraw_amount);
                 $em->persist($purchase);
 
+                $maxAccounts = $user->getMaxAccounts();
+                if($withdraw_amount == 1.00){
+                    $maxAccounts++;
+                    $isPro = $user->getIsPro();
+                }
+                else
+                    $isPro = 1;
+
                 $user->setValidUntil($date);
-                $user->setMaxAccounts(5);
-                $user->setIsPro(1);
+                $user->setMaxAccounts($maxAccounts);
+                $user->setIsPro($isPro);
                 $em->persist($user);
                 $em->flush();
 

@@ -69,6 +69,22 @@
             </div>
         </div>
     </div>
+    <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
+        <p class="payment-p"  style="padding-left: 0">Дополнительный аккаунт 100 р</p>
+        <select class="payment-option" name="paymentType" >
+            <option value="AC">Банковской картой</option>
+            <option value="PC">Яндекс.Деньгами</option>
+        </select>
+        <input class="btn-default" type="submit" name="submit-button" value="Купить">
+
+        <input type="hidden" name="receiver" value="410013172566531">
+        <input type="hidden" name="formcomment" value="Ведение дополнительного аккаунта">
+        <input type="hidden" name="short-dest" value="Ведение дополнительного аккаунта">
+        <input type="hidden" name="quickpay-form" value="shop">
+        <input type="hidden" name="label" value="{{ user.id }}">
+        <input type="hidden" name="targets" value="instastellar">
+        <input type="hidden" name="sum" value="100.00" data-type="number" >
+    </form>
     {% if (user.validUntil| date('U')) < ('now' | date('U')) %}
         <p style="color: red;">Срок действия Вашего аккаунта истек</p>
     {% else %}

@@ -95,7 +95,7 @@ class PurchaseController extends Controller
                 $em->persist($purchase);
 
                 $maxAccounts = $user->getMaxAccounts();
-                if($withdraw_amount == 1.00){
+                if($withdraw_amount == 100.00){
                     $maxAccounts++;
                     $isPro = $user->getIsPro();
                 }

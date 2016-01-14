@@ -681,8 +681,8 @@ class Instagram
             return false;
         }
 
-        $captcha_result = $iw->CheckCaptcha();
-        $this->debug('CAPTCHA: ' . isset($captcha_result) ? $captcha_result : '');
+       /* $captcha_result = $iw->CheckCaptcha();
+        $this->debug('CAPTCHA: ' . isset($captcha_result) ? $captcha_result : '');*/
 
         $iw->InstallApp($token['client']);
 

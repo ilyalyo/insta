@@ -1,10 +1,12 @@
+{% trans_default_domain 'account' %}
+
 {% block body %}
     <div class="row">
         <div class="col-md-12">
             {{ form_start(form) }}
 
             <div classs="form-group" style="padding-top: 15px;">
-                <label for="timezone">Логин:</label>
+                <label for="timezone">{{ 'edit.login'|trans }}</label>
                 {{ form_widget(form.instLogin) }}
                 {{ form_errors(form) }}
             </div>

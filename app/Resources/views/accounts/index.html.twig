@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'accounts_index' %}
 
 {% block body %}
     <script>
@@ -42,16 +43,16 @@
                                 $('#prgrs0'+msg[k]['id']).addClass('progress-bar-danger');
                                 $('#prgrs1'+msg[k]['id']).addClass('progress-bar-danger');
                                 if(msg[k]['status']==3)
-                                    $('#status'+msg[k]['id']).text('Прервана');
+                                    $('#status'+msg[k]['id']).text('{{ 'task.stopped'|trans }}');
                                 else
-                                    $('#status'+msg[k]['id']).text('Ошибка');
+                                    $('#status'+msg[k]['id']).text('{{ 'task.error'|trans }}');
                             }
                             else if(msg[k]['status']==0){
                                 var p_proc = msg[k]['parsingStatus']/msg[k]['shouldbedone']*100 + '%';
-                                $('#status'+msg[k]['id']).text('Парсинг списка ' + p_proc);
+                                $('#status'+msg[k]['id']).text('{{ 'task.parsing'|trans }} ' + p_proc);
                             }
                             else if(msg[k]['status']==2){
-                                $('#status'+msg[k]['id']).text('Выполняется');
+                                $('#status'+msg[k]['id']).text('{{ 'task.running'|trans }}');
                             }
                         }
                     }
@@ -96,29 +97,7 @@
 
     <div class="row">
         <div class="col-xs-12" >
-            {% if user.isPro == false %}
-            <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
-                <img src="/img/adv2015.png"/>
-                <select class="payment-option" name="paymentType" >
-                    <option value="AC">Банковской картой</option>
-                    <option value="PC">Яндекс.Деньгами</option>
-                </select>
-                <input class="btn-purchase" type="submit" name="submit-button" value="Купить" style="    background-color: red;
-    border-color: red;
-    color: white;
-    border-radius: 5px;">
 
-                <input type="hidden" name="receiver" value="410013172566531">
-                <input type="hidden" name="formcomment" value="Подписка instastellar 4 мес">
-                <input type="hidden" name="short-dest" value="Подписка instastellar 4 мес">
-                <input type="hidden" name="quickpay-form" value="shop">
-                <input type="hidden" name="label" value="{{ user.id }}">
-                <input type="hidden" name="targets" value="instastellar">
-                <input type="hidden" name="sum" value="1580.00" data-type="number" >
-            </form>
-            <h4 style="padding-left:10px;">29.12 сервис был не доступен в связи с проблемами на хостинге, приносим свои извинения, всем будут добавлены бесплатные дни в подарок.</h4>
-
-            {% else %}
             <div style="margin-top: 5px;border: 2px dashed  #0C7ADA;border-radius: 10px;">
             <h2 style="padding-left: 10px;">Текущие обновления</h2>
             <ul>
@@ -139,11 +118,10 @@
             <h4 style="padding-left:10px;">Спасибо за то, что Вы с нами!</h4>
 
             </div>
-            {% endif %}
         </div>
     </div>
 
-<a href ="{{ path('add_login_password_account') }}" type="button" class="btn btn-success" style="margin-top: 15px;margin-bottom: 15px;">Добавить аккаунт</a>
+<a href ="{{ path('add_login_password_account') }}" type="button" class="btn btn-success" style="margin-top: 15px;margin-bottom: 15px;">{{ 'task.addaccount'|trans }}</a>
 
 <div class="panel-group" id="accordion">
     {% for account in accounts %}
@@ -183,7 +161,7 @@
                 <div class="btn-group pull-right">
                     <a href="{{ path("add_task_follow_by_id", {'id' :account.id }) }}" type="button" class="btn btn-default" title="Добавление задачи на фоловинг"><span class="glyphicon glyphicon-plus"></span></a>
                     <a href="{{ path('add_task_like_by_tags', {'id': account.id }) }}" type="button" class="btn btn-default" title="Добавление задачи на лайкинг"><span class="glyphicon glyphicon-heart"></span></a>
-                    <a href="{{ path('add_task_unfollow',  {'id': account.id }) }}" type="button" class="btn btn-default" title="Отписка"><span class="glyphicon glyphicon-minus"></span></a>
+                    <a href="{{ path('add_task_unfollow',  {'id': account.id }) }}" type="button" class="btn btn-default" title="{{ 'task.unfollow'|trans }}"><span class="glyphicon glyphicon-minus"></span></a>
                     {% if account.tasks | length > 0 %}
                          {% if ((account.tasks | last).status in [2,0]) %}
                             <a href="{{ path('stop_tasks',{'id': (account.tasks | last).id })}}" type="button" class="btn btn-default" title="Остановка задачи"><span class="glyphicon glyphicon-stop"></span></a>
@@ -220,8 +198,8 @@
                 <div class="panel-body">
 
                     <ul class="nav nav-tabs" id="mainTab">
-                        <li class="active"><a href="#last{{ account.id }}" data-toggle="tab">Последнее задание</a></li>
-                        <li><a href="#history{{ account.id }}" data-toggle="tab">История</a></li>
+                        <li class="active"><a href="#last{{ account.id }}" data-toggle="tab">{{ 'task.last'|trans }}</a></li>
+                        <li><a href="#history{{ account.id }}" data-toggle="tab">{{ 'task.history'|trans }}</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -232,18 +210,18 @@
                                 <div class="row">
                                     <div class="col-xs-1"></div>
                                     <div class="col-xs-4">
-                                        <h3><span class="glyphicon glyphicon-flag"></span>  Статус:</h3>
+                                        <h3><span class="glyphicon glyphicon-flag"></span>  {{ 'task.status'|trans }}:</h3>
                                         <p id="status{{ account.id }}">
                                         {% if (account.tasks | last).status == 1 %}
-                                            Завершено
+                                            {{ 'task.done'|trans }}
                                         {% elseif (account.tasks | last).status == 2 %}
-                                            Выполняется
+                                            {{ 'task.running'|trans }}
                                         {% elseif (account.tasks | last).status == 3 %}
-                                            Прервана
+                                            {{ 'task.stopped'|trans }}
                                         {% elseif (account.tasks | last).status == 4 %}
-                                            Ошибка
+                                            {{ 'task.error'|trans }}
                                         {% elseif (account.tasks | last).status == 0 %}
-                                            Парсинг списка {{ (account.tasks | last).parsingStatus / (account.tasks | last).count * 100 }}%
+                                            {{ 'task.parsing'|trans }} {{ (account.tasks | last).parsingStatus / (account.tasks | last).count * 100 }}%
                                         {% endif %}
                                             {% if (account.tasks | last).errorId  %}
                                                 <a data-container="body" data-toggle="popover" data-placement="right" data-content="{{ (account.tasks | last).errorId.message }}">
@@ -254,21 +232,21 @@
                                         </p>
                                     </div>
                                     <div class="col-xs-4">
-                                        <h3><span class="glyphicon glyphicon-file"></span>  Тип задания:</h3>
+                                        <h3><span class="glyphicon glyphicon-file"></span>  {{ 'task.type'|trans }}:</h3>
                                         {% if (account.tasks | last).type == 0 %}
-                                            <p>Подписка по ID</p>
+                                            <p>{{ 'task.followid'|trans }}</p>
                                         {% elseif (account.tasks | last).type == 10 %}
-                                            <p>Подписка по тэгам</p>
+                                            <p>{{ 'task.followtag'|trans }}</p>
                                         {% elseif (account.tasks | last).type == 20 %}
-                                            <p>Подписка по списку</p>
+                                            <p>{{ 'task.followlist'|trans }}</p>
                                         {% elseif (account.tasks | last).type == 30 %}
-                                            <p>Подписка по гео</p>
+                                            <p>{{ 'task.followgeo'|trans }}</p>
                                         {% elseif (account.tasks | last).type == 11 %}
-                                            <p>Лайкинг по тэгам</p>
+                                            <p>{{ 'task.liketags'|trans }}</p>
                                         {% elseif (account.tasks | last).type == 31 %}
-                                            <p>Гео лайкинг</p>
+                                            <p>{{ 'task.likegeo'|trans }}</p>
                                         {% elseif (account.tasks | last).type == 3 %}
-                                            <p>Отписка</p>
+                                            <p>{{ 'task.unfollow'|trans }}</p>
                                         {% endif %}
                                     </div>
 
@@ -277,18 +255,18 @@
                                 <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
-                                    <h3><span class="glyphicon glyphicon-time"></span> Задание началось в:</h3>
+                                    <h3><span class="glyphicon glyphicon-time"></span> {{ 'task.startedat'|trans }}:</h3>
                                     <p>{{ (account.tasks | last).createdAt | date("H:i d/m/Y", user.timezone) }} {{ user.timezone }}</p> {#date("h:i d/m/Y")#}
                                 </div>
                                 <div class="col-xs-4 long_tags">
                                     {% if (account.tasks | last).type in [0 ,1] %}
-                                        <h3><span class="glyphicon glyphicon-link"></span> ID конкурента:</h3>
+                                        <h3><span class="glyphicon glyphicon-link"></span> {{ 'task.concid'|trans }}:</h3>
                                         <p>{{ (account.tasks | last).tags  }}</p>
                                     {% elseif (account.tasks | last).type in [10,11] %}
-                                        <h3><span class="glyphicon glyphicon-link"></span> Тэги:</h3>
+                                        <h3><span class="glyphicon glyphicon-link"></span> {{ 'task.tags'|trans }}:</h3>
                                         <div class="comment more">{{ (account.tasks | last).tags  }}</div>
                                     {% elseif (account.tasks | last).type in [31, 30] %}
-                                        <p>Lat;Lng;Радиус</p>
+                                        <p>Lat;Lng;{{ 'task.radius'|trans }}</p>
                                         <div class="comment more">{{ (account.tasks | last).tags  }}</div>
                                     {% endif %}
                                 </div>
@@ -297,7 +275,7 @@
                                 <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-10">
-                                    <h3>Прогресс:</h3>
+                                    <h3>{{ 'task.progress'|trans }}:</h3>
                                     <div class="progress">
                                         <div class="progress-bar {{ task }}" id="prgrs1{{ account.id }}" role="progressbar" style="width: {{ ((account.tasks | last).actions | length) / ((account.tasks | last).count) * 100}}%">
                                             {{ ((account.tasks | last).actions | length)}}/{{ ((account.tasks | last).count) }}
@@ -309,7 +287,7 @@
                                 <div class="row">
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-4">
-                                    <p><a href="{{ path('actions' , {id: (account.tasks | last).id}  ) }}"><span class="glyphicon glyphicon-eye-open"/> Детали</a></p>
+                                    <p><a href="{{ path('actions' , {id: (account.tasks | last).id}  ) }}"><span class="glyphicon glyphicon-eye-open"/> {{ 'task.details'|trans }}</a></p>
                                 </div>
                             </div>
 
@@ -324,19 +302,19 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         {% if task.type == 0 %}
-                                            <p>Подписка по ID<p>
+                                            <p>{{ 'task.followid'|trans }}<p>
                                         {% elseif task.type == 10 %}
-                                            <p>Подписка по тэгам</p>
+                                            <p>{{ 'task.followtag'|trans }}</p>
                                         {% elseif task.type == 20 %}
-                                            <p>Подписка по списку</p>
+                                            <p>{{ 'task.followlist'|trans }}</p>
                                         {% elseif task.type == 30 %}
-                                            <p>Подписка по гео</p>
+                                            <p>{{ 'task.followgeo'|trans }}</p>
                                         {% elseif task.type == 11 %}
-                                            <p>Лайкинг по тэгам</p>
+                                            <p>{{ 'task.liketags'|trans }}</p>
                                         {% elseif task.type == 31 %}
-                                            <p>Гео лайкинг</p>
+                                            <p>{{ 'task.likegeo'|trans }}</p>
                                         {% elseif task.type == 3 %}
-                                            <p>Отписка</p>
+                                            <p>{{ 'task.unfollow'|trans }}</p>
                                         {% endif %}
                                     </div>
                                     <div class="col-xs-3 long_tags">

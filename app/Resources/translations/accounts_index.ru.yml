@@ -1,0 +1,23 @@
+task:
+  stopped: Остановлена
+  error: Ошибка
+  parsing: Париснг
+  running: Running
+  done: Выполнена
+  followid: Плодписка по Id
+  followtag: Подписка по тэгам
+  followlist: Подписка по списку
+  likegeo: Лайкинг по гео
+  liketags: Лайкинг по тэгам
+  unfollow: Отписка
+  last: Последнее задание
+  history: История
+  status: Статус
+  type: Тип задачи
+  startedat: Задание началось в
+  concid: ID конкурента
+  tags: Тэги
+  radius: Радиус
+  progress: Прогресс
+  details: Детали
+  addaccount: Добавить аккаунт

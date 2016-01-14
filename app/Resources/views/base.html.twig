@@ -1,3 +1,5 @@
+{% trans_default_domain 'base' %}
+
 {% block head_style %}
     <link rel="stylesheet" href="/css/base.css">
     <!--slider-->
@@ -40,8 +42,8 @@
 
         <div class="container">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('info') }}"><p>Руководство пользователя</p></a></li>
-                <li><a href="{{ path('fos_user_security_logout') }}"><p>Выход</p></a></li>
+                <li><a href="{{ path('info') }}"><p>{{ 'top.about'|trans }}</p></a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}"><p>{{ 'top.logout'|trans }}</p></a></li>
                 <li><a href="{{ path("change_locale") }}">
                         {% if app.request.locale != 'ru' %}
                             <img class="flag" src="/img/flag_ru.png">
@@ -61,20 +63,20 @@
             <div class="navigation">
                 <ul class="nav left-menu text-center">
                     <li id="accounts"><a href="{{ path('accounts') }}"><span class="glyphicon glyphicon-user"></span>
-                            Аккаунты</a></li>
+                            {{ 'nav.accounts'|trans }}</a></li>
                     <li id="manager"><a href="{{ path('manager') }}"><span class="glyphicon glyphicon-dashboard">
-                            </span> Менеджер</a></li>
+                            </span> {{ 'nav.manager'|trans }}</a></li>
                     <li id="analytic"><a href="{{ path('analytic') }}"><span class="glyphicon glyphicon-signal"></span>
-                            Аналитика</a></li>
+                            {{ 'nav.analytic'|trans }}</a></li>
                     <li id="info"><a href="{{ path('settings') }}"><span class="glyphicon glyphicon-cog"></span>
-                            Настройки</a></li>
+                            {{ 'nav.settings'|trans }}</a></li>
                     <li id="purchase"><a href="{{ path('purchase') }}"><span class="glyphicon glyphicon-star"></span>
-                            Покупка</a></li>
+                            {{ 'nav.purchase'|trans }}</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('admin') }}"> Админка</a></li>
                     {% endif %}
                     {% if is_granted('ROLE_PARTNER') %}
-                        <li><a href="{{ path('partnership') }}"> Партнёрам</a></li>
+                        <li><a href="{{ path('partnership') }}"> {{ 'nav.partners'|trans }}</a></li>
                     {% else %}
                         <li><a href="{{ path('become_partner') }}">Стать партнёром</a></li>
                     {% endif %}
@@ -83,7 +85,7 @@
             <div class="navigation" style="bottom: 20px">
                 <ul class="nav left-menu text-center">
                     <li id="support"><a href="{{ path('support') }}"><span class="glyphicon glyphicon-pencil"></span>
-                            Поддержка
+                            {{ 'nav.support'|trans }}
                             {% if app.security.getToken().getUser().unRead > 0 %}
                                 <span class="badge">{{ app.security.getToken().getUser().unRead }}</span>
                             {% endif %}

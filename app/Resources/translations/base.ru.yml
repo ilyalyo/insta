@@ -1,0 +1,11 @@
+top:
+  logout: Выход
+  about: Руководство пользователя
+nav:
+  accounts: Аккаунты
+  manager: Менджер
+  analytic: Аналитика
+  settings: Настройка
+  purchase: Покупка
+  partners: Партнерам
+  support: Поддержка

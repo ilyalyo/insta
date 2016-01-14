@@ -1,0 +1,23 @@
+task:
+  stopped: Stopped
+  error: Error
+  parsing: Parsing
+  running: Running
+  done: Done
+  followid: Follow by Id
+  followtag: Follow by tags
+  followlist: Follow by list
+  likegeo: Liking by geo
+  liketags: Liking by tags
+  unfollow: Unfollowing
+  last: Last task
+  history: History
+  status: Status
+  type: Type
+  startedat: Started at
+  concid: Page Id
+  tags: Tags
+  radius: Radius
+  progress: Progress
+  details: Details
+  addaccount: Add account

@@ -331,7 +331,7 @@ try{
         case 10:
             follow_by_tags();
             break;
-                                case 20:
+        case 20:
             follow_by_list();
             break;
         case 30:

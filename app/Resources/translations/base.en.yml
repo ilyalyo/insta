@@ -1,0 +1,11 @@
+top:
+  logout: Log out
+  about: About
+nav:
+  accounts: Accounts
+  manager: Manager
+  analytic: Analytic
+  settings: Settings
+  purchase: Purchase
+  partners: Partners
+  support: Support

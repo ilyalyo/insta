@@ -1,39 +1,39 @@
 {% extends 'tasks/task_base.html.twig' %}
+{% trans_default_domain 'tasks' %}
 
 {% block task_body %}
-    <h1>Добавление задачи  на отписку</h1>
+    <h1>{{ 'addunfollow'|trans }}</h1>
     <hr style="margin-top: 80px;">
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 col-md-offset-1">
             {{ form_start(form) }}
             {{ form_row(form.count) }}
-                <div class="checkbox">
-                    <label>
-                        {% if user.isPro == false %}
-                            <input type="checkbox" disabled id="isScheduleTask" name="isScheduleTask">
-                        {% else %}
-                            <input type="checkbox" id="isScheduleTask" name="isScheduleTask">
-                        {% endif %}
-                        Задание по расписанию( при выборе этой опции вы попадете
-                        на новую страницу где выберете время и дни когда будет создаваться задача)
-                        {% if user.isPro == false %}
-                            [только для платных аккаунтов]
-                        {% endif %}
-                    </label>
-                </div>
+            <div class="checkbox">
+                <label>
+                    {% if user.isPro == false %}
+                        <input type="checkbox" disabled id="isScheduleTask" name="isScheduleTask">
+                    {% else %}
+                        <input type="checkbox" id="isScheduleTask" name="isScheduleTask">
+                    {% endif %}
+                    {{ 'option'|trans }}
+                    {% if user.isPro == false %}
+                        [только для платных аккаунтов]
+                    {% endif %}
+                </label>
+            </div>
             <div class="form-group">
                 <div class="col-sm-9 col-md-offset-3">
-                    <button class="btn btn-primary pull-right">Добавить</button>
+                    <button class="btn btn-primary pull-right">{{ 'add'|trans }}</button>
                 </div>
             </div>
             {{ form_end(form) }}
         </div>
         <div class="col-md-4 col-md-offset-1">
             <p>
-                По достижении количества подписок 7000-7500 Вы больше не сможете подписываться на людей(Инстаграм блокирует подписку), необходимо осуществлять отписку.
+                {{ 'advice1'|trans }}
             </p>
             <p>
-                Мы советуем чередовать подписку и отписку для того, чтобы продвижение аккаунта осуществлялось непрерывно.
+                {{ 'advice2'|trans }}
             </p>
 
         </div>

@@ -405,9 +405,10 @@ class CreateController extends Controller
         $account = $em->getRepository('AppBundle:Accounts')->findOneBy(array('user' => $user->getId(),'id'=>$id));
 
         $task->setAccountId($account);
-
+        $translator = $this->get('translator');
+        $count_trans = $translator->trans('count',array(),'tasks');
         $form = $this->createFormBuilder($task)
-            ->add('count', 'text', array('label' => 'Количество'))
+            ->add('count', 'text', array('label' => $count_trans))
             ->getForm();
 
         $user = $this->getUser();
@@ -417,11 +418,11 @@ class CreateController extends Controller
             throw new NotFoundHttpException("Page not found");
 
         if($user->isExpired())
-            $form->get('count')->addError(new FormError('Срок действия вашего аккаунта истек'));
+            $form->get('count')->addError(new FormError($translator->trans('account_expired',array(),'tasks')));
 
         $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
         if($running_task > 0)
-            $form->get('count')->addError(new FormError('У вас уже есть работающая задача'));
+            $form->get('count')->addError(new FormError($translator->trans('already_have_task',array(),'tasks')));
 
         $form->handleRequest($request);
 

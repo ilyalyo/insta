@@ -89,6 +89,7 @@
         <p style="color: red;">Срок действия Вашего аккаунта истек</p>
     {% else %}
         <p>Ваш аккаунт действителен до: {{ user.validUntil | date("H:00 d/m/Y", user.timezone) }}</p>
+        <p>Вы можете добавлять до: {{ user.maxAccounts }} аккаунтов</p>
     {% endif %}
     <style>
         .box{

@@ -25,7 +25,9 @@
         "mopa/bootstrap-bundle": "dev-master",
         "twbs/bootstrap": "dev-master",
         "ob/highcharts-bundle": "~1.2",
-        "paquettg/php-html-parser": "^1.6"
+        "paquettg/php-html-parser": "^1.6",
+        "friendsofsymfony/rest-bundle": "^1.7",
+        "nelmio/api-doc-bundle": "^2.11"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

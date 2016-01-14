@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new PartnershipBundle\PartnershipBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

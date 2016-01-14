@@ -10,6 +10,8 @@ function follow_by_username(){
         exit;
     }
     $inst->set_task_status(2);
+    $inst->change_token();
+
     $errors = 0;
     $success = 0;
     foreach ($users as $user)
@@ -64,6 +66,8 @@ function follow_by_tags(){
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
+    $inst->change_token();
+
 
     $errors = 0;
     $success = 0;
@@ -116,6 +120,8 @@ function follow_by_list(){
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
+    $inst->change_token();
+
 
     $errors = 0;
     foreach ($users as $user)
@@ -162,6 +168,8 @@ function follow_by_geo(){
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
+    $inst->change_token();
+
 
     $errors = 0;
     foreach ($users as $user)
@@ -202,6 +210,8 @@ function liking_by_tags(){
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
+    $inst->change_token();
+
 
     $errors = 0;
     $success = 0;
@@ -242,6 +252,8 @@ function liking_by_geo(){
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
+    $inst->change_token();
+
 
     $errors = 0;
     foreach ($users as $user)
@@ -277,6 +289,8 @@ function unfollowing(){
     if (in_array($inst->get_task_status(),[3,4]))
         exit;
     $inst->set_task_status(2);
+    $inst->change_token();
+
 
     $errors = 0;
     $success = 0;

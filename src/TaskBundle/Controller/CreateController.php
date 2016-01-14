@@ -417,11 +417,11 @@ class CreateController extends Controller
             throw new NotFoundHttpException("Page not found");
 
         if($user->isExpired())
-            $form->get('tags')->addError(new FormError('Срок действия вашего аккаунта истек'));
+            $form->get('count')->addError(new FormError('Срок действия вашего аккаунта истек'));
 
         $running_task = $em->getRepository('TaskBundle:Tasks')->countRunning($id);
         if($running_task > 0)
-            $form->get('tags')->addError(new FormError('У вас уже есть работающая задача'));
+            $form->get('count')->addError(new FormError('У вас уже есть работающая задача'));
 
         $form->handleRequest($request);
 

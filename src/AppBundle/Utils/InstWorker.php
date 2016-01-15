@@ -41,7 +41,7 @@ class InstWorker {
     }
 
     public function Login(){
-        $this->removeCookie();
+
         //получаем кукисы на странице логина
         $login_url = 'https://www.instagram.com/accounts/login/';
 
@@ -60,17 +60,24 @@ class InstWorker {
         $result = curl_exec($ch);
         $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
         curl_close ($ch);
+		
 
 
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
 		
+
 		if(count($res[2]) > 1)
 			$this->last_csrf = $res[2][1];
-		else
+		else if(count($res[2]) == 1)
 			$this->last_csrf = $res[2][0];
-
-	
+		else{
+			$cookie = file_get_contents($this->cookie_file);
+			preg_match("/csrftoken(.*)/", $cookie, $res);	
+			$this->last_csrf = trim($res[1]);
+		}
+		
+		
         //получаем кукисы сессии
         $login_url = 'https://www.instagram.com/accounts/login/ajax/';
 
@@ -96,15 +103,20 @@ class InstWorker {
         curl_close ($ch);
 
 		$json = json_decode($result);
-        $this->ItWasMe();
 
-        if($json !== NULL && $json !== FALSE && isset($json->authenticated) && $json->authenticated == 'true')
-            return true;
-        else
-            return false;
+
+	if($json !== NULL && $json !== FALSE){
+   		if( isset($json->authenticated) && $json->authenticated == 'true')
+	   		return true;
+		else if(isset($json->message)&& $json->message == 'checkpoint_required')
+			$this->ItWasMe();
+	}
+    return false;
     }
 
     public function InstallApp($app_name){
+		
+     //   $this->ItWasMe();
         //получаем код для регистрации приложения
         $client_id = $this->apps[$app_name]['id'];
         $redirect_uri = $this->apps[$app_name]['redirect_uri'];
@@ -195,7 +207,7 @@ class InstWorker {
 
     public function ItWasMe(){
         //берем капчу
-        $url = 'https://instagram.com/integrity/checkpoint/';
+        $url = 'https://www.instagram.com/integrity/checkpoint/';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -209,11 +221,12 @@ class InstWorker {
         $result = curl_exec($ch);
         curl_close ($ch);
 
-        $url = 'https://instagram.com/integrity/checkpoint/';
+        $url = 'https://www.instagram.com/integrity/checkpoint/';
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
+		curl_setopt($ch, CURLOPT_HEADER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Host: www.instagram.com',
@@ -229,7 +242,7 @@ class InstWorker {
         $result = curl_exec($ch);
         curl_close ($ch);
 
-        $url = 'https://instagram.com/integrity/checkpoint/';
+        $url = 'https://www.instagram.com/integrity/checkpoint/';
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

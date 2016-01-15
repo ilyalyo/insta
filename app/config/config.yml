@@ -88,3 +88,6 @@ fos_user:
 mopa_bootstrap:
     form: ~  # Adds twig form theme  support
 nelmio_api_doc: ~
+fos_rest:
+    routing_loader:
+        default_format: json

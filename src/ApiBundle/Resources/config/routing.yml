@@ -1,0 +1,10 @@
+api_login:
+    type: rest
+    prefix: /v1
+    resource: "ApiBundle\Controller\UserController"
+    name_prefix:  api_1_
+api_accounts:
+    type: rest
+    prefix: /v1
+    resource: "ApiBundle\Controller\AccountsController"
+    name_prefix:  api_1_

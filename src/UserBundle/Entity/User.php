@@ -94,6 +94,10 @@ class User extends BaseUser
      */
     protected $locale;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $access_token;
 
     /**
      * Get id
@@ -409,5 +413,28 @@ class User extends BaseUser
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * Set access_token
+     *
+     * @param string $accessToken
+     * @return User
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->access_token = $accessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get access_token
+     *
+     * @return string 
+     */
+    public function getAccessToken()
+    {
+        return $this->access_token;
     }
 }

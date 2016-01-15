@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new TaskBundle\TaskBundle(),
             new AdminBundle\AdminBundle(),
+            new ApiBundle\ApiBundle(),
             new PartnershipBundle\PartnershipBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),

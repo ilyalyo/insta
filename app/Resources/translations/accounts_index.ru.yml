@@ -4,7 +4,7 @@ task:
   parsing: Париснг
   running: Running
   done: Выполнена
-  followid: Плодписка по Id
+  followid: Подписка по Id
   followtag: Подписка по тэгам
   followlist: Подписка по списку
   likegeo: Лайкинг по гео

@@ -1,7 +1,7 @@
 task:
   stopped: Остановлена
   error: Ошибка
-  parsing: Париснг
+  parsing: Парсинг
   running: Running
   done: Выполнена
   followid: Подписка по Id

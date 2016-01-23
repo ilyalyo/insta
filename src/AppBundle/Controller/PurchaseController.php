@@ -99,8 +99,10 @@ class PurchaseController extends Controller
                     $maxAccounts++;
                     $isPro = $user->getIsPro();
                 }
-                else
+                else {
                     $isPro = 1;
+                    $maxAccounts = $maxAccounts > 5 ? $maxAccounts : 5;
+                }
 
                 $user->setValidUntil($date);
                 $user->setMaxAccounts($maxAccounts);

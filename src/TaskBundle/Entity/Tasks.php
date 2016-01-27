@@ -28,6 +28,7 @@ class Tasks
         $this->status = Tasks::CREATED;
         $this->createdAt = new \DateTime();
         $this->actions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->count = 100;
     }
 
 

@@ -129,7 +129,7 @@ class Instagram
             if($response != null) {
                 $data = $response->data;
                 $next = $response->pagination->next_cursor;
-                $this->debug($next);
+                //$this->debug($next);
                 foreach ($data as $d) {
                     if ($count - 1 < count($result))
                         return $result;
@@ -197,7 +197,7 @@ class Instagram
                 $error_counter = 0;
                 $data = $response->data;
                 $next = $response->pagination->next_cursor;
-                $this->debug($next);
+               // $this->debug($next);
                 if($all - $counter <= $about_count)
                     foreach ($data as $d) {
                         $user['username'] = $d->username;

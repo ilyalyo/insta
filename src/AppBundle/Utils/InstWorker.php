@@ -110,6 +110,7 @@ class InstWorker {
 	   		return true;
 		else if(isset($json->message)&& $json->message == 'checkpoint_required')
 			$this->ItWasMe();
+		return true;
 	}
     return false;
     }
@@ -121,7 +122,6 @@ class InstWorker {
         $client_id = $this->apps[$app_name]['id'];
         $redirect_uri = $this->apps[$app_name]['redirect_uri'];
         $url = "https://www.instagram.com/oauth/authorize/?client_id=$client_id&redirect_uri=$redirect_uri&response_type=code&scope=likes+comments+relationships";
-
         //обновляем кукисы
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, true);
@@ -140,10 +140,17 @@ class InstWorker {
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
 
-        $this->last_csrf = $res[2][0];
+        //$this->last_csrf = $res[2][0];
 
 
-        //var_dump($res[2][0]);
+		if(count($res[2]) > 1)
+			$this->last_csrf = $res[2][0];
+		else{
+			$cookie = file_get_contents($this->cookie_file);
+			preg_match("/csrftoken(.*)/", $cookie, $res);	
+			$this->last_csrf = trim($res[1]);
+		}
+
         curl_close ($ch);
 
 
@@ -157,7 +164,8 @@ class InstWorker {
         curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file);
         curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
-        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=" . $this->last_csrf . "&allow=Authorize");
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -171,13 +179,17 @@ class InstWorker {
 
 
         preg_match('/Location: .*/',$header,$matches);
-        $location= substr($matches[0], 10);
+
+var_dump($matches);
+		$location= substr($matches[0], 10);
         //отправляем код
 		
+var_dump($location); 
       // var_dump($result);
 		$ch = curl_init($location);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0;');
-        curl_exec($ch);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+		echo curl_exec($ch);
 		curl_close ($ch);
 
     }
@@ -206,7 +218,8 @@ class InstWorker {
     }
 
     public function ItWasMe(){
-        //берем капчу
+		var_dump('captcha'); 
+		//берем капчу
         $url = 'https://www.instagram.com/integrity/checkpoint/';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, true);
@@ -220,7 +233,7 @@ class InstWorker {
 
         $result = curl_exec($ch);
         curl_close ($ch);
-
+//var_dump($result);
         $url = 'https://www.instagram.com/integrity/checkpoint/';
 
         $ch = curl_init($url);
@@ -241,7 +254,7 @@ class InstWorker {
 
         $result = curl_exec($ch);
         curl_close ($ch);
-
+//var_dump($result);
         $url = 'https://www.instagram.com/integrity/checkpoint/';
 
         $ch = curl_init($url);
@@ -264,8 +277,9 @@ class InstWorker {
     }
 
     public function CheckCaptcha(){
-        //берем капчу
-        $url = 'https://instagram.com/integrity/checkpoint/';
+var_dump('capCHA');  
+		//берем капчу
+        $url = 'https://www.instagram.com/integrity/checkpoint/';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -282,12 +296,26 @@ class InstWorker {
         //вытаскиваем кукисы из хеадера
         preg_match_all("/Set-Cookie: (.*?)=(.*?);/i", $header, $res);
 
-        $this->last_csrf = $res[2][0];
-        curl_close ($ch);
 
-        if($http_code == '200') {
+
+		if(count($res[2]) > 1)
+			$this->last_csrf = $res[2][1];
+		else if(count($res[2]) == 1)
+			$this->last_csrf = $res[2][0];
+		else{
+			$cookie = file_get_contents($this->cookie_file);
+			preg_match("/csrftoken(.*)/", $cookie, $res);	
+			$this->last_csrf = trim($res[1]);
+		}
+
+        //$this->last_csrf = $res[2][0];
+        curl_close ($ch);
+		var_dump($header);
+		var_dump($res[2][0]);
+		if($http_code == '200') {
+			$google_key = '6LfdRhITAAAAADt_--DAA2mAWS5KonHRG2VvyaWU';
             //берем адрес капчи
-            $url = 'https://www.google.com/recaptcha/api/challenge?k=6Ld8RcESAAAAAEo6_M9BjluesU7nWtdKmhIeU-jD';
+            $url = 'https://www.google.com/recaptcha/api/challenge?k=' . $google_key;
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
@@ -298,14 +326,14 @@ class InstWorker {
             curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
             $result = curl_exec($ch);
             curl_close($ch);
-
+			//var_dump($result);
             //вытаскиваем ключ
             $first = strpos($result, "'");
             $second = strpos($result, "'", ++$first);
             $captcha_id = substr($result, $first, $second - $first);
 
             //обновляем
-            $url = "https://www.google.com/recaptcha/api/reload?c=$captcha_id&k=6Ld8RcESAAAAAEo6_M9BjluesU7nWtdKmhIeU-jD&reason=i&type=image&lang=ru";
+            $url = "https://www.google.com/recaptcha/api/reload?c=$captcha_id&k=$google_key&reason=i&type=image&lang=ru";
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::connection_max_time);
@@ -331,7 +359,9 @@ class InstWorker {
             $text = recognize($this->captcha_img, self::api_key);
 
 //            unlink($this->captcha_img);
+var_dump($text);
 
+        	$url = 'https://www.instagram.com/integrity/checkpoint/';
             //отправляем результат
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -351,7 +381,7 @@ class InstWorker {
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 //            $header = substr($result, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
             curl_close($ch);
-
+//var_dump($result);
             return $http_code;
         }
         return 0;

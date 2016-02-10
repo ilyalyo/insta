@@ -38,7 +38,7 @@ class Instagram
         if(!$mysql)
             throw new Exception(mysql_error());
         while ($row = mysql_fetch_array($mysql))
-            $this->PROXY_ARRAY[] = array('proxy' => $row['ip'] . ':' . $row['port']);
+            $this->PROXY_ARRAY[] = $row['ip'] . ':' . $row['port'];
 
         $qr_result = mysql_query("
           SELECT token, client,id FROM tokens WHERE account = (

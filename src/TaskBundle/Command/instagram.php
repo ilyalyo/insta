@@ -15,6 +15,9 @@ class Instagram
     public $OPTIONS;
     public $TOKEN_INDEX;
     private $PROXY_TIME=10;
+    private $PROXY_ARRAY;
+    private $PROXY_INDEX;
+
     private $ACCOUNT_ID;
     private $ACCOUNT_ID_INST;
     private $LOGIN;
@@ -28,6 +31,14 @@ class Instagram
         $this->TASK_STATUS = null;
         $this->WRONG_PASS_METRICA = 0;
         $this->connect();
+
+        $mysql = mysql_query("
+          SELECT *
+          FROM proxy");
+        if(!$mysql)
+            throw new Exception(mysql_error());
+        while ($row = mysql_fetch_array($mysql))
+            $this->PROXY_ARRAY[] = array('proxy' => $row['ip'] . ':' . $row['port']);
 
         $qr_result = mysql_query("
           SELECT token, client,id FROM tokens WHERE account = (
@@ -542,7 +553,7 @@ class Instagram
 
         $id= $this->TASK_ID;
         $mysql = mysql_query("
-          SELECT t.*,a.token, a.instLogin, a.instPass, p.ip, p.port, a.id as account_id, a.account_id as account_id_inst
+          SELECT t.*,a.token, a.instLogin, a.instPass, p.ip, p.port, a.id as account_id, a.account_id as account_id_inst, p.id as proxy_id
           FROM tasks t
           INNER JOIN accounts a
           ON t.account_id=a.id
@@ -567,6 +578,7 @@ class Instagram
 
         $this->TAGS = $row['tags'];
         $this->PROXY = $row['ip'] . ':' . $row['port'];
+        $this->PROXY_INDEX = array_search($this->PROXY,$this->PROXY_ARRAY);
         $this->LOGIN = $row['instLogin'];
         $this->PASSWORD = $row['instPass'];
         $this->ACCOUNT_ID = $row['account_id'];
@@ -703,6 +715,11 @@ class Instagram
         return false;
     }
 
+    public function change_proxy(){
+        $this->debug('changing proxy from: ' . $this->PROXY_ARRAY[$this->PROXY_INDEX]);
+        $this->PROXY_INDEX = ($this->PROXY_INDEX + 1) % count($this->PROXY_ARRAY);
+    }
+
     function httpPost($url, $params){
         //easytogo only basic scope
         $index = $this->TOKEN_INDEX;
@@ -716,10 +733,12 @@ class Instagram
         if(!isset($json)){
             $this->debug('json is null - httpPost');
             $this->debug($params['url']);
+            $this->change_proxy();
             return null;
         }
         if($output === FALSE){
             $this->debug('json is false - httpPost');
+            $this->change_proxy();
             return null;
         }
         if($json->meta->code == 200)
@@ -762,10 +781,12 @@ class Instagram
             $json = json_decode($output);
             if(!isset($json)){
                 $this->debug('json is null - httpGet');
+                $this->change_proxy();
                 return null;
             }
             if($output === FALSE){
                 $this->debug('json is false - httpGet');
+                $this->change_proxy();
                 return null;
             }
             if($json->meta->code == 200)
@@ -815,7 +836,7 @@ class Instagram
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_PROXY, $this->PROXY);
+        curl_setopt($ch, CURLOPT_PROXY, $this->PROXY_ARRAY[$this->PROXY_INDEX]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_POST, count($postData));
@@ -836,7 +857,7 @@ class Instagram
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->PROXY_TIME);
-        curl_setopt($ch, CURLOPT_PROXY, $this->PROXY);
+        curl_setopt($ch, CURLOPT_PROXY, $this->PROXY_ARRAY[$this->PROXY_INDEX]);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 

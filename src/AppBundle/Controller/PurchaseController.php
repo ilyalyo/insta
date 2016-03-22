@@ -64,13 +64,13 @@ class PurchaseController extends Controller
                     $date = new \DateTime($date->format('Y-m-d'));
 
                 switch ($withdraw_amount){
-                    case 790.00:
+                    case 490.00:
                         $date->add(new \DateInterval('P1M'));
                         break;
-                    case 1999.00:
+                    case 1390.00:
                         $date->add(new \DateInterval('P3M'));
                         break;
-                    case 3999.00:
+                    case 2790.00:
                         $date->add(new \DateInterval('P7M'));
                         break;
                 }

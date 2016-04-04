@@ -17,6 +17,7 @@ install:
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   - chmod +x tests/Resources/apache2/apache2.sh
   - tests/Resources/apache2/apache2.sh
+  - curl localhost:8080/index.html
 script:
  # Update the permalink structure.
    - curl localhost/index.html -I

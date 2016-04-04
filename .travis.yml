@@ -19,7 +19,8 @@ install:
   - tests/Resources/apache2/apache2.sh
 script:
  # Update the permalink structure.
-   - curl localhost -I
-   - curl localhost
-   - curl localhost/login
+   - curl localhost/index.html -I
+   - curl localhost/index.html
+   - curl localhost/index.html
    - curl localhost:8080
+   - curl localhost:8080/index.html

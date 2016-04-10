@@ -15,8 +15,8 @@ before_install:
   - pwd
   - ls
   - mysql -e "create database IF NOT EXISTS pmttest;" -uroot
-  - mysql -e "use pmttest;"
-  - mysql -e dump.sql
+  #- mysql -e "use pmttest;"
+  - mysql -e "pmttest" < dump.sql
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

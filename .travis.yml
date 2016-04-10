@@ -13,10 +13,10 @@ addons:
       - libapache2-mod-fastcgi
 before_install:
   - pwd
-  - ls 
+  - ls
   - mysql -e "create database IF NOT EXISTS pmttest;" -uroot
   - mysql -e "use pmttest;"
-  - mysql -e < dump.sql
+  - mysql -e dump.sql
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

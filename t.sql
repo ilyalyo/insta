@@ -1,6 +1,7 @@
 --
 -- Table structure for table `pmt_attempts`
 --
+CREATE DATABASE hello_database;
 
 CREATE TABLE IF NOT EXISTS `pmt_attempts` (
   `attempt_id` int(11) NOT NULL AUTO_INCREMENT,

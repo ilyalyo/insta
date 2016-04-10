@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="remove shit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/translations/accounts_index.ru.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/translations/base.en.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/translations/base.ru.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/translations/tasks.en.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/translations/tasks.ru.yml" />
-      <change type="MOVED" beforePath="C:\Users\Ilya\instastellar\app\Resources\translations\account.en.yml" afterPath="$PROJECT_DIR$/app/Resources/translations/accounts_index.en.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/admin/analytic.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/admin/analytic.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/accounts/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/accounts/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" afterPath="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cron/phantomjskiller.sh" afterPath="$PROJECT_DIR$/cron/phantomjskiller.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/tasks/unfollow/unfollow.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/tasks/unfollow/unfollow.html.twig" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/t.sql" afterPath="$PROJECT_DIR$/t.sql" />
     </list>
     <ignored path="instastellar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,9 +20,6 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
-  </component>
   <component name="DatabaseView">
     <option name="FLATTEN" value="false" />
     <option name="GROUP_BY_TYPE" value="true" />
@@ -47,32 +31,54 @@
     <favorites_list name="instastellar" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="CreateController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.346154" vertical-offset="6367" max-vertical-offset="8925">
-              <caret line="423" column="29" selection-start-line="423" selection-start-column="29" selection-end-line="423" selection-end-column="29" />
+            <state relative-caret-position="238">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <folding>
+                <marker date="1460329617323" expanded="true" signature="181:198" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dump.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dump.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.en.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/translations/tasks.en.yml">
+      <file leaf-file-name="t.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/t.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2003367" vertical-offset="0" max-vertical-offset="594">
-              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            <state relative-caret-position="68">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.ru.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/translations/tasks.ru.yml">
+      <file leaf-file-name="apache2.conf" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Resources/apache2/configuration/apache2.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
-              <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+            <state relative-caret-position="408">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="virtualhost.conf" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Resources/apache2/configuration/virtualhost.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -80,74 +86,85 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="api_integration" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/Errors.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Command/instagram.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByGeoType.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByIdType.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByListType.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Form/Type/FollowByTagsType.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Form/Type/LikeByGeoType.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Form/Type/LikeByTagsType.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/translations/landing.ru.yml" />
-        <option value="$PROJECT_DIR$/app/Resources/views/landing.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/translations/landing.en.yml" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/task_base.html.twig" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/ScheduleRepository.php" />
-        <option value="$PROJECT_DIR$/src/AdminBundle/Controller/SupportController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/admin/support.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/SupportRepository.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/scheduler_plan.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/scheduler.html.twig" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/TasksRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/manager/scheduler_plan.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/like/byGeo.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/like/byTags.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/tasks/follow/byTags.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/tasks/follow/byList.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/tasks/follow/byId.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/tasks/follow/byGeo.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/manager/scheduler.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" />
         <option value="$PROJECT_DIR$/web/app.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/translations/base.en.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/base.ru.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/translations/accounts_index.en.yml" />
-        <option value="$PROJECT_DIR$/app/Resources/translations/accounts_index.ru.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/unfollow.en.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/unfollow.ru.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Utils/InstWorker.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/admin/analytic.html.twig" />
         <option value="$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/tasks/unfollow/unfollow.html.twig" />
-        <option value="$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php" />
         <option value="$PROJECT_DIR$/app/Resources/translations/taks.en.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/taks.ru.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/tasks.ru.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/tasks.en.yml" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Command/follow.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/ApiBundle.php" />
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/app/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/Resources/views/login.html.twig" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/Resources/views/User/login.html.twig" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/Controller/UserController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Serializer/Normalizer/AccountNormalizer.php" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/Controller/AccountsController.php" />
+        <option value="$PROJECT_DIR$/src/ApiBundle/Serializer/Normalizer/AccountNormalizer.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Utils/InstWorker.php" />
+        <option value="$PROJECT_DIR$/app/Resources/translations/accounts_index.ru.yml" />
+        <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Entity/Tasks.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php" />
+        <option value="$PROJECT_DIR$/src/TaskBundle/Command/instagram.php" />
+        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tests/Resources/apache2/configuration/virtualhost.conf" />
+        <option value="$PROJECT_DIR$/tests/Resources/apache2/configuration/apache2.conf" />
+        <option value="$PROJECT_DIR$/tests/Resources/apache2/apache2.sh" />
+        <option value="$PROJECT_DIR$/web/index.html" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/dump.sql" />
+        <option value="$PROJECT_DIR$/t.sql" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -177,8 +194,12 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,7 +215,7 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -204,11 +225,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -218,303 +239,19 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Type" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AdminBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AdminBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AdminBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="apache2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -524,131 +261,103 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unfollow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="translations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+              <option name="myItemId" value="apache2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="instastellar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="configuration" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PhpstormProjects/imp" />
-    <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="140" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="72" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="169" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="85" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="170" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="86" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="844" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="394" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="162" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="82" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="161" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="82" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="163" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="83" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="837" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="390" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="LayoutCode.rearrangeEntriesTwig" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ilya\instastellar\app\Resources\translations" />
-      <recent name="C:\Users\Ilya\instastellar\web\img" />
-      <recent name="C:\Users\Ilya\instastellar\app\Resources\views\manager" />
-      <recent name="C:\Users\Ilya\instastellar\app\Resources\views\tasks" />
-      <recent name="C:\Users\Ilya\instastellar\app\Resources\views\admin" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle" />
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle\Resources\views\User" />
       <recent name="C:\Users\Ilya\instastellar\app\Resources\views\manager" />
       <recent name="C:\Users\Roman\Documents\GitHub\insta\app\Resources\views" />
       <recent name="C:\Users\Roman\Documents\GitHub\insta\app\Resources\views\additional_info" />
-      <recent name="C:\Users\Roman\Documents\GitHub\insta\app\Resources\views\tasks" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle\Controller" />
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle" />
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle\Resources\config" />
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle\Resources\views" />
+      <recent name="C:\Users\Ilya\instastellar\src\ApiBundle\Resources" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
       <method />
     </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -657,12 +366,17 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
       <method />
     </configuration>
-    <list size="0" />
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -671,304 +385,362 @@
       <changelist id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="" />
       <created>1434380993099</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1434380993099</updated>
-    </task>
-    <task id="LOCAL-00042" summary="new foll by tags alg">
-      <created>1440603010411</created>
-      <option name="number" value="00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1440603010411</updated>
-    </task>
-    <task id="LOCAL-00043" summary="add bourder">
-      <created>1440603255686</created>
-      <option name="number" value="00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1440603255686</updated>
-    </task>
-    <task id="LOCAL-00044" summary="fiiiix">
-      <created>1440603625564</created>
-      <option name="number" value="00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1440603625564</updated>
-    </task>
-    <task id="LOCAL-00045" summary="open for free again">
-      <created>1440603967005</created>
-      <option name="number" value="00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1440603967005</updated>
-    </task>
-    <task id="LOCAL-00046" summary="liking fix">
-      <created>1440604360200</created>
-      <option name="number" value="00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1440604360200</updated>
-    </task>
-    <task id="LOCAL-00047" summary="add analytic and upg liking">
-      <created>1440624498644</created>
-      <option name="number" value="00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1440624498644</updated>
-    </task>
-    <task id="LOCAL-00048" summary="grouping">
-      <created>1440625353864</created>
-      <option name="number" value="00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1440625353864</updated>
-    </task>
-    <task id="LOCAL-00049" summary="fix">
-      <created>1440625696193</created>
-      <option name="number" value="00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1440625696193</updated>
-    </task>
-    <task id="LOCAL-00050" summary="fix">
-      <created>1440627439591</created>
-      <option name="number" value="00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1440627439592</updated>
-    </task>
-    <task id="LOCAL-00051" summary="add ip logging">
-      <created>1440627742761</created>
-      <option name="number" value="00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1440627742761</updated>
-    </task>
-    <task id="LOCAL-00052" summary="impr">
-      <created>1440627938931</created>
-      <option name="number" value="00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1440627938931</updated>
-    </task>
-    <task id="LOCAL-00053" summary="add all tasks count">
-      <created>1440628775832</created>
-      <option name="number" value="00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1440628775832</updated>
-    </task>
-    <task id="LOCAL-00054" summary="fake_landing">
-      <created>1444834662524</created>
-      <option name="number" value="00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1444834662526</updated>
-    </task>
-    <task id="LOCAL-00055" summary="new api case">
-      <created>1445007197613</created>
-      <option name="number" value="00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1445007197614</updated>
-    </task>
-    <task id="LOCAL-00056" summary="worksp">
-      <created>1445007459542</created>
-      <option name="number" value="00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1445007459542</updated>
-    </task>
-    <task id="LOCAL-00057" summary="add api case">
-      <created>1445007773875</created>
-      <option name="number" value="00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1445007773884</updated>
-    </task>
-    <task id="LOCAL-00058" summary="new analytic">
-      <created>1445261672162</created>
-      <option name="number" value="00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1445261672163</updated>
-    </task>
-    <task id="LOCAL-00059" summary="remove old stuff">
-      <created>1445261929860</created>
-      <option name="number" value="00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1445261929860</updated>
-    </task>
-    <task id="LOCAL-00060" summary="fix proxy load graph">
-      <created>1445299809892</created>
-      <option name="number" value="00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1445299809893</updated>
-    </task>
-    <task id="LOCAL-00061" summary="news">
-      <created>1445543191901</created>
-      <option name="number" value="00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1445543191902</updated>
-    </task>
-    <task id="LOCAL-00062" summary="change time">
-      <created>1446207630515</created>
-      <option name="number" value="00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1446207630516</updated>
-    </task>
-    <task id="LOCAL-00063" summary="change wallet">
-      <created>1447651115328</created>
-      <option name="number" value="00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1447651115354</updated>
-    </task>
-    <task id="LOCAL-00064" summary="return wallet">
-      <created>1447833456434</created>
-      <option name="number" value="00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1447833456435</updated>
-    </task>
-    <task id="LOCAL-00065" summary="ret">
-      <created>1450031393621</created>
-      <option name="number" value="00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1450031393622</updated>
-    </task>
-    <task id="LOCAL-00066" summary="add eng">
-      <created>1450126685623</created>
-      <option name="number" value="00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1450126685667</updated>
-    </task>
-    <task id="LOCAL-00067" summary="scheduler update">
-      <created>1450133615860</created>
-      <option name="number" value="00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1450133615861</updated>
-    </task>
-    <task id="LOCAL-00068" summary="scheduler update">
-      <created>1450181153415</created>
-      <option name="number" value="00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1450181153415</updated>
-    </task>
-    <task id="LOCAL-00069" summary="scheduler update">
-      <created>1450190839120</created>
-      <option name="number" value="00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1450190839120</updated>
-    </task>
-    <task id="LOCAL-00070" summary="scheduler update">
-      <created>1450199624340</created>
-      <option name="number" value="00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1450199624340</updated>
-    </task>
-    <task id="LOCAL-00071" summary="scheduler update">
-      <created>1450199776400</created>
-      <option name="number" value="00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1450199776400</updated>
-    </task>
-    <task id="LOCAL-00072" summary="scheduler update">
-      <created>1450201134644</created>
-      <option name="number" value="00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1450201134644</updated>
-    </task>
-    <task id="LOCAL-00073" summary="support update">
-      <created>1450205836102</created>
-      <option name="number" value="00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1450205836103</updated>
-    </task>
-    <task id="LOCAL-00074" summary="scheduler update">
-      <created>1450206093823</created>
-      <option name="number" value="00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1450206093823</updated>
-    </task>
-    <task id="LOCAL-00075" summary="scheduler update">
-      <created>1450212687046</created>
-      <option name="number" value="00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1450212687046</updated>
-    </task>
-    <task id="LOCAL-00076" summary="scheduler update">
-      <created>1450212766514</created>
-      <option name="number" value="00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1450212766514</updated>
-    </task>
-    <task id="LOCAL-00077" summary="scheduler update">
-      <created>1450213049740</created>
-      <option name="number" value="00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1450213049740</updated>
-    </task>
-    <task id="LOCAL-00078" summary="scheduler update">
-      <created>1450213882466</created>
-      <option name="number" value="00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1450213882466</updated>
-    </task>
-    <task id="LOCAL-00079" summary="scheduler update">
-      <created>1450213958147</created>
-      <option name="number" value="00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1450213958147</updated>
-    </task>
-    <task id="LOCAL-00080" summary="scheduler update">
-      <created>1450214122886</created>
-      <option name="number" value="00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1450214122886</updated>
-    </task>
-    <task id="LOCAL-00081" summary="scheduler update">
-      <created>1450214538639</created>
-      <option name="number" value="00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1450214538639</updated>
-    </task>
-    <task id="LOCAL-00082" summary="scheduler update">
-      <created>1450214648238</created>
-      <option name="number" value="00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1450214648238</updated>
-    </task>
-    <task id="LOCAL-00083" summary="scheduler update">
-      <created>1450214712890</created>
-      <option name="number" value="00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1450214712890</updated>
-    </task>
-    <task id="LOCAL-00084" summary="scheduler release">
-      <created>1450387194380</created>
-      <option name="number" value="00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1450387194381</updated>
-    </task>
-    <task id="LOCAL-00085" summary="add adv">
-      <created>1451406777412</created>
-      <option name="number" value="00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1451406777419</updated>
-    </task>
-    <task id="LOCAL-00086" summary="scheduler update">
-      <created>1451407065651</created>
-      <option name="number" value="00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1451407065651</updated>
-    </task>
-    <task id="LOCAL-00087" summary="scheduler update">
-      <created>1451407173132</created>
-      <option name="number" value="00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1451407173132</updated>
-    </task>
-    <task id="LOCAL-00088" summary="remove shit">
-      <created>1452418257298</created>
-      <option name="number" value="00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1452418257298</updated>
+      <workItem from="1459726383075" duration="1305000" />
+      <workItem from="1459768931698" duration="3860000" />
+      <workItem from="1459950338762" duration="243000" />
+      <workItem from="1460323370567" duration="4222000" />
+      <workItem from="1460328588030" duration="1296000" />
     </task>
     <task id="LOCAL-00089" summary="remove cookie">
       <created>1452687154748</created>
       <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
       <updated>1452687154794</updated>
     </task>
     <task id="LOCAL-00090" summary="fix">
       <created>1452780955134</created>
       <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
       <updated>1452780955234</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="add translations">
+      <created>1452784508553</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1452784508554</updated>
+    </task>
+    <task id="LOCAL-00092" summary="add 1 account purchase">
+      <created>1452789252003</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1452789252004</updated>
+    </task>
+    <task id="LOCAL-00093" summary="real sum">
+      <created>1452789569806</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1452789569806</updated>
+    </task>
+    <task id="LOCAL-00094" summary="purchase styling">
+      <created>1452789712063</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1452789712063</updated>
+    </task>
+    <task id="LOCAL-00095" summary="add new captcha">
+      <created>1452796301777</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1452796301777</updated>
+    </task>
+    <task id="LOCAL-00096" summary="add change token for easytogo">
+      <created>1452796919630</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1452796919631</updated>
+    </task>
+    <task id="LOCAL-00097" summary="installation">
+      <created>1452798763139</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1452798763139</updated>
+    </task>
+    <task id="LOCAL-00098" summary="add api">
+      <created>1452843592087</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1452843592087</updated>
+    </task>
+    <task id="LOCAL-00099" summary="fix mispelling">
+      <created>1453317589710</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1453317589710</updated>
+    </task>
+    <task id="LOCAL-00100" summary="fix">
+      <created>1453552569277</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1453552569278</updated>
+    </task>
+    <task id="LOCAL-00101" summary="remove shit">
+      <created>1453930437450</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1453930437452</updated>
+    </task>
+    <task id="LOCAL-00102" summary="add change proxy">
+      <created>1455119469076</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1455119469077</updated>
+    </task>
+    <task id="LOCAL-00103" summary="fix">
+      <created>1455119646323</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1455119646323</updated>
+    </task>
+    <task id="LOCAL-00104" summary="low price">
+      <created>1458659247144</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1458659247169</updated>
+    </task>
+    <task id="LOCAL-00105" summary="add travis">
+      <created>1459768442280</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1459768442308</updated>
+    </task>
+    <task id="LOCAL-00106" summary="trav">
+      <created>1459768666756</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1459768666756</updated>
+    </task>
+    <task id="LOCAL-00107" summary="t">
+      <created>1459769035127</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1459769035128</updated>
+    </task>
+    <task id="LOCAL-00108" summary="t">
+      <created>1459769267483</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1459769267483</updated>
+    </task>
+    <task id="LOCAL-00109" summary="t">
+      <created>1459769394188</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1459769394189</updated>
+    </task>
+    <task id="LOCAL-00110" summary="remove shit">
+      <created>1459769616039</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1459769616040</updated>
+    </task>
+    <task id="LOCAL-00111" summary="check">
+      <created>1459775740503</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1459775740503</updated>
+    </task>
+    <task id="LOCAL-00112" summary="check">
+      <created>1459776237435</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1459776237435</updated>
+    </task>
+    <task id="LOCAL-00113" summary="test">
+      <created>1460324325196</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1460324325266</updated>
+    </task>
+    <task id="LOCAL-00114" summary="test">
+      <created>1460324873289</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1460324873289</updated>
+    </task>
+    <task id="LOCAL-00115" summary="test">
+      <created>1460325012983</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1460325012983</updated>
+    </task>
+    <task id="LOCAL-00116" summary="tes">
+      <created>1460325159452</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1460325159452</updated>
+    </task>
+    <task id="LOCAL-00117" summary="te">
+      <created>1460325629713</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1460325629713</updated>
+    </task>
+    <task id="LOCAL-00118" summary="t">
+      <created>1460326031224</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1460326031224</updated>
+    </task>
+    <task id="LOCAL-00119" summary="t">
+      <created>1460326521739</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1460326521739</updated>
+    </task>
+    <task id="LOCAL-00120" summary="q">
+      <created>1460326932956</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1460326932957</updated>
+    </task>
+    <task id="LOCAL-00121" summary="q">
+      <created>1460327042275</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1460327042275</updated>
+    </task>
+    <task id="LOCAL-00122" summary="dw">
+      <created>1460327398477</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1460327398477</updated>
+    </task>
+    <task id="LOCAL-00123" summary="c">
+      <created>1460327581869</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1460327581869</updated>
+    </task>
+    <task id="LOCAL-00124" summary="csc">
+      <created>1460327668133</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1460327668133</updated>
+    </task>
+    <task id="LOCAL-00125" summary="qw">
+      <created>1460327794250</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1460327794250</updated>
+    </task>
+    <task id="LOCAL-00126" summary="csremove shit">
+      <created>1460327900238</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1460327900238</updated>
+    </task>
+    <task id="LOCAL-00127" summary="qw">
+      <created>1460328090311</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1460328090311</updated>
+    </task>
+    <task id="LOCAL-00128" summary="qw">
+      <created>1460328636669</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1460328636674</updated>
+    </task>
+    <task id="LOCAL-00129" summary="q">
+      <created>1460328681709</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1460328681709</updated>
+    </task>
+    <task id="LOCAL-00130" summary="q">
+      <created>1460328806767</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1460328806767</updated>
+    </task>
+    <task id="LOCAL-00131" summary="q">
+      <created>1460328926438</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1460328926441</updated>
+    </task>
+    <task id="LOCAL-00132" summary="q">
+      <created>1460329019206</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1460329019206</updated>
+    </task>
+    <task id="LOCAL-00133" summary="32">
+      <created>1460329033089</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1460329033089</updated>
+    </task>
+    <task id="LOCAL-00134" summary="wq">
+      <created>1460329260330</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1460329260330</updated>
+    </task>
+    <task id="LOCAL-00135" summary="p">
+      <created>1460329484314</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1460329484314</updated>
+    </task>
+    <task id="LOCAL-00136" summary="s">
+      <created>1460329622925</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1460329622925</updated>
+    </task>
+    <task id="LOCAL-00137" summary="s">
+      <created>1460329803123</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1460329803123</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="10926000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -983,28 +755,28 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2532943" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32440946" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42677164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2532943" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4242902" sideWeight="0.25851852" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3231018" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42649436" sideWeight="0.7414815" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1020,35 +792,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
-    <MESSAGE value="add analytic and upg liking" />
-    <MESSAGE value="grouping" />
-    <MESSAGE value="add ip logging" />
-    <MESSAGE value="impr" />
-    <MESSAGE value="add all tasks count" />
-    <MESSAGE value="fake_landing" />
-    <MESSAGE value="new api case" />
-    <MESSAGE value="worksp" />
-    <MESSAGE value="add api case" />
-    <MESSAGE value="new analytic" />
-    <MESSAGE value="remove old stuff" />
-    <MESSAGE value="fix proxy load graph" />
-    <MESSAGE value="news" />
-    <MESSAGE value="change time" />
-    <MESSAGE value="change wallet" />
-    <MESSAGE value="return wallet" />
-    <MESSAGE value="ret" />
-    <MESSAGE value="add eng" />
-    <MESSAGE value="support update" />
-    <MESSAGE value="scheduler release" />
-    <MESSAGE value="add adv" />
-    <MESSAGE value="scheduler update" />
-    <MESSAGE value="remove shit" />
-    <MESSAGE value="remove cookie" />
+    <MESSAGE value="add change token for easytogo" />
+    <MESSAGE value="installation" />
+    <MESSAGE value="add api" />
+    <MESSAGE value="fix mispelling" />
+    <MESSAGE value="add change proxy" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="low price" />
+    <MESSAGE value="add travis" />
+    <MESSAGE value="trav" />
+    <MESSAGE value="remove shit" />
+    <MESSAGE value="check" />
+    <MESSAGE value="test" />
+    <MESSAGE value="tes" />
+    <MESSAGE value="te" />
+    <MESSAGE value="t" />
+    <MESSAGE value="dw" />
+    <MESSAGE value="c" />
+    <MESSAGE value="csc" />
+    <MESSAGE value="csremove shit" />
+    <MESSAGE value="qw" />
+    <MESSAGE value="q" />
+    <MESSAGE value="32" />
+    <MESSAGE value="wq" />
+    <MESSAGE value="p" />
+    <MESSAGE value="s" />
+    <option name="LAST_COMMIT_MESSAGE" value="s" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1064,400 +833,366 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Entity/TasksRepository.php">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/DataTransformer/UserToUsernameTransformer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1156">
-          <caret line="45" column="45" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.653846" vertical-offset="3665" max-vertical-offset="4386">
-          <caret line="245" column="0" selection-start-line="245" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="23.538462" vertical-offset="612" max-vertical-offset="7089">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/manager/scheduler_plan.html.twig">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Factory/FormFactory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154" vertical-offset="510" max-vertical-offset="2822">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/like/nav.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1904">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/like/byGeo.html.twig">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/RegistrationFormType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29259896" vertical-offset="442" max-vertical-offset="2567">
-          <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="50" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/like/byTags.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6320422" vertical-offset="49" max-vertical-offset="2720">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/follow/byTags.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462" vertical-offset="51" max-vertical-offset="2652">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/follow/byList.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923" vertical-offset="102" max-vertical-offset="2040">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/follow/byGeo.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.5" vertical-offset="303" max-vertical-offset="2567">
-          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/scheduler.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7848537" vertical-offset="0" max-vertical-offset="1173">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/manager/scheduler.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77816904" vertical-offset="0" max-vertical-offset="612">
-          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="724" max-vertical-offset="2006">
-          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="646">
-          <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="782">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="595">
-          <caret line="23" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26333907" vertical-offset="323" max-vertical-offset="1241">
-          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2856">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/follow/byId.html.twig">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/UsernameFormType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8380282" vertical-offset="1394" max-vertical-offset="2040">
-          <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6109155" vertical-offset="214" max-vertical-offset="782">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19604613" vertical-offset="0" max-vertical-offset="607">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <marker date="1428254906415" expanded="true" signature="0:62" placeholder="&lt;IfModule mod_authz_core.c&gt;" />
-            <marker date="1428254906415" expanded="true" signature="63:142" placeholder="&lt;IfModule !mod_authz_core.c&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1309">
-          <caret line="36" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="71" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/app_dev.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18072289" vertical-offset="48" max-vertical-offset="629">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/check.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2516">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/GroupFormType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3149742" vertical-offset="4" max-vertical-offset="7497">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/landing.ru.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33274338" vertical-offset="186" max-vertical-offset="850">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70223755" vertical-offset="0" max-vertical-offset="5304">
-          <caret line="24" column="132" selection-start-line="24" selection-start-column="104" selection-end-line="24" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/landing.en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/base.ru.yml">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/ChangePasswordFormType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2800659" vertical-offset="0" max-vertical-offset="607">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3213">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/base.en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2800659" vertical-offset="0" max-vertical-offset="607">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/accounts_index.en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/login_password.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/actions/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029929578" vertical-offset="0" max-vertical-offset="6545">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Utils/InstWorker.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="5151">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/follow.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3672" max-vertical-offset="6664">
-          <caret line="216" column="13" selection-start-line="216" selection-start-column="13" selection-end-line="216" selection-end-column="13" />
-          <folding>
-            <marker date="1451906599266" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/instagram.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4181818" vertical-offset="11466" max-vertical-offset="15164">
-          <caret line="688" column="36" selection-start-line="688" selection-start-column="36" selection-end-line="688" selection-end-column="36" />
-          <folding>
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="SELECT token..tokens..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="SELECT accou..tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="SELECT list ..lists..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="SELECT disti..actions..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="SELECT t.*,a..tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="SELECT statu..tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="UPDATE tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="UPDATE tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="UPDATE tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="UPDATE tasks..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="UPDATE token..." />
-            <marker date="1445302125476" expanded="true" signature="-1:-1" placeholder="UPDATE tasks..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/task_analytic.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.056838367" vertical-offset="32" max-vertical-offset="3502">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="330" column="17" selection-start-line="330" selection-start-column="17" selection-end-line="330" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/translations/accounts_index.ru.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63497454" vertical-offset="0" max-vertical-offset="589">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php">
+    <entry file="file://$PROJECT_DIR$/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24096386" vertical-offset="183" max-vertical-offset="5168">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="38" />
-          <folding>
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT sub.p..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..UserBundle..." />
-            <marker date="1452726452225" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..UserBundle..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20998278" vertical-offset="779" max-vertical-offset="1870">
-          <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/analytic.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1496478" vertical-offset="1234" max-vertical-offset="2006">
-          <caret line="111" column="13" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
-          <folding>
-            <element signature="e#331#356#0#HTML" expanded="true" />
-            <element signature="e#396#421#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72817135" vertical-offset="0" max-vertical-offset="1581">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/tasks/unfollow/unfollow.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029259896" vertical-offset="0" max-vertical-offset="884">
-          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TaskBundle/Controller/CreateController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.346154" vertical-offset="6367" max-vertical-offset="8925">
-          <caret line="423" column="29" selection-start-line="423" selection-start-column="29" selection-end-line="423" selection-end-column="29" />
+        <state relative-caret-position="0">
+          <caret line="348" column="48" selection-start-line="348" selection-start-column="48" selection-end-line="348" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Form/Type/LikeByTagsType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/accounts/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/AccountsLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CasperAjaxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="87" column="30" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="165" column="213" selection-start-line="165" selection-start-column="32" selection-end-line="165" selection-end-column="213" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Utils/InstWorker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Command/instagram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="869" column="35" selection-start-line="869" selection-start-column="35" selection-end-line="869" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="34" column="58" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/landing_base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Resetting/reset_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Resetting/request_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Resetting/passwordAlreadyRequested.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Resetting/checkEmail.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskBundle/Entity/Tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Accounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3689">
+          <caret line="221" column="19" selection-start-line="221" selection-start-column="19" selection-end-line="221" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/SupportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/AnalyticController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1479">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Prestator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/purchase.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="70" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PurchaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Resources/apache2/apache2.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="90" selection-start-line="9" selection-start-column="90" selection-end-line="9" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/.htaccess_old">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Resources/apache2/configuration/virtualhost.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/tasks.ru.yml">
+    <entry file="file://$PROJECT_DIR$/tests/Resources/apache2/configuration/apache2.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
-          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+        <state relative-caret-position="408">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/tasks.en.yml">
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2003367" vertical-offset="0" max-vertical-offset="594">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        <state relative-caret-position="238">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding>
+            <marker date="1460329617323" expanded="true" signature="181:198" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dump.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/t.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>

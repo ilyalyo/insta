@@ -46,8 +46,8 @@
       <file leaf-file-name="dump.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dump.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+            <state relative-caret-position="34">
+              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -390,14 +390,7 @@
       <workItem from="1459768931698" duration="3860000" />
       <workItem from="1459950338762" duration="243000" />
       <workItem from="1460323370567" duration="4222000" />
-      <workItem from="1460328588030" duration="1630000" />
-    </task>
-    <task id="LOCAL-00092" summary="add 1 account purchase">
-      <created>1452789252003</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1452789252004</updated>
+      <workItem from="1460328588030" duration="1916000" />
     </task>
     <task id="LOCAL-00093" summary="real sum">
       <created>1452789569806</created>
@@ -735,11 +728,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460330219533</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="s">
+      <created>1460330259174</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1460330259174</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11260000" />
+    <option name="totallyTimeSpent" value="11546000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1190,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dump.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        <state relative-caret-position="34">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding />
         </state>
       </provider>

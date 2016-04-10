@@ -12,7 +12,8 @@ addons:
       - language-pack-nl
       - libapache2-mod-fastcgi
 before_install:
- - "./dump.sql -h127.0.0.1 -utravis"
+  - chmod +x dump.sql
+  - "./dump.sql -h127.0.0.1 -utravis"
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

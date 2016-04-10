@@ -15,8 +15,7 @@ before_install:
   - pwd
   - ls
   - mysql -e "create database pmttest;" -uroot
-  - mysql -e "use pmttest;" -uroot
-  - mysql -e "CREATE TABLE IF NOT EXISTS pmt_attempts (
+  - mysql -e "pmttest" < "CREATE TABLE IF NOT EXISTS pmt_attempts (
                 attempt_id int(11) NOT NULL AUTO_INCREMENT,
                 attempt_percent_mark float NOT NULL,
                 attempt_time_start varchar(255) NOT NULL,

@@ -4,7 +4,6 @@
     <list default="true" id="974ccb77-c5a0-46c3-955e-a456441ff153" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump.sql" afterPath="$PROJECT_DIR$/dump.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/t.sql" afterPath="$PROJECT_DIR$/t.sql" />
     </list>
     <ignored path="instastellar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="dump.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dump.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            <state relative-caret-position="51">
+              <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -391,14 +390,7 @@
       <workItem from="1459768931698" duration="3860000" />
       <workItem from="1459950338762" duration="243000" />
       <workItem from="1460323370567" duration="4222000" />
-      <workItem from="1460328588030" duration="1590000" />
-    </task>
-    <task id="LOCAL-00091" summary="add translations">
-      <created>1452784508553</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1452784508554</updated>
+      <workItem from="1460328588030" duration="1630000" />
     </task>
     <task id="LOCAL-00092" summary="add 1 account purchase">
       <created>1452789252003</created>
@@ -736,11 +728,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460330122071</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="s">
+      <created>1460330219533</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1460330219533</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11220000" />
+    <option name="totallyTimeSpent" value="11260000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1191,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dump.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        <state relative-caret-position="51">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
           <folding />
         </state>
       </provider>

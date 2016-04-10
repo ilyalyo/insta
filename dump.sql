@@ -1,15 +1,13 @@
---
--- Table structure for table `pmt_attempts`
---
+#!/bin/sh -xe
 
-CREATE TABLE IF NOT EXISTS `pmt_attempts` (
-  `attempt_id` int(11) NOT NULL AUTO_INCREMENT,
-  `attempt_percent_mark` float NOT NULL,
-  `attempt_time_start` varchar(255) NOT NULL,
-  `attempt_time_end` varchar(255) NOT NULL,
-  `attempt_complete` enum(''Y'',''N'') NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  PRIMARY KEY (`attempt_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1186 ;
+mysql $* <<EOF
+DROP DATABASE IF EXISTS hello_database;
+CREATE DATABASE hello_database;
+CREATE TABLE hello_database.hello_table (hello_text CHAR(20));
+DROP DATABASE IF EXISTS test1;
+CREATE DATABASE test1;
+DROP DATABASE IF EXISTS test2;
+CREATE DATABASE test2;
+CREATE TABLE test1.test (a INT(11) NOT NULL);
+CREATE TABLE test2.test (b int(11) NOT NULL);
+EOF

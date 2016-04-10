@@ -15,7 +15,7 @@ before_install:
   - pwd
   - ls
   - mysql -e "create database IF NOT EXISTS pmttest;" -uroot
-  #- mysql -e "use pmttest;"
+  - mysql -e "use pmttest;"
   - mysql -uroot < dump.sql
 
 install:

@@ -14,9 +14,10 @@ addons:
 before_install:
   - pwd
   - ls
-  - mysql -uroot "create database pmttest;"
-  - mysql -uroot "use pmttest;"
-  - mysql -uroot < dump.sql
+  - mysql -e "create database pmttest;"
+  - mysql -e "use pmttest;"
+
+  - mysql -e dump.sql
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

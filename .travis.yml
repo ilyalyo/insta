@@ -3,13 +3,18 @@ sudo: false
 
 php:
   - 5.4
-
+services:
+  - mysql
 addons:
   apt:
     packages:
       - apache2
       - language-pack-nl
       - libapache2-mod-fastcgi
+before_install:
+  - mysql -e "create database IF NOT EXISTS pmttest;" -uroot
+  - mysql -e "use pmttest;"
+  - mysql -e ~/build/dump.sql
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

@@ -12,7 +12,6 @@ addons:
       - language-pack-nl
       - libapache2-mod-fastcgi
 before_install:
-  - chmod +x dump.sql
   - mysql -e 'create database myapp_test;'
   - mysql -e "myapp_test" < t.sql
 

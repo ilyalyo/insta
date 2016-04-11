@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `pmt_attempts` (
   `attempt_percent_mark` float NOT NULL,
   `attempt_time_start` varchar(255) NOT NULL,
   `attempt_time_end` varchar(255) NOT NULL,
-  `attempt_complete` enum(''Y'',''N'') NOT NULL,
+  `attempt_complete` enum('Y','N') NOT NULL,
   `course_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,

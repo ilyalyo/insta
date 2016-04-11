@@ -13,7 +13,9 @@ addons:
       - libapache2-mod-fastcgi
 before_install:
   - chmod +x dump.sql
-  - "./dump.sql -h127.0.0.1 -utravis"
+  - mysql -e 'create database myapp_test;'
+  - mysql -e "myapp_test" < t.sql
+  #"./dump.sql -h127.0.0.1 -utravis"
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

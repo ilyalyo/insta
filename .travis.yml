@@ -13,7 +13,7 @@ addons:
       - libapache2-mod-fastcgi
 before_install:
   - mysql -e 'create database myapp_test;'
-  - mysql -e "myapp_test" < t.sql
+  - mysql -uroot "myapp_test" < t.sql
 
 install:
   - echo "Initializing Apache2 and PHP-FPM"

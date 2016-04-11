@@ -30,3 +30,4 @@ script:
    - curl localhost/index.html
    - curl localhost:8080
    - curl localhost:8080/index.html
+   - mysql -uroot -e "SELECT count(*) from myapp_test.pmt_attempts;"

@@ -34,8 +34,8 @@
       <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+            <state relative-caret-position="544">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -379,14 +379,7 @@
       <workItem from="1459950338762" duration="243000" />
       <workItem from="1460323370567" duration="4222000" />
       <workItem from="1460328588030" duration="2882000" />
-      <workItem from="1460369981186" duration="2564000" />
-    </task>
-    <task id="LOCAL-00101" summary="remove shit">
-      <created>1453930437450</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1453930437452</updated>
+      <workItem from="1460369981186" duration="2929000" />
     </task>
     <task id="LOCAL-00102" summary="add change proxy">
       <created>1455119469076</created>
@@ -724,11 +717,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460372296623</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="s">
+      <created>1460372574241</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1460372574241</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15076000" />
+    <option name="totallyTimeSpent" value="15441000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1177,8 +1177,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+        <state relative-caret-position="544">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>

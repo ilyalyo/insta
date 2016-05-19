@@ -15,7 +15,7 @@ class FollowByTagsType extends AbstractType
                 'attr' => array('placeholder'=>'#sun#love#peace')))
             ->add('speed', 'choice', array(
                 'choices' => array(
-                    '0'   => '50-60 с',
+                    '0'   => '30-60 с',
                     '1' => '1-1.5 мин',
                     '2'   => '1.5-2 мин',
                 ),

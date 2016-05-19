@@ -13,7 +13,7 @@ class FollowByIdType extends AbstractType
             ->add('tags', 'text',array('label' => 'ID', 'attr' => array('placeholder'=>'i_stellar')))
             ->add('speed', 'choice', array(
                 'choices' => array(
-                    '0'   => '50-60 с',
+                    '0'   => '30-60 с',
                     '1' => '1-1.5 мин',
                     '2'   => '1.5-2 мин',
                 ),

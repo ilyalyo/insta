@@ -382,19 +382,18 @@ function liking_by_username(){}
 
 
 function sleepTime($interval_id){
+    $time = 60;
     switch ($interval_id) {
         case 0:
-            return rand(55, 75);
-        case 1:
-            return rand(75, 95);
-        case 2:
-            return rand(100, 120);
         case 3:
-            return rand(50, 65);
+            return rand(0.5 * $time, $time);
+        case 1:
         case 4:
-            return rand(65, 80);
+            return rand($time, 1.5 * $time);
+        case 2:
+            return rand(1.5 * $time, 2 * $time);
         default:
-            return rand(80, 100);
+            return rand($time, 2 * $time);
     }
 }
 

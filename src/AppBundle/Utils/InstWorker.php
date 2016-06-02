@@ -210,11 +210,18 @@ var_dump($location);
 
         $result = curl_exec($ch);
         curl_close ($ch);
-        $dom = new Dom;
+
+        /*$dom = new Dom;
         $dom->load($result);
         $a = $dom->find('#client_' . $app_name);
-        $a = count($a) > 0 ? $a->find('form')->find('input')->value :  null;
-        return $a;
+        $a = count($a) > 0 ? $a->find('form')->find('input')->value :  null;*/
+        preg_match("'window._sharedData = (.*?);</script>'si",$result,$matches);
+        $json = json_decode($matches[1]);
+        for($i = 0; $i < count($json->entry_data->SettingsPages[0]->authorizations); $i++ )
+            if ( $app_name == $json->entry_data->SettingsPages[0]->authorizations[1]->app_name )
+                return $json->entry_data->SettingsPages[0]->authorizations[1]->token;
+
+        return null;
     }
 
     public function ItWasMe(){

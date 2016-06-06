@@ -218,7 +218,7 @@ var_dump($location);
         preg_match("'window._sharedData = (.*?);</script>'si",$result,$matches);
         $json = json_decode($matches[1]);
         for($i = 0; $i < count($json->entry_data->SettingsPages[0]->authorizations); $i++ )
-            if ( $app_name == strtolower($json->entry_data->SettingsPages[0]->authorizations[1]->app_name) )
+            if ( $app_name == strtolower($json->entry_data->SettingsPages[0]->authorizations[$i]->app_name) )
                 return $json->entry_data->SettingsPages[0]->authorizations[1]->token;
 
         return null;

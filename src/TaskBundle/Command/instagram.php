@@ -50,8 +50,8 @@ class Instagram
         $this->get_task();
         //ищем рабочий токен
         for($i = 0; $i<3;$i++) {
-            $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
-            $r = $this->check_token('1800392910', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
+            $r = $this->check_token('i_stellar', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
+            $r = $this->check_token('i_stellar', $this->TOKEN_ARRAY[$this->TOKEN_INDEX]['token']);
             if($r = 200)
                 break;
         }
@@ -613,9 +613,9 @@ class Instagram
         $this->TASK_INFO = $result;
     }
 
-    private function check_token($account_id, $token){
-        $url = "https://api.instagram.com/v1/users/$account_id?access_token=$token";
-        $code ="";
+    private function check_token($username, $token){
+     //   $url = "https://api.instagram.com/v1/users/$account_id?access_token=$token";
+        $url = "https://api.instagram.com/v1/users/search?q=$username&access_token=$token\"";
         $json = $this->httpGet($url);
         $code = $json->meta->code;
 

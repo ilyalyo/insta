@@ -43,7 +43,7 @@ class DefaultController extends Controller
      */
     public function additional_infoAction()
     {
-        return $this->render('offer_and_confidentiality.html.twig');
+      //  return $this->render('offer_and_confidentiality.html.twig');
     }
 
     /**

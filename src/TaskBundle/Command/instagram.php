@@ -1,5 +1,7 @@
 <?php
 require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../../app/AppKernel.php';
+
 use AppBundle\Utils\InstWorker;
 class Instagram
 {
@@ -877,7 +879,8 @@ class Instagram
 
     private function connect()
     {
-        global $kernel;
+        $kernel = new AppKernel('prod', false);
+        $kernel->boot();
         $user =  $kernel->getContainer()->getParameter('database_user');
         $pass = $kernel->getContainer()->getParameter('database_password');
         $connection = mysql_connect('localhost', $user, $pass);

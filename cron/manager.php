@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+
 date_default_timezone_set('UTC');
 
 connect();
@@ -66,7 +68,10 @@ function get_tasks(){
 
 
 function connect(){
-    $connection = mysql_connect('localhost', 'root', 'bycnfcntkkfh,fpf');
+    global $kernel;
+    $user =  $kernel->getContainer()->getParameter('database_user');
+    $pass = $kernel->getContainer()->getParameter('database_password');
+    $connection = mysql_connect('localhost', $user, $pass);//bycnfcntkkfh,fpf
     if (!$connection){
         die("Database Connection Failed" . mysql_error());
     }

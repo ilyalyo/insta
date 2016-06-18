@@ -1,5 +1,5 @@
 <?php
-require '/var/www/instastellar/vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 use AppBundle\Utils\InstWorker;
 class Instagram
 {
@@ -877,7 +877,10 @@ class Instagram
 
     private function connect()
     {
-        $connection = mysql_connect('localhost', 'root', 'bycnfcntkkfh,fpf');//bycnfcntkkfh,fpf
+        global $kernel;
+        $user =  $kernel->getContainer()->getParameter('database_user');
+        $pass = $kernel->getContainer()->getParameter('database_password');
+        $connection = mysql_connect('localhost', $user, $pass);
         if (!$connection) {
             die("Database Connection Failed" . mysql_error());
         }
